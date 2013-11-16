@@ -1,0 +1,151 @@
+body {
+	-webkit-print-color-adjust: exact;
+}
+
+#editXP {
+	margin: -115px 0 0 -236px;
+	width: 470px;
+}
+
+#editXP input.ng-invalid-required {
+	background-color: #fa787e;
+}
+
+#csHeader {
+	-webkit-border-radius: 0 0 10px 10px;
+	   -moz-border-radius: 0 0 10px 10px;
+			border-radius: 0 0 10px 10px;
+}
+
+#csHeader .csBoxHead {
+	width: 928px;
+}
+
+.csBox {
+	background-color: #f9f0de;
+	border: 2px solid #000000;
+	-webkit-border-radius: 0 10px 10px 10px;
+       -moz-border-radius: 0 10px 10px 10px;
+            border-radius: 0 10px 10px 10px;
+	margin-bottom: 10px;
+	position: relative;
+	padding: 24px 0 0 0;
+}
+
+.csBoxHead {
+	font-family: verdana;
+	font-size: 11.844px;
+	font-weight: bold;
+	line-height: 14px;
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	white-space: nowrap;
+	vertical-align: baseline;
+	background-color: #000000;
+	padding: 2px 5px 1px 5px;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.csStatBox {
+	border: 2px solid #000000;
+	-webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+	background-color: #ffffff;
+	font-family: verdana;
+	font-weight: bold;
+	position: absolute;
+}
+
+.csStatBox .csStatBoxVal {
+	font-size: 150%;
+	line-height: 125%;
+	text-align: center;
+	margin: 10px 0 5px 0;
+}
+
+.csStatBox .csStatBoxVal input {
+	margin-bottom: 0;
+	text-align: center;
+}
+
+.csStatBox .csStatBoxStat {
+	white-space: nowrap;
+	vertical-align: baseline;
+	text-align: center;
+	margin: 0;
+}
+
+.csStatsSection {
+	border-right: 1px solid #000;
+	height: 137px;
+	float: left;
+	position: relative;
+}
+
+.csInputBox {
+	float: left;
+	margin: 0 8px 0 0;
+}
+
+.csInputBox input, .csInputBox select {
+	background-color: #ffffff !important;
+	border-width: 0 0 2px 0;
+	border-color: #000000;
+	-webkit-border-radius: 0;
+	   -moz-border-radius: 0;
+			border-radius: 0;
+	margin-bottom: 0;
+}
+
+.csInputBox strong {
+	margin-left: 2px;
+}
+
+.csInputBox .careerSpace {
+	display: inline-block;
+	border-bottom: 2px solid #000000;
+	height: 23px;
+	margin-top: 5px;
+	vertical-align: bottom;
+	width: 120px;
+}
+
+.csTable {
+	margin: 5px;
+	width: 447px;
+}
+
+.csTable thead th {
+	vertical-align: bottom;
+}
+
+.csTable tbody tr td {
+	text-align: center;
+}
+
+.csTable tbody tr td:first-child {
+	text-align: left;
+	padding-left: 5px;
+}
+
+.csTable tbody input {
+	text-align: center;
+}
+
+.csTable tbody tr td:first-child input {
+	text-align: left;
+}
+
+.csBigText {
+	float: right;
+	margin: 0 5px;
+	padding-top: 15px;
+	text-align: center;
+}
+
+::-webkit-validation-bubble {
+    visibility: hidden;
+}​

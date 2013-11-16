@@ -1,0 +1,16 @@
+/* 
+    Document   : home
+    Created on : Sep 15, 2012, 5:22:53 PM
+    Author     : Owner
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#characterTable td.center, #characterTable th.center {
+    text-align: center;
+}
+
+#deleteChar {
+    margin: -115px 0 0 -236px;
+    width: 470px;
+}

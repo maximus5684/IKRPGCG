@@ -1,0 +1,8 @@
+#mainContain {
+	margin-top: 0;
+	width: 960px;
+}
+
+.btn, .navbar {
+	display: none;
+}

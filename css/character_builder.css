@@ -1,0 +1,11 @@
+#changeRace, #changeArchetype, #changeCareer1, #benefitConflict1, #benefitConflict2 {
+    margin: -115px 0 0 -281px;
+}
+
+.form-horizontal div.controls {
+    margin-left: 220px;
+}
+
+.form-horizontal label.control-label {
+    width: 200px;
+}
