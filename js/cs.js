@@ -2,7 +2,7 @@ function CSCtrl($scope) {
 
     /////////////////////////////////////////////////////////////////////
     /////                                                           /////
-    /////	Initial Values                                      /////
+    /////       Initial Values                                      /////
     /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
@@ -28,9 +28,9 @@ function CSCtrl($scope) {
     $scope.RangedWeapon2 = '';
 
     /////////////////////////////////////////////////////////////////////
-    /////								/////
-    /////	Lookup Arrays/Objects					/////
-    /////								/////
+    /////                                                           /////
+    /////       Lookup Arrays/Objects                               /////
+    /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
     $scope.Stats = {
@@ -63,9 +63,9 @@ function CSCtrl($scope) {
     selectedCareers = ['','','',''];
 
     /////////////////////////////////////////////////////////////////////
-    /////								/////
-    /////	User Arrays/Objects					/////
-    /////								/////
+    /////                                                           /////
+    /////       User Arrays/Objects                                 /////
+    /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
     // Example: { Name: "Test Skill", From: ['Base','Highwayman'], BaseStat: "PHY", Level: 0, Total: 0 }
@@ -98,9 +98,9 @@ function CSCtrl($scope) {
     $scope.MiscGear = [];
 
     /////////////////////////////////////////////////////////////////////
-    /////								/////
-    /////	Public/Scope Functions					/////
-    /////								/////
+    /////                                                           /////
+    /////       Public/Scope Functions                              /////
+    /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
     $scope.updateXP = function() {
@@ -325,9 +325,9 @@ function CSCtrl($scope) {
     };
 
     /////////////////////////////////////////////////////////////////////
-    /////								/////
-    /////	Private Functions					/////
-    /////								/////
+    /////                                                           /////
+    /////       Private Functions                                   /////
+    /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
     function updateMaxStats() {
@@ -391,7 +391,7 @@ function CSCtrl($scope) {
                 }
             }
 
-            if (!mFound) {				
+            if (!mFound) {                              
                 $scope.MilitarySkills.push({ Name: career.StartingMilitarySkills[i][0],
                                             From: [career.Name],
                                             BaseStat: lookupSkillBaseStat(career.StartingMilitarySkills[i][0], "M"),
@@ -416,7 +416,7 @@ function CSCtrl($scope) {
                 }
             }
 
-            if (!oFound) {				
+            if (!oFound) {                              
                 $scope.OccupationalSkills.push({ Name: career.StartingOccupationalSkills[k][0],
                                                 From: [career.Name],
                                                 BaseStat: lookupSkillBaseStat(career.StartingOccupationalSkills[k][0], "O"),
