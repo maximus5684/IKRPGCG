@@ -18,6 +18,7 @@ function CBCtrl($scope) {
     $scope.Careers = careerArr;
     
     $scope.selectSex = function() {
+        // Set the height and weight min/max values according to the race.
         if ($scope.Race !== null) {
             if ($("#Height").val() !== '') {
                 if ($("#Sex").val() == "M") {
@@ -34,7 +35,7 @@ function CBCtrl($scope) {
                     }
                 }
             }
-            
+            // Handles sex changes too (oolala).
             if ($("#Weight").val() !== '') {
                 if ($("#Sex").val() == "M") {
                     if ($("#Weight").val() < $scope.Race.WeightMale[0]) {
@@ -76,6 +77,8 @@ function CBCtrl($scope) {
     };
     
     $scope.changeRace = function() {
+        // If they haven't selected an archetype or first career yet, just reset it;
+        // otherwise, warn them.
         if ($scope.Archetype === null && $scope.Career1 === null) {
             $scope.resetRace();
         } else {
@@ -92,6 +95,7 @@ function CBCtrl($scope) {
     };
     
     $scope.resetRace = function() {
+        // Clear everything from race down.
         $scope.Race = null;
         $scope.Archetype = null;
         $scope.Benefit = null;
@@ -119,6 +123,7 @@ function CBCtrl($scope) {
         if ($scope.Race !== null) {
             popArchetypes();
             
+            // Set initial height and weight values.
             if ($("#Sex").val() == "M") {
                 $("#Height").attr({
                     min: $scope.Race.HeightMale[0],
@@ -152,6 +157,8 @@ function CBCtrl($scope) {
     };
     
     $scope.changeArchetype = function() {
+        // If they haven't selected a benefit or first career, reset it;
+        // otherwise, warn them.
         if ($scope.Benefit === null && $scope.Career1 === null) {
             $scope.resetArchetype();
         } else {
@@ -168,6 +175,7 @@ function CBCtrl($scope) {
     };
     
     $scope.resetArchetype = function() {
+        // Reset everything from archetype down.
         $scope.Archetype = null;
         $scope.Benefit = null;
         $scope.Benefits = null;
@@ -179,8 +187,9 @@ function CBCtrl($scope) {
     
     $scope.selectArchetype = function() {
         if ($scope.Archetype !== null) {
+            // Populate the benefits drop-down and the first career drop-down.
             $scope.Benefits = $scope.Archetype.Benefits;
-            popCareers();
+            popCareer1();
         }
     };
     
@@ -189,6 +198,7 @@ function CBCtrl($scope) {
     };
     
     $scope.selectBenefit = function() {
+        // Check for conflicts.
         if ($scope.Benefit == 'Feat: Strength of Will') {
             if ($scope.Career1 !== null) {
                 if ($scope.Career1.Name == 'Warcaster') {
@@ -203,6 +213,8 @@ function CBCtrl($scope) {
     };
     
     $scope.changeCareer1 = function() {
+        // If a second career has not been chosen, reset it;
+        // otherwise, warn them.
         if ($scope.Career2 === null) {
             $scope.resetCareer1();
         } else {
@@ -219,19 +231,15 @@ function CBCtrl($scope) {
     };    
     
     $scope.resetCareer1 = function() {
-        $scope.Career2List.push($scope.Career1);
-        $scope.Career2List.sort(compareCareersByName);
-        
+        // Reset first and second careers.
         $scope.Career1 = null;
         $scope.Career2 = null;
+        $scope.Career2List = [];
     };
     
     $scope.selectCareer1 = function() {
+        // Check for benefit conflicts and populate second career drop-down.
         if ($scope.Career1 !== null) {
-            if ($scope.Career2List.indexOf($scope.Career1) > -1) {
-                $scope.Career2List.splice($scope.Career2List.indexOf($scope.Career1), 1);
-            }
-            
             if ($scope.Career1.Name == 'Warcaster') {
                 if ($scope.Benefit !== null) {
                     if ($scope.Benefit == 'Feat: Strength of Will') {
@@ -239,6 +247,8 @@ function CBCtrl($scope) {
                     }
                 }
             }
+
+            popCareer2();
         }
     };
     
@@ -247,6 +257,7 @@ function CBCtrl($scope) {
     };
     
     $scope.selectCareer2 = function() {
+        // Check for benefit conflicts.
         if ($scope.Career2.Name == 'Warcaster') {
             if ($scope.Benefit !== null) {
                 if ($scope.Benefit == 'Feat: Strength of Will') {
@@ -265,6 +276,8 @@ function CBCtrl($scope) {
     }
     
     function popArchetypes() {
+        // Populates the archetypes drop-down list. Removes archetypes
+        // restricted by race.
         archList = [];
         
         for (i2 = 0; i2 < archArr.length; i2++) {
@@ -290,10 +303,11 @@ function CBCtrl($scope) {
         $scope.Archetypes = archList;
     }
     
-    function popCareers() {
+    function popCareer1() {
+        // Populates the first career drop-down list. Removes careers
+        // restricted by archetype.
         for (g = 0; g < $scope.Careers.length; g++) {
             $scope.Career1List.push($scope.Careers[g]);
-            $scope.Career2List.push($scope.Careers[g]);
         }
         
         careersToRemove = [];
@@ -307,12 +321,10 @@ function CBCtrl($scope) {
         for (l = 0; l < careersToRemove.length; l++) {
             if ($scope.Career1List.indexOf(careersToRemove[l]) > -1) {
                 $scope.Career1List.splice($scope.Career1List.indexOf(careersToRemove[l]), 1);
-                $scope.Career2List.splice($scope.Career2List.indexOf(careersToRemove[l]), 1);                
             }
         }
         
         if ($scope.Archetype.Name !== 'Gifted') {
-            // Remove careers restricted by archetype
             giftedCareers = [
                 'Arcane Mechanik',
                 'Arcanist',
@@ -336,8 +348,48 @@ function CBCtrl($scope) {
             for (m1 = 0; m1 < careersToRemove.length; m1++) {
                 if ($scope.Career1List.indexOf(careersToRemove[m1]) > -1) {
                     $scope.Career1List.splice($scope.Career1List.indexOf(careersToRemove[m1]), 1);
-                    $scope.Career2List.splice($scope.Career2List.indexOf(careersToRemove[m1]), 1);                    
                 }
+            }
+        }
+    }
+
+    function popCareer2() {
+        // Populates the second career drop-down list by copying the first (minus the
+        // career selected in the first drop-down) and removing any careers
+        // restricted by the "2nd career" restrictions.
+        for (g1 = 0; g1 < $scope.Career1List.length; g1++) {
+            if ($scope.Career1List[g1].Name != $scope.Career1.Name) {
+                $scope.Career2List.push($scope.Career1List[g1]);
+            }
+        }
+
+        careersToRemove = [];
+
+        // If the first career has a restricted careers list, trim the 2nd career list
+        // to only that list. Otherwise, check all the remaining careers for restricted
+        // career lists and remove those from the 2nd list if the 1st career is not
+        // in their restricted list.
+        if ($scope.Career1.ResSecondCareers.length > 0) {
+            for (bb2 = 0; bb2 < $scope.Career2List.length; bb2++) {
+                if ($scope.Career1.ResSecondCareers.indexOf($scope.Career2List[bb2].Name) == -1) {
+                    careersToRemove.push($scope.Career2List[bb2]);
+                }
+            }
+
+            for (bb3 = 0; bb3 < careersToRemove.length; bb3++) {
+                $scope.Career2List.splice($scope.Career2List.indexOf(careersToRemove[bb3]), 1);
+            }
+        } else {
+            for (bb4 = 0; bb4 < $scope.Career2List.length; bb4++) {
+                if ($scope.Career2List[bb4].ResSecondCareers.length > 0) {
+                    if ($scope.Career2List[bb4].ResSecondCareers.indexOf($scope.Career1.Name) == -1) {
+                        careersToRemove.push($scope.Career2List[bb4]);
+                    }
+                }
+            }
+
+            for (bb5 = 0; bb5 < careersToRemove.length; bb5++) {
+                $scope.Career2List.splice($scope.Career2List.indexOf(careersToRemove[bb5]), 1);
             }
         }
     }

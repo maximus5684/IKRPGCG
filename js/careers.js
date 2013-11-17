@@ -15,6 +15,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 50,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Bomber',
             'Brew Master',
@@ -52,6 +54,8 @@ careerArr = [
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['Mechanika Weapon worth up to 750 gc','Mechanika Suit of Armor worth up to 750 gc'],
         StartingGold: 50,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             '\'Jack Marshal',
             'Ace Commander',
@@ -90,6 +94,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: ['Rune Reader'],
         Abilities: ['Arcane Defenses','Arcane Scholar','Great Power','University Education'],
         Connections: ['Connections (magical order)'],
         MilitarySkills: [],
@@ -118,6 +124,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 200,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Advisor',
             'Appraise',
@@ -168,6 +176,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Binding',
             'Crossbowman',
@@ -216,6 +226,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Anatomical Precision',
             'Backstab',
@@ -259,6 +271,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Acrobatics',
             'Fast Draw',
@@ -302,6 +316,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 150,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Battle Plan: Reconnaissance',
             'Big Game Hunter',
@@ -353,6 +369,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Battle Plan: Call to Action',
             'Fell Call: Cacophony',
@@ -396,6 +414,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 25,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             '\'Jack Masrhal',
             'Ace Commander',
@@ -437,6 +457,8 @@ careerArr = [
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['magelock pistol','magelock rifle'],
         StartingGold: 25,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Arcane Precision',
             'Craft Rune Shot',
@@ -473,6 +495,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Ambush',
             'Appraise',
@@ -534,6 +558,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 100,
+        ResSecondCareers: [],
+        FreeBenefits: ['Hyper Perception'],
         Abilities: [
             'Anatomical Precision',
             'Astute',
@@ -576,6 +602,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 25,
+        ResSecondCareers: ['Aristocrat','Military Officer','Soldier','Warcaster'],
+        FreeBenefits: [],
         Abilities: [
             'Defensive Line',
             'Fast Arm (Blasting Pike)',
@@ -607,6 +635,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 100,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Cavalry Charge',
             'Cleave',
@@ -643,6 +673,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Arcane Assassin',
             'Camouflage',
@@ -685,6 +717,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 100,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Bodyguard',
             'Cleave',
@@ -729,6 +763,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 100,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             '\'Jack Marshal',
             'Ace Commander',
@@ -784,6 +820,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Binding',
             'Disease Resistance',
@@ -833,6 +871,8 @@ careerArr = [
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['hand cannon','pair of repeating pistols'],
         StartingGold: 50,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Chain Attack: Pin Down',
             'Dodger',
@@ -868,6 +908,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Choir',
             'Language',
@@ -905,6 +947,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Choir',
             'Language',
@@ -942,6 +986,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Battle Plan: Go to Ground',
             'Battle Plan: Reconnaissance',
@@ -997,6 +1043,8 @@ careerArr = [
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['heavy rifle','repeating long rifle'],
         StartingGold: 50,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Crackshot',
             'Dual Shot',
@@ -1036,6 +1084,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 100,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             '\'Jack Marshal',
             'Cautious Advance',
@@ -1088,6 +1138,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Camouflage',
             'Dodger',
@@ -1125,6 +1177,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Camouflage',
             'Dodger',
@@ -1162,6 +1216,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Camouflage',
             'Dodger',
@@ -1198,6 +1254,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Camouflage',
             'Dodger',
@@ -1234,6 +1292,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 100,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Battle Plan: Shadow',
             'Cover Identity',
@@ -1287,6 +1347,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 0,
+        ResSecondCareers: ['Aristocrat','Knight','Man-at-Arms','Military Officer','Soldier','Warcaster'],
+        FreeBenefits: [],
         Abilities: [
             '\'Jack Marshal',
             'Blaster',
@@ -1329,6 +1391,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        ResSecondCareers: [],
+        FreeBenefits: [],
         Abilities: [
             'Appraise',
             'Camouflage',
@@ -1382,6 +1446,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 25,
+        ResSecondCareers: ['Military Officer','Ranger','Rifleman','Soldier','Warcaster'],
+        FreeBenefits: [],
         Abilities: [
             '\'Jack Marshal',
             'Anatomical Precision',
@@ -1424,7 +1490,7 @@ careerArr = [
         StartingSkillChoicesType: '',
         StartingSkillChoicesOptions: [],
         StartingSpells: ['Boundless Charge','Convection'],
-        StartingSpecial: '',
+        StartingSpecial: 'Change the character\'s arcane tradition to focuser if he has another arcane career. A warcaster can boost only with mechanikal weapons they are bonded to.',
         StartingAssets: [],
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: [
@@ -1433,6 +1499,8 @@ careerArr = [
             'mechanika hand weapon',
             'mechanika hand cannon'
         ],
+        ResSecondCareers: [],
+        FreeBenefits: [],
         StartingGold: 0,
         Abilities: [
             'Bond',
