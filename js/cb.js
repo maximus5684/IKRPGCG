@@ -313,7 +313,18 @@ function CBCtrl($scope) {
         
         if ($scope.Archetype.Name !== 'Gifted') {
             // Remove careers restricted by archetype
-            giftedCareers = ['Arcane Mechanik','Arcanist','Gun Mage','Priest of Morrow','Priest of Menoth','Sorcerer','Warcaster'];
+            giftedCareers = [
+                'Arcane Mechanik',
+                'Arcanist',
+                'Gun Mage',
+                'Priest of Morrow',
+                'Priest of Menoth',
+                'Sorcerer (Fire)',
+                'Sorcerer (Ice)',
+                'Sorcerer (Stone)',
+                'Sorcerer (Storm)',
+                'Warcaster'
+            ];
             careersToRemove = [];
             
             for (k = 0; k < $scope.Careers.length; k++) {
