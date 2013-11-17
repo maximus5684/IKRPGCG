@@ -16,7 +16,7 @@ careerArr = [
         StartingAssetChoiceOptions: [],
         StartingGold: 50,
         Abilities: [
-            'Bombmer',
+            'Bomber',
             'Brew Master',
             'Fast Cook',
             'Field Alchemist',
@@ -766,6 +766,55 @@ careerArr = [
             ['Medicine',4],
             ['Navigation',4],
             ['Oratory',4]
+        ]
+    },
+    {
+        Name: "Pirate",
+        StartingCareerOnly: false,
+        StartingAbilities: ['Gang','Steady','Specialization (Cutlass)'],
+        StartingConnections: [],
+        StartingMilitarySkills: [['Hand Weapon',1]],
+        StartingOccupationalSkills: [['Climbing',1],['Intimidation',1],['Sailing',1],['Swimming',1]],
+        StartingSkillChoices: 1,
+        StartingSkillChoicesType: 'Military',
+        StartingSkillChoicesOptions: [['Pistol',1],['Thrown Weapon',1]],
+        StartingSpells: [],
+        StartingSpecial: '',
+        StartingAssets: [],
+        StartingAssetChoices: 0,
+        StartingAssetChoiceOptions: [],
+        StartingGold: 75,
+        Abilities: [
+            'Binding',
+            'Disease Resistance',
+            'Gang',
+            'Gunfighter',
+            'Head-Butt',
+            'Languages',
+            'Port of Call',
+            'Quick Work',
+            'Specialization (Cutlass)',
+            'Steady',
+            'Sucker!',
+            'Waylay'
+        ],
+        Connections: ['Connections (pirate crew)'],
+        MilitarySkills: [
+            ['Hand Weapon',3],
+            ['Light Artillery',2],
+            ['Pistol',3],
+            ['Rifle',2],
+            ['Thrown Weapon',3],
+            ['Unarmed Combat',3]
+        ],
+        OccupationalSkills: [
+            ['Command',2],
+            ['Deception',3],
+            ['General Skills',4],
+            ['Navigation',4],
+            ['Negotiation',2],
+            ['Rope Use',4],
+            ['Sailing',4]
         ]
     },
     {
