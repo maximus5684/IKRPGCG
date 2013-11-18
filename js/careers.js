@@ -1368,7 +1368,7 @@ careerArr = [
         ]
     },
     {
-        Name: "Theif",
+        Name: "Thief",
         StartingCareerOnly: false,
         StartingAbilities: ['Conniver','Dodger'],
         StartingConnections: [],
