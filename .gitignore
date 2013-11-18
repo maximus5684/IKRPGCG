@@ -1,2 +1,5 @@
 phpincludes/connection.php
 web.config
+*~
+*.swp
+*.swo
