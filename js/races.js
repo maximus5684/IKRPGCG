@@ -182,7 +182,7 @@ raceArr = [
         WeightMale:[140,195],
         WeightFemale:[95,130],
         AdditionalChars:[
-            'Nyss with the Gifted archetype cannot have the Arcane Mechanik, Archanist, Gun Mage, or Warcaster careers.',
+            'Nyss with the Gifted archetype cannot have the Arcane Mechanik, Arcanist, Gun Mage, or Warcaster careers.',
             'Reduce the cost of Nyss bows and Nyss claymores by 10gc during character creation.',
             'Nyss gain +1 on Initiative and PER rolls.',
             'Nyss gain +3 ARM against cold damage.',
@@ -271,7 +271,7 @@ raceArr = [
         WeightMale:[250,330],
         WeightFemale:[150,230],
         AdditionalChars:[
-            'Trollkin with the gifted archetype cannot have the Arcane Mechanik, Archanist, or Warcaster careers.',
+            'Trollkin with the gifted archetype cannot have the Arcane Mechanik, Arcanist, or Warcaster careers.',
             'Tough - Whether or not they have the Mighty archetype, trollkin characters start the game with the Tough archetype benefit. This is in addition to any other archetype benefits selected for the character.',
             'Feat: Revitalize - Whether or not they have the Mighty archetype, trollkin characters start the game with the Feat: Revitalize archetype benefit. This is in addition to any other archetype benefits selected for the character.'
         ],
