@@ -15,6 +15,7 @@ form {
 
 #mainContain {
 	margin-top: 50px;
+        position: relative;
 }
 
 .center {

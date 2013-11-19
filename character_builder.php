@@ -12,6 +12,22 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
 
         <div class="container" id="mainContain" ng-controller="CBCtrl">
             <h2 class="center">Character Builder</h2>
+            <div id="specialBox" ng-show="checkRace()">
+                <div id="raceSpecial" class="csBox">
+                    <p class="csBoxHead">Race</p>
+                    <ul>
+                        <li ng-repeat="AddChar in Race.AdditionalChars">{{AddChar}}</li>
+                    </ul>
+                </div>
+                <div id="career1Special" ng-show="checkCareer1Special()" class="csBox">
+                    <p class="csBoxHead">Career 1</p>
+                    {{Career1.StartingSpecial}}
+                </div>
+                <div id="career2Special" ng-show="checkCareer2Special()" class="csBox">
+                    <p class="csBoxHead">Career 2</p>
+                    {{Career2.StartingSpecial}}
+                </div>
+            </div>
             <form class="form-horizontal">
                 <div class="control-group">
                     <label class="control-label" for="CharName">Character Name:</label>
@@ -75,14 +91,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
                 <div class="control-group" ng-show="checkArchetype()">
-                    <label class="control-label" for="Benefit">Benefit:</label>
-                    <div class="controls">
-                        <select id="Benefit" ng-model="Benefit" ng-options="Benefit for Benefit in Benefits" ng-change="selectBenefit()">
-                            <option value="">...</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="control-group" ng-show="checkArchetype()">
                     <label class="control-label" for="Career1">Career 1:</label>
                     <div class="controls">
                         <select id="Career1" style="margin-right: 10px" ng-model="Career1" ng-options="Career.Name for Career in Career1List" ng-disabled="checkCareer1()" ng-change="selectCareer1()">
@@ -94,7 +102,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="checkCareer1()">
                     <label class="control-label" for="Career1">Career 2:</label>
                     <div class="controls">
-                        <select id="Career2" ng-model="Career2" ng-options="Career.Name for Career in Career2List" ng-change="selectCareer2()">
+                        <select id="Career2" ng-model="Career2" ng-options="Career.Name for Career in Career2List">
                             <option value="">...</option>
                         </select>
                     </div>
@@ -139,36 +147,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="modal-footer">
                         <button type="button" class="btn" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary">Change</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal hide fade" id="benefitConflict1">
-                <form onsubmit="javascript:$('#benefitConflict1').modal('hide')">
-                    <div class="modal-header">
-                        <h3>Incompatible Benefit</h3>
-                    </div>
-                    <div class="modal-body">
-                        The Warcaster career is incompatible with the benefit &quot;Feat: Strength of Will&quot;. Do you wish to
-                        change your benefit or your career choice?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn" ng-click="resetBenefit()">Benefit</button>
-                        <button type="submit" class="btn" ng-click="resetCareer1()">Career</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal hide fade" id="benefitConflict2">
-                <form onsubmit="javascript:$('#benefitConflict2').modal('hide')">
-                    <div class="modal-header">
-                        <h3>Incompatible Benefit</h3>
-                    </div>
-                    <div class="modal-body">
-                        The Warcaster career is incompatible with the benefit &quot;Feat: Strength of Will&quot;. Do you wish to
-                        change your benefit or your career choice?
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn" ng-click="resetBenefit()">Benefit</button>
-                        <button type="submit" class="btn" ng-click="resetCareer2()">Career</button>
                     </div>
                 </form>
             </div>

@@ -2,7 +2,6 @@ function CBCtrl($scope) {
     $scope.Sex = 'M';
     $scope.Race = null;
     $scope.Archetype = null;
-    $scope.Benefit = null;
     $scope.Career1 = null;
     $scope.Career2 = null;
     $scope.Career1List = [];
@@ -98,8 +97,6 @@ function CBCtrl($scope) {
         // Clear everything from race down.
         $scope.Race = null;
         $scope.Archetype = null;
-        $scope.Benefit = null;
-        $scope.Benefits = null;
         $scope.Career1 = null;
         $scope.Career1List = [];
         $scope.Career2 = null;
@@ -159,7 +156,7 @@ function CBCtrl($scope) {
     $scope.changeArchetype = function() {
         // If they haven't selected a benefit or first career, reset it;
         // otherwise, warn them.
-        if ($scope.Benefit === null && $scope.Career1 === null) {
+        if ($scope.Career1 === null) {
             $scope.resetArchetype();
         } else {
             $('#changeArchetype').modal();
@@ -177,8 +174,6 @@ function CBCtrl($scope) {
     $scope.resetArchetype = function() {
         // Reset everything from archetype down.
         $scope.Archetype = null;
-        $scope.Benefit = null;
-        $scope.Benefits = null;
         $scope.Career1 = null;
         $scope.Career1List = [];
         $scope.Career2 = null;
@@ -187,28 +182,8 @@ function CBCtrl($scope) {
     
     $scope.selectArchetype = function() {
         if ($scope.Archetype !== null) {
-            // Populate the benefits drop-down and the first career drop-down.
-            $scope.Benefits = $scope.Archetype.Benefits;
+            // Populate the first career drop-down.
             popCareer1();
-        }
-    };
-    
-    $scope.resetBenefit = function() {
-        $scope.Benefit = null;
-    };
-    
-    $scope.selectBenefit = function() {
-        // Check for conflicts.
-        if ($scope.Benefit == 'Feat: Strength of Will') {
-            if ($scope.Career1 !== null) {
-                if ($scope.Career1.Name == 'Warcaster') {
-                    $('#benefitConflict1').modal();
-                } else if ($scope.Career2 !== null) {
-                    if ($scope.Career2.Name == 'Warcaster') {
-                        $('#benefitConflict2').modal();
-                    }
-                }
-            }
         }
     };
     
@@ -229,7 +204,19 @@ function CBCtrl($scope) {
             return false;
         }
     };    
-    
+
+    $scope.checkCareer1Special = function() {
+        if ($scope.Career1 === null) {
+            return false;
+        } else {
+            if ($scope.Career1.StartingSpecial != '') {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
     $scope.resetCareer1 = function() {
         // Reset first and second careers.
         $scope.Career1 = null;
@@ -238,16 +225,8 @@ function CBCtrl($scope) {
     };
     
     $scope.selectCareer1 = function() {
-        // Check for benefit conflicts and populate second career drop-down.
+        // Populate second career drop-down.
         if ($scope.Career1 !== null) {
-            if ($scope.Career1.Name == 'Warcaster') {
-                if ($scope.Benefit !== null) {
-                    if ($scope.Benefit == 'Feat: Strength of Will') {
-                        $('#benefitConflict1').modal();
-                    }
-                }
-            }
-
             popCareer2();
         }
     };
@@ -256,16 +235,17 @@ function CBCtrl($scope) {
         $scope.Career2 = null;
     };
     
-    $scope.selectCareer2 = function() {
-        // Check for benefit conflicts.
-        if ($scope.Career2.Name == 'Warcaster') {
-            if ($scope.Benefit !== null) {
-                if ($scope.Benefit == 'Feat: Strength of Will') {
-                    $('#benefitConflict2').modal();
-                }
+    $scope.checkCareer2Special = function() {
+        if ($scope.Career2 === null) {
+            return false;
+        } else {
+            if ($scope.Career2.StartingSpecial != '') {
+                return true;
+            } else {
+                return false;
             }
         }
-    };
+    }
     
     function compareCareersByName(careerA, careerB) {
         if (careerA.Name < careerB.Name) {
