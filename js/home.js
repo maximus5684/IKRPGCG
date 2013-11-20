@@ -4,7 +4,15 @@ function HomeCtrl($scope, $http) {
     $scope.Result = '';
     $scope.Characters = [];
     $scope.CharToDelete = null;
-    
+   
+    $scope.editUrl = function(charIndex) {
+        if ($scope.Characters[charIndex].Status == 'Incomplete') {
+            return "/character_builder2.php?CharacterID=" + $scope.Characters[charIndex].CharacterID;
+        } else {
+            return "/character_sheet.php?CharacterID=" + $scope.Characters[charIndex].CharacterID;
+        }
+    }
+
     $scope.DeleteCharAsk = function(charIndex) {
         $scope.CharToDelete = $scope.Characters[charIndex];
     };

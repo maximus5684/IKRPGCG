@@ -24,9 +24,9 @@ function CBCtrl($scope, $http) {
     
     // Ajax Variables
     $scope.Url = 'ajax/characters.php';
-    $scope.Result = '';
-    $scope.ResultClass = '';
+    $scope.Error = null;
 
+    // Form Functions
     $scope.selectSex = function() {
         // Set the height and weight min/max values according to the race.
         if ($scope.Race !== null) {
@@ -242,10 +242,6 @@ function CBCtrl($scope, $http) {
         }
     };
     
-    $scope.resetCareer2 = function() {
-        $scope.Career2 = null;
-    };
-    
     $scope.checkCareer2Special = function() {
         if ($scope.Career2 === null) {
             return false;
@@ -257,6 +253,10 @@ function CBCtrl($scope, $http) {
             }
         }
     }
+    
+    $scope.resetCareer2 = function() {
+        $scope.Career2 = null;
+    };
     
     function compareCareersByName(careerA, careerB) {
         if (careerA.Name < careerB.Name) {
@@ -383,5 +383,63 @@ function CBCtrl($scope, $http) {
                 $scope.Career2List.splice($scope.Career2List.indexOf(careersToRemove[bb5]), 1);
             }
         }
+    }
+
+    // Submission and AJAX Functions
+    $scope.cancelConfirm = function() {
+        if ($scope.Race !== null) {
+            $('#cancelConfirm').modal();
+        } else {
+            window.location = '/index.php';
+        }
+    }
+
+    $scope.returnToHome = function() {
+        window.location = '/index.php';
+    }
+    
+    $scope.submitCheck = function() {
+        if ($scope.Name != '' && $scope.Career2 !== null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    $scope.checkError = function() {
+        if ($scope.Error === null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    $scope.AddChar = function() {
+        newCharReq = {
+            ReqType: 'AddChar',
+            Name: $scope.Name,
+            Sex: $scope.Sex,
+            DefiningChars: $scope.DefiningChars,
+            Faith: $scope.Faith,
+            Race: $scope.Race.Name,
+            Height: $scope.Height,
+            Weight: $scope.Weight,
+            Archetype: $scope.Archetype.Name,
+            Career1: $scope.Career1.Name,
+            Career2: $scope.Career2.Name
+        }
+
+        $http.post($scope.Url, newCharReq).success(function(data, status) {
+            if (data.indexOf('Error') == 0) {
+                $scope.Error = data;
+            } else {
+                var action = "/character_builder2.php?CharacterID=" + data; 
+                window.location.href = action;
+            }
+        }).error(function(data, status) {
+            $scope.Error = "Status: " + status + "; Data: " + data || 'Request failed.';
+        });
+
+        return false;
     }
 }

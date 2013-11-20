@@ -49,3 +49,7 @@ form {
 .static {
 	position: static;
 }
+
+.warn-text {
+    color: #f00;
+}

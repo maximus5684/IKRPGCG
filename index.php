@@ -13,7 +13,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <thead>
                     <tr>
                         <th>Character Name</th>
+                        <th>Race</th>
+                        <th>Career 1</th>
+                        <th>Career 2</th>
                         <th class="center" style="width: 25px">XP</th>
+                        <th class="center">Status</th>
                         <th class="center" style="width: 40px">Edit/<br>View</th>
                         <th class="center" style="width: 60px">Delete</th>
                     </tr>
@@ -21,8 +25,12 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <tbody>
                     <tr ng-repeat="Character in Characters">
                         <td>{{Character.Name}}</td>
+                        <td>{{Character.Race}}</td>
+                        <td>{{Character.Career1}}</td>
+                        <td>{{Character.Career2}}</td>
                         <td class="center">{{Character.XP}}</td>
-                        <td class="center"><a ng-href="character_sheet.php?CharacterID={{Character.CharacterID}}"><i class="icon-pencil"></i></a></td>
+                        <td class="center">{{Character.Status}}</td>
+                        <td class="center"><a ng-href="{{editUrl($index)}}"><i class="icon-pencil"></i></a></td>
                         <td class="center">
                             <a class="icon-remove-sign" ng-click="DeleteCharAsk($index)" data-toggle="modal" data-target="#deleteChar"></a>
                         </td>

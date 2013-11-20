@@ -28,11 +28,12 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     {{Career2.StartingSpecial}}
                 </div>
             </div>
-            <form class="form-horizontal">
+            <form class="form-horizontal" id="addCharForm" ng-submit="AddChar()">
                 <div class="control-group">
                     <label class="control-label" for="CharName">Character Name:</label>
                     <div class="controls">
                         <input type="text" id="CharName" ng-model="Name" maxlength="255">
+                        <span ng-hide="Name" class="label label-important">Required</span>
                     </div>
                 </div>
                 <div class="control-group">
@@ -62,6 +63,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="Race" style="margin-right: 10px" ng-model="Race" ng-options="Race.Name for Race in Races" ng-disabled="checkRace()" ng-change="selectRace()">
                             <option value="">...</option>
                         </select>
+                        <span ng-hide="checkRace()" class="label label-important">Required</span>
                         <span ng-show="checkRace()"><a ng-click="changeRace()">Change</a></span>
                     </div>
                 </div>
@@ -87,6 +89,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="Archetype" style="margin-right: 10px" ng-model="Archetype" ng-options="Archetype.Name for Archetype in Archetypes" ng-disabled="checkArchetype()" ng-change="selectArchetype()">
                             <option value="">...</option>
                         </select>
+                        <span ng-hide="checkArchetype()" class="label label-important">Required</span>
                         <span ng-show="checkArchetype()"><a ng-click="changeArchetype()">Change</a></span>
                     </div>
                 </div>
@@ -96,6 +99,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="Career1" style="margin-right: 10px" ng-model="Career1" ng-options="Career.Name for Career in Career1List" ng-disabled="checkCareer1()" ng-change="selectCareer1()">
                             <option value="">...</option>
                         </select>
+                        <span ng-hide="checkCareer1()" class="label label-important">Required</span>
                         <span ng-show="checkCareer1()"><a ng-click="changeCareer1()">Change</a></span>
                     </div>
                 </div>
@@ -105,6 +109,19 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="Career2" ng-model="Career2" ng-options="Career.Name for Career in Career2List">
                             <option value="">...</option>
                         </select>
+                        <span ng-hide="Career2" class="label label-important">Required</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <p style="width: 400px">
+                            <span class="label label-important">WARNING:</span>
+                            After you submit this page, you will not be able to change this character's race,
+                            archetype, first career, or second career.
+                        </p>
+                        <button type="submit" ng-disabled="submitCheck()" class="btn btn-primary">Submit</button>
+                        <button type="button" ng-click="cancelConfirm()" class="btn" style="margin-left: 15px; margin-right: 15px">Cancel</button>
+                        <span ng-hide="checkError()" class="label label-warning">{{Error}}</span>
                     </div>
                 </div>
             </form>
@@ -147,6 +164,20 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="modal-footer">
                         <button type="button" class="btn" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary">Change</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal hide fade" id="cancelConfirm">
+                <form ng-submit="returnToHome()">
+                    <div class="modal-header">
+                        <h3>Cancel Character Building</h3>
+                    </div>
+                    <div class="modal-body">
+                        All progress will be lost. Are you sure you wish to cancel building this character?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">Don't Quit</button>
+                        <button type="submit" class="btn btn-primary">Go Back Home</button>
                     </div>
                 </form>
             </div>
