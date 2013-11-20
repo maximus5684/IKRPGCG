@@ -1,6 +1,12 @@
-function CBCtrl($scope) {
+function CBCtrl($scope, $http) {
+    // Builder Variables
+    $scope.Name = '';
     $scope.Sex = 'M';
+    $scope.DefiningChars = '';
+    $scope.Faith = '';
     $scope.Race = null;
+    $scope.Height = '';
+    $scope.Weight = '';
     $scope.Archetype = null;
     $scope.Career1 = null;
     $scope.Career2 = null;
@@ -16,42 +22,47 @@ function CBCtrl($scope) {
     
     $scope.Careers = careerArr;
     
+    // Ajax Variables
+    $scope.Url = 'ajax/characters.php';
+    $scope.Result = '';
+    $scope.ResultClass = '';
+
     $scope.selectSex = function() {
         // Set the height and weight min/max values according to the race.
         if ($scope.Race !== null) {
-            if ($("#Height").val() !== '') {
-                if ($("#Sex").val() == "M") {
-                    if ($("#Height").val() < $scope.Race.HeightMale[0]) {
-                        $("#Height").val($scope.Race.HeightMale[0]);
-                    } else if ($("#Height").val() > $scope.Race.HeightMale[1]) {
-                        $("#Height").val($scope.Race.HeightMale[1]);
+            if ($scope.Height !== '') {
+                if ($scope.Sex == "M") {
+                    if (parseInt($scope.Height) < $scope.Race.HeightMale[0]) {
+                        $scope.Height = $scope.Race.HeightMale[0];
+                    } else if (parseInt($scope.Height) > $scope.Race.HeightMale[1]) {
+                        $scope.Height = $scope.Race.HeightMale[1];
                     }
-                } else if ($("#Sex").val() == "F") {
-                    if ($("#Height").val() < $scope.Race.HeightFemale[0]) {
-                        $("#Height").val($scope.Race.HeightFemale[0]);
-                    } else if ($("#Height").val() > $scope.Race.HeightFemale[1]) {
-                        $("#Height").val($scope.Race.HeightFemale[1]);
+                } else if ($scope.Sex == "F") {
+                    if (parseInt($scope.Height) < $scope.Race.HeightFemale[0]) {
+                        $scope.Height = $scope.Race.HeightFemale[0];
+                    } else if (parseInt($scope.Height) > $scope.Race.HeightFemale[1]) {
+                        $scope.Height = $scope.Race.HeightFemale[1];
                     }
                 }
             }
-            // Handles sex changes too (oolala).
-            if ($("#Weight").val() !== '') {
-                if ($("#Sex").val() == "M") {
-                    if ($("#Weight").val() < $scope.Race.WeightMale[0]) {
-                        $("#Weight").val($scope.Race.WeightMale[0]);
-                    } else if ($("#Weight").val() > $scope.Race.WeightMale[1]) {
-                        $("#Weight").val($scope.Race.WeightMale[1]);
+
+            if ($scope.Weight !== '') {
+                if ($scope.Sex == "M") {
+                    if (parseInt($scope.Weight) < $scope.Race.WeightMale[0]) {
+                        $scope.Weight = $scope.Race.WeightMale[0];
+                    } else if (parseInt($scope.Weight) > $scope.Race.WeightMale[1]) {
+                        $scope.Weight = $scope.Race.WeightMale[1];
                     }
-                } else if ($("#Sex").val() == "F") {
-                    if ($("#Weight").val() < $scope.Race.WeightFemale[0]) {
-                        $("#Weight").val($scope.Race.WeightFemale[0]);
-                    } else if ($("#Weight").val() > $scope.Race.WeightFemale[1]) {
-                        $("#Weight").val($scope.Race.WeightFemale[1]);
+                } else if ($scope.Sex == "F") {
+                    if (parseInt($scope.Weight) < $scope.Race.WeightFemale[0]) {
+                        $scope.Weight = $scope.Race.WeightFemale[0];
+                    } else if (parseInt($scope.Weight) > $scope.Race.WeightFemale[1]) {
+                        $scope.Weight = $scope.Race.WeightFemale[1];
                     }
                 }                
             }
             
-            if ($("#Sex").val() == "M") {
+            if ($scope.Sex == "M") {
                 $("#Height").attr({
                     min: $scope.Race.HeightMale[0],
                     max: $scope.Race.HeightMale[1]
@@ -121,34 +132,34 @@ function CBCtrl($scope) {
             popArchetypes();
             
             // Set initial height and weight values.
-            if ($("#Sex").val() == "M") {
+            if ($scope.Sex == "M") {
                 $("#Height").attr({
                     min: $scope.Race.HeightMale[0],
                     max: $scope.Race.HeightMale[1]
                 });
                 
-                $("#Height").val($scope.Race.HeightMale[0]);
+                $scope.Height = $scope.Race.HeightMale[0];
                 
                 $("#Weight").attr({
                     min: $scope.Race.WeightMale[0],
                     max: $scope.Race.WeightMale[1]
                 });
                 
-                $("#Weight").val($scope.Race.WeightMale[0]);
-            } else if ($("#Sex").val() == "F") {
+                $scope.Weight = $scope.Race.WeightMale[0];
+            } else if ($scope.Sex == "F") {
                 $("#Height").attr({
                     min: $scope.Race.HeightFemale[0],
                     max: $scope.Race.HeightFemale[1]
                 });
                 
-                $("#Height").val($scope.Race.HeightFemale[0]);
+                $scope.Height = $scope.Race.HeightFemale[0];
                 
                 $("#Weight").attr({
                     min: $scope.Race.WeightFemale[0],
                     max: $scope.Race.WeightFemale[1]
                 });
                 
-                $("#Weight").val($scope.Race.WeightFemale[0]);
+                $scope.Weight = $scope.Race.WeightFemale[0];
             }
         }
     };

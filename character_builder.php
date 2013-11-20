@@ -32,7 +32,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group">
                     <label class="control-label" for="CharName">Character Name:</label>
                     <div class="controls">
-                        <input type="text" id="CharName" maxlength="255">
+                        <input type="text" id="CharName" ng-model="Name" maxlength="255">
                     </div>
                 </div>
                 <div class="control-group">
@@ -47,13 +47,13 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group">
                     <label class="control-label" for="DefiningChars">Defining Characteristics:</label>
                     <div class="controls">
-                        <input type="text" id="DefiningChars" maxlength="255">
+                        <input type="text" id="DefiningChars" ng-model="DefiningChars" maxlength="255">
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Faith">Faith:</label>
                     <div class="controls">
-                        <input type="text" id="Faith" maxlength="255">
+                        <input type="text" id="Faith" ng-model="Faith" maxlength="255">
                     </div>
                 </div>
                 <div class="control-group">
@@ -69,7 +69,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <label class="control-label" for="Height">Height:</label>
                     <div class="controls">
                         <div class="input-append">
-                            <input type="number" id="Height" style="width: 40px"><span class="add-on">in.</span>
+                            <input type="number" id="Height" ng-model="Height" style="width: 40px"><span class="add-on">in.</span>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <label class="control-label" for="Weight">Weight:</label>
                     <div class="controls">
                         <div class="input-append">
-                            <input type="number" id="Weight" style="width: 50px"><span class="add-on">lbs.</span>
+                            <input type="number" id="Weight" ng-model="Weight" style="width: 50px"><span class="add-on">lbs.</span>
                         </div>
                     </div>
                 </div>
