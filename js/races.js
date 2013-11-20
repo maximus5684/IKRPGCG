@@ -14,7 +14,7 @@ raceArr = [
             PER:[3,5,6,7]
         },
         ResArchetypes:[],
-        NumStartLangs:2,
+        LangChoices:2,
         StartLangs:[],
         Abilities: [],
         AbilityChoices: 0,
@@ -44,12 +44,12 @@ raceArr = [
             PER:[3,4,6,7]
         },
         ResArchetypes:[],
-        NumStartLangs:2,
+        LangChoices:1,
         StartLangs:['Rhulic'],
         Abilities: ['Load Bearing'],
         AbilityChoices: 0,
         Benefits: [],
-        Connections: [],
+        Connections: ['Connections (clan)'],
         StatIncreases: [],
         StatIncreaseChoices: 0,
         StatIncreaseChoiceOptions: [],
@@ -86,7 +86,7 @@ raceArr = [
             PER:[3,4,4,5]
         },
         ResArchetypes:['Gifted'],
-        NumStartLangs:2,
+        LangChoices:1,
         StartLangs:['Gobberish'],
         Abilities: [],
         AbilityChoices: 0,
@@ -130,7 +130,7 @@ raceArr = [
             PER:[3,5,6,7]
         },
         ResArchetypes:[],
-        NumStartLangs:2,
+        LangChoices:1,
         StartLangs:['Shyr'],
         Abilities: [],
         AbilityChoices: 1,
@@ -168,7 +168,7 @@ raceArr = [
             PER:[3,5,6,6]
         },
         ResArchetypes:['Intellectual'],
-        NumStartLangs:2,
+        LangChoices:1,
         StartLangs:['Aeric'],
         Abilities: [],
         AbilityChoices: 0,
@@ -218,7 +218,7 @@ raceArr = [
             PER:[2,4,5,6]
         },
         ResArchetypes:['Gifted','Intellectual'],
-        NumStartLangs:3,
+        LangChoices:1,
         StartLangs:['Molgur-Og','Rhulic'],
         Abilities: [],
         AbilityChoices: 0,
@@ -257,7 +257,7 @@ raceArr = [
             PER:[3,4,5,6]
         },
         ResArchetypes:['Intellectual'],
-        NumStartLangs:2,
+        LangChoices: 1,
         StartLangs:['Molgur-Trul'],
         Abilities: [],
         AbilityChoices: 0,

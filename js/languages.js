@@ -1,0 +1,21 @@
+langArr = [
+    'Aeric',
+    'Caspian',
+    'Cygnaran',
+    'Gobberish',
+    'Idrian',
+    'Khadoran',
+    'Khurzic',
+    'Kossite',
+    'Llaelese',
+    'Molgur',
+    'Molgur-Og',
+    'Molgur-Trul',
+    'Morridane',
+    'Ordic',
+    'Rhulic',
+    'Scharde',
+    'Shyr',
+    'Thurian',
+    'Umbrean'
+];
