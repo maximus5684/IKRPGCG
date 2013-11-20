@@ -48,13 +48,13 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group">
                     <label class="control-label" for="DefiningChars">Defining Characteristics:</label>
                     <div class="controls">
-                        <input type="text" id="DefiningChars" ng-model="DefiningChars" maxlength="255">
+                        <input type="text" id="DefiningChars" ng-model="DefiningChars">
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Faith">Faith:</label>
                     <div class="controls">
-                        <input type="text" id="Faith" ng-model="Faith" maxlength="255">
+                        <input type="text" id="Faith" ng-model="Faith" maxlength="100">
                     </div>
                 </div>
                 <div class="control-group">
