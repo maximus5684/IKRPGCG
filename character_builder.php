@@ -33,7 +33,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <label class="control-label" for="CharName">Character Name:</label>
                     <div class="controls">
                         <input type="text" id="CharName" ng-model="Name" maxlength="255">
-                        <span ng-hide="Name" class="label label-important">Required</span>
+                        <span ng-hide="Name" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group">
@@ -63,7 +63,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="Race" style="margin-right: 10px" ng-model="Race" ng-options="Race.Name for Race in Races" ng-disabled="checkRace()" ng-change="selectRace()">
                             <option value="">...</option>
                         </select>
-                        <span ng-hide="checkRace()" class="label label-important">Required</span>
+                        <span ng-hide="checkRace()" class="label label-warning">Required</span>
                         <span ng-show="checkRace()"><a ng-click="changeRace()">Change</a></span>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="Archetype" style="margin-right: 10px" ng-model="Archetype" ng-options="Archetype.Name for Archetype in Archetypes" ng-disabled="checkArchetype()" ng-change="selectArchetype()">
                             <option value="">...</option>
                         </select>
-                        <span ng-hide="checkArchetype()" class="label label-important">Required</span>
+                        <span ng-hide="checkArchetype()" class="label label-warning">Required</span>
                         <span ng-show="checkArchetype()"><a ng-click="changeArchetype()">Change</a></span>
                     </div>
                 </div>
@@ -99,7 +99,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="Career1" style="margin-right: 10px" ng-model="Career1" ng-options="Career.Name for Career in Career1List" ng-disabled="checkCareer1()" ng-change="selectCareer1()">
                             <option value="">...</option>
                         </select>
-                        <span ng-hide="checkCareer1()" class="label label-important">Required</span>
+                        <span ng-hide="checkCareer1()" class="label label-warning">Required</span>
                         <span ng-show="checkCareer1()"><a ng-click="changeCareer1()">Change</a></span>
                     </div>
                 </div>
@@ -109,7 +109,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="Career2" ng-model="Career2" ng-options="Career.Name for Career in Career2List">
                             <option value="">...</option>
                         </select>
-                        <span ng-hide="Career2" class="label label-important">Required</span>
+                        <span ng-hide="Career2" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group">
