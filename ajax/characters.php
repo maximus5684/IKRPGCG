@@ -43,7 +43,27 @@ if ($charsReq->ReqType == 'GetUserChars') {
     } catch(PDOException $e) {
         echo 'Error: ' . $e->getMessage();
     }
+} elseif ($charsReq->ReqType == 'GetChar') {
+    $charsList = array();
+    
+    try {
+        $sth = $pdo->prepare('SELECT * FROM characters WHERE CharacterID = :charid');
+        $sth->bindParam(':charid', $charsReq->CharacterID);
+        $sth->execute();
 
+        if ($sth->rowCount() > 0) {
+            $result = $sth->fetch();
+            if ($result['UserID'] == $_SESSION['UserID']) {
+                echo json_encode($result);
+            } else {
+                echo 'Error: Character does not match logged-in user.';
+            }
+        } else {
+            echo 'Error: Character not found.';
+        }
+    } catch(PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
 } elseif ($charsReq->ReqType == 'DelChar') {
     try {
         $sth = $pdo->prepare('SELECT * FROM characters WHERE CharacterID = :charid');
@@ -57,11 +77,13 @@ if ($charsReq->ReqType == 'GetUserChars') {
                 $sth->bindParam(':charid', $charsReq->CharacterID);
                 $sth->execute();
             } else {
-                echo 'Character does not match logged-in user.';
+                echo 'Error: Character does not match logged-in user.';
             }
+        } else {
+            echo 'Error: Character not found.';
         }
     } catch(PDOException $e) {
-        echo $e->getMessage();
+        echo 'Error: ' . $e->getMessage();
     }
 }
 

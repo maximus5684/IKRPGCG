@@ -1,1 +1,7 @@
-/* Add stuff here */
+.form-horizontal div.controls {
+    margin-left: 220px;
+}
+
+.form-horizontal label.control-label {
+    width: 200px;
+}
