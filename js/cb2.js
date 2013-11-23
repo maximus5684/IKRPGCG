@@ -8,12 +8,12 @@ function CB2Ctrl($scope, $http) {
     $scope.Career2 = null;
     $scope.RacialBenefits = null;
     $scope.CareerBenefits = null;
-    $scope.Language1 = null;
     $scope.Language1Required = false;
-    $scope.Language2 = null;
+    $scope.Language1Choices = [];
     $scope.Language2Required = false;
-    $scope.Language3 = null;
+    $scope.Language2Choices = [];
     $scope.Language3Required = false;
+    $scope.Language3Choices = [];
     $scope.RacialStatIncreaseRequired = false;
     $scope.RacialAbilitiesRequired = false;
     $scope.Career1MSkillsRequired = false;
@@ -63,6 +63,8 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.loadCharacterDefaults = function() {
+        $scope.Character.LanguagesChosen = [null, null, null];
+        
         for (a = 0; a < $scope.Archetypes.length; a++) {
             if ($scope.Archetypes[a].Name == $scope.Character.Archetype) {
                 $scope.Benefits = $scope.Archetypes[a].Benefits;
@@ -88,6 +90,12 @@ function CB2Ctrl($scope, $http) {
 
         if ($scope.Race.LangChoices > 0) {
             $scope.Language1Required = true;
+            
+            for (g = 0; g < langArr.length; g++) {
+                if ($scope.Race.StartLangs.indexOf(langArr[g]) == -1) {
+                    $scope.Language1Choices.push(langArr[g]);
+                }
+            }
         }
 
         if ($scope.Race.LangChoices > 1) {
@@ -158,6 +166,70 @@ function CB2Ctrl($scope, $http) {
 
     $scope.checkBenefit = function() {
         if ($scope.Character === null || $scope.Character.Benefit === null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    $scope.checkLang1 = function() {
+        if ($scope.Character === null || $scope.Character.LanguagesChosen[0] === null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    $scope.selectLang1 = function() {
+        if ($scope.Language2Required) {
+            for (h = 0; h < $scope.Language1Choices.length; h++) {
+                if ($scope.Language1Choices[h] !== $scope.Character.LanguagesChosen[0]) {
+                    $scope.Language2Choices.push($scope.Language1Choices[h]);
+                }
+            }
+        }
+    }
+
+    $scope.changeLang1 = function() {
+        if ($scope.Character.LanguagesChosen[1] === null) {
+            $scope.resetLang1();
+        } else {
+            $('#changeLang1').modal();
+        }
+    }
+
+    $scope.resetLang1 = function() {
+        $scope.Character.LanguagesChosen = [null, null, null];
+        $scope.Language2Choices = [];
+        $scope.Language3Choices = [];
+    }
+
+    $scope.selectLang2 = function() {
+        if ($scope.Language3Required) {
+            for (i = 0; i < $scope.Language2Choices.legnth; i++) {
+                if ($scope.Language2Choices[i] !== $scope.Character.LanguagesChosen[1]) {
+                    $scope.Language3Choices.push($scope.Language2Choices[i]);
+                }
+            }
+        }
+    }
+
+    $scope.changeLang2 = function() {
+        if ($scope.Character.LanguagesChosen[2] === null) {
+            $scope.resetLang2();
+        } else {
+            $('#changeLang2').modal();
+        }
+    }
+
+    $scope.resetLang2 = function() {
+        $scope.Character.LanguagesChosen[1] = null;
+        $scope.Character.LanguagesChosen[2] = null;
+        $scope.Language3Choices = [];
+    }
+
+    $scope.checkRacialStatIncrease = function() {
+        if ($scope.Character === null || $scope.Character.RacialStatIncreaseChosen === null) {
             return false;
         } else {
             return true;
