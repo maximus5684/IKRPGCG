@@ -67,39 +67,39 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             <tbody>
                                 <tr>
                                     <td class="left">Starting</td>
-                                    <td>{{StartingStats[0]}}</td>
-                                    <td>{{StartingStats[1]}}</td>
-                                    <td>{{StartingStats[2]}}</td>
-                                    <td>{{StartingStats[3]}}</td>
-                                    <td>{{StartingStats[4]}}</td>
-                                    <td>{{StartingStats[5]}}</td>
-                                    <td>{{StartingStats[6]}}</td>
-                                    <td>{{StartingStats[7]}}</td>
-                                    <td>{{StartingStats[8]}}</td>
+                                    <td>{{APFields[0].Starting}}</td>
+                                    <td>{{APFields[1].Starting}}</td>
+                                    <td>{{APFields[2].Starting}}</td>
+                                    <td>{{APFields[3].Starting}}</td>
+                                    <td>{{APFields[4].Starting}}</td>
+                                    <td>{{APFields[5].Starting}}</td>
+                                    <td>{{APFields[6].Starting}}</td>
+                                    <td>{{APFields[7].Starting}}</td>
+                                    <td>{{APFields[8].Starting}}</td>
                                 </tr>
                                 <tr>
                                     <td class="left">Advancement</td>
-                                    <td><input type="number" min="0" max="3" value="0"></td>
-                                    <td><input type="number" min="0" max="3" value="0"></td>
-                                    <td><input type="number" min="0" max="3" value="0"></td>
-                                    <td><input type="number" min="0" max="3" value="0"></td>
-                                    <td><input type="number" min="0" max="3" value="0"></td>
-                                    <td><input type="number" min="0" max="3" value="0"></td>
-                                    <td><input type="number" min="0" max="3" value="0"></td>
-                                    <td><input type="number" min="0" max="3" value="0"></td>
-                                    <td><input type="number" min="0" max="3" value="0"></td>
+                                    <td><input type="number" min="0" max="3" ng-model="APFields[0].Points" ng-change="changeAP()" ng-disabled="checkAPPHY"></td>
+                                    <td><input type="number" min="0" max="3" ng-model="APFields[1].Points" ng-change="changeAP()" ng-disabled="checkAPSPD"></td>
+                                    <td><input type="number" min="0" max="3" ng-model="APFields[2].Points" ng-change="changeAP()" ng-disabled="checkAPSTR"></td>
+                                    <td><input type="number" min="0" max="3" ng-model="APFields[3].Points" ng-change="changeAP()" ng-disabled="checkAPAGL"></td>
+                                    <td><input type="number" min="0" max="3" ng-model="APFields[4].Points" ng-change="changeAP()" ng-disabled="checkAPPRW"></td>
+                                    <td><input type="number" min="0" max="3" ng-model="APFields[5].Points" ng-change="changeAP()" ng-disabled="checkAPPOI"></td>
+                                    <td><input type="number" min="0" max="3" ng-model="APFields[6].Points" ng-change="changeAP()" ng-disabled="checkAPINT"></td>
+                                    <td><input type="number" min="0" max="3" ng-model="APFields[7].Points" ng-change="changeAP()" ng-disabled="checkAPARC"></td>
+                                    <td><input type="number" min="0" max="3" ng-model="APFields[8].Points" ng-change="changeAP()" ng-disabled="checkAPPER"></td>
                                 </tr>
                                 <tr>
                                     <td class="left">Max</td>
-                                    <td>{{MaxStats[0]}}</td>
-                                    <td>{{MaxStats[1]}}</td>
-                                    <td>{{MaxStats[2]}}</td>
-                                    <td>{{MaxStats[3]}}</td>
-                                    <td>{{MaxStats[4]}}</td>
-                                    <td>{{MaxStats[5]}}</td>
-                                    <td>{{MaxStats[6]}}</td>
-                                    <td>{{MaxStats[7]}}</td>
-                                    <td>{{MaxStats[8]}}</td>
+                                    <td>{{APFields[0].Max}}</td>
+                                    <td>{{APFields[1].Max}}</td>
+                                    <td>{{APFields[2].Max}}</td>
+                                    <td>{{APFields[3].Max}}</td>
+                                    <td>{{APFields[4].Max}}</td>
+                                    <td>{{APFields[5].Max}}</td>
+                                    <td>{{APFields[6].Max}}</td>
+                                    <td>{{APFields[7].Max}}</td>
+                                    <td>{{APFields[8].Max}}</td>
                                 </tr>
                             </tbody>
                         </table>

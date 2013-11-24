@@ -14,8 +14,18 @@ function CB2Ctrl($scope, $http) {
     $scope.CareerAbilities = null;
     $scope.RacialStatIncreaseRequired = false;
     $scope.AdvancementPoints = 3;
-    $scope.StartingStats = Array(9);
-    $scope.MaxStats = Array(9);
+    // [0] = Starting, [1] = Max, [2] = AP Points, [3] = Field Min, [4] = Field Max
+    $scope.APFields = [
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 }
+    ];
     $scope.Language1Required = false;
     $scope.Language1Choices = [];
     $scope.Language2Required = false;
@@ -101,25 +111,59 @@ function CB2Ctrl($scope, $http) {
             }
         }
 
-        $scope.StartingStats[0] = $scope.Race.Stats.PHY[0];
-        $scope.StartingStats[1] = $scope.Race.Stats.SPD[0];
-        $scope.StartingStats[2] = $scope.Race.Stats.STR[0];
-        $scope.StartingStats[3] = $scope.Race.Stats.AGL[0];
-        $scope.StartingStats[4] = $scope.Race.Stats.PRW[0];
-        $scope.StartingStats[5] = $scope.Race.Stats.POI[0];
-        $scope.StartingStats[6] = $scope.Race.Stats.INT[0];
-        $scope.StartingStats[7] = $scope.Race.Stats.ARC[0];
-        $scope.StartingStats[8] = $scope.Race.Stats.PER[0];
+        $scope.APFields[0].Starting = $scope.Race.Stats.PHY[0];
+        $scope.APFields[1].Starting = $scope.Race.Stats.SPD[0];
+        $scope.APFields[2].Starting = $scope.Race.Stats.STR[0];
+        $scope.APFields[3].Starting = $scope.Race.Stats.AGL[0];
+        $scope.APFields[4].Starting = $scope.Race.Stats.PRW[0];
+        $scope.APFields[5].Starting = $scope.Race.Stats.POI[0];
+        $scope.APFields[6].Starting = $scope.Race.Stats.INT[0];
+        $scope.APFields[7].Starting = $scope.Race.Stats.ARC[0];
+        $scope.APFields[8].Starting = $scope.Race.Stats.PER[0];
 
-        $scope.MaxStats[0] = $scope.Race.Stats.PHY[1];
-        $scope.MaxStats[1] = $scope.Race.Stats.SPD[1];
-        $scope.MaxStats[2] = $scope.Race.Stats.STR[1];
-        $scope.MaxStats[3] = $scope.Race.Stats.AGL[1];
-        $scope.MaxStats[4] = $scope.Race.Stats.PRW[1];
-        $scope.MaxStats[5] = $scope.Race.Stats.POI[1];
-        $scope.MaxStats[6] = $scope.Race.Stats.INT[1];
-        $scope.MaxStats[7] = $scope.Race.Stats.ARC[1];
-        $scope.MaxStats[8] = $scope.Race.Stats.PER[1];
+        $scope.APFields[0].Max = $scope.Race.Stats.PHY[1];
+        $scope.APFields[1].Max = $scope.Race.Stats.SPD[1];
+        $scope.APFields[2].Max = $scope.Race.Stats.STR[1];
+        $scope.APFields[3].Max = $scope.Race.Stats.AGL[1];
+        $scope.APFields[4].Max = $scope.Race.Stats.PRW[1];
+        $scope.APFields[5].Max = $scope.Race.Stats.POI[1];
+        $scope.APFields[6].Max = $scope.Race.Stats.INT[1];
+        $scope.APFields[7].Max = $scope.Race.Stats.ARC[1];
+        $scope.APFields[8].Max = $scope.Race.Stats.PER[1];
+
+        if ($scope.Race.StatIncreases.length > 0) {
+            for (g1 = 0; g1 < $scope.Race.StatIncreases.length; g1++) {
+                switch($scope.Race.StatIncreases[g1]) {
+                    case 'PHY':
+                        $scope.APFields[0].Starting += 1;
+                        break;
+                    case 'SPD':
+                        $scope.APFields[1].Starting += 1;
+                        break;
+                    case 'STR':
+                        $scope.APFields[2].Starting += 1;
+                        break;
+                    case 'AGL':
+                        $scope.APFields[3].Starting += 1;
+                        break;
+                    case 'PRW':
+                        $scope.APFields[4].Starting += 1;
+                        break;
+                    case 'POI':
+                        $scope.APFields[5].Starting += 1;
+                        break;
+                    case 'INT':
+                        $scope.APFields[6].Starting += 1;
+                        break;
+                    case 'ARC':
+                        $scope.APFields[7].Starting += 1;
+                        break;
+                    case 'PER':
+                        $scope.APFields[8].Starting += 1;
+                        break;
+                }
+            }
+        }
 
         if ($scope.Race.LangChoices > 0) {
             $scope.Language1Required = true;
@@ -256,44 +300,44 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.selectRacialStatIncrease = function() {
-        $scope.StartingStats[0] = $scope.Race.Stats.PHY[0];
-        $scope.StartingStats[1] = $scope.Race.Stats.SPD[0];
-        $scope.StartingStats[2] = $scope.Race.Stats.STR[0];
-        $scope.StartingStats[3] = $scope.Race.Stats.AGL[0];
-        $scope.StartingStats[4] = $scope.Race.Stats.PRW[0];
-        $scope.StartingStats[5] = $scope.Race.Stats.POI[0];
-        $scope.StartingStats[6] = $scope.Race.Stats.INT[0];
-        $scope.StartingStats[7] = $scope.Race.Stats.ARC[0];
-        $scope.StartingStats[8] = $scope.Race.Stats.PER[0];
+        $scope.APFields[0].Starting = $scope.Race.Stats.PHY[0];
+        $scope.APFields[1].Starting = $scope.Race.Stats.SPD[0];
+        $scope.APFields[2].Starting = $scope.Race.Stats.STR[0];
+        $scope.APFields[3].Starting = $scope.Race.Stats.AGL[0];
+        $scope.APFields[4].Starting = $scope.Race.Stats.PRW[0];
+        $scope.APFields[5].Starting = $scope.Race.Stats.POI[0];
+        $scope.APFields[6].Starting = $scope.Race.Stats.INT[0];
+        $scope.APFields[7].Starting = $scope.Race.Stats.ARC[0];
+        $scope.APFields[8].Starting = $scope.Race.Stats.PER[0];
         
         if ($scope.Character.RacialStatIncreaseChosen !== null) {
             switch($scope.Character.RacialStatIncreaseChosen) {
                 case 'PHY':
-                    $scope.StartingStats[0] += 1;
+                    $scope.APFields[0].Starting += 1;
                     break;
                 case 'SPD':
-                    $scope.StartingStats[1] += 1;
+                    $scope.APFields[1].Starting += 1;
                     break;
                 case 'STR':
-                    $scope.StartingStats[2] += 1;
+                    $scope.APFields[2].Starting += 1;
                     break;
                 case 'AGL':
-                    $scope.StartingStats[3] += 1;
+                    $scope.APFields[3].Starting += 1;
                     break;
                 case 'PRW':
-                    $scope.StartingStats[4] += 1;
+                    $scope.APFields[4].Starting += 1;
                     break;
                 case 'POI':
-                    $scope.StartingStats[5] += 1;
+                    $scope.APFields[5].Starting += 1;
                     break;
                 case 'INT':
-                    $scope.StartingStats[6] += 1;
+                    $scope.APFields[6].Starting += 1;
                     break;
                 case 'ARC':
-                    $scope.StartingStats[7] += 1;
+                    $scope.APFields[7].Starting += 1;
                     break;
                 case 'PER':
-                    $scope.StartingStats[8] += 1;
+                    $scope.APFields[8].Starting += 1;
                     break;
             }
         }
@@ -309,6 +353,22 @@ function CB2Ctrl($scope, $http) {
                 return true;
             }
         }
+    }
+
+    $scope.changeAP = function() {
+        totalAPs = 0;
+
+        totalAPs += parseInt($scope.APFields[0].Points);
+        totalAPs += parseInt($scope.APFields[1].Points);
+        totalAPs += parseInt($scope.APFields[2].Points);
+        totalAPs += parseInt($scope.APFields[3].Points);
+        totalAPs += parseInt($scope.APFields[4].Points);
+        totalAPs += parseInt($scope.APFields[5].Points);
+        totalAPs += parseInt($scope.APFields[6].Points);
+        totalAPs += parseInt($scope.APFields[7].Points);
+        totalAPs += parseInt($scope.APFields[8].Points);
+
+        $scope.AdvancementPoints = 3 - totalAPs;
     }
 
     $scope.checkLang1 = function() {
