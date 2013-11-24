@@ -14,8 +14,8 @@ function CB2Ctrl($scope, $http) {
     $scope.CareerAbilities = null;
     $scope.RacialStatIncreaseRequired = false;
     $scope.AdvancementPoints = 3;
-    $scope.StartingStats = [];
-    $scope.MaxStats = [];
+    $scope.StartingStats = Array(9);
+    $scope.MaxStats = Array(9);
     $scope.Language1Required = false;
     $scope.Language1Choices = [];
     $scope.Language2Required = false;
@@ -38,12 +38,7 @@ function CB2Ctrl($scope, $http) {
     $scope.HRSpell = false;
 
     $scope.Races = raceArr;
-    $scope.Archetypes = [];    
-
-    for (i3 = 0; i3 < archArr.length; i3++) {
-        $scope.Archetypes.push(archArr[i3]);
-    }
-
+    $scope.Archetypes = archArr;    
     $scope.Careers = careerArr;
 
     // Initial function to load character.
@@ -106,25 +101,25 @@ function CB2Ctrl($scope, $http) {
             }
         }
 
-        $scope.StartingStats.push($scope.Race.Stats.PHY[0]);
-        $scope.StartingStats.push($scope.Race.Stats.SPD[0]);
-        $scope.StartingStats.push($scope.Race.Stats.STR[0]);
-        $scope.StartingStats.push($scope.Race.Stats.AGL[0]);
-        $scope.StartingStats.push($scope.Race.Stats.PRW[0]);
-        $scope.StartingStats.push($scope.Race.Stats.POI[0]);
-        $scope.StartingStats.push($scope.Race.Stats.INT[0]);
-        $scope.StartingStats.push($scope.Race.Stats.ARC[0]);
-        $scope.StartingStats.push($scope.Race.Stats.PER[0]);
+        $scope.StartingStats[0] = $scope.Race.Stats.PHY[0];
+        $scope.StartingStats[1] = $scope.Race.Stats.SPD[0];
+        $scope.StartingStats[2] = $scope.Race.Stats.STR[0];
+        $scope.StartingStats[3] = $scope.Race.Stats.AGL[0];
+        $scope.StartingStats[4] = $scope.Race.Stats.PRW[0];
+        $scope.StartingStats[5] = $scope.Race.Stats.POI[0];
+        $scope.StartingStats[6] = $scope.Race.Stats.INT[0];
+        $scope.StartingStats[7] = $scope.Race.Stats.ARC[0];
+        $scope.StartingStats[8] = $scope.Race.Stats.PER[0];
 
-        $scope.MaxStats.push($scope.Race.Stats.PHY[1]);
-        $scope.MaxStats.push($scope.Race.Stats.SPD[1]);
-        $scope.MaxStats.push($scope.Race.Stats.STR[1]);
-        $scope.MaxStats.push($scope.Race.Stats.AGL[1]);
-        $scope.MaxStats.push($scope.Race.Stats.PRW[1]);
-        $scope.MaxStats.push($scope.Race.Stats.POI[1]);
-        $scope.MaxStats.push($scope.Race.Stats.INT[1]);
-        $scope.MaxStats.push($scope.Race.Stats.ARC[1]);
-        $scope.MaxStats.push($scope.Race.Stats.PER[1]);
+        $scope.MaxStats[0] = $scope.Race.Stats.PHY[1];
+        $scope.MaxStats[1] = $scope.Race.Stats.SPD[1];
+        $scope.MaxStats[2] = $scope.Race.Stats.STR[1];
+        $scope.MaxStats[3] = $scope.Race.Stats.AGL[1];
+        $scope.MaxStats[4] = $scope.Race.Stats.PRW[1];
+        $scope.MaxStats[5] = $scope.Race.Stats.POI[1];
+        $scope.MaxStats[6] = $scope.Race.Stats.INT[1];
+        $scope.MaxStats[7] = $scope.Race.Stats.ARC[1];
+        $scope.MaxStats[8] = $scope.Race.Stats.PER[1];
 
         if ($scope.Race.LangChoices > 0) {
             $scope.Language1Required = true;
@@ -257,6 +252,50 @@ function CB2Ctrl($scope, $http) {
             return false;
         } else {
             return true;
+        }
+    }
+
+    $scope.selectRacialStatIncrease = function() {
+        $scope.StartingStats[0] = $scope.Race.Stats.PHY[0];
+        $scope.StartingStats[1] = $scope.Race.Stats.SPD[0];
+        $scope.StartingStats[2] = $scope.Race.Stats.STR[0];
+        $scope.StartingStats[3] = $scope.Race.Stats.AGL[0];
+        $scope.StartingStats[4] = $scope.Race.Stats.PRW[0];
+        $scope.StartingStats[5] = $scope.Race.Stats.POI[0];
+        $scope.StartingStats[6] = $scope.Race.Stats.INT[0];
+        $scope.StartingStats[7] = $scope.Race.Stats.ARC[0];
+        $scope.StartingStats[8] = $scope.Race.Stats.PER[0];
+        
+        if ($scope.Character.RacialStatIncreaseChosen !== null) {
+            switch($scope.Character.RacialStatIncreaseChosen) {
+                case 'PHY':
+                    $scope.StartingStats[0] += 1;
+                    break;
+                case 'SPD':
+                    $scope.StartingStats[1] += 1;
+                    break;
+                case 'STR':
+                    $scope.StartingStats[2] += 1;
+                    break;
+                case 'AGL':
+                    $scope.StartingStats[3] += 1;
+                    break;
+                case 'PRW':
+                    $scope.StartingStats[4] += 1;
+                    break;
+                case 'POI':
+                    $scope.StartingStats[5] += 1;
+                    break;
+                case 'INT':
+                    $scope.StartingStats[6] += 1;
+                    break;
+                case 'ARC':
+                    $scope.StartingStats[7] += 1;
+                    break;
+                case 'PER':
+                    $scope.StartingStats[8] += 1;
+                    break;
+            }
         }
     }
 

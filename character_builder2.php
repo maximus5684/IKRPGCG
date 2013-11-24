@@ -40,7 +40,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="RacialStatIncreaseRequired">
                     <label class="control-label" for="RacialStatIncrease">Select a stat to increase by +1 (racial bonus):</label>
                     <div class="controls">
-                        <select id="RacialStatIncrease" ng-model="Character.RacialStatIncreaseChosen" ng-options="Stat for Stat in Race.StatIncreaseChoiceOptions">
+                        <select id="RacialStatIncrease" ng-model="Character.RacialStatIncreaseChosen" ng-options="Stat for Stat in Race.StatIncreaseChoiceOptions" ng-change="selectRacialStatIncrease()">
                             <option value="">...</option>
                         </select>
                         <span ng-hide="checkRacialStatIncrease()" class="label label-warning">Required</span>
