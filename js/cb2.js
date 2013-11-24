@@ -8,15 +8,17 @@ function CB2Ctrl($scope, $http) {
     $scope.Career2 = null;
     $scope.RacialBenefits = null;
     $scope.CareerBenefits = null;
+    $scope.RacialAbilitiesRequired = false;
+    $scope.RacialAbilityChoices = [];
+    $scope.RacialAbilities = null;
+    $scope.CareerAbilities = null;
+    $scope.RacialStatIncreaseRequired = false;
     $scope.Language1Required = false;
     $scope.Language1Choices = [];
     $scope.Language2Required = false;
     $scope.Language2Choices = [];
     $scope.Language3Required = false;
     $scope.Language3Choices = [];
-    $scope.RacialStatIncreaseRequired = false;
-    $scope.RacialAbilitiesRequired = false;
-    $scope.RacialAbilityChoices = [];
     $scope.Career1MSkillsRequired = false;
     $scope.Career1MSkillsCBs = [];
     $scope.Career2MSkillsRequired = false;
@@ -93,6 +95,14 @@ function CB2Ctrl($scope, $http) {
             }
         }
 
+        for (c1 = 0; c1 < $scope.Race.Abilities.length; c1++) {
+            if ($scope.RacialAbilities === null) {
+                $scope.RacialAbilities = $scope.Race.Abilities[c1];
+            } else {
+                $scope.RacialAbilities += ', ' + $scope.Race.Abilities[c1];
+            }
+        }
+
         if ($scope.Race.LangChoices > 0) {
             $scope.Language1Required = true;
             
@@ -115,13 +125,6 @@ function CB2Ctrl($scope, $http) {
             $scope.RacialStatIncreaseRequired = true;
         }
 
-        if ($scope.Race.AbilityChoices > 0) {
-            $scope.RacialAbilitiesRequired = true;
-        
-            $scope.RacialAbilityChoices = $scope.Career1.Abilities.concat($scope.Career2.Abilities);
-            $scope.RacialAbilityChoices.sort();
-        }
-
         for (d = 0; d < $scope.Careers.length; d++) {
             if ($scope.Careers[d].Name == $scope.Character.Career1) {
                 $scope.Career1 = $scope.Careers[d];
@@ -131,6 +134,20 @@ function CB2Ctrl($scope, $http) {
         }
 
         //Select career-related values.
+        if ($scope.Race.AbilityChoices > 0) {
+            $scope.RacialAbilitiesRequired = true;
+        
+            $scope.RacialAbilityChoices = $scope.Career1.Abilities;
+
+            for (e1 = 0; e1 < $scope.Career2.Abilities.length; e1++) {
+                if ($scope.RacialAbilityChoices.indexOf($scope.Career2.Abilities[e1]) == -1) {
+                    $scope.RacialAbilityChoices.push($scope.Career2.Abilities[e1]);
+                }
+            }
+
+            $scope.RacialAbilityChoices.sort();
+        }
+
         for (e = 0; e < $scope.Career1.FreeBenefits.length; e++) {
             if ($scope.CareerBenefits === null) {
                 $scope.CareerBenefits = $scope.Career1.FreeBenefits[e];
@@ -144,6 +161,22 @@ function CB2Ctrl($scope, $http) {
                 $scope.CareerBenefits = $scope.Career2.FreeBenefits[f];
             } else {
                 $scope.CareerBenefits += ', ' + $scope.Career2.FreeBenefits[f];
+            }
+        }
+
+        for (f1 = 0; f1 < $scope.Career1.StartingAbilities.length; f1++) {
+            if ($scope.CareerAbilities === null) {
+                $scope.CareerAbilities = $scope.Career1.StartingAbilities[f1];
+            } else {
+                $scope.CareerAbilities += ', ' + $scope.Career1.StartingAbilities[f1];
+            }
+        }
+
+        for (f2 = 0; f2 < $scope.Career2.StartingAbilities.length; f2++) {
+            if ($scope.CareerAbilities === null) {
+                $scope.CareerAbilities = $scope.Career2.StartingAbilities[f2];
+            } else {
+                $scope.CareerAbilities += ', ' + $scope.Career2.StartingAbilities[f2];
             }
         }
 
@@ -196,6 +229,14 @@ function CB2Ctrl($scope, $http) {
         }
     }
 
+    $scope.checkRacialStatIncrease = function() {
+        if ($scope.Character === null || $scope.Character.RacialStatIncreaseChosen === null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     $scope.checkLang1 = function() {
         if ($scope.Character === null || $scope.Character.LanguagesChosen[0] === null) {
             return false;
@@ -228,6 +269,14 @@ function CB2Ctrl($scope, $http) {
         $scope.Language3Choices = [];
     }
 
+    $scope.showLang2 = function() {
+        if ($scope.Language2Required && $scope.Character.LanguagesChosen[0] !== null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     $scope.selectLang2 = function() {
         if ($scope.Language3Required) {
             for (i = 0; i < $scope.Language2Choices.legnth; i++) {
@@ -252,6 +301,14 @@ function CB2Ctrl($scope, $http) {
         $scope.Language3Choices = [];
     }
 
+    $scope.checkLang2 = function() {
+        if ($scope.Character === null || $scope.Character.LanguagesChosen[1] === null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     $scope.checkRacialStatIncrease = function() {
         if ($scope.Character === null || $scope.Character.RacialStatIncreaseChosen === null) {
             return false;
@@ -260,7 +317,7 @@ function CB2Ctrl($scope, $http) {
         }
     }
 
-    $scope.checkRacialability = function() {
+    $scope.checkRacialAbility = function() {
         if ($scope.Character === null || $scope.Character.RacialAbilitiesChosen === null) {
             return false;
         } else {
