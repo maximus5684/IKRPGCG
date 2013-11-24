@@ -1,7 +1,21 @@
+#changeLang1, #changeLang2 {
+    margin: -115px 0 0 -281px;
+}
+
 .form-horizontal div.controls {
     margin-left: 220px;
 }
 
 .form-horizontal label.control-label {
     width: 200px;
+}
+
+.control-group .controls ul {
+    list-style-type: none;
+    margin: 5px 0 0 0;
+}
+
+.control-group .controls ul li input {
+    margin-right: 5px;
+    vertical-align: top;
 }

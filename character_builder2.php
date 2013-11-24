@@ -63,6 +63,47 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <span ng-hide="checkRacialStatIncrease()" class="label label-warning">Required</span>
                     </div>
                 </div>
+                <div class="control-group" ng-show="RacialAbilitiesRequired">
+                    <label class="control-label" for="RacialAbility">Select an ability from your careers (Racial):</label>
+                    <div class="controls">
+                        <select id="RacialAbility" ng-model="Character.RacialAbilitiesChosen" ng-options="Option for Option in RacialAbilityChoices">
+                            <option value="">...</option>
+                        </select>
+                        <span ng-hide="checkRacialAbility()" class="label label-warning">Required</span>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="Career1MSkillsRequired">
+                    <label class="control-label" for="Career1MSkill">Choose your Military skill(s) for your first career (pick {{Career1.StartingMSkillChoices}}):</label>
+                    <div class="controls">
+                        <ul>
+                            <li ng-repeat="Skill in Career1MSkillsCBs"><input type="checkbox" name="Career1MSkillChoice" value="{{Skill.Name}}" ng-model="Skill.Checked" ng-disabled="Skill.Disabled" ng-change="changeCareer1MSkill()">{{Skill.Name}}, {{Skill.Level}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="Career1OSkillsRequired">
+                    <label class="control-label" for="Career1OSkill">Choose your Occupational skill(s) for your first career (pick {{Career1.StartingOSkillChoices}}):</label>
+                    <div class="controls">
+                        <ul>
+                            <li ng-repeat="Skill in Career1OSkillsCBs"><input type="checkbox" name="Career1OSkillChoice" value="{{Skill.Name}}" ng-model="Skill.Checked" ng-disabled="Skill.Disabled" ng-change="changeCareer1OSkill()">{{Skill.Name}}, {{Skill.Level}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="Career2MSkillsRequired">
+                    <label class="control-label" for="Career2MSkill">Choose your Military skill(s) for your second career (pick {{Career2.StartingMSkillChoices}}):</label>
+                    <div class="controls">
+                        <ul>
+                            <li ng-repeat="Skill in Career2MSkillsCBs"><input type="checkbox" name="Career2MSkillChoice" value="{{Skill.Name}}" ng-model="Skill.Checked" ng-disabled="Skill.Disabled" ng-change="changeCareer2MSkill()">{{Skill.Name}}, {{Skill.Level}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="Career2OSkillsRequired">
+                    <label class="control-label" for="Career2OSkill">Choose your Occupational skill(s) for your second career (pick {{Career2.StartingOSkillChoices}}):</label>
+                    <div class="controls">
+                        <ul>
+                            <li ng-repeat="Skill in Career2OSkillsCBs"><input type="checkbox" name="Career2OSkillChoice" value="{{Skill.Name}}" ng-model="Skill.Checked" ng-disabled="Skill.Disabled" ng-change="changeCareer2OSkill()">{{Skill.Name}}, {{Skill.Level}}</li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="control-group">
                     <div class="controls">
                         <p style="width: 400px">
