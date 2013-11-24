@@ -34,6 +34,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <span ng-hide="checkRacialAbility()" class="label label-warning">Required</span><br>
                         <span ng-show="RacialAbilities"><br>Racial Abilities: {{RacialAbilities}}</span>
                         <span ng-show="CareerAbilities"><br>Career Abilities: {{CareerAbilities}}</span>
+                        <span class="label label-important"><br>Note:</span> Some abilities have prerequisites and this page does not take this into consideration.
                     </div>
                 </div>
                 <div class="control-group" ng-show="RacialStatIncreaseRequired">
@@ -43,6 +44,65 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             <option value="">...</option>
                         </select>
                         <span ng-hide="checkRacialStatIncrease()" class="label label-warning">Required</span>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="showAP()">
+                    <label class="control-label" for="AdvancementPoints">Distribute Advancement Points:<br>({{AdvancementPoints}} remaining)</label>
+                    <div class="controls">
+                        <table id="APTable">
+                            <thead>
+                                <tr>
+                                    <th>&#160;</th>
+                                    <th class="priStat">PHY</th>
+                                    <th class="secStat">SPD</th>
+                                    <th class="secStat">STR</th>
+                                    <th class="priStat">AGL</th>
+                                    <th class="secStat">PRW</th>
+                                    <th class="secStat">POI</th>
+                                    <th class="priStat">INT</th>
+                                    <th class="secStat">ARC</th>
+                                    <th class="secStat">PER</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="left">Starting</td>
+                                    <td>{{StartingStats[0]}}</td>
+                                    <td>{{StartingStats[1]}}</td>
+                                    <td>{{StartingStats[2]}}</td>
+                                    <td>{{StartingStats[3]}}</td>
+                                    <td>{{StartingStats[4]}}</td>
+                                    <td>{{StartingStats[5]}}</td>
+                                    <td>{{StartingStats[6]}}</td>
+                                    <td>{{StartingStats[7]}}</td>
+                                    <td>{{StartingStats[8]}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Advancement</td>
+                                    <td><input type="number" min="0" max="3" value="0"></td>
+                                    <td><input type="number" min="0" max="3" value="0"></td>
+                                    <td><input type="number" min="0" max="3" value="0"></td>
+                                    <td><input type="number" min="0" max="3" value="0"></td>
+                                    <td><input type="number" min="0" max="3" value="0"></td>
+                                    <td><input type="number" min="0" max="3" value="0"></td>
+                                    <td><input type="number" min="0" max="3" value="0"></td>
+                                    <td><input type="number" min="0" max="3" value="0"></td>
+                                    <td><input type="number" min="0" max="3" value="0"></td>
+                                </tr>
+                                <tr>
+                                    <td class="left">Max</td>
+                                    <td>{{MaxStats[0]}}</td>
+                                    <td>{{MaxStats[1]}}</td>
+                                    <td>{{MaxStats[2]}}</td>
+                                    <td>{{MaxStats[3]}}</td>
+                                    <td>{{MaxStats[4]}}</td>
+                                    <td>{{MaxStats[5]}}</td>
+                                    <td>{{MaxStats[6]}}</td>
+                                    <td>{{MaxStats[7]}}</td>
+                                    <td>{{MaxStats[8]}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
                 <div class="control-group" ng-show="Language1Required">

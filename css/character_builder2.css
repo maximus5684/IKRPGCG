@@ -19,3 +19,18 @@
     margin-right: 5px;
     vertical-align: top;
 }
+
+#APTable th, #APTable td {
+    padding: 3px 5px;
+    text-align: center;
+}
+
+#APTable td.left {
+    font-weight: bold;
+    text-align: left;
+}
+
+#APTable td input[type="number"] {
+    text-align: center;
+    width: 30px;
+}

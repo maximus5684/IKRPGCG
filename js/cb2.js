@@ -13,6 +13,9 @@ function CB2Ctrl($scope, $http) {
     $scope.RacialAbilities = null;
     $scope.CareerAbilities = null;
     $scope.RacialStatIncreaseRequired = false;
+    $scope.AdvancementPoints = 3;
+    $scope.StartingStats = [];
+    $scope.MaxStats = [];
     $scope.Language1Required = false;
     $scope.Language1Choices = [];
     $scope.Language2Required = false;
@@ -102,6 +105,26 @@ function CB2Ctrl($scope, $http) {
                 $scope.RacialAbilities += ', ' + $scope.Race.Abilities[c1];
             }
         }
+
+        $scope.StartingStats.push($scope.Race.Stats.PHY[0]);
+        $scope.StartingStats.push($scope.Race.Stats.SPD[0]);
+        $scope.StartingStats.push($scope.Race.Stats.STR[0]);
+        $scope.StartingStats.push($scope.Race.Stats.AGL[0]);
+        $scope.StartingStats.push($scope.Race.Stats.PRW[0]);
+        $scope.StartingStats.push($scope.Race.Stats.POI[0]);
+        $scope.StartingStats.push($scope.Race.Stats.INT[0]);
+        $scope.StartingStats.push($scope.Race.Stats.ARC[0]);
+        $scope.StartingStats.push($scope.Race.Stats.PER[0]);
+
+        $scope.MaxStats.push($scope.Race.Stats.PHY[1]);
+        $scope.MaxStats.push($scope.Race.Stats.SPD[1]);
+        $scope.MaxStats.push($scope.Race.Stats.STR[1]);
+        $scope.MaxStats.push($scope.Race.Stats.AGL[1]);
+        $scope.MaxStats.push($scope.Race.Stats.PRW[1]);
+        $scope.MaxStats.push($scope.Race.Stats.POI[1]);
+        $scope.MaxStats.push($scope.Race.Stats.INT[1]);
+        $scope.MaxStats.push($scope.Race.Stats.ARC[1]);
+        $scope.MaxStats.push($scope.Race.Stats.PER[1]);
 
         if ($scope.Race.LangChoices > 0) {
             $scope.Language1Required = true;
@@ -234,6 +257,18 @@ function CB2Ctrl($scope, $http) {
             return false;
         } else {
             return true;
+        }
+    }
+
+    $scope.showAP = function() {
+        if (!$scope.RacialStatIncreaseRequired) {
+            return true;
+        } else {
+            if ($scope.Character === null || $scope.Character.RacialStatIncreaseChosen === null) {
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 
