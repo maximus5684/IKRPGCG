@@ -37,6 +37,31 @@ careerArr = [
             ['Medicine',4],
             ['Negotiation',4],
             ['Research',4]
+        ],
+        SpellList: [
+            { Cost: 1, 
+            Spells: [
+                'Jackhammer',
+                'Jump Start',
+                'Locomotion',
+                'Power Booster',
+                'Protection from Electricity',
+                'Return Fire',
+                'Short Out'
+                ]
+            },
+            { Cost: 2,
+            Spells: [
+                'Arcantrik Bolt',
+                'Electrify',
+                'Fortify',
+                'Polarity Shield',
+                'Positive Charge',
+                'Redline',
+                'Refuge',
+                'Temper Metal'
+                ]
+            }
         ]
     },
     {
