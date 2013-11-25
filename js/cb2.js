@@ -16,15 +16,15 @@ function CB2Ctrl($scope, $http) {
     $scope.AdvancementPoints = 3;
     // [0] = Starting, [1] = Max, [2] = AP Points, [3] = Field Min, [4] = Field Max
     $scope.APFields = [
-        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
-        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
-        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
-        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
-        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
-        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
-        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
-        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 },
-        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3 }
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
+        { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false }
     ];
     $scope.Language1Required = false;
     $scope.Language1Choices = [];
@@ -111,59 +111,7 @@ function CB2Ctrl($scope, $http) {
             }
         }
 
-        $scope.APFields[0].Starting = $scope.Race.Stats.PHY[0];
-        $scope.APFields[1].Starting = $scope.Race.Stats.SPD[0];
-        $scope.APFields[2].Starting = $scope.Race.Stats.STR[0];
-        $scope.APFields[3].Starting = $scope.Race.Stats.AGL[0];
-        $scope.APFields[4].Starting = $scope.Race.Stats.PRW[0];
-        $scope.APFields[5].Starting = $scope.Race.Stats.POI[0];
-        $scope.APFields[6].Starting = $scope.Race.Stats.INT[0];
-        $scope.APFields[7].Starting = $scope.Race.Stats.ARC[0];
-        $scope.APFields[8].Starting = $scope.Race.Stats.PER[0];
-
-        $scope.APFields[0].Max = $scope.Race.Stats.PHY[1];
-        $scope.APFields[1].Max = $scope.Race.Stats.SPD[1];
-        $scope.APFields[2].Max = $scope.Race.Stats.STR[1];
-        $scope.APFields[3].Max = $scope.Race.Stats.AGL[1];
-        $scope.APFields[4].Max = $scope.Race.Stats.PRW[1];
-        $scope.APFields[5].Max = $scope.Race.Stats.POI[1];
-        $scope.APFields[6].Max = $scope.Race.Stats.INT[1];
-        $scope.APFields[7].Max = $scope.Race.Stats.ARC[1];
-        $scope.APFields[8].Max = $scope.Race.Stats.PER[1];
-
-        if ($scope.Race.StatIncreases.length > 0) {
-            for (g1 = 0; g1 < $scope.Race.StatIncreases.length; g1++) {
-                switch($scope.Race.StatIncreases[g1]) {
-                    case 'PHY':
-                        $scope.APFields[0].Starting += 1;
-                        break;
-                    case 'SPD':
-                        $scope.APFields[1].Starting += 1;
-                        break;
-                    case 'STR':
-                        $scope.APFields[2].Starting += 1;
-                        break;
-                    case 'AGL':
-                        $scope.APFields[3].Starting += 1;
-                        break;
-                    case 'PRW':
-                        $scope.APFields[4].Starting += 1;
-                        break;
-                    case 'POI':
-                        $scope.APFields[5].Starting += 1;
-                        break;
-                    case 'INT':
-                        $scope.APFields[6].Starting += 1;
-                        break;
-                    case 'ARC':
-                        $scope.APFields[7].Starting += 1;
-                        break;
-                    case 'PER':
-                        $scope.APFields[8].Starting += 1;
-                        break;
-                }
-            }
-        }
+        $scope.setAPFields();
 
         if ($scope.Race.LangChoices > 0) {
             $scope.Language1Required = true;
@@ -300,6 +248,26 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.selectRacialStatIncrease = function() {
+        $scope.setAPFields();
+    }
+
+    $scope.showAP = function() {
+        if (!$scope.RacialStatIncreaseRequired) {
+            return true;
+        } else {
+            if ($scope.Character === null || $scope.Character.RacialStatIncreaseChosen === null) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+    }
+
+    $scope.changeAP = function() {
+        $scope.recalcAPs();
+    }
+
+    $scope.setAPFields = function() {
         $scope.APFields[0].Starting = $scope.Race.Stats.PHY[0];
         $scope.APFields[1].Starting = $scope.Race.Stats.SPD[0];
         $scope.APFields[2].Starting = $scope.Race.Stats.STR[0];
@@ -307,9 +275,66 @@ function CB2Ctrl($scope, $http) {
         $scope.APFields[4].Starting = $scope.Race.Stats.PRW[0];
         $scope.APFields[5].Starting = $scope.Race.Stats.POI[0];
         $scope.APFields[6].Starting = $scope.Race.Stats.INT[0];
-        $scope.APFields[7].Starting = $scope.Race.Stats.ARC[0];
-        $scope.APFields[8].Starting = $scope.Race.Stats.PER[0];
         
+        if ($scope.Character.Archetype == 'Gifted') {
+            $scope.APFields[7].Starting = $scope.Race.Stats.ARC[0];
+        } else {
+            $scope.APFields[7].Starting = '-';
+            $scope.APFields[7].Disabled = true;
+        }
+
+        $scope.APFields[8].Starting = $scope.Race.Stats.PER[0];
+
+        $scope.APFields[0].Max = $scope.Race.Stats.PHY[1];
+        $scope.APFields[1].Max = $scope.Race.Stats.SPD[1];
+        $scope.APFields[2].Max = $scope.Race.Stats.STR[1];
+        $scope.APFields[3].Max = $scope.Race.Stats.AGL[1];
+        $scope.APFields[4].Max = $scope.Race.Stats.PRW[1];
+        $scope.APFields[5].Max = $scope.Race.Stats.POI[1];
+        $scope.APFields[6].Max = $scope.Race.Stats.INT[1];
+
+        if ($scope.Character.Archetype == 'Gifted') {
+            $scope.APFields[7].Max = $scope.Race.Stats.ARC[1];
+        } else {
+            $scope.APFields[7].Max = '-';
+        }
+
+        $scope.APFields[8].Max = $scope.Race.Stats.PER[1];
+
+        if ($scope.Race.StatIncreases.length > 0) {
+            for (g1 = 0; g1 < $scope.Race.StatIncreases.length; g1++) {
+                switch($scope.Race.StatIncreases[g1]) {
+                    case 'PHY':
+                        $scope.APFields[0].Starting += 1;
+                        break;
+                    case 'SPD':
+                        $scope.APFields[1].Starting += 1;
+                        break;
+                    case 'STR':
+                        $scope.APFields[2].Starting += 1;
+                        break;
+                    case 'AGL':
+                        $scope.APFields[3].Starting += 1;
+                        break;
+                    case 'PRW':
+                        $scope.APFields[4].Starting += 1;
+                        break;
+                    case 'POI':
+                        $scope.APFields[5].Starting += 1;
+                        break;
+                    case 'INT':
+                        $scope.APFields[6].Starting += 1;
+                        break;
+                    case 'ARC':
+                        $scope.APFields[7].Starting += 1;
+                        break;
+                    case 'PER':
+                        $scope.APFields[8].Starting += 1;
+                        break;
+                }
+            }
+        }
+
         if ($scope.Character.RacialStatIncreaseChosen !== null) {
             switch($scope.Character.RacialStatIncreaseChosen) {
                 case 'PHY':
@@ -341,21 +366,11 @@ function CB2Ctrl($scope, $http) {
                     break;
             }
         }
+
+        $scope.recalcAPs();
     }
 
-    $scope.showAP = function() {
-        if (!$scope.RacialStatIncreaseRequired) {
-            return true;
-        } else {
-            if ($scope.Character === null || $scope.Character.RacialStatIncreaseChosen === null) {
-                return false;
-            } else {
-                return true;
-            }
-        }
-    }
-
-    $scope.changeAP = function() {
+    $scope.recalcAPs = function() {
         totalAPs = 0;
 
         totalAPs += parseInt($scope.APFields[0].Points);
@@ -369,6 +384,53 @@ function CB2Ctrl($scope, $http) {
         totalAPs += parseInt($scope.APFields[8].Points);
 
         $scope.AdvancementPoints = 3 - totalAPs;
+       
+        fieldLowered = false;
+
+        for (j11 = 0; j11 < $scope.APFields.length; j11++) {
+            if (j11 == 7) {
+                if ($scope.Character.Archetype != 'Gifted') {
+                    disabled = true;
+                } else {
+                    if ($scope.AdvancementPoints == 0) {
+                        if ($scope.APFields[j11].Points == 0) {
+                            $scope.APFields[j11].FieldMax = 0;
+                            $scope.APFields[j11].Disabled = true;
+                        } else {
+                            $scope.APFields[j11].FieldMax = $scope.APFields[j11].Points;
+                            $scope.APfields[j11].Disabled = false;
+                        }
+                    } else {
+                        $scope.APFields[j11].FieldMax = Math.min(($scope.APFields[j11].Max - $scope.APFields[j11].Starting), 3);
+                        $scope.APFields[j11].Disabled = false;
+                    }
+                }
+            } else {
+                if ($scope.APFields[j11].Points > ($scope.APFields[j11].Max - $scope.APFields[j11].Starting)) {
+                    $scope.APFields[j11].FieldMax = $scope.APFields[j11].Max - $scope.APFields[j11].Starting;
+                    $scope.APFields[j11].Points = $scope.APFields[j11].FieldMax;
+                    fieldLowered = true;
+                    break;
+                } else {
+                    if ($scope.AdvancementPoints == 0) {
+                        if ($scope.APFields[j11].Points == 0) {
+                            $scope.APFields[j11].FieldMax = 0;
+                            $scope.APFields[j11].Disabled = true;
+                        } else {
+                            $scope.APFields[j11].FieldMax = $scope.APFields[j11].Points;
+                            $scope.APFields[j11].Disabled = false;
+                        }
+                    } else {
+                        $scope.APFields[j11].FieldMax = Math.min(($scope.APFields[j11].Max - $scope.APFields[j11].Starting), 3);
+                        $scope.APFields[j11].Disabled = false;
+                    }
+                }
+            }
+        }
+        
+        if (fieldLowered) {
+            $scope.recalcAPs();
+        }
     }
 
     $scope.checkLang1 = function() {

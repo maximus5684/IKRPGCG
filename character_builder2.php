@@ -79,15 +79,15 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                                 </tr>
                                 <tr>
                                     <td class="left">Advancement</td>
-                                    <td><input type="number" min="0" max="3" ng-model="APFields[0].Points" ng-change="changeAP()" ng-disabled="checkAPPHY"></td>
-                                    <td><input type="number" min="0" max="3" ng-model="APFields[1].Points" ng-change="changeAP()" ng-disabled="checkAPSPD"></td>
-                                    <td><input type="number" min="0" max="3" ng-model="APFields[2].Points" ng-change="changeAP()" ng-disabled="checkAPSTR"></td>
-                                    <td><input type="number" min="0" max="3" ng-model="APFields[3].Points" ng-change="changeAP()" ng-disabled="checkAPAGL"></td>
-                                    <td><input type="number" min="0" max="3" ng-model="APFields[4].Points" ng-change="changeAP()" ng-disabled="checkAPPRW"></td>
-                                    <td><input type="number" min="0" max="3" ng-model="APFields[5].Points" ng-change="changeAP()" ng-disabled="checkAPPOI"></td>
-                                    <td><input type="number" min="0" max="3" ng-model="APFields[6].Points" ng-change="changeAP()" ng-disabled="checkAPINT"></td>
-                                    <td><input type="number" min="0" max="3" ng-model="APFields[7].Points" ng-change="changeAP()" ng-disabled="checkAPARC"></td>
-                                    <td><input type="number" min="0" max="3" ng-model="APFields[8].Points" ng-change="changeAP()" ng-disabled="checkAPPER"></td>
+                                    <td><input type="number" min="{{APFields[0].FieldMin}}" max="{{APFields[0].FieldMax}}" ng-model="APFields[0].Points" ng-change="changeAP()" ng-disabled="APFields[0].Disabled"></td>
+                                    <td><input type="number" min="{{APFields[1].FieldMin}}" max="{{APFields[1].FieldMax}}" ng-model="APFields[1].Points" ng-change="changeAP()" ng-disabled="APFields[1].Disabled"></td>
+                                    <td><input type="number" min="{{APFields[2].FieldMin}}" max="{{APFields[2].FieldMax}}" ng-model="APFields[2].Points" ng-change="changeAP()" ng-disabled="APFields[2].Disabled"></td>
+                                    <td><input type="number" min="{{APFields[3].FieldMin}}" max="{{APFields[3].FieldMax}}" ng-model="APFields[3].Points" ng-change="changeAP()" ng-disabled="APFields[3].Disabled"></td>
+                                    <td><input type="number" min="{{APFields[4].FieldMin}}" max="{{APFields[4].FieldMax}}" ng-model="APFields[4].Points" ng-change="changeAP()" ng-disabled="APFields[4].Disabled"></td>
+                                    <td><input type="number" min="{{APFields[5].FieldMin}}" max="{{APFields[5].FieldMax}}" ng-model="APFields[5].Points" ng-change="changeAP()" ng-disabled="APFields[5].Disabled"></td>
+                                    <td><input type="number" min="{{APFields[6].FieldMin}}" max="{{APFields[6].FieldMax}}" ng-model="APFields[6].Points" ng-change="changeAP()" ng-disabled="APFields[6].Disabled"></td>
+                                    <td><input type="number" min="{{APFields[7].FieldMin}}" max="{{APFields[7].FieldMax}}" ng-model="APFields[7].Points" ng-change="changeAP()" ng-disabled="APFields[7].Disabled"></td>
+                                    <td><input type="number" min="{{APFields[8].FieldMin}}" max="{{APFields[8].FieldMax}}" ng-model="APFields[8].Points" ng-change="changeAP()" ng-disabled="APFields[8].Disabled"></td>
                                 </tr>
                                 <tr>
                                     <td class="left">Max</td>
