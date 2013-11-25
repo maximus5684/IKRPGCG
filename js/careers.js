@@ -38,31 +38,7 @@ careerArr = [
             ['Negotiation',4],
             ['Research',4]
         ],
-        SpellList: [
-            { Cost: 1, 
-            Spells: [
-                'Jackhammer',
-                'Jump Start',
-                'Locomotion',
-                'Power Booster',
-                'Protection from Electricity',
-                'Return Fire',
-                'Short Out'
-                ]
-            },
-            { Cost: 2,
-            Spells: [
-                'Arcantrik Bolt',
-                'Electrify',
-                'Fortify',
-                'Polarity Shield',
-                'Positive Charge',
-                'Redline',
-                'Refuge',
-                'Temper Metal'
-                ]
-            }
-        ]
+        SpellList: []
     },
     {
         Name: "Arcane Mechanik",
@@ -103,6 +79,55 @@ careerArr = [
             ['Mechanikal Engineering',4],
             ['Negotiation',2],
             ['Research',3]
+        ],
+        SpellList: [
+            {
+                Cost: 1, 
+                Spells: [
+                    'Jackhammer',
+                    'Jump Start',
+                    'Locomotion',
+                    'Power Booster',
+                    'Protection from Electricity',
+                    'Return Fire',
+                    'Short Out'
+                ]
+            },
+            {
+                Cost: 2,
+                Spells: [
+                    'Arcantrik Bolt',
+                    'Electrify',
+                    'Fortify',
+                    'Polarity Shield',
+                    'Positive Charge',
+                    'Redline',
+                    'Refuge',
+                    'Temper Metal'
+                ]
+            },
+            {
+                Cost: 3,
+                Spells: [
+                    'Broadside',
+                    'Electrical Blast',
+                    'Fail Safe',
+                    'Force Field',
+                    'Full Throttle',
+                    'Grind',
+                    'Guided Fire',
+                    'Iron Aggression',
+                    'Superiority'
+                ]
+            },
+            {
+                Cost: 4,
+                Spells: [
+                    'Black Out',
+                    'Tide of Steel',
+                    'Voltaic Lock'
+                ]
+            }
         ]
     },
     {
@@ -134,6 +159,65 @@ careerArr = [
             ['Negotiation',2],
             ['Oratory',2],
             ['Research',4]
+        ],
+        SpellList: [
+            {
+                Cost: 1,
+                Spells: [
+                    'Arcane Strike',
+                    'Blizzard',
+                    'Fire Starter',
+                    'Guided Blade',
+                    'Influence',
+                    'Light in the Darkness',
+                    'Protection from Cold',
+                    'Protection from Electricity',
+                    'Protection from Fire',
+                    'Storm Tossed'
+                ]
+            },
+            {
+                Cost: 2,
+                Spells: [
+                    'Arcane Bolt',
+                    'Ashen Cloud',
+                    'Aura of Protection',
+                    'Banishing Ward',
+                    'Celerity',
+                    'Foxhole',
+                    'Hand of Fate',
+                    'Howling Flames',
+                    'Icy Grip',
+                    'Occultation',
+                    'Rock Wall',
+                    'Telekinesis',
+                    'True Sight',
+                    'Vision',
+                    'Wind Blast'
+                ]
+            },
+            { 
+                Cost: 3,
+                Spells: [
+                    'Fog of War',
+                    'Force Field',
+                    'Hex Blast',
+                    'Inhospitable Ground',
+                    'Lightning Tendrils',
+                    'Mirage',
+                    'Rift',
+                    'Rock Hammer',
+                    'Zephyr'
+                ]
+            },
+            {
+                Cost: 4,
+                Spells: [
+                    'Force Hammer',
+                    'Overmind',
+                    'Tempest'
+                ]
+            }
         ]
     },
     {
@@ -187,7 +271,8 @@ careerArr = [
             ['Negotiation',4],
             ['Oratory',4],
             ['Seduction',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Bounty Hunter",
@@ -238,7 +323,8 @@ careerArr = [
             ['Sneak',3],
             ['Streetwise',4],
             ['Tracking',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Cutthroat",
@@ -284,7 +370,8 @@ careerArr = [
             ['Interrogation',2],
             ['Sneak',4],
             ['Streetwise',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Duelist",
@@ -330,7 +417,8 @@ careerArr = [
             ['Oratory',2],
             ['Seduction',3],
             ['Streetwise',2]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Explorer",
@@ -384,7 +472,8 @@ careerArr = [
             ['Negotiation',4],
             ['Rope Use',4],
             ['Survival',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Fell Caller",
@@ -430,7 +519,8 @@ careerArr = [
             ['General Skills',4],
             ['Oratory',4],
             ['Seduction',2]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Field Mechanik",
@@ -474,7 +564,8 @@ careerArr = [
             ['General Skills',4],
             ['Mechanikal Engineering',4],
             ['Negotiation',3]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Gun Mage",
@@ -508,7 +599,8 @@ careerArr = [
         OccupationalSkills: [
             ['General Skills',4],
             ['Seduction',2]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Highwayman",
@@ -570,7 +662,8 @@ careerArr = [
             ['Seduction',4],
             ['Sneak',4],
             ['Survival',2]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Investigator",
@@ -622,7 +715,8 @@ careerArr = [
             ['Research',4],
             ['Sneak',4],
             ['Streetwise',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Iron Fang",
@@ -656,7 +750,8 @@ careerArr = [
         ],
         Connections: ['Connections (Khadoran military)'],
         MilitarySkills: [['Great Weapon',4],['Lance',4],['Shield',4],['Unarmed Combat',3]],
-        OccupationalSkills: [['Command',4],['General Skills',4],['Survival',2]]
+        OccupationalSkills: [['Command',4],['General Skills',4],['Survival',2]],
+        SpellList: []
     },
     {
         Name: "Knight",
@@ -695,7 +790,8 @@ careerArr = [
         ],
         Connections: ['Connections (knightly order)'],
         MilitarySkills: [['Great Weapon',4],['Hand Weapon',4],['Lance',4],['Shield',4],['Unarmed Combat',3]],
-        OccupationalSkills: [['Command',4],['Etiquette',2],['General Skills',4],['Law',2]]
+        OccupationalSkills: [['Command',4],['Etiquette',2],['General Skills',4],['Law',2]],
+        SpellList: []
     },
     {
         Name: "Mage Hunter",
@@ -740,7 +836,8 @@ careerArr = [
             ['Sneak',4],
             ['Survival',2],
             ['Tracking',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Man-at-Arms",
@@ -787,7 +884,8 @@ careerArr = [
             ['Command',3],
             ['Craft (metalworking)',2],
             ['General Skills',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Military Officer",
@@ -845,7 +943,8 @@ careerArr = [
             ['Medicine',4],
             ['Navigation',4],
             ['Oratory',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Pirate",
@@ -897,7 +996,8 @@ careerArr = [
             ['Negotiation',2],
             ['Rope Use',4],
             ['Sailing',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Pistoleer",
@@ -935,7 +1035,8 @@ careerArr = [
             ['Craft (gunsmithing)',2],
             ['General Skills',4],
             ['Sneak',3]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Priest of Menoth",
@@ -975,7 +1076,8 @@ careerArr = [
             ['Negotiation',4],
             ['Oratory',4],
             ['Research',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Priest of Morrow",
@@ -1015,7 +1117,8 @@ careerArr = [
             ['Negotiation',4],
             ['Oratory',4],
             ['Research',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Ranger",
@@ -1073,7 +1176,8 @@ careerArr = [
             ['Sneak',4],
             ['Survival',4],
             ['Tracking',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Rifleman",
@@ -1108,7 +1212,8 @@ careerArr = [
         ],
         Connections: [],
         MilitarySkills: [['Rifle',4]],
-        OccupationalSkills: [['Craft (gunsmithing)',4],['General Skills',4],['Survival',3]]
+        OccupationalSkills: [['Craft (gunsmithing)',4],['General Skills',4],['Survival',3]],
+        SpellList: []
     },
     {
         Name: "Soldier",
@@ -1170,7 +1275,8 @@ careerArr = [
             ['Navigation',2],
             ['Sneak',2],
             ['Survival',3]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Sorcerer (Fire)",
@@ -1210,7 +1316,8 @@ careerArr = [
             ['General Skills',4],
             ['Sneak',3],
             ['Survival',3]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Sorcerer (Ice)",
@@ -1250,7 +1357,8 @@ careerArr = [
             ['General Skills',4],
             ['Sneak',3],
             ['Survival',3]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Sorcerer (Stone)",
@@ -1328,7 +1436,8 @@ careerArr = [
             ['General Skills',4],
             ['Sneak',3],
             ['Survival',3]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Spy",
@@ -1384,7 +1493,8 @@ careerArr = [
             ['Seduction',4],
             ['Sneak',4],
             ['Streetwise',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Stormblade",
@@ -1421,7 +1531,8 @@ careerArr = [
             ['Etiquette',2],
             ['General Skills',4],
             ['Medicine',2]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Thief",
@@ -1485,7 +1596,8 @@ careerArr = [
             ['Pickpocket',4],
             ['Sneak',4],
             ['Streetwise',4]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Trencher",
@@ -1535,7 +1647,8 @@ careerArr = [
             ['Medicine',3],
             ['Sneak',3],
             ['Survival',3]
-        ]
+        ],
+        SpellList: []
     },
     {
         Name: "Warcaster",
@@ -1578,6 +1691,7 @@ careerArr = [
         OccupationalSkills: [
             ['Command',4],
             ['General Skills',4]
-        ]
+        ],
+        SpellList: []
     }
 ];
