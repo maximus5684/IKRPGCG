@@ -895,5 +895,110 @@ function CB2Ctrl($scope, $http) {
             }
         }
     }
+    
+    $scope.selectHROSkillSwap = function() {
+        if (!$scope.HROSkillChecked) {
+            $scope.Character.HRCareer1OSkillToReplace = null;
+            $scope.Character.HRCareer1OSkillReplacedWith = null;
+            $scope.Character.HRCareer2OSkillToReplace = null;
+            $scope.Character.HRCareer2OSkillReplacedWith = null;
+        }
+    }
 
+    $scope.checkHROSkillCareer1From = function() {
+        if ($scope.Character === null || $scope.Character.HRCareer1OSkillToReplace === null || $scope.HROSkillChecked == false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    $scope.selectHROSkillCareer1From = function() {
+        $scope.HROSkillCareer1List = [];
+
+        if ($scope.Character !== null && $scope.Character.HRCareer1OSkillToReplace !== null) {
+            for (j = 0; j < $scope.Career1.OccupationalSkills.length; j++) {
+                if ($scope.Career1.OccupationalSkills[j][0] != $scope.Character.HRCareer1OSkillToReplace[0]) {
+                    $scope.HROSkillCareer1List.push($scope.Career1.OccupationalSkills[j]);
+                }
+            }
+        }
+    }
+
+    $scope.checkHROSkillCareer2From = function() {
+        if ($scope.Character === null || $scope.Character.HRCareer2OSkillToReplace === null || $scope.HROSkillChecked == false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    $scope.selectHROSkillCareer2From = function() {
+        $scope.HROSkillCareer2List = [];
+
+        if ($scope.Character !== null && $scope.Character.HRCareer2OSkillToReplace !== null) {
+            for (j = 0; j < $scope.Career2.OccupationalSkills.length; j++) {
+                if ($scope.Career2.OccupationalSkills[j][0] != $scope.Character.HRCareer2OSkillToReplace[0]) {
+                    $scope.HROSkillCareer2List.push($scope.Career2.OccupationalSkills[j]);
+                }
+            }
+        }
+    }
+
+    $scope.selectHRSpellSwap = function() {
+        if (!$scope.HRSpellChecked) {
+            $scope.Character.HRCareer1SpellToReplace = null;
+            $scope.Character.HRCareer1SpellReplacedWith = null;
+            $scope.Character.HRCareer2SpellToReplace = null;
+            $scope.Character.HRCareer2SpellReplacedWith = null;
+        }
+    }
+
+    $scope.checkHRSpellCareer1From = function() {
+        if ($scope.Character === null || $scope.Character.HRCareer1SpellToReplace === null || $scope.HRSpellChecked == false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    $scope.selectHRSpellCareer1From = function() {
+        $scope.HRSpellCareer1List = [];
+
+        if ($scope.Character !== null && $scope.Character.HRCareer1SpellToReplace !== null) {
+            for (j = 0; j < $scope.Career1.SpellList.length; j++) {
+                for (i = 0; i < $scope.Career1.SpellList[j].Spells.length; i++) {
+                    if ($scope.Career1.SpellList[j].Spells[i] != $scope.Character.HRCareer1SpellToReplace) {
+                        $scope.HRSpellCareer1List.push($scope.Career1.SpellList[j].Spells[i]);
+                    }
+                }
+            }
+        }
+
+        $scope.HRSpellCareer1List.sort();
+    }
+
+    $scope.checkHRSpellCareer2From = function() {
+        if ($scope.Character === null || $scope.Character.HRCareer2SpellToReplace === null || $scope.HRSpellChecked == false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    $scope.selectHRSpellCareer2From = function() {
+        $scope.HRSpellCareer2List = [];
+
+        if ($scope.Character !== null && $scope.Character.HRCareer2SpellToReplace !== null) {
+            for (j = 0; j < $scope.Career2.SpellList.length; j++) {
+                for (i = 0; i < $scope.Career2.SpellList[j].Spells.length; i++) {
+                    if ($scope.Career2.SpellList[j].Spells[i] != $scope.Character.HRCareer2SpellToReplace) {
+                        $scope.HRSpellCareer2List.push($scope.Career2.SpellList[j].Spells[i]);
+                    }
+                }
+            }
+        }
+
+        $scope.HRSpellCareer2List.sort();
+    }
 }
