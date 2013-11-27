@@ -166,6 +166,46 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         </ul>
                     </div>
                 </div>
+                <div class="control-group" ng-show="RacialConnections">
+                    <label class="control-label" for="RacialConnectionDetails">Racial Connection:</label>
+                    <div class="controls">
+                        {{Race.Connections}}<br>
+                        <input type="checkbox" name="RacialConnectionDetails" ng-model="ShowRacialConnectionDetails"> To change the details of this connection (the text between the parentheses), click this checkbox.
+                        <span ng-show="ShowRacialConnectionDetails"><br><br>Details: <input type="text" ng-model="Character.RacialConnectionDetails"></span>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="Career1Connections">
+                    <label class="control-label" for="Career1ConnectionDetails">{{Career1.Name}} Connection:</label>
+                    <div class="controls">
+                        {{Career1.StartingConnections[0]}}<br>
+                        <input type="checkbox" name="Career1ConnectionDetails" ng-model="ShowCareer1ConnectionDetails"> To change the details of this connection (the text between the parentheses), click this checkbox.
+                        <span ng-show="ShowCareer1ConnectionDetails"><br><br>Details: <input type="text" ng-model="Character.Career1ConnectionDetails"></span>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="Career2Connections">
+                    <label class="control-label" for="Career2ConnectionDetails"> Connection:</label>
+                    <div class="controls">
+                        {{Career2.StartingConnections[0]}}<br>
+                        <input type="checkbox" name="Career2ConnectionDetails" ng-model="ShowCareer2ConnectionDetails"> To change the details of this connection (the text between the parentheses), click this checkbox.
+                        <span ng-show="ShowCareer2ConnectionDetails"><br><br>Details: <input type="text" ng-model="Character.Career2ConnectionDetails"></span>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="Career1AssetsRequired">
+                    <label class="control-label" for="Career1AssetChoice">Select your starting asset(s) for {{Career1.Name}} (pick {{Career1.StartingAssetChoices}}):</label>
+                    <div class="controls">
+                        <ul>
+                            <li ng-repeat="Asset in Career1AssetChoiceCBs"><input type="checkbox" name="Career1AssetChoice" value={{Asset.Name}} ng-model="Asset.Checked" ng-disabled="Asset.Disabled" ng-change="changeCareer1AssetChoice()">{{Asset.Name}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="Career2AssetsRequired">
+                    <label class="control-label" for="Career2AssetChoice">Select your starting asset(s) for {{Career2.Name}} (pick {{Career2.StartingAssetChoices}}):</label>
+                    <div class="controls">
+                        <ul>
+                            <li ng-repeat="Asset in Career2AssetChoiceCBs"><input type="checkbox" name="Career2AssetChoice" value={{Asset.Name}} ng-model="Asset.Checked" ng-disabled="Asset.Disabled" ng-change="changeCareer2AssetChoice()">{{Asset.Name}}</li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="control-group">
                     <div class="controls">
                         <p style="width: 400px">

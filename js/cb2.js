@@ -12,6 +12,9 @@ function CB2Ctrl($scope, $http) {
     $scope.RacialAbilityChoices = [];
     $scope.RacialAbilities = null;
     $scope.CareerAbilities = null;
+    $scope.RacialConnections = false;
+    $scope.Career1Connections = false;
+    $scope.Career2Connections = false;
     $scope.RacialStatIncreaseRequired = false;
     $scope.AdvancementPoints = 3;
     // [0] = Starting, [1] = Max, [2] = AP Points, [3] = Field Min, [4] = Field Max
@@ -41,7 +44,9 @@ function CB2Ctrl($scope, $http) {
     $scope.Career2OSkillsRequired = false;
     $scope.Career2OSkillsCBs = [];
     $scope.Career1AssetsRequired = false;
+    $scope.Career1AssetChoiceCBs = [];
     $scope.Career2AssetsRequired = false;
+    $scope.Career2AssetChoiceCBs = [];
     $scope.HRAbility = false;
     $scope.HRMSkill = false;
     $scope.HROSkill = false;
@@ -131,6 +136,10 @@ function CB2Ctrl($scope, $http) {
             $scope.Language3Required = true;
         }
 
+        if ($scope.Race.Connections.length > 0) {
+            $scope.RacialConnections = true;
+        }
+
         if ($scope.Race.StatIncreaseChoices > 0) {
             $scope.RacialStatIncreaseRequired = true;
         }
@@ -196,6 +205,8 @@ function CB2Ctrl($scope, $http) {
             for (j = 0; j < $scope.Career1.StartingMSkillChoicesOptions.length; j++) {
                 $scope.Career1MSkillsCBs.push({ Name: $scope.Career1.StartingMSkillChoicesOptions[j][0], Level: $scope.Career1.StartingMSkillChoicesOptions[j][1], Checked: false, Disabled: false });
             }
+
+            $scope.Character.Career1MSkillsChosen = [];
         }
 
         if ($scope.Career1.StartingOSkillChoices > 0) {
@@ -204,6 +215,8 @@ function CB2Ctrl($scope, $http) {
             for (j1 = 0; j1 < $scope.Career1.StartingOSkillChoicesOptions.length; j1++) {
                 $scope.Career1OSkillsCBs.push({ Name: $scope.Career1.StartingOSkillChoicesOptions[j1][0], Level: $scope.Career1.StartingOSkillChoicesOptions[j1][1], Checked: false, Disabled: false });
             }
+
+            $scope.Character.Career1OSkillsChosen = [];
         }
 
         if ($scope.Career2.StartingMSkillChoices > 0) {
@@ -212,6 +225,8 @@ function CB2Ctrl($scope, $http) {
             for (j2 = 0; j2 < $scope.Career2.StartingMSkillChoicesOptions.length; j2++) {
                 $scope.Career2MSkillsCBs.push({ Name: $scope.Career2.StartingMSkillChoicesOptions[j2][0], Level: $scope.Career2.StartingMSkillChoicesOptions[j2][1], Checked: false, Disabled: false });
             }
+
+            $scope.Character.Career2MSkillsChosen = [];
         }
         
         if ($scope.Career2.StartingOSkillChoices > 0) {
@@ -220,14 +235,36 @@ function CB2Ctrl($scope, $http) {
             for (j3 = 0; j3 < $scope.Career2.StartingOSkillChoicesOptions.length; j3++) {
                 $scope.Career2OSkillsCBs.push({ Name: $scope.Career2.StartingOSkillChoicesOptions[j3][0], Level: $scope.Career2.StartingOSkillChoicesOptions[j3][1], Checked: false, Disabled: false });
             }
+
+            $scope.Character.Career2OSkillsChosen = [];
+        }
+
+        if ($scope.Career1.StartingConnections.length > 0) {
+            $scope.Career1Connections = true;
+        }
+
+        if ($scope.Career2.StartingConnections.length > 0) {
+            $scope.Career2Connections = true;
         }
 
         if ($scope.Career1.StartingAssetChoices > 0) {
             $scope.Career1AssetsRequired = true;
+        
+            for (j5 = 0; j5 < $scope.Career1.StartingAssetChoiceOptions.length; j5++) {
+                $scope.Career1AssetChoiceCBs.push({ Name: $scope.Career1.StartingAssetChoiceOptions[j5], Checked: false, Disabled: false });
+            }
+        
+            $scope.Character.Career1AssetsChosen = [];
         }
 
         if ($scope.Career2.StartingAssetChoices > 0) {
             $scope.Career2AssetsRequired = true;
+        
+            for (j5 = 0; j5 < $scope.Career2.StartingAssetChoiceOptions.length; j5++) {
+                $scope.Career2AssetChoiceCBs.push({ Name: $scope.Career2.StartingAssetChoiceOptions[j5], Checked: false, Disabled: false });
+            } 
+        
+            $scope.Character.Career2AssetsChosen = [];
         }
     }
 
@@ -523,10 +560,12 @@ function CB2Ctrl($scope, $http) {
 
     $scope.changeCareer1MSkill = function() {
         checked = 0;
+        $scope.Character.Career1MSkillsChosen = [];
         
         for (k = 0; k < $scope.Career1MSkillsCBs.length; k++) {
             if ($scope.Career1MSkillsCBs[k].Checked) {
                 checked++;
+                $scope.Character.Career1MSkillsChosen.push([$scope.Career1MSkillsCBs[k].Name, $scope.Career1MSkillsCBs[k].Level]);
             }
         }
 
@@ -545,10 +584,12 @@ function CB2Ctrl($scope, $http) {
     
     $scope.changeCareer1OSkill = function() {
         checked = 0;
-        
+        $scope.Character.Career1OSkillsChosen = [];
+
         for (k = 0; k < $scope.Career1OSkillsCBs.length; k++) {
             if ($scope.Career1OSkillsCBs[k].Checked) {
                 checked++;
+                $scope.Character.Career1OSkillsChosen.push([$scope.Career1OSkillsCBs[k].Name, $scope.Career1OSkillsCBs[k].Level]);
             }
         }
 
@@ -567,10 +608,12 @@ function CB2Ctrl($scope, $http) {
     
     $scope.changeCareer2MSkill = function() {
         checked = 0;
+        $scope.Character.Career2MSkillsChosen = [];
         
         for (k = 0; k < $scope.Career2MSkillsCBs.length; k++) {
             if ($scope.Career2MSkillsCBs[k].Checked) {
                 checked++;
+                $scope.Character.Career2MSkillsChosen.push([$scope.Career2MSkillsCBs[k].Name, $scope.Career2MSkillsCBs[k].Level]);
             }
         }
 
@@ -589,10 +632,12 @@ function CB2Ctrl($scope, $http) {
     
     $scope.changeCareer2OSkill = function() {
         checked = 0;
+        $scope.Character.Career2OSkillsChosen = [];
         
         for (k = 0; k < $scope.Career2OSkillsCBs.length; k++) {
             if ($scope.Career2OSkillsCBs[k].Checked) {
                 checked++;
+                $scope.Character.Career2OSkillsChosen.push([$scope.Career2OSkillsCBs[k].Name, $scope.Career2OSkillsCBs[k].Level]);
             }
         }
 
@@ -605,6 +650,54 @@ function CB2Ctrl($scope, $http) {
         } else {
             for (m = 0; m < $scope.Career2OSkillsCBs.length; m++) {
                 $scope.Career2OSkillsCBs[m].Disabled = false;
+            }
+        }
+    }
+
+    $scope.changeCareer1AssetChoice = function() {
+        checked = 0;
+        $scope.Character.Career1AssetsChosen = [];
+
+        for (k = 0; k < $scope.Career1AssetChoiceCBs.length; k++) {
+            if ($scope.Career1AssetChoiceCBs[k].Checked) {
+                checked++;
+                $scope.Character.Career1AssetsChosen.push($scope.Career1AssetChoiceCBs[k].Name)
+            }
+        }
+
+        if (checked >= $scope.Career1.StartingAssetChoices) {
+            for (l = 0; l < $scope.Career1AssetChoiceCBs.length; l++) {
+                if (!$scope.Career1AssetChoiceCBs[l].Checked) {
+                    $scope.Career1AssetChoiceCBs[l].Disabled = true;
+                }
+            }
+        } else {
+            for (m = 0; m < $scope.Career1AssetChoiceCBs.length; m++) {
+                $scope.Career1AssetChoiceCBs[m].Disabled = false;
+            }
+        }
+    }
+    
+    $scope.changeCareer2AssetChoice = function() {
+        checked = 0;
+        $scope.Character.Career2AssetsChosen = [];
+
+        for (k = 0; k < $scope.Career2AssetChoiceCBs.length; k++) {
+            if ($scope.Career2AssetChoiceCBs[k].Checked) {
+                checked++;
+                $scope.Character.Career2AssetsChosen.push($scope.Career2AssetChoiceCBs[k].Name)
+            }
+        }
+
+        if (checked >= $scope.Career2.StartingAssetChoices) {
+            for (l = 0; l < $scope.Career2AssetChoiceCBs.length; l++) {
+                if (!$scope.Career2AssetChoiceCBs[l].Checked) {
+                    $scope.Career2AssetChoiceCBs[l].Disabled = true;
+                }
+            }
+        } else {
+            for (m = 0; m < $scope.Career2AssetChoiceCBs.length; m++) {
+                $scope.Career2AssetChoiceCBs[m].Disabled = false;
             }
         }
     }
