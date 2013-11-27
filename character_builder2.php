@@ -25,6 +25,15 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <span ng-show="CareerBenefits"><br>Career Benefits: {{CareerBenefits}}</span>
                     </div>
                 </div>
+                <div class="control-group" ng-show="checkAdditionalStudy()">
+                    <label class="control-label" for="AdditionalStudySpell">Additional Study Spell:</label>
+                    <div class="controls">
+                        <select id="AdditionalStudySpell" ng-model="Character.AdditionalStudySpell" ng-options="Spell for Spell in AdditionalStudySpellList">
+                            <option value="">...</option>
+                        </select>
+                        <span ng-hide="checkAdditionalStudySpell()" class="label label-warning">Required</span>
+                    </div>
+                </div>
                 <div class="control-group" ng-show="RacialAbilitiesRequired">
                     <label class="control-label" for="RacialAbility">Select an additional starting ability from your careers (racial bonus):</label>
                     <div class="controls">
@@ -204,6 +213,89 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <ul>
                             <li ng-repeat="Asset in Career2AssetChoiceCBs"><input type="checkbox" name="Career2AssetChoice" value={{Asset.Name}} ng-model="Asset.Checked" ng-disabled="Asset.Disabled" ng-change="changeCareer2AssetChoice()">{{Asset.Name}}</li>
                         </ul>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="HRAbilityCB">House Rules:</label>
+                    <div class="controls">
+                        <ul>
+                            <li ng-show="HRAbility">
+                                <input type="checkbox" id="HRAbilityCB" ng-model="HRAbilityChecked" ng-change="selectHRAbSwap()">Swap Starting Abilities
+                            </li>
+                            <li ng-show="HRMSkill">
+                                <input type="checkbox" id="HRMSkillCB" ng-model="HRMSkillChecked" ng-change="selectHRMSkillSwap()"> Starting Military Skills
+                            </li>
+                            <li ng-show="HROSkill">
+                                <input type="checkbox" id="HROSkillCB" ng-model="HROSkillChecked" ng-change="selectHROSkillSwap()">Swap Starting Occupational Skills
+                            </li>
+                            <li ng-show="HRSpell">
+                                <input type="checkbox" id="HRSpellCB" ng-model="HRSpellChecked" ng-change="selectHRSpellSwap()">Swap Starting Spells
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="HRAbilityChecked && HRAbilityC1">
+                    <label for="HRAbCareer1From" class="control-label">{{Career1.Name}} ability to replace:</label>
+                    <div class="controls">
+                        <select id="HRAbCareer1From" ng-model="Character.HRCareer1AbToReplace" ng-options="Ability for Ability in Career1.StartingAbilities" ng-change="selectHRAbCareer1From()">
+                            <option value="">...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="checkHRAbCareer1From()">
+                    <label for="HRAbCareer1To" class="control-label">Replace {{Career1.Name}} ability with:</label>
+                    <div class="controls">
+                        <select id="HRAbCareer1To" ng-model="Character.HRCareer1AbReplacedWith" ng-options="Ability for Ability in HRAbCareer1List">
+                            <option value="">...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="HRAbilityChecked && HRAbilityC2">
+                    <label for="HRAbCareer2From" class="control-label">{{Career2.Name}} ability to replace:</label>
+                    <div class="controls">
+                        <select id="HRAbCareer2From" ng-model="Character.HRCareer2AbToReplace" ng-options="Ability for Ability in Career2.StartingAbilities" ng-change="selectHRAbCareer2From()">
+                            <option value="">...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="checkHRAbCareer2From()">
+                    <label for="HRAbCareer2To" class="control-label">Replace {{Career2.Name}} ability with:</label>
+                    <div class="controls">
+                        <select id="HRAbCareer2To" ng-model="Character.HRCareer2AbReplacedWith" ng-options="Ability for Ability in HRAbCareer2List">
+                            <option value="">...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="HRMSkillChecked && HRMSkillC1">
+                    <label for="HRMSkillCareer1From" class="control-label">{{Career1.Name}} military skill to replace:</label>
+                    <div class="controls">
+                        <select id="HRMSkillCareer1From" ng-model="Character.HRCareer1MSkillToReplace" ng-options="Skill[0] for Skill in Career1.StartingMilitarySkills" ng-change="selectHRMSkillCareer1From()">
+                            <option value="">...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="checkHRMSkillCareer1From()">
+                    <label for="HRMSkillCareer1To" class="control-label">Replace {{Career1.Name}} military skill with:</label>
+                    <div class="controls">
+                        <select id="HRMSkillCareer1To" ng-model="Character.HRCareer1MSkillReplacedWith" ng-options="Skill[0] for Skill in HRMSkillCareer1List">
+                            <option value="">...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="HRMSkillChecked && HRMSkillC2">
+                    <label for="HRMSkillCareer2From" class="control-label">{{Career2.Name}} military skill to replace:</label>
+                    <div class="controls">
+                        <select id="HRMSkillCareer2From" ng-model="Character.HRCareer2MSkillToReplace" ng-options="Skill[0] for Skill in Career2.StartingMilitarySkills" ng-change="selectHRMSkillCareer2From()">
+                            <option value="">...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group" ng-show="checkHRMSkillCareer2From()">
+                    <label for="HRMSkillCareer1To" class="control-label">Replace {{Career2.Name}} military skill with:</label>
+                    <div class="controls">
+                        <select id="HRMSkillCareer1To" ng-model="Character.HRCareer2MSkillReplacedWith" ng-options="Skill[0] for Skill in HRMSkillCareer2List">
+                            <option value="">...</option>
+                        </select>
                     </div>
                 </div>
                 <div class="control-group">
