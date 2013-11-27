@@ -25,7 +25,7 @@ if ($charsReq->ReqType == 'GetUserChars') {
     }
 } elseif ($charsReq->ReqType == 'AddChar') {
     try {
-        $sth = $pdo->prepare('INSERT INTO characters (UserID, Name, Race, Faith, DefiningChars, Sex, Height, Weight, Archetype, Career1, Career2) VALUES (:userid, :name, :race, :faith, :definingchars, :sex, :height, :weight, :archetype, :career1, :career2)');
+        $sth = $pdo->prepare('INSERT INTO characters (UserID, Name, Race, Faith, DefiningChars, Sex, Height, Weight, Archetype, Career1, Career2, ArcaneTradition) VALUES (:userid, :name, :race, :faith, :definingchars, :sex, :height, :weight, :archetype, :career1, :career2, :arcanetradition)');
         $sth->bindParam(':userid', $_SESSION['UserID']);
         $sth->bindParam(':name', $charsReq->Name);
         $sth->bindParam(':race', $charsReq->Race);
@@ -37,6 +37,7 @@ if ($charsReq->ReqType == 'GetUserChars') {
         $sth->bindParam(':archetype', $charsReq->Archetype);
         $sth->bindParam(':career1', $charsReq->Career1);
         $sth->bindParam(':career2', $charsReq->Career2);
+        $sth->bindParam(':arcanetradition', $charsReq->ArcaneTradition);
         $sth->execute();
 
         echo $pdo->lastInsertId();

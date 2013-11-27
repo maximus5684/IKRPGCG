@@ -426,7 +426,16 @@ function CBCtrl($scope, $http) {
             Weight: $scope.Weight,
             Archetype: $scope.Archetype.Name,
             Career1: $scope.Career1.Name,
-            Career2: $scope.Career2.Name
+            Career2: $scope.Career2.Name,
+            ArcaneTradition: null
+        }
+
+        if ($scope.Archetype.Name == 'Gifted') {
+            if ($scope.Career1.Name == 'Warcaster' || $scope.Career2.Name == 'Warcaster') {
+                newCharReq.ArcaneTradition = 'Focuser';
+            } else {
+                newCharReq.Arcanetradition = 'Will Weaver';
+            }
         }
 
         $http.post($scope.Url, newCharReq).success(function(data, status) {

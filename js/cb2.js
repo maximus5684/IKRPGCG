@@ -116,8 +116,6 @@ function CB2Ctrl($scope, $http) {
             }
         }
 
-        $scope.setAPFields();
-
         if ($scope.Race.LangChoices > 0) {
             $scope.Language1Required = true;
             
@@ -266,6 +264,8 @@ function CB2Ctrl($scope, $http) {
         
             $scope.Character.Career2AssetsChosen = [];
         }
+        
+        $scope.setAPFields();
     }
 
     $scope.checkBenefit = function() {
@@ -314,7 +314,11 @@ function CB2Ctrl($scope, $http) {
         $scope.APFields[6].Starting = $scope.Race.Stats.INT[0];
         
         if ($scope.Character.Archetype == 'Gifted') {
-            $scope.APFields[7].Starting = $scope.Race.Stats.ARC[0];
+            if ($scope.Character.ArcaneTradition == 'Focuser') {
+                $scope.APFields[7].Starting = 2;
+            } else {
+                $scope.APFields[7].Starting = 3;
+            }
         } else {
             $scope.APFields[7].Starting = '-';
             $scope.APFields[7].Disabled = true;

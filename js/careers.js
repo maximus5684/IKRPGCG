@@ -600,7 +600,53 @@ careerArr = [
             ['General Skills',4],
             ['Seduction',2]
         ],
-        SpellList: []
+        SpellList: [
+            {
+                Cost: 1,
+                Spells: [
+                    'Return Fire',
+                    'Rune Shot: Accuracy',
+                    'Rune Shot: Black Penny',
+                    'Rune Shot: Brutal',
+                    'Rune Shot: Iron Rot',
+                    'Rune Shot: Molten Shot',
+                    'Rune Shot: Silencer',
+                    'Rune Shot: Spontaneous Combustion',
+                    'Rune Shot: Thunderbolt'
+                ]
+            },
+            {
+                Cost: 2,
+                Spells: [
+                    'Fire Group',
+                    'Heightened Reflexes',
+                    'Refuge',
+                    'Rune Shot: Fire Beacon',
+                    'Rune Shot: Shadow Fire',
+                    'Rune Shot: Trick Shot',
+                    'Snipe',
+                    'True Sight'
+                ]
+            },
+            {
+                Cost: 3,
+                Spells: [
+                    'Guided Fire',
+                    'Rune Shot: Detonator',
+                    'Rune Shot: Earth Shaker',
+                    'Rune Shot: Phantom Seeker',
+                    'Rune Shot: Spell Craker'
+                ]
+            },
+            {
+                Cost: 4,
+                Spells: [
+                    'Rune Shot: Freeze Fire',
+                    'Rune Shot: Heart Stopper',
+                    'Rune Shot: Momentum'
+                ]
+            }
+        ]
     },
     {
         Name: "Highwayman",
@@ -1077,7 +1123,51 @@ careerArr = [
             ['Oratory',4],
             ['Research',4]
         ],
-        SpellList: []
+        SpellList: [
+            {
+                Cost: 1,
+                Spells: [
+                    'Flames of Wrath',
+                    'Guided Blade',
+                    'Influence',
+                    'Protection from Fire'
+                ]
+            },
+            {
+                Cost: 2,
+                Spells: [
+                    'Ashen Cloud',
+                    'Banishing Ward',
+                    'Hymn of Battle',
+                    'Hymn of Passage',
+                    'Ignite',
+                    'Immolation',
+                    'Righteous Flames',
+                    'Vision',
+                    'Wall of Fire'
+                ]
+            },
+            {
+                Cost: 3,
+                Spells: [
+                    'Cleansing Fire',
+                    'Crevasse',
+                    'Crusaders Call',
+                    'Hex Blast',
+                    'Lamentation',
+                    'Purification',
+                    'True Path'
+                ]
+            },
+            {
+                Cost: 4,
+                Spells: [
+                    'Ashes to Ashes',
+                    'Blazing Effigy',
+                    'Hymn of Shielding'
+                ]
+            }
+        ]
     },
     {
         Name: "Priest of Morrow",
@@ -1118,7 +1208,51 @@ careerArr = [
             ['Oratory',4],
             ['Research',4]
         ],
-        SpellList: []
+        SpellList: [
+            {
+                Cost: 1,
+                Spells: [
+                    'Blessing of Health',
+                    'Guided Blade',
+                    'Light in the Darkness',
+                    'Solovin\'s Boon'
+                ]
+            },
+            {
+                Cost: 2,
+                Spells: [
+                    'Aura of Protection',
+                    'Banishing Ward',
+                    'Blade of Radiance',
+                    'Blessings of War',
+                    'Eyes of Truth',
+                    'Hand of Fate',
+                    'Shield of Faith',
+                    'Triage',
+                    'True Sight'
+                ]
+            },
+            {
+                Cost: 3,
+                Spells: [
+                    'Blessing of Morrow',
+                    'Crusader\'s Call',
+                    'Daylight',
+                    'Prayer of Guidance',
+                    'Sanguine Blessing',
+                    'Sunburst',
+                    'True Path'
+                ]
+            },
+            {
+                Cost: 4,
+                Spells: [
+                    'Force of Faith',
+                    'Heal',
+                    'Star Fire'
+                ]
+            }
+        ]
     },
     {
         Name: "Ranger",
@@ -1317,7 +1451,45 @@ careerArr = [
             ['Sneak',3],
             ['Survival',3]
         ],
-        SpellList: []
+        SpellList: [
+            {
+                Cost: 1,
+                Spells: [
+                    'Fire Starter',
+                    'Flames of Wrath',
+                    'Protection from Fire'
+                ]
+            },
+            {
+                Cost: 2,
+                Spells: [
+                    'Ashen Cloud',
+                    'Extinguisher',
+                    'Howling Flames',
+                    'Ignite',
+                    'Immolation',
+                    'Wall of Fire'
+                ]
+            },
+            {
+                Cost: 3,
+                Spells: [
+                    'Barrier of Flames',
+                    'Cleansing Fire',
+                    'Flare',
+                    'Fuel the Flames',
+                    'Inferno'
+                ]
+            },
+            {
+                Cost: 4,
+                Spells: [
+                    'Ashes to Ashes',
+                    'Blazing Effigy',
+                    'Sea of Fire'
+                ]
+            }
+        ]
     },
     {
         Name: "Sorcerer (Ice)",
@@ -1358,7 +1530,45 @@ careerArr = [
             ['Sneak',3],
             ['Survival',3]
         ],
-        SpellList: []
+        SpellList: [
+            {
+                Cost: 1,
+                Spells: [
+                    'Blizzard',
+                    'Ice Shield',
+                    'Protection from Cold'
+                ]
+            },
+            {
+                Cost: 2,
+                Spells: [
+                    'Chiller',
+                    'Frostbite',
+                    'Ice Bolt',
+                    'Icy Grip',
+                    'Shatter Storm',
+                    'Staying Winter\'s Hand'
+                ]
+            },
+            {
+                Cost: 3,
+                Spells: [
+                    'Brittle Frost',
+                    'Deep Freeze',
+                    'Frozen Ground',
+                    'Hoarfrost',
+                    'Winter Storm'
+                ]
+            },
+            {
+                Cost: 4,
+                Spells: [
+                    'Freezing Grip',
+                    'Freezing Mist',
+                    'White Out'
+                ]
+            }
+        ]
     },
     {
         Name: "Sorcerer (Stone)",
@@ -1397,6 +1607,45 @@ careerArr = [
             ['General Skills',4],
             ['Sneak',3],
             ['Survival',3]
+        ],
+        SpellList: [
+            {
+                Cost: 1,
+                Spells: [
+                    'Earth\'s Cradle',
+                    'Entangle',
+                    'Stone Stance'
+                ]
+            },
+            {
+                Cost: 2,
+                Spells: [
+                    'Battering Ram',
+                    'Fortify',
+                    'Foxhole',
+                    'Rock Wall',
+                    'Solid Ground',
+                    'Stone Strength'
+                ]
+            },
+            {
+                Cost: 3,
+                Spells: [
+                    'Crevasse',
+                    'Earthquake',
+                    'Inhospitable Ground',
+                    'Rift',
+                    'Rock Hammer'
+                ]
+            },
+            {
+                Cost: 4,
+                Spells: [
+                    'Earthsplitter',
+                    'Obliteration',
+                    'Shock Wave'
+                ]
+            }
         ]
     },
     {
@@ -1437,7 +1686,45 @@ careerArr = [
             ['Sneak',3],
             ['Survival',3]
         ],
-        SpellList: []
+        SpellList: [
+            {
+                Cost: 1,
+                Spells: [
+                    'Fair Winds',
+                    'Storm Tossed',
+                    'Wind Strike'
+                ]
+            },
+            {
+                Cost: 2,
+                Spells: [
+                    'Boundless Charge',
+                    'Celerity',
+                    'Razor Wind',
+                    'Telekinesis',
+                    'Wind Blast',
+                    'Wings of Air'
+                ]
+            },
+            {
+                Cost: 3,
+                Spells: [
+                    'Chain Lightning',
+                    'Deceleration',
+                    'Fog of War',
+                    'Lightning Tendrils',
+                    'Zephyr'
+                ]
+            },
+            {
+                Cost: 4,
+                Spells: [
+                    'Raging Winds',
+                    'Tempest',
+                    'Tornado'
+                ]
+            }
+        ]
     },
     {
         Name: "Spy",
@@ -1692,6 +1979,54 @@ careerArr = [
             ['Command',4],
             ['General Skills',4]
         ],
-        SpellList: []
+        SpellList: [
+            {
+                Cost: 1,
+                Spells: [
+                    'Arcane Strike',
+                    'Jump Start',
+                    'Return Fire'
+                ]
+            },
+            {
+                Cost: 2,
+                Spells: [
+                    'Arcane Bolt',
+                    'Aura of Protection',
+                    'Battering Ram',
+                    'Boundless Charge',
+                    'Convection',
+                    'Fortify',
+                    'Foxhole',
+                    'Redline',
+                    'Refuge',
+                    'Snipe',
+                    'Temper Metal',
+                    'Transference'
+                ]
+            },
+            {
+                Cost: 3,
+                Spells: [
+                    'Awareness',
+                    'Batten Down the Hatches',
+                    'Eliminator',
+                    'Fail Safe',
+                    'Grind',
+                    'Guided Fire',
+                    'Iron Aggression',
+                    'Rift',
+                    'Superiority'
+                ]
+            },
+            {
+                Cost: 4,
+                Spells: [
+                    'Force Hammer',
+                    'Obliteration',
+                    'Tide of Steel'
+                ]
+            }
+        ]
     }
 ];

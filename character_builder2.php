@@ -169,7 +169,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="RacialConnections">
                     <label class="control-label" for="RacialConnectionDetails">Racial Connection:</label>
                     <div class="controls">
-                        {{Race.Connections}}<br>
+                        {{Race.Connections[0]}}<br>
                         <input type="checkbox" name="RacialConnectionDetails" ng-model="ShowRacialConnectionDetails"> To change the details of this connection (the text between the parentheses), click this checkbox.
                         <span ng-show="ShowRacialConnectionDetails"><br><br>Details: <input type="text" ng-model="Character.RacialConnectionDetails"></span>
                     </div>
