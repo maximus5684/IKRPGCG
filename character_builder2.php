@@ -223,7 +223,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                                 <input type="checkbox" id="HRAbilityCB" ng-model="HRAbilityChecked" ng-change="selectHRAbSwap()">Swap Starting Abilities
                             </li>
                             <li ng-show="HRMSkill">
-                                <input type="checkbox" id="HRMSkillCB" ng-model="HRMSkillChecked" ng-change="selectHRMSkillSwap()"> Starting Military Skills
+                                <input type="checkbox" id="HRMSkillCB" ng-model="HRMSkillChecked" ng-change="selectHRMSkillSwap()">Swap Starting Military Skills
                             </li>
                             <li ng-show="HROSkill">
                                 <input type="checkbox" id="HROSkillCB" ng-model="HROSkillChecked" ng-change="selectHROSkillSwap()">Swap Starting Occupational Skills
