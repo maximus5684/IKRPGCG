@@ -3,15 +3,15 @@ raceArr = [
     {
         Name:'Human', 
         Stats:{
-            PHY:[5,7,8,8],
-            SPD:[6,7,7,7],
-            STR:[4,6,7,8],
-            AGL:[3,5,6,7],
-            PRW:[4,5,6,7],
-            POI:[4,5,6,7],
-            INT:[3,5,6,7],
-            ARC:[0,4,6,8],
-            PER:[3,5,6,7]
+            PHY: { Starting: 5, MaxHero: 7, MaxVet: 8, MaxEpic: 8 },
+            SPD: { Starting: 6, MaxHero: 7, MaxVet: 7, MaxEpic: 7 },
+            STR: { Starting: 4, MaxHero: 6, MaxVet: 7, MaxEpic: 8 },
+            AGL: { Starting: 3, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            PRW: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            POI: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            INT: { Starting: 3, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            ARC: { Starting: 0, MaxHero: 4, MaxVet: 6, MaxEpic: 8 },
+            PER: { Starting: 3, MaxHero: 5, MaxVet: 6, MaxEpic: 7 }
         },
         ResArchetypes:[],
         LangChoices:2,
@@ -33,15 +33,15 @@ raceArr = [
     { 
         Name:'Dwarf',
         Stats:{
-            PHY:[6,7,7,8],
-            SPD:[4,5,6,6],
-            STR:[5,6,7,8],
-            AGL:[3,5,6,7],
-            PRW:[4,5,6,7],
-            POI:[3,4,5,6],
-            INT:[4,5,6,7],
-            ARC:[0,4,6,7],
-            PER:[3,4,6,7]
+            PHY: { Starting: 6, MaxHero: 7, MaxVet: 7, MaxEpic: 8 },
+            SPD: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 6 },
+            STR: { Starting: 5, MaxHero: 6, MaxVet: 7, MaxEpic: 8 },
+            AGL: { Starting: 3, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            PRW: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            POI: { Starting: 3, MaxHero: 4, MaxVet: 5, MaxEpic: 6 },
+            INT: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            ARC: { Starting: 0, MaxHero: 4, MaxVet: 6, MaxEpic: 7 },
+            PER: { Starting: 3, MaxHero: 4, MaxVet: 6, MaxEpic: 7 }
         },
         ResArchetypes:[],
         LangChoices:1,
@@ -75,15 +75,15 @@ raceArr = [
     {
         Name:'Gobber',
         Stats:{
-            PHY:[4,6,7,7],
-            SPD:[6,7,7,7],
-            STR:[3,4,5,6],
-            AGL:[4,5,6,7],
-            PRW:[4,5,6,7],
-            POI:[3,5,6,7],
-            INT:[3,4,5,6],
-            ARC:[0,0,0,0],
-            PER:[3,4,4,5]
+            PHY: { Starting: 4, MaxHero: 6, MaxVet: 7, MaxEpic: 7 },
+            SPD: { Starting: 6, MaxHero: 7, MaxVet: 7, MaxEpic: 7 },
+            STR: { Starting: 3, MaxHero: 4, MaxVet: 5, MaxEpic: 6 },
+            AGL: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            PRW: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            POI: { Starting: 3, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            INT: { Starting: 3, MaxHero: 4, MaxVet: 5, MaxEpic: 6 },
+            ARC: { Starting: 0, MaxHero: 0, MaxVet: 0, MaxEpic: 0 },
+            PER: { Starting: 3, MaxHero: 4, MaxVet: 4, MaxEpic: 5 }
         },
         ResArchetypes:['Gifted'],
         LangChoices:1,
@@ -119,15 +119,15 @@ raceArr = [
     {
         Name:'Iosan',
         Stats:{
-            PHY:[5,7,7,7],
-            SPD:[6,7,7,7],
-            STR:[4,5,6,7],
-            AGL:[3,5,6,7],
-            PRW:[4,5,6,7],
-            POI:[4,5,6,7],
-            INT:[4,6,6,7],
-            ARC:[0,4,6,8],
-            PER:[3,5,6,7]
+            PHY: { Starting: 5, MaxHero: 7, MaxVet: 7, MaxEpic: 7 },
+            SPD: { Starting: 6, MaxHero: 7, MaxVet: 7, MaxEpic: 7 },
+            STR: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            AGL: { Starting: 3, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            PRW: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            POI: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            INT: { Starting: 4, MaxHero: 6, MaxVet: 6, MaxEpic: 7 },
+            ARC: { Starting: 0, MaxHero: 4, MaxVet: 6, MaxEpic: 8 },
+            PER: { Starting: 3, MaxHero: 5, MaxVet: 6, MaxEpic: 7 }
         },
         ResArchetypes:[],
         LangChoices:1,
@@ -157,15 +157,15 @@ raceArr = [
     {
         Name:'Nyss',
         Stats:{
-            PHY:[5,7,7,8],
-            SPD:[6,7,7,7],
-            STR:[4,6,7,8],
-            AGL:[4,5,6,7],
-            PRW:[4,5,6,7],
-            POI:[4,5,6,7],
-            INT:[3,5,6,6],
-            ARC:[0,4,6,7],
-            PER:[3,5,6,6]
+            PHY: { Starting: 5, MaxHero: 7, MaxVet: 7, MaxEpic: 8 },
+            SPD: { Starting: 6, MaxHero: 7, MaxVet: 7, MaxEpic: 7 },
+            STR: { Starting: 4, MaxHero: 6, MaxVet: 7, MaxEpic: 8 },
+            AGL: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            PRW: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            POI: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            INT: { Starting: 3, MaxHero: 5, MaxVet: 6, MaxEpic: 6 },
+            ARC: { Starting: 0, MaxHero: 4, MaxVet: 6, MaxEpic: 7 },
+            PER: { Starting: 3, MaxHero: 5, MaxVet: 6, MaxEpic: 6 }
         },
         ResArchetypes:['Intellectual'],
         LangChoices:1,
@@ -207,15 +207,15 @@ raceArr = [
     {
         Name:'Ogrun',
         Stats:{
-            PHY:[6,7,8,9],
-            SPD:[5,6,6,6],
-            STR:[6,8,9,10],
-            AGL:[3,5,5,6],
-            PRW:[4,5,6,7],
-            POI:[3,4,5,6],
-            INT:[3,5,5,6],
-            ARC:[0,0,0,0],
-            PER:[2,4,5,6]
+            PHY: { Starting: 6, MaxHero: 7, MaxVet: 8, MaxEpic: 9 },
+            SPD: { Starting: 5, MaxHero: 6, MaxVet: 6, MaxEpic: 6 },
+            STR: { Starting: 6, MaxHero: 8, MaxVet: 9, MaxEpic: 10 },
+            AGL: { Starting: 3, MaxHero: 5, MaxVet: 5, MaxEpic: 6 },
+            PRW: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            POI: { Starting: 3, MaxHero: 4, MaxVet: 5, MaxEpic: 6 },
+            INT: { Starting: 3, MaxHero: 5, MaxVet: 5, MaxEpic: 6 },
+            ARC: { Starting: 0, MaxHero: 0, MaxVet: 0, MaxEpic: 0 },
+            PER: { Starting: 2, MaxHero: 4, MaxVet: 5, MaxEpic: 6 }
         },
         ResArchetypes:['Gifted','Intellectual'],
         LangChoices:1,
@@ -246,15 +246,15 @@ raceArr = [
     {
         Name:'Trollkin',
         Stats:{
-            PHY:[6,8,9,10],
-            SPD:[5,6,6,6],
-            STR:[5,7,8,9],
-            AGL:[3,5,6,7],
-            PRW:[4,5,6,7],
-            POI:[2,4,5,6],
-            INT:[3,4,5,6],
-            ARC:[0,4,6,7],
-            PER:[3,4,5,6]
+            PHY: { Starting: 6, MaxHero: 8, MaxVet: 9, MaxEpic: 10 },
+            SPD: { Starting: 5, MaxHero: 6, MaxVet: 6, MaxEpic: 6 },
+            STR: { Starting: 5, MaxHero: 7, MaxVet: 8, MaxEpic: 9 },
+            AGL: { Starting: 3, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            PRW: { Starting: 4, MaxHero: 5, MaxVet: 6, MaxEpic: 7 },
+            POI: { Starting: 2, MaxHero: 4, MaxVet: 5, MaxEpic: 6 },
+            INT: { Starting: 3, MaxHero: 4, MaxVet: 5, MaxEpic: 6 },
+            ARC: { Starting: 0, MaxHero: 4, MaxVet: 6, MaxEpic: 7 },
+            PER: { Starting: 3, MaxHero: 4, MaxVet: 5, MaxEpic: 6 }
         },
         ResArchetypes:['Intellectual'],
         LangChoices: 1,

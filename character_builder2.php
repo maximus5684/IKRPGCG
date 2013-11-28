@@ -76,39 +76,39 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             <tbody>
                                 <tr>
                                     <td class="left">Starting</td>
-                                    <td>{{APFields[0].Starting}}</td>
-                                    <td>{{APFields[1].Starting}}</td>
-                                    <td>{{APFields[2].Starting}}</td>
-                                    <td>{{APFields[3].Starting}}</td>
-                                    <td>{{APFields[4].Starting}}</td>
-                                    <td>{{APFields[5].Starting}}</td>
-                                    <td>{{APFields[6].Starting}}</td>
-                                    <td>{{APFields[7].Starting}}</td>
-                                    <td>{{APFields[8].Starting}}</td>
+                                    <td>{{APFields.PHY.Starting}}</td>
+                                    <td>{{APFields.SPD.Starting}}</td>
+                                    <td>{{APFields.STR.Starting}}</td>
+                                    <td>{{APFields.AGL.Starting}}</td>
+                                    <td>{{APFields.PRW.Starting}}</td>
+                                    <td>{{APFields.POI.Starting}}</td>
+                                    <td>{{APFields.INT.Starting}}</td>
+                                    <td>{{APFields.ARC.Starting}}</td>
+                                    <td>{{APFields.PER.Starting}}</td>
                                 </tr>
                                 <tr>
                                     <td class="left">Advancement</td>
-                                    <td><input type="number" min="{{APFields[0].FieldMin}}" max="{{APFields[0].FieldMax}}" ng-model="APFields[0].Points" ng-change="changeAP()" ng-disabled="APFields[0].Disabled"></td>
-                                    <td><input type="number" min="{{APFields[1].FieldMin}}" max="{{APFields[1].FieldMax}}" ng-model="APFields[1].Points" ng-change="changeAP()" ng-disabled="APFields[1].Disabled"></td>
-                                    <td><input type="number" min="{{APFields[2].FieldMin}}" max="{{APFields[2].FieldMax}}" ng-model="APFields[2].Points" ng-change="changeAP()" ng-disabled="APFields[2].Disabled"></td>
-                                    <td><input type="number" min="{{APFields[3].FieldMin}}" max="{{APFields[3].FieldMax}}" ng-model="APFields[3].Points" ng-change="changeAP()" ng-disabled="APFields[3].Disabled"></td>
-                                    <td><input type="number" min="{{APFields[4].FieldMin}}" max="{{APFields[4].FieldMax}}" ng-model="APFields[4].Points" ng-change="changeAP()" ng-disabled="APFields[4].Disabled"></td>
-                                    <td><input type="number" min="{{APFields[5].FieldMin}}" max="{{APFields[5].FieldMax}}" ng-model="APFields[5].Points" ng-change="changeAP()" ng-disabled="APFields[5].Disabled"></td>
-                                    <td><input type="number" min="{{APFields[6].FieldMin}}" max="{{APFields[6].FieldMax}}" ng-model="APFields[6].Points" ng-change="changeAP()" ng-disabled="APFields[6].Disabled"></td>
-                                    <td><input type="number" min="{{APFields[7].FieldMin}}" max="{{APFields[7].FieldMax}}" ng-model="APFields[7].Points" ng-change="changeAP()" ng-disabled="APFields[7].Disabled"></td>
-                                    <td><input type="number" min="{{APFields[8].FieldMin}}" max="{{APFields[8].FieldMax}}" ng-model="APFields[8].Points" ng-change="changeAP()" ng-disabled="APFields[8].Disabled"></td>
+                                    <td><input type="number" min="{{APFields.PHY.FieldMin}}" max="{{APFields.PHY.FieldMax}}" ng-model="APFields.PHY.Points" ng-change="changeAP()" ng-disabled="APFields.PHY.Disabled"></td>
+                                    <td><input type="number" min="{{APFields.SPD.FieldMin}}" max="{{APFields.SPD.FieldMax}}" ng-model="APFields.SPD.Points" ng-change="changeAP()" ng-disabled="APFields.SPD.Disabled"></td>
+                                    <td><input type="number" min="{{APFields.STR.FieldMin}}" max="{{APFields.STR.FieldMax}}" ng-model="APFields.STR.Points" ng-change="changeAP()" ng-disabled="APFields.STR.Disabled"></td>
+                                    <td><input type="number" min="{{APFields.AGL.FieldMin}}" max="{{APFields.AGL.FieldMax}}" ng-model="APFields.AGL.Points" ng-change="changeAP()" ng-disabled="APFields.AGL.Disabled"></td>
+                                    <td><input type="number" min="{{APFields.PRW.FieldMin}}" max="{{APFields.PRW.FieldMax}}" ng-model="APFields.PRW.Points" ng-change="changeAP()" ng-disabled="APFields.PRW.Disabled"></td>
+                                    <td><input type="number" min="{{APFields.POI.FieldMin}}" max="{{APFields.POI.FieldMax}}" ng-model="APFields.POI.Points" ng-change="changeAP()" ng-disabled="APFields.POI.Disabled"></td>
+                                    <td><input type="number" min="{{APFields.INT.FieldMin}}" max="{{APFields.INT.FieldMax}}" ng-model="APFields.INT.Points" ng-change="changeAP()" ng-disabled="APFields.INT.Disabled"></td>
+                                    <td><input type="number" min="{{APFields.ARC.FieldMin}}" max="{{APFields.ARC.FieldMax}}" ng-model="APFields.ARC.Points" ng-change="changeAP()" ng-disabled="APFields.ARC.Disabled"></td>
+                                    <td><input type="number" min="{{APFields.PER.FieldMin}}" max="{{APFields.PER.FieldMax}}" ng-model="APFields.PER.Points" ng-change="changeAP()" ng-disabled="APFields.PER.Disabled"></td>
                                 </tr>
                                 <tr>
                                     <td class="left">Max</td>
-                                    <td>{{APFields[0].Max}}</td>
-                                    <td>{{APFields[1].Max}}</td>
-                                    <td>{{APFields[2].Max}}</td>
-                                    <td>{{APFields[3].Max}}</td>
-                                    <td>{{APFields[4].Max}}</td>
-                                    <td>{{APFields[5].Max}}</td>
-                                    <td>{{APFields[6].Max}}</td>
-                                    <td>{{APFields[7].Max}}</td>
-                                    <td>{{APFields[8].Max}}</td>
+                                    <td>{{APFields.PHY.Max}}</td>
+                                    <td>{{APFields.SPD.Max}}</td>
+                                    <td>{{APFields.STR.Max}}</td>
+                                    <td>{{APFields.AGL.Max}}</td>
+                                    <td>{{APFields.PRW.Max}}</td>
+                                    <td>{{APFields.POI.Max}}</td>
+                                    <td>{{APFields.INT.Max}}</td>
+                                    <td>{{APFields.ARC.Max}}</td>
+                                    <td>{{APFields.PER.Max}}</td>
                                 </tr>
                             </tbody>
                         </table>
