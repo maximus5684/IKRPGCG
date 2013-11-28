@@ -287,7 +287,9 @@ function CB2Ctrl($scope, $http) {
         if ($scope.Career1.StartingAbilities.length > 0) {
             $scope.HRAbilityC1 = true;
             $scope.HRAbility = true;
-        } else if ($scope.Career2.StartingAbilities.length > 0) {
+        }
+        
+        if ($scope.Career2.StartingAbilities.length > 0) {
             $scope.HRAbilityC2 = true;
             $scope.HRAbility = true;
         }
@@ -295,7 +297,9 @@ function CB2Ctrl($scope, $http) {
         if ($scope.Career1.StartingMilitarySkills.length > 0) {
             $scope.HRMSkillC1 = true;
             $scope.HRMSkill = true;
-        } else if ($scope.Career2.StartingMilitarySkills.length > 0) {
+        }
+        
+        if ($scope.Career2.StartingMilitarySkills.length > 0) {
             $scope.HRMSkillC2 = true;
             $scope.HRMSkill = true;
         }
@@ -303,7 +307,9 @@ function CB2Ctrl($scope, $http) {
         if ($scope.Career1.StartingOccupationalSkills.length > 0) {
             $scope.HROSkillC1 = true;
             $scope.HROSkill = true;
-        } else if ($scope.Career2.StartingOccupationalSkills.length > 0) {
+        }
+        
+        if ($scope.Career2.StartingOccupationalSkills.length > 0) {
             $scope.HROSkillC2 = true;
             $scope.HROSkill = true;
         }
@@ -311,7 +317,9 @@ function CB2Ctrl($scope, $http) {
         if ($scope.Career1.StartingSpells.length > 0) {
             $scope.HRSpellC1 = true;
             $scope.HRSpell = true;
-        } else if ($scope.Career2.StartingSpells.length > 0) {
+        }
+        
+        if ($scope.Career2.StartingSpells.length > 0) {
             $scope.HRSpellC2 = true;
             $scope.HRSpell = true;
         }
