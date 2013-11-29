@@ -11,71 +11,63 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
           <script src="js/cs.js"></script>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
 
-        <div class="container" id="mainContain" ng-controller="CSCtrl">
+        <div class="container" id="mainContain" ng-controller="CSCtrl" data-ng-init="GetChar(<?php echo $_GET["CharacterID"]; ?>)">
             <!--Body content-->
             <div class="row">
                 <div class="span12">
                     <div class="csBox" id="csHeader">
                         <p class="csBoxHead">IRON KINGDOMS ROLEPLAYING GAME CHARACTER SHEET</p>
                         <p class="csInputBox">
-                            <input type="text" name="Player Name" style="width: 230px"><br>
+                            <span class="textSpace" style="width:240px">{{Character.Name}}</span><br>
                             <strong class="small">CHARACTER NAME</strong>
                         </p>
                         <p class="csInputBox">
-                            <input type="text" name="Sex" maxlength="1" style="text-align: center; width: 15px"><br>
+                            <span class="textSpace" style="text-align: center; width: 24px">{{Character.Sex}}</span><br>
                             <strong class="small">SEX</strong>
                         </p>
                         <p class="csInputBox">
-                            <input type="text" name="Defining Characteristics" style="width: 210px"><br>
+                            <span class="textSpace" style="width: 210px">{{Character.DefiningChars}}</span><br>
                             <strong class="small">DEFINING CHARACTERISTIC(S)</strong>
                         </p>
                         <p class="csInputBox">
-                            <input type="text" name="Weight" maxlength="3" style="text-align: right; width: 27px"><br>
+                            <span class="textSpace" style="text-align: center; width: 45px">{{Character.Weight}}</span><br>
                             <strong class="small">WEIGHT</strong>
                         </p>
                         <p class="csInputBox">
-                            <select name="Career1" style="width: 120px" ng-model="Career1" ng-options="Career.Name for Career in Career1List" ng-change="updateCareer(1)">
-                                <option value="">...</option>
-                            </select><br>
+                            <span class="textSpace" style="width: 120px">{{Character.Career1}}</span><br>
                             <strong class="small">CAREER 1</strong>
                         </p>
                         <p class="csInputBox">
-                            <select name="Career2" style="width: 120px" ng-model="Career2" ng-options="Career.Name for Career in Career2List" ng-change="updateCareer(2)">
-                                <option value="">...</option>
-                            </select><br>
+                            <span class="textSpace" style="width: 120px">{{Character.Career2}}</span><br>
                             <strong class="small">CAREER 2</strong>
                         </p>
                         <div class="clear">&#160;</div>
                         <p class="csInputBox">
-                            <select name="Archetype" style="width: 110px" ng-model="Archetype" ng-options="Arch for Arch in Archetypes">
-                                <option value="">...</option>
-                            </select><br>
+                            <span class="textSpace" style="width: 90px">{{Character.Archetype}}</span><br>
                             <strong class="small">ARCHETYPE</strong>
                         </p>
                         <p class="csInputBox">
-                            <select name="Race" style="width: 90px" ng-model="Race" ng-options="Race.Name for Race in Races" ng-change="updateRace()">
-                                    <option value="">...</option>
-                            </select><br>
+                            <span class="textSpace" style="width: 90px">{{Character.Race}}</span><br>
                             <strong class="small">RACE</strong>
                         </p>
                         <p class="csInputBox">
-                            <input type="text" name="Faith" style="width: 80px"><br>
+                            <span class="textSpace" style="width: 90px">{{Character.Faith}}</span><br>
                             <strong class="small">FAITH</strong>
                         </p>
                         <p class="csInputBox">
-                            <input type="text" name="Player Name" style="width: 182px"><br>
+                            <span class="textSpace" style="width: 192px">&#160;</span><br>
                             <strong class="small">PLAYER NAME</strong>
                         </p>
                         <p class="csInputBox">
-                            <input type="text" name="Height" maxlength="3" style="text-align: right; width: 27px"><br>
+                            <span class="textSpace" style="text-align: center; width: 45px">{{Character.Height}}</span><br>
                             <strong class="small">HEIGHT</strong>
                         </p>
-                        <p class="csInputBox">
-                            <span class="careerSpace">{{Career3.Name}}</span><br>
+                        <p class="csInputBox" ng-show="Career3 !== null">
+                            <span class="textSpace career">{{Career3.Name}}</span><br>
                             <strong class="small">CAREER 3</strong>
                         </p>
-                        <p class="csInputBox">
-                            <span class="careerSpace">{{Career4.Name}}</span><br>
+                        <p class="csInputBox" ng-show="Career4 !== null">
+                            <span class="textSpace career">{{Career4.Name}}</span><br>
                             <strong class="small">CAREER 4</strong>
                         </p>
                         <div class="clear">&#160;</div>

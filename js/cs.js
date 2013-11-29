@@ -1,4 +1,4 @@
-function CSCtrl($scope) {
+function CSCtrl($scope, $http) {
 
     /////////////////////////////////////////////////////////////////////
     /////                                                           /////
@@ -6,6 +6,8 @@ function CSCtrl($scope) {
     /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
+    $scope.CharUrl = 'ajax/characters.php';
+    $scope.Error = null;
     $scope.Race = null;
     $scope.Career1 = null;
     $scope.Career2 = null;
@@ -34,33 +36,20 @@ function CSCtrl($scope) {
     /////////////////////////////////////////////////////////////////////
 
     $scope.Stats = {
-        "PHY": { Current: 0, Max: 0 },
-        "SPD": { Current: 0, Max: 0 },
-        "STR": { Current: 0, Max: 0 },
-        "AGL": { Current: 0, Max: 0 },
-        "PRW": { Current: 0, Max: 0 },
-        "POI": { Current: 0, Max: 0 },
-        "INT": { Current: 0, Max: 0 },
-        "ARC": { Current: 0, Max: 0 },
-        "PER": { Current: 0, Max: 0 }
+        PHY: { Current: 0, Max: 0 },
+        SPD: { Current: 0, Max: 0 },
+        STR: { Current: 0, Max: 0 },
+        AGL: { Current: 0, Max: 0 },
+        PRW: { Current: 0, Max: 0 },
+        POI: { Current: 0, Max: 0 },
+        INT: { Current: 0, Max: 0 },
+        ARC: { Current: 0, Max: 0 },
+        PER: { Current: 0, Max: 0 }
     };
 
     $scope.Races = raceArr; // In races.js
-    $scope.Archetypes = archArr; // In races.js
+    $scope.Archetypes = archArr; // In archetypes.js
     $scope.Careers = careerArr; // In careers.js
-    $scope.Career1List = [];
-    $scope.Career2List = [];
-    $scope.Career3List = [];
-    $scope.Career4List = [];
-
-    for (g = 0; g < $scope.Careers.length; g++) {
-        $scope.Career1List.push($scope.Careers[g]);
-        $scope.Career2List.push($scope.Careers[g]);
-        $scope.Career3List.push($scope.Careers[g]);
-        $scope.Career4List.push($scope.Careers[g]);
-    }
-
-    selectedCareers = ['','','',''];
 
     /////////////////////////////////////////////////////////////////////
     /////                                                           /////
@@ -82,8 +71,8 @@ function CSCtrl($scope) {
         { Name: "Sneak", From: ['Base'], BaseStat: "AGL", Level: 0, Total: 0 }
     ];
 
-    $scope.MilitarySkillsLookup = milSkillsArr;
-    $scope.OccupationalSkillsLookup = occSkillsArr;
+    $scope.MilitarySkillsLookup = milSkillsArr; // from skills.js
+    $scope.OccupationalSkillsLookup = occSkillsArr; // from skills.js
 
     // Example: { Name: "Test Armor", Description: "Blah", SPD: 0, DEF: 0, ARM: 0 }
     $scope.Armor = [];
@@ -103,6 +92,27 @@ function CSCtrl($scope) {
     /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
+    $scope.GetChar = function(CharID) {
+        $http.post($scope.CharUrl, { ReqType: 'GetChar', CharacterID: CharID }).success(function(data, status) {
+            if (typeof data !== 'object') {
+                $scope.Error = data;
+            } else {
+                $scope.Character = data;
+                $scope.loadCharacterDefaults();
+            }
+        }).error(function(data, status) {
+            if (data !== null) {
+                $scope.Error = data;
+            } else {
+                $scope.Error = 'Request failed. Status: ' + status;
+            }
+        });
+    }
+   
+    $scope.loadCharacterDefaults = function() {
+        
+    }
+
     $scope.updateXP = function() {
         if ($scope.XP <= 49) {
             $scope.Level = 'Hero';
@@ -115,121 +125,6 @@ function CSCtrl($scope) {
         if ($scope.XP > -1 && $scope.Race !== null) {
             updateMaxStats();
         }
-    };
-
-    $scope.updateRace = function() {
-        if ($scope.Race === null) {
-            $scope.Stats.PHY.Current = 0;
-            $scope.Stats.PHY.Max = 0;
-            $scope.Stats.SPD.Current = 0;
-            $scope.Stats.SPD.Max = 0;
-            $scope.Stats.STR.Current = 0;
-            $scope.Stats.STR.Max = 0;
-            $scope.Stats.AGL.Current = 0;
-            $scope.Stats.AGL.Max = 0;
-            $scope.Stats.PRW.Current = 0;
-            $scope.Stats.PRW.Max = 0;
-            $scope.Stats.POI.Current = 0;
-            $scope.Stats.POI.Max = 0;
-            $scope.Stats.INT.Current = 0;
-            $scope.Stats.INT.Max = 0;
-            $scope.Stats.ARC.Current = 0;
-            $scope.Stats.ARC.Max = 0;
-            $scope.Stats.PER.Current = 0;
-            $scope.Stats.PER.Max = 0;
-            $scope.RaceDefMod = 0;
-            updateDef();
-            updateInitiative();
-            updateArm();
-            updateWillpower();
-            updateCmdRange();
-            updateSkills();
-
-            $scope.Archetypes = ['Gifted','Intellectual','Mighty','Skilled'];
-        } else {
-            if ($scope.Race.ResArchetypes.indexOf($scope.Archetype) > -1) {
-                $scope.Archetype = null;
-            }
-
-            $scope.Stats.PHY.Current = $scope.Race.Stats.PHY[0];
-            $scope.Stats.SPD.Current = $scope.Race.Stats.SPD[0];
-            $scope.Stats.STR.Current = $scope.Race.Stats.STR[0];
-            $scope.Stats.AGL.Current = $scope.Race.Stats.AGL[0];
-            $scope.Stats.PRW.Current = $scope.Race.Stats.PRW[0];
-            $scope.Stats.POI.Current = $scope.Race.Stats.POI[0];
-            $scope.Stats.INT.Current = $scope.Race.Stats.INT[0];
-            $scope.Stats.ARC.Current = $scope.Race.Stats.ARC[0];
-            $scope.Stats.PER.Current = $scope.Race.Stats.PER[0];
-            $scope.RaceDefMod = $scope.Race.DefMod;
-            updateDef();
-            updateInitiative();
-            updateArm();
-            updateMaxStats();
-            updateWillpower();
-            updateCmdRange();
-            updateSkills();
-
-            var archList = ['Gifted','Intellectual','Mighty','Skilled'];
-
-            for (var i = 0; i < $scope.Race.ResArchetypes.length; i++) {
-                if (archList.indexOf($scope.Race.ResArchetypes[i]) > -1) {
-                    archList.splice(archList.indexOf($scope.Race.ResArchetypes[i]),1);
-                }
-            }
-
-            $scope.Archetypes = archList;
-        }
-    };
-
-    $scope.updateCareer = function(careerNum) {
-        //TODO: A lot of this won't work for >CHANGING< careers. Need to fix.
-        if (careerNum == 1) {
-            if ($scope.Career1 !== null) {
-                selectedCareers[0] = $scope.Career1.Name;
-                addCareerSkills($scope.Career1);
-                $scope.Career2List.splice($scope.Career2List.indexOf($scope.Career1),1);
-                $scope.Career3List.splice($scope.Career3List.indexOf($scope.Career1),1);
-                $scope.Career4List.splice($scope.Career4List.indexOf($scope.Career1),1);
-            } else {
-                reAddMissingCareer($scope.Career1List);
-                selectedCareers[0] = '';
-            }
-        } else if (careerNum == 2) {
-            if ($scope.Career2 !== null) {
-                selectedCareers[1] = $scope.Career2.Name;
-                addCareerSkills($scope.Career2);
-                $scope.Career1List.splice($scope.Career1List.indexOf($scope.Career2),1);
-                $scope.Career3List.splice($scope.Career3List.indexOf($scope.Career2),1);
-                $scope.Career4List.splice($scope.Career4List.indexOf($scope.Career2),1);
-            } else {
-                reAddMissingCareer($scope.Career2List);
-                selectedCareers[1] = '';
-            }
-        } else if (careerNum == 3) {
-            if ($scope.Career3 !== null) {
-                selectedCareers[2] = $scope.Career3.Name;
-                addCareerSkills($scope.Career3);
-                $scope.Career1List.splice($scope.Career1List.indexOf($scope.Career3),1);
-                $scope.Career2List.splice($scope.Career2List.indexOf($scope.Career3),1);
-                $scope.Career4List.splice($scope.Career4List.indexOf($scope.Career3),1);
-            } else {
-                reAddMissingCareer($scope.Career3List);
-                selectedCareers[2] = '';
-            }
-        } else if (careerNum == 4) {
-            if ($scope.Career4 !== null) {
-                selectedCareers[3] = $scope.Career4.Name;
-                addCareerSkills($scope.Career4);
-                $scope.Career1List.splice($scope.Career1List.indexOf($scope.Career4),1);
-                $scope.Career2List.splice($scope.Career2List.indexOf($scope.Career4),1);
-                $scope.Career3List.splice($scope.Career3List.indexOf($scope.Career4),1);
-            } else {
-                reAddMissingCareer($scope.Career4List);
-                selectedCareers[3] = '';
-            }
-        }
-
-        removeCareerSkills();
     };
 
     $scope.displayEditXP = function() {
@@ -266,26 +161,6 @@ function CSCtrl($scope) {
         } else {
             throw 'SkillTypeError';
         }
-    };
-
-    $scope.updateSkill = function(skill) {
-            if (skill.BaseStat != 'Social') {
-                    skill.Total = parseInt(skill.Level, 10) + $scope.Stats[skill.BaseStat].Current;
-            } else {
-                    skill.Total = skill.Level;
-            }
-
-            if (skill.Name == 'Command') {
-                    updateCmdRange();
-            }
-    };
-
-    $scope.removeSkill = function(skillIndex, skillType) {
-            if (skillType == "M") {
-                    $scope.MilitarySkills.splice(skillIndex,1);
-            } else if (skillType == "O") {
-                    $scope.OccupationalSkills.splice(skillIndex,1);
-            }
     };
 
     $scope.hideRanged1 = function() {
