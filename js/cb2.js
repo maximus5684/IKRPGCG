@@ -538,6 +538,9 @@ function CB2Ctrl($scope, $http) {
                                 $scope.APFields[stat].FieldMax = $scope.APFields[stat].Points;
                                 $scope.APFields[stat].Disabled = false;
                             }
+                        } else {
+                            $scope.APFields[stat].FieldMax = Math.min(($scope.APFields[stat].Max - $scope.APFields[stat].Starting), 3);
+                            $scope.APFields[stat].Disabled = false;
                         }
                     }
                 } else {
