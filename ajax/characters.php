@@ -70,18 +70,50 @@ if ($charsReq->ReqType == 'GetUserChars') {
                     "HRCareer2SpellReplacedWith = :hrcareer2spellreplacedwith WHERE CharacterID = :characterid");
                 $sth->bindParam(':benefit', $charsReq->Character->Benefit);
                 $sth->bindParam(':asspell', $charsReq->Character->AdditionalStudySpell);
-                $sth->bindParam(':langschosen', $charsReq->Character->LanguagesChosen);
+                $sth->bindParam(':langschosen', json_encode($charsReq->Character->LanguagesChosen));
                 $sth->bindParam(':racialcondetails', $charsReq->Character->RacialConnectionDetails);
                 $sth->bindParam(':racialstatincrease', $charsReq->Character->RacialStatIncreaseChosen);
                 $sth->bindParam(':racialabilities', $charsReq->Character->RacialAbilitiesChosen);
-                $sth->bindParam(':career1mskills', $charsReq->Character->Career1MSkillsChosen);
-                $sth->bindParam(':career2mskills', $charsReq->Character->Career2MSkillsChosen);
-                $sth->bindParam(':career1oskills', $charsReq->Character->Career1OSkillsChosen);
-                $sth->bindParam(':career2oskills', $charsReq->Character->Career2OSkillsChosen);
+                
+                if ($charsReq->Character->Career1MSkillsChosen === null) {
+                    $sth->bindParam(':career1mskills', $charsReq->Character->Career1MSkillsChosen);
+                } else { 
+                    $sth->bindParam(':career1mskills', json_encode($charsReq->Character->Career1MSkillsChosen));
+                }
+
+                if ($charsReq->Character->Career2MSkillsChosen === null) {
+                    $sth->bindParam(':career2mskills', $charsReq->Character->Career2MSkillsChosen);
+                } else { 
+                    $sth->bindParam(':career2mskills', json_encode($charsReq->Character->Career2MSkillsChosen));
+                }
+
+                if ($charsReq->Character->Career1OSkillsChosen === null) {
+                    $sth->bindParam(':career1oskills', $charsReq->Character->Career1OSkillsChosen);
+                } else {
+                    $sth->bindParam(':career1oskills', json_encode($charsReq->Character->Career1OSkillsChosen));
+                }
+
+                if ($charsReq->Character->Career2OSkillsChosen === null) {
+                    $sth->bindParam(':career2oskills', $charsReq->Character->Career2OSkillsChosen);
+                } else {
+                    $sth->bindParam(':career2oskills', json_encode($charsReq->Character->Career2OSkillsChosen));
+                }
+
                 $sth->bindParam(':career1condetails', $charsReq->Character->Career1ConnectionDetails);
                 $sth->bindParam(':career2condetails', $charsReq->Character->Career2ConnectionDetails);
-                $sth->bindParam(':career1assets', $charsReq->Character->Career1AssetsChosen);
-                $sth->bindParam(':career2assets', $charsReq->Character->Career2AssetsChosen);
+
+                if ($charsReq->Character->Career1AssetsChosen === null) {
+                    $sth->bindParam(':career1assets', json_encode($charsReq->Character->Career1AssetsChosen));
+                } else {
+                    $sth->bindParam(':career1assets', json_encode($charsReq->Character->Career1AssetsChosen));
+                }
+
+                if ($charsReq->Character->Career2AssetsChosen === null) {
+                    $sth->bindParam(':career2assets', $charsReq->Character->Career2AssetsChosen);
+                } else {
+                    $sth->bindParam(':career2assets', json_encode($charsReq->Character->Career2AssetsChosen));
+                }
+
                 $sth->bindParam(':ap1stat', $charsReq->Character->AP1Stat);
                 $sth->bindParam(':ap2stat', $charsReq->Character->AP2Stat);
                 $sth->bindParam(':ap3stat', $charsReq->Character->AP3Stat);
