@@ -2,7 +2,7 @@
 //Login Check
 
 if (strpos(str_replace('/', '', $_SERVER['SCRIPT_NAME']), 'login.php') === FALSE) {
-    if ($_SESSION["LoggedIn"] != "OK") {
+    if (!(isset($_SESSION["LoggedIn"])) || $_SESSION["LoggedIn"] != "OK") {
         header( 'Location: login.php?Reason=Inactive' );
     }
 }

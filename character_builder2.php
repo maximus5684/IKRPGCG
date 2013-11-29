@@ -56,7 +56,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
                 <div class="control-group" ng-show="showAP()">
-                    <label class="control-label" for="AdvancementPoints">Distribute Advancement Points:<br>({{AdvancementPoints}} remaining)</label>
+                    <label class="control-label" for="AdvancementPoints">
+                        Distribute Advancement Points:<br>
+                        ({{AdvancementPoints}} remaining)
+                        <span ng-hide="AdvancementPoints == 0" class="label label-warning"><br>Required</span>
+                    </label>
                     <div class="controls">
                         <table id="APTable">
                             <thead>
@@ -144,7 +148,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
                 <div class="control-group" ng-show="Career1MSkillsRequired">
-                    <label class="control-label" for="Career1MSkill">Choose your starting Military skill(s) for {{Career1.Name}} (pick {{Career1.StartingMSkillChoices}}):</label>
+                    <label class="control-label" for="Career1MSkill">
+                        Choose your starting Military skill(s) for {{Career1.Name}} (pick {{Career1.StartingMSkillChoices}}):
+                        <span ng-hide="checkCareer1MSkills()" class="label label-warning"><br>Required</span>
+                    </label>
                     <div class="controls">
                         <ul>
                             <li ng-repeat="Skill in Career1MSkillsCBs"><input type="checkbox" name="Career1MSkillChoice" value="{{Skill.Name}}" ng-model="Skill.Checked" ng-disabled="Skill.Disabled" ng-change="changeCareer1MSkill()">{{Skill.Name}}, {{Skill.Level}}</li>
@@ -152,7 +159,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
                 <div class="control-group" ng-show="Career1OSkillsRequired">
-                    <label class="control-label" for="Career1OSkill">Choose your starting Occupational skill(s) for {{Career1.Name}} (pick {{Career1.StartingOSkillChoices}}):</label>
+                    <label class="control-label" for="Career1OSkill">
+                        Choose your starting Occupational skill(s) for {{Career1.Name}} (pick {{Career1.StartingOSkillChoices}}):
+                        <span ng-hide="checkCareer1OSkills()" class="label label-warning"><br>Required</span>
+                    </label>
                     <div class="controls">
                         <ul>
                             <li ng-repeat="Skill in Career1OSkillsCBs"><input type="checkbox" name="Career1OSkillChoice" value="{{Skill.Name}}" ng-model="Skill.Checked" ng-disabled="Skill.Disabled" ng-change="changeCareer1OSkill()">{{Skill.Name}}, {{Skill.Level}}</li>
@@ -160,7 +170,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
                 <div class="control-group" ng-show="Career2MSkillsRequired">
-                    <label class="control-label" for="Career2MSkill">Choose your starting Military skill(s) for {{Career2.Name}} (pick {{Career2.StartingMSkillChoices}}):</label>
+                    <label class="control-label" for="Career2MSkill">
+                        Choose your starting Military skill(s) for {{Career2.Name}} (pick {{Career2.StartingMSkillChoices}}):
+                        <span ng-hide="checkCareer2MSkills()" class="label label-warning"><br>Required</span>
+                    </label>
                     <div class="controls">
                         <ul>
                             <li ng-repeat="Skill in Career2MSkillsCBs"><input type="checkbox" name="Career2MSkillChoice" value="{{Skill.Name}}" ng-model="Skill.Checked" ng-disabled="Skill.Disabled" ng-change="changeCareer2MSkill()">{{Skill.Name}}, {{Skill.Level}}</li>
@@ -168,7 +181,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
                 <div class="control-group" ng-show="Career2OSkillsRequired">
-                    <label class="control-label" for="Career2OSkill">Choose your starting Occupational skill(s) for {{Career2.Name}} (pick {{Career2.StartingOSkillChoices}}):</label>
+                    <label class="control-label" for="Career2OSkill">
+                        Choose your starting Occupational skill(s) for {{Career2.Name}} (pick {{Career2.StartingOSkillChoices}}):
+                        <span ng-hide="checkCareer2OSkills()" class="label label-warning"><br>Required</span>
+                    </label>
                     <div class="controls">
                         <ul>
                             <li ng-repeat="Skill in Career2OSkillsCBs"><input type="checkbox" name="Career2OSkillChoice" value="{{Skill.Name}}" ng-model="Skill.Checked" ng-disabled="Skill.Disabled" ng-change="changeCareer2OSkill()">{{Skill.Name}}, {{Skill.Level}}</li>
@@ -200,7 +216,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
                 <div class="control-group" ng-show="Career1AssetsRequired">
-                    <label class="control-label" for="Career1AssetChoice">Select your starting asset(s) for {{Career1.Name}} (pick {{Career1.StartingAssetChoices}}):</label>
+                    <label class="control-label" for="Career1AssetChoice">
+                        Select your starting asset(s) for {{Career1.Name}} (pick {{Career1.StartingAssetChoices}}):
+                        <span ng-hide="checkCareer1Assets()" class="label label-warning"><br>Required</span>
+                    </label>
                     <div class="controls">
                         <ul>
                             <li ng-repeat="Asset in Career1AssetChoiceCBs"><input type="checkbox" name="Career1AssetChoice" value={{Asset.Name}} ng-model="Asset.Checked" ng-disabled="Asset.Disabled" ng-change="changeCareer1AssetChoice()">{{Asset.Name}}</li>
@@ -208,7 +227,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
                 <div class="control-group" ng-show="Career2AssetsRequired">
-                    <label class="control-label" for="Career2AssetChoice">Select your starting asset(s) for {{Career2.Name}} (pick {{Career2.StartingAssetChoices}}):</label>
+                    <label class="control-label" for="Career2AssetChoice">
+                        Select your starting asset(s) for {{Career2.Name}} (pick {{Career2.StartingAssetChoices}}):
+                        <span ng-hide="checkCareer2Assets()" class="label label-warning"><br>Required</span>
+                    </label>
                     <div class="controls">
                         <ul>
                             <li ng-repeat="Asset in Career2AssetChoiceCBs"><input type="checkbox" name="Career2AssetChoice" value={{Asset.Name}} ng-model="Asset.Checked" ng-disabled="Asset.Disabled" ng-change="changeCareer2AssetChoice()">{{Asset.Name}}</li>
@@ -248,6 +270,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="HRAbCareer1To" ng-model="Character.HRCareer1AbReplacedWith" ng-options="Ability for Ability in HRAbCareer1List">
                             <option value="">...</option>
                         </select>
+                        <span ng-hide="Character.HRCareer1AbReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HRAbilityChecked && HRAbilityC2">
@@ -264,6 +287,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="HRAbCareer2To" ng-model="Character.HRCareer2AbReplacedWith" ng-options="Ability for Ability in HRAbCareer2List">
                             <option value="">...</option>
                         </select>
+                        <span ng-hide="Character.HRCareer2AbReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HRMSkillChecked && HRMSkillC1">
@@ -280,6 +304,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="HRMSkillCareer1To" ng-model="Character.HRCareer1MSkillReplacedWith" ng-options="Skill[0] for Skill in HRMSkillCareer1List">
                             <option value="">...</option>
                         </select>
+                        <span ng-hide="Character.HRCareer1MSkillReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HRMSkillChecked && HRMSkillC2">
@@ -296,6 +321,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="HRMSkillCareer1To" ng-model="Character.HRCareer2MSkillReplacedWith" ng-options="Skill[0] for Skill in HRMSkillCareer2List">
                             <option value="">...</option>
                         </select>
+                        <span ng-hide="Character.HRCareer2MSkillReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HROSkillChecked && HROSkillC1">
@@ -312,6 +338,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="HROSkillCareer1To" ng-model="Character.HRCareer1OSkillReplacedWith" ng-options="Skill[0] for Skill in HROSkillCareer1List">
                             <option value="">...</option>
                         </select>
+                        <span ng-hide="Character.HRCareer1OSkillReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HROSkillChecked && HROSkillC2">
@@ -328,6 +355,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="HROSkillCareer1To" ng-model="Character.HRCareer2OSkillReplacedWith" ng-options="Skill[0] for Skill in HROSkillCareer2List">
                             <option value="">...</option>
                         </select>
+                        <span ng-hide="Character.HRCareer2OSkillReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HRSpellChecked && HRSpellC1">
@@ -344,6 +372,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="HRSpellCareer1To" ng-model="Character.HRCareer1SpellReplacedWith" ng-options="Spell for Spell in HRSpellCareer1List">
                             <option value="">...</option>
                         </select>
+                        <span ng-hide="Character.HRCareer1SpellReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HRSpellChecked && HRSpellC2">
@@ -360,6 +389,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <select id="HRSpellCareer1To" ng-model="Character.HRCareer2SpellReplacedWith" ng-options="Spell for Spell in HRSpellCareer2List">
                             <option value="">...</option>
                         </select>
+                        <span ng-hide="Character.HRCareer2SpellReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group">
@@ -370,7 +400,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         </p>
                         <button type="submit" ng-disabled="submitCheck()" class="btn btn-primary">Submit</button>
                         <button type="button" ng-click="cancelConfirm()" class="btn" style="margin-left: 15px; margin-right: 15px">Cancel</button>
-                        <span ng-hide="checkError()" class="label label-warning">{{Error}}</span>
+                        <span ng-show="checkError()" class="label label-warning">{{Error}}</span>
                     </div>
                 </div>
             </form>
@@ -385,6 +415,20 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="modal-footer">
                         <button type="button" class="btn" data-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary">Change</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal hide fade" id="cancelConfirm">
+                <form ng-submit="returnToHome()">
+                    <div class="modal-header">
+                        <h3>Cancel Character Building</h3>
+                    </div>
+                    <div class="modal-body">
+                        All progress on this page will be lost. Selections from the previous page have already been saved. Are you sure you wish to cancel building this character?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">Don't Quit</button>
+                        <button type="submit" class="btn btn-primary">Go Back Home</button>
                     </div>
                 </form>
             </div>

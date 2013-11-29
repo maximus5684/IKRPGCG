@@ -284,32 +284,32 @@ function CB2Ctrl($scope, $http) {
         
         $scope.setAPFields();
 
-        if ($scope.Career1.StartingAbilities.length > 0) {
+        if ($scope.Career1.StartingAbilities.length > 0 && ($scope.Career1.StartingAbilities.length < $scope.Career1.Abilities.length)) {
             $scope.HRAbilityC1 = true;
             $scope.HRAbility = true;
         }
         
-        if ($scope.Career2.StartingAbilities.length > 0) {
+        if ($scope.Career2.StartingAbilities.length > 0 && ($scope.Career2.StartingAbilities.length < $scope.Career2.Abilities.length)) {
             $scope.HRAbilityC2 = true;
             $scope.HRAbility = true;
         }
 
-        if ($scope.Career1.StartingMilitarySkills.length > 0) {
+        if ($scope.Career1.StartingMilitarySkills.length > 0 && ($scope.Career1.StartingMilitarySkills.length < $scope.Career1.MilitarySkills.length)) {
             $scope.HRMSkillC1 = true;
             $scope.HRMSkill = true;
         }
         
-        if ($scope.Career2.StartingMilitarySkills.length > 0) {
+        if ($scope.Career2.StartingMilitarySkills.length > 0 && ($scope.Career2.StartingMilitarySkills.length < $scope.Career2.MilitarySkills.length)) {
             $scope.HRMSkillC2 = true;
             $scope.HRMSkill = true;
         }
 
-        if ($scope.Career1.StartingOccupationalSkills.length > 0) {
+        if ($scope.Career1.StartingOccupationalSkills.length > 0 && ($scope.Career1.StartingOccupationalSkills.length < $scope.Career1.OccupationalSkills.length)) {
             $scope.HROSkillC1 = true;
             $scope.HROSkill = true;
         }
         
-        if ($scope.Career2.StartingOccupationalSkills.length > 0) {
+        if ($scope.Career2.StartingOccupationalSkills.length > 0 && ($scope.Career2.StartingOccupationalSkills.length < $scope.Career2.OccupationalSkills.length)) {
             $scope.HROSkillC2 = true;
             $scope.HROSkill = true;
         }
@@ -657,6 +657,14 @@ function CB2Ctrl($scope, $http) {
         }
     }
 
+    $scope.checkCareer1MSkills = function() {
+        if ($scope.Character == null || ($scope.Career1MSkillsRequired && $scope.Character.Career1MSkillsChosen.length < $scope.Career1.StartingMSkillChoices)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     $scope.changeCareer1MSkill = function() {
         checked = 0;
         $scope.Character.Career1MSkillsChosen = [];
@@ -678,6 +686,14 @@ function CB2Ctrl($scope, $http) {
             for (m = 0; m < $scope.Career1MSkillsCBs.length; m++) {
                 $scope.Career1MSkillsCBs[m].Disabled = false;
             }
+        }
+    }
+
+    $scope.checkCareer1OSkills = function() {
+        if ($scope.Character == null || ($scope.Career1OSkillsRequired && $scope.Character.Career1OSkillsChosen.length < $scope.Career1.StartingOSkillChoices)) {
+            return false;
+        } else {
+            return true;
         }
     }
     
@@ -704,6 +720,14 @@ function CB2Ctrl($scope, $http) {
             }
         }
     }
+
+    $scope.checkCareer2MSkills = function() {
+        if ($scope.Character == null || ($scope.Career2MSkillsRequired && $scope.Character.Career2MSkillsChosen.length < $scope.Career2.StartingMSkillChoices)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
     
     $scope.changeCareer2MSkill = function() {
         checked = 0;
@@ -726,6 +750,14 @@ function CB2Ctrl($scope, $http) {
             for (m = 0; m < $scope.Career2MSkillsCBs.length; m++) {
                 $scope.Career2MSkillsCBs[m].Disabled = false;
             }
+        }
+    }
+
+    $scope.checkCareer2OSkills = function() {
+        if ($scope.Character == null || ($scope.Career2OSkillsRequired && $scope.Character.Career2OSkillsChosen.length < $scope.Career2.StartingOSkillChoices)) {
+            return false;
+        } else {
+            return true;
         }
     }
     
@@ -753,6 +785,14 @@ function CB2Ctrl($scope, $http) {
         }
     }
 
+    $scope.checkCareer1Assets = function() {
+        if ($scope.Character == null || ($scope.Career1AssetsRequired && $scope.Character.Career1AssetsChosen.length < $scope.Career1.StartingAssetChoices)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     $scope.changeCareer1AssetChoice = function() {
         checked = 0;
         $scope.Character.Career1AssetsChosen = [];
@@ -774,6 +814,14 @@ function CB2Ctrl($scope, $http) {
             for (m = 0; m < $scope.Career1AssetChoiceCBs.length; m++) {
                 $scope.Career1AssetChoiceCBs[m].Disabled = false;
             }
+        }
+    }
+
+    $scope.checkCareer2Assets = function() {
+        if ($scope.Character == null || ($scope.Career2AssetsRequired && $scope.Character.Career2AssetsChosen.length < $scope.Career2.StartingAssetChoices)) {
+            return false;
+        } else {
+            return true;
         }
     }
     
@@ -827,6 +875,10 @@ function CB2Ctrl($scope, $http) {
                     $scope.HRAbCareer1List.push($scope.Career1.Abilities[j]);
                 }
             }
+        } else {
+            if ($scope.Character !== null) {
+                $scope.Character.HRCareer1AbReplacedWith = null;
+            }
         }
     }
 
@@ -846,6 +898,10 @@ function CB2Ctrl($scope, $http) {
                 if ($scope.Career2.Abilities[j] != $scope.Character.HRCareer2AbToReplace) {
                     $scope.HRAbCareer2List.push($scope.Career2.Abilities[j]);
                 }
+            }
+        } else {
+            if ($scope.Character !== null) {
+                $scope.Character.HRCareer2AbReplacedWith = null;
             }
         }
     }
@@ -876,6 +932,10 @@ function CB2Ctrl($scope, $http) {
                     $scope.HRMSkillCareer1List.push($scope.Career1.MilitarySkills[j]);
                 }
             }
+        } else {
+            if ($scope.Character !== null) {
+                $scope.Character.HRCareer1MSkillReplacedWith = null;
+            }
         }
     }
 
@@ -895,6 +955,10 @@ function CB2Ctrl($scope, $http) {
                 if ($scope.Career2.MilitarySkills[j][0] != $scope.Character.HRCareer2MSkillToReplace[0]) {
                     $scope.HRMSkillCareer2List.push($scope.Career2.MilitarySkills[j]);
                 }
+            }
+        } else {
+            if ($scope.Character !== null) {
+                $scope.Character.HRCareer2MSkillReplacedWith = null;
             }
         }
     }
@@ -925,6 +989,10 @@ function CB2Ctrl($scope, $http) {
                     $scope.HROSkillCareer1List.push($scope.Career1.OccupationalSkills[j]);
                 }
             }
+        } else {
+            if ($scope.Character !== null) {
+                $scope.Character.HRCareer1OSkillReplacedWith = null;
+            }
         }
     }
 
@@ -944,6 +1012,10 @@ function CB2Ctrl($scope, $http) {
                 if ($scope.Career2.OccupationalSkills[j][0] != $scope.Character.HRCareer2OSkillToReplace[0]) {
                     $scope.HROSkillCareer2List.push($scope.Career2.OccupationalSkills[j]);
                 }
+            }
+        } else {
+            if ($scope.Character !== null) {
+                $scope.Character.HRCareer2OSkillReplacedWith = null;
             }
         }
     }
@@ -970,15 +1042,21 @@ function CB2Ctrl($scope, $http) {
 
         if ($scope.Character !== null && $scope.Character.HRCareer1SpellToReplace !== null) {
             for (j = 0; j < $scope.Career1.SpellList.length; j++) {
-                for (i = 0; i < $scope.Career1.SpellList[j].Spells.length; i++) {
-                    if ($scope.Career1.SpellList[j].Spells[i] != $scope.Character.HRCareer1SpellToReplace) {
-                        $scope.HRSpellCareer1List.push($scope.Career1.SpellList[j].Spells[i]);
+                if ($scope.Career1.SpellList[j].Cost == 1 || $scope.Career1.SpellList[j].Cost == 2) {
+                    for (i = 0; i < $scope.Career1.SpellList[j].Spells.length; i++) {
+                        if ($scope.Career1.SpellList[j].Spells[i] != $scope.Character.HRCareer1SpellToReplace) {
+                            $scope.HRSpellCareer1List.push($scope.Career1.SpellList[j].Spells[i]);
+                        }
                     }
                 }
             }
+            
+            $scope.HRSpellCareer1List.sort();
+        } else {
+            if ($scope.Character !== null) {
+                $scope.Character.HRCareer1SpellReplacedWith = null;
+            }
         }
-
-        $scope.HRSpellCareer1List.sort();
     }
 
     $scope.checkHRSpellCareer2From = function() {
@@ -994,20 +1072,177 @@ function CB2Ctrl($scope, $http) {
 
         if ($scope.Character !== null && $scope.Character.HRCareer2SpellToReplace !== null) {
             for (j = 0; j < $scope.Career2.SpellList.length; j++) {
-                for (i = 0; i < $scope.Career2.SpellList[j].Spells.length; i++) {
-                    if ($scope.Career2.SpellList[j].Spells[i] != $scope.Character.HRCareer2SpellToReplace) {
-                        $scope.HRSpellCareer2List.push($scope.Career2.SpellList[j].Spells[i]);
+                if ($scope.Career2.SpellList[j].Cost == 1 || $scope.Career2.SpellList[j].Cost == 2) {
+                    for (i = 0; i < $scope.Career2.SpellList[j].Spells.length; i++) {
+                        if ($scope.Career2.SpellList[j].Spells[i] != $scope.Character.HRCareer2SpellToReplace) {
+                            $scope.HRSpellCareer2List.push($scope.Career2.SpellList[j].Spells[i]);
+                        }
+                    }
+                }
+            }
+            
+            $scope.HRSpellCareer2List.sort();
+        } else {
+            if ($scope.Character !== null) {
+                $scope.Character.HRCareer2SpellReplacedWith = null;
+            }
+        }
+    }
+
+    $scope.checkError = function() {
+        if ($scope.Error !== null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    $scope.cancelConfirm = function() {
+        $("#cancelConfirm").modal();
+    }
+
+    $scope.returnToHome = function() {
+        window.location.href = '/index.php';
+    }
+
+    $scope.submitCheck = function() {
+        disableSubmit = false;
+
+        if ($scope.Character == null) {
+            disableSubmit = true;
+        } else {
+            if ($scope.Character.Benefit == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Character.Benefit == 'Additional Study' && $scope.Character.AdditionalStudySpell == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Language1Required && $scope.Character.LanguagesChosen[0] == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Language2Required && $scope.Character.LanguagesChosen[1] == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Language3Required && $scope.Character.LanguagesChosen[2] == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.RacialStatIncreaseRequired && $scope.Character.RacialStatIncreaseChosen == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.RacialAbilitiesRequired && $scope.Character.RacialAbilitiesChosen == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Career1MSkillsRequired && $scope.Character.Career1MSkillsChosen.length < $scope.Career1.StartingMSkillChoices) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Career1OSkillsRequired && $scope.Character.Career1OSkillsChosen.length < $scope.Career1.StartingOSkillChoices) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Career2MSkillsRequired && $scope.Character.Career2MSkillsChosen.length < $scope.Career2.StartingMSkillChoices) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Career2OSkillsRequired && $scope.Character.Career2OSkillsChosen.length < $scope.Career2.StartingOSkillChoices) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Career1AssetsRequired && $scope.Character.Career1AssetsChosen.length < $scope.Career1.StartingAssetChoices) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Career2AssetsRequired && $scope.Character.Career2AssetsChosen.length < $scope.Career2.StartingAssetChoices) {
+                disableSubmit = true;
+            }
+
+            if ($scope.AdvancementPoints != 0) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Character.HRCareer1AbToReplace !== null && $scope.Character.HRCareer1AbReplacedWith == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Character.HRCareer2AbToReplace !== null && $scope.Character.HRCareer2AbReplacedWith == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Character.HRCareer1OSkillToReplace !== null && $scope.Character.HRCareer1OSkillReplacedWith == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Character.HRCareer2OSkillToReplace !== null && $scope.Character.HRCareer2OSkillReplacedWith == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Character.HRCareer1MSkillToReplace !== null && $scope.Character.HRCareer1MSkillReplacedWith == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Character.HRCareer2MSkillToReplace !== null && $scope.Character.HRCareer2MSkillReplacedWith == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Character.HRCareer1SpellToReplace !== null && $scope.Character.HRCareer1SpellReplacedWith == null) {
+                disableSubmit = true;
+            }
+
+            if ($scope.Character.HRCareer2SpellToReplace !== null && $scope.Character.HRCareer2SpellReplacedWith == null) {
+                disableSubmit = true;
+            }
+        }
+
+        return disableSubmit;
+    }
+
+    $scope.UpdateChar = function() {
+        for (var stat in $scope.APFields) {
+            if ($scope.APFields.hasOwnProperty(stat)) {
+                if ($scope.APFields[stat].Points == 1) {
+                    if ($scope.Character.AP1Stat == null) {
+                        $scope.Character.AP1Stat = stat;
+                    } else if ($scope.Character.AP2Stat == null) {
+                        $scope.Character.AP2Stat = stat;
+                    } else if ($scope.Character.AP3Stat == null) {
+                        $scope.Character.AP3Stat = stat;
+                    }
+                } else if ($scope.APFields[stat].Points == 2) {
+                    if ($scope.Character.AP1Stat == null) {
+                        $scope.Character.AP1Stat = stat;
+                        $scope.Character.AP2Stat = stat;
+                    } else if ($scope.Character.AP2Stat = null) {
+                        $scope.Character.AP2Stat = stat;
+                        $scope.Character.AP3Stat = stat;
+                    }
+                } else if ($scope.APFields[stat].Points == 3) {
+                    if ($scope.Character.AP1Stat == null) {
+                        $scope.Character.AP1Stat = stat;
+                        $scope.Character.AP2Stat = stat;
+                        $scope.Character.AP3Stat = stat;
                     }
                 }
             }
         }
 
-        $scope.HRSpellCareer2List.sort();
-    }
+        $http.post($scope.Url, { ReqType: 'BuildChar', Character: $scope.Character }).success(function(data, status) {
+            if (status != 200 || data != '') {
+                $scope.Error == data;
+            } else {
+                var action = "/character_sheet.php?CharacterID=" + $scope.Character.CharacterID;
+                window.location.href = action;
+            }
+        }).error(function(data, status) {
+            $scope.Error = "Status: " + status + "; Data: " + data || "Request failed.";
+        });
 
-    $scope.UpdateChar = function() {
-        charToUpdate = $scope.Character;
-        
-        
+        return false;
     }
 }

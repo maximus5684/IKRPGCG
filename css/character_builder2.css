@@ -1,13 +1,13 @@
-#changeLang1, #changeLang2 {
+#changeLang1, #changeLang2, #cancelConfirm {
     margin: -115px 0 0 -281px;
 }
 
 .form-horizontal div.controls {
-    margin-left: 240px;
+    margin-left: 260px;
 }
 
 .form-horizontal label.control-label {
-    width: 220px;
+    width: 240px;
 }
 
 .control-group .controls ul {
