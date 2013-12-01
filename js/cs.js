@@ -14,7 +14,6 @@ function CSCtrl($scope, $http) {
     $scope.Career3 = null;
     $scope.Career4 = null;
     $scope.Level = 'Hero';
-    $scope.XP = 0;
     $scope.RaceDefMod = 0;
     $scope.Def = 0;
     $scope.Arm = 0;
@@ -110,17 +109,94 @@ function CSCtrl($scope, $http) {
     }
    
     $scope.loadCharacterDefaults = function() {
+        for (a = 0; a < $scope.Races.length; a++) {
+            if ($scope.Character.Race == $scope.Races[a].Name) {
+                $scope.Race = $scope.Races[a];
+            }
+        }
+    
+        for (b = 0; b < $scope.Archetypes.length; b++) {
+            if ($scope.Character.Archetype == $scope.Archetypes[b].Name) {
+                $scope.Archetype = $scope.Archetypes[b];
+            }
+        }
+
+        for (c = 0; c < $scope.Careers.length; c++) {
+            if ($scope.Character.Career1 == $scope.Careers[c].Name) {
+                $scope.Career1 = $scope.Careers[c];
+            }
+
+            if ($scope.Character.Career2 == $scope.Careers[c].Name) {
+                $scope.Career2 = $scope.Careers[c];
+            }
+        }
+
+        statSelect = '';
         
+        switch($scope.xpLevel($scope.Character.XP)) {
+            case 'Hero':
+                statSelect = 'MaxHero';
+                break;
+            case 'Veteran':
+                statSelect = 'MaxVet';
+                break;
+            case 'Epic':
+                statSelect = 'MaxEpic';
+                break;
+        }
+
+        $scope.Stats.PHY.Current = $scope.Race.Stats.PHY.Starting;
+        $scope.Stats.PHY.Max = $scope.Race.Stats.PHY[statSelect];
+        $scope.Stats.SPD.Current = $scope.Race.Stats.SPD.Starting;
+        $scope.Stats.SPD.Max = $scope.Race.Stats.SPD[statSelect];
+        $scope.Stats.STR.Current = $scope.Race.Stats.STR.Starting;
+        $scope.Stats.STR.Max = $scope.Race.Stats.STR[statSelect];
+        $scope.Stats.AGL.Current = $scope.Race.Stats.AGL.Starting;
+        $scope.Stats.AGL.Max = $scope.Race.Stats.AGL[statSelect];
+        $scope.Stats.PRW.Current = $scope.Race.Stats.PRW.Starting;
+        $scope.Stats.PRW.Max = $scope.Race.Stats.PRW[statSelect];
+        $scope.Stats.POI.Current = $scope.Race.Stats.POI.Starting;
+        $scope.Stats.POI.Max = $scope.Race.Stats.POI[statSelect];
+        $scope.Stats.INT.Current = $scope.Race.Stats.INT.Starting;
+        $scope.Stats.INT.Max = $scope.Race.Stats.INT[statSelect];
+
+        if ($scope.Archetype.Name == 'Gifted') {
+            if ($scope.Character.ArcaneTradition == 'Focuser') {
+                $scope.Stats.ARC.Current = 2;
+            } else if ($scope.Character.ArcaneTradition == 'Will Weaver') {
+                $scope.Stats.ARC.Current = 3;
+            }
+
+            $scope.Stats.ARC.Max = $scope.Race.StatsARC[statSelect];
+        } else {
+            $scope.Stats.ARC.Current = '-';
+            $scope.Stats.ARC.Max = '-';
+        }
+
+        $scope.Stats.PER.Current = $scope.Race.Stats.PER.Starting;
+        $scope.Stats.PER.Max = $scope.Race.Stats.PER[statSelect];
+
+        if ($scope.Character.RacialStatIncreaseChosen !== null) {
+            $scope.Stats[$scope.Character.RacialStatIncreaseChosen].Current += 1;
+        }
+
+        $scope.Stats[$scope.Character.AP1Stat].Current += 1;
+        $scope.Stats[$scope.Character.AP2Stat].Current += 1;
+        $scope.Stats[$scope.Character.AP3Stat].Current += 1;
     }
 
-    $scope.updateXP = function() {
-        if ($scope.XP <= 49) {
-            $scope.Level = 'Hero';
-        } else if ($scope.XP <= 99) {
-            $scope.Level = 'Veteran';
-        } else if ($scope.XP > 99) {
-            $scope.Level = 'Epic';
+    $scope.xpLevel = function(xp) {
+        if (xp <= 49) {
+            return 'Hero';
+        } else if (xp <= 99) {
+            return 'Veteran';
+        } else if (xp > 99) {
+            return 'Epic';
         }
+    }
+    
+    $scope.updateXP = function() {
+        $scope.Level = xpLevel($scope.Character.XP);
 
         if ($scope.XP > -1 && $scope.Race !== null) {
             updateMaxStats();

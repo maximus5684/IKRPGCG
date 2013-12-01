@@ -86,85 +86,85 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <p class="csBoxHead">STATS</p>
                         <div class="csStatsSection span3">
                             <div class="csStatBox" style="left: 10px; top: 35px; width: 50px">
-                                <p class="csStatBoxVal">{{Stats["PHY"].Current}}</p>
+                                <p class="csStatBoxVal">{{Stats.PHY.Current}}</p>
                                 <p class="csStatBoxStat">PHY</p>
                             </div>
                             <div class="csStatBox smaller" style="left: 68px; top: 60px; width: 30px">
-                                <p class="csStatBoxVal">{{Stats["PHY"].Max}}</p>
+                                <p class="csStatBoxVal">{{Stats.PHY.Max}}</p>
                                 <p class="csStatBoxStat grey">MAX</p>
                             </div>
                             <div class="csStatBox small" style="left: 120px; top: 10px; width: 40px">
-                                <p class="csStatBoxVal">{{Stats["SPD"].Current}}</p>
+                                <p class="csStatBoxVal">{{Stats.SPD.Current}}</p>
                                 <p class="csStatBoxStat">SPD</p>
                             </div>
                             <div class="csStatBox smaller" style="left: 168px; top: 22px; width: 30px">
-                                <p class="csStatBoxVal">{{Stats["SPD"].Max}}</p>
+                                <p class="csStatBoxVal">{{Stats.SPD.Max}}</p>
                                 <p class="csStatBoxStat grey">MAX</p>
                             </div>									
                             <div class="csStatBox small" style="left: 120px; top: 75px; width: 40px">
-                                <p class="csStatBoxVal">{{Stats["STR"].Current}}</p>
+                                <p class="csStatBoxVal">{{Stats.STR.Current}}</p>
                                 <p class="csStatBoxStat">STR</p>
                             </div>
                             <div class="csStatBox smaller" style="left: 168px; top: 87px; width: 30px">
-                                <p class="csStatBoxVal">{{Stats["STR"].Max}}</p>
+                                <p class="csStatBoxVal">{{Stats.STR.Max}}</p>
                                 <p class="csStatBoxStat grey">MAX</p>
                             </div>
                         </div>
                         <div class="csStatsSection span3">
                             <div class="csStatBox" style="left: 10px; top: 35px; width: 50px">
-                                <p class="csStatBoxVal">{{Stats["AGL"].Current}}</p>
+                                <p class="csStatBoxVal">{{Stats.AGL.Current}}</p>
                                 <p class="csStatBoxStat">AGL</p>
                             </div>
                             <div class="csStatBox smaller" style="left: 68px; top: 60px; width: 30px">
-                                <p class="csStatBoxVal">{{Stats["AGL"].Max}}</p>
+                                <p class="csStatBoxVal">{{Stats.AGL.Max}}</p>
                                 <p class="csStatBoxStat grey">MAX</p>
                             </div>
                             <div class="csStatBox small" style="left: 120px; top: 10px; width: 40px">
-                                <p class="csStatBoxVal">{{Stats["PRW"].Current}}</p>
+                                <p class="csStatBoxVal">{{Stats.PRW.Current}}</p>
                                 <p class="csStatBoxStat">PRW</p>
                             </div>
                             <div class="csStatBox smaller" style="left: 168px; top: 22px; width: 30px">
-                                <p class="csStatBoxVal">{{Stats["PRW"].Max}}</p>
+                                <p class="csStatBoxVal">{{Stats.PRW.Max}}</p>
                                 <p class="csStatBoxStat grey">MAX</p>
                             </div>									
                             <div class="csStatBox small" style="left: 120px; top: 75px; width: 40px">
-                                <p class="csStatBoxVal">{{Stats["POI"].Current}}</p>
+                                <p class="csStatBoxVal">{{Stats.POI.Current}}</p>
                                 <p class="csStatBoxStat">POI</p>
                             </div>
                             <div class="csStatBox smaller" style="left: 168px; top: 87px; width: 30px">
-                                <p class="csStatBoxVal">{{Stats["POI"].Max}}</p>
+                                <p class="csStatBoxVal">{{Stats.POI.Max}}</p>
                                 <p class="csStatBoxStat grey">MAX</p>
                             </div>
                         </div>
                         <div class="csStatsSection span3">
                             <div class="csStatBox" style="left: 10px; top: 35px; width: 50px">
-                                <p class="csStatBoxVal">{{Stats["INT"].Current}}</p>
+                                <p class="csStatBoxVal">{{Stats.INT.Current}}</p>
                                 <p class="csStatBoxStat">INT</p>
                             </div>
                             <div class="csStatBox smaller" style="left: 68px; top: 60px; width: 30px">
-                                <p class="csStatBoxVal">{{Stats["INT"].Max}}</p>
+                                <p class="csStatBoxVal">{{Stats.INT.Max}}</p>
                                 <p class="csStatBoxStat grey">MAX</p>
                             </div>
                             <div class="csStatBox small" style="left: 120px; top: 10px; width: 40px">
-                                <p class="csStatBoxVal">{{Stats["ARC"].Current}}</p>
+                                <p class="csStatBoxVal">{{Stats.ARC.Current}}</p>
                                 <p class="csStatBoxStat">ARC</p>
                             </div>
                             <div class="csStatBox smaller" style="left: 168px; top: 22px; width: 30px">
-                                <p class="csStatBoxVal">{{Stats["ARC"].Max}}</p>
+                                <p class="csStatBoxVal">{{Stats.ARC.Max}}</p>
                                 <p class="csStatBoxStat grey">MAX</p>
                             </div>									
                             <div class="csStatBox small" style="left: 120px; top: 75px; width: 40px">
-                                <p class="csStatBoxVal">{{Stats["PER"].Current}}</p>
+                                <p class="csStatBoxVal">{{Stats.PER.Current}}</p>
                                 <p class="csStatBoxStat">PER</p>
                             </div>
                             <div class="csStatBox smaller" style="left: 168px; top: 87px; width: 30px">
-                                <p class="csStatBoxVal">{{Stats["PER"].Max}}</p>
+                                <p class="csStatBoxVal">{{Stats.PER.Max}}</p>
                                 <p class="csStatBoxStat grey">MAX</p>
                             </div>
                         </div>
                         <div style="height: 135px; position: relative; float: left">
                             <div class="csStatBox" style="left: 70px; top: 30px; width: 80px">
-                                <p class="csStatBoxVal">{{Willpower}}</p>
+                                <p class="csStatBoxVal">{{Stats.PHY.Current + Stats.INT.Current}}</p>
                                 <p class="csStatBoxStat small">WILLPOWER<br><span class="small">(PHY + INT)</span></p>
                             </div>
                         </div>
