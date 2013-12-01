@@ -167,7 +167,7 @@ function CSCtrl($scope, $http) {
                 $scope.Stats.ARC.Current = 3;
             }
 
-            $scope.Stats.ARC.Max = $scope.Race.StatsARC[statSelect];
+            $scope.Stats.ARC.Max = $scope.Race.Stats.ARC[statSelect];
         } else {
             $scope.Stats.ARC.Current = '-';
             $scope.Stats.ARC.Max = '-';
