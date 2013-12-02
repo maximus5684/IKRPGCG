@@ -14,9 +14,6 @@ function CSCtrl($scope, $http) {
     $scope.Career3 = null;
     $scope.Career4 = null;
     $scope.Level = 'Hero';
-    $scope.RaceDefMod = 0;
-    $scope.Def = 0;
-    $scope.Arm = 0;
     $scope.Initiative = 0;
     $scope.Willpower = 0;
     $scope.CmdRange = 0;
@@ -56,22 +53,12 @@ function CSCtrl($scope, $http) {
     /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
-    // Example: { Name: "Test Skill", From: ['Base','Highwayman'], BaseStat: "PHY", Level: 0, Total: 0 }
-    $scope.MilitarySkills = [
-        { Name: "Great Weapon", From: ['Base'], BaseStat: "PRW", Level: 0, Total: 0 },
-        { Name: "Hand Weapon", From: ['Base'], BaseStat: "PRW", Level: 0, Total: 0 },
-        { Name: "Pistol", From: ['Base'], BaseStat: "POI", Level: 0, Total: 0 },
-        { Name: "Rifle", From: ['Base'], BaseStat: "POI", Level: 0, Total: 0 }
-    ];
+    // Example: { Name: "Test Skill", BaseStat: "PHY", Level: 0, Total: 0 }
+    $scope.CharMSkills = [];
+    $scope.CharOSkills = [];
 
-    $scope.OccupationalSkills = [
-        { Name: "Command", From: ['Base'], BaseStat: "Social", Level: 0, Total: 0 },
-        { Name: "Detection", From: ['Base'], BaseStat: "PER", Level: 0, Total: 0 },
-        { Name: "Sneak", From: ['Base'], BaseStat: "AGL", Level: 0, Total: 0 }
-    ];
-
-    $scope.MilitarySkillsLookup = milSkillsArr; // from skills.js
-    $scope.OccupationalSkillsLookup = occSkillsArr; // from skills.js
+    $scope.MilitarySkills = milSkillsArr; // from skills.js
+    $scope.OccupationalSkills = occSkillsArr; // from skills.js
 
     // Example: { Name: "Test Armor", Description: "Blah", SPD: 0, DEF: 0, ARM: 0 }
     $scope.Armor = [];
@@ -109,6 +96,8 @@ function CSCtrl($scope, $http) {
     }
    
     $scope.loadCharacterDefaults = function() {
+        $scope.Level = $scope.xpLevel($scope.Character.XP);
+
         for (a = 0; a < $scope.Races.length; a++) {
             if ($scope.Character.Race == $scope.Races[a].Name) {
                 $scope.Race = $scope.Races[a];
@@ -133,7 +122,7 @@ function CSCtrl($scope, $http) {
 
         statSelect = '';
         
-        switch($scope.xpLevel($scope.Character.XP)) {
+        switch($scope.Level) {
             case 'Hero':
                 statSelect = 'MaxHero';
                 break;
@@ -145,6 +134,7 @@ function CSCtrl($scope, $http) {
                 break;
         }
 
+        // Load basic stats for current level.
         $scope.Stats.PHY.Current = $scope.Race.Stats.PHY.Starting;
         $scope.Stats.PHY.Max = $scope.Race.Stats.PHY[statSelect];
         $scope.Stats.SPD.Current = $scope.Race.Stats.SPD.Starting;
@@ -176,10 +166,35 @@ function CSCtrl($scope, $http) {
         $scope.Stats.PER.Current = $scope.Race.Stats.PER.Starting;
         $scope.Stats.PER.Max = $scope.Race.Stats.PER[statSelect];
 
+        // If race grants stat increases, add them.
+        for (d = 0; d < $scope.Race.StatIncreases.length; d++) {
+            $scope.Stats[$scope.Race.StatIncreases[d][0]].Current += $scope.Race.StatIncreases[d][1];
+        }
+        
+        // If race grants choseable stat increases add them.
         if ($scope.Character.RacialStatIncreaseChosen !== null) {
             $scope.Stats[$scope.Character.RacialStatIncreaseChosen].Current += 1;
         }
 
+        // If careers grant stat increases add them.
+        for (e = 0; e < $scope.Career1.StatIncreases.length; e++) {
+            $scope.Stats[$scope.Career1.StatIncreases[e][0]].Current += $scope.Career1.StatIncreases[e][1];
+        }
+
+        for (f = 0; f < $scope.Career2.StatIncreases.length; f++) {
+            $scope.Stats[$scope.Career2.StatIncreases[f][0]].Current += $scope.Career2.StatIncreases[f][1];
+        }
+
+        // If careers add to stat maximums add them.
+        for (g = 0; g < $scope.Career1.StatMaxIncreases[$scope.Level].length; g++) {
+            $scope.Stats[$scope.Career1.StatMaxIncreases[$scope.Level][g][0]].Max += $scope.Career1.StatMaxIncreases[$scope.Level][g][1];
+        }
+
+        for (h = 0; h < $scope.Career2.StatMaxIncreases[$scope.Level].length; h++) {
+            $scope.Stats[$scope.Career2.StatMaxIncreases[$scope.Level][h][0]].Max += $scope.Career2.StatMaxIncreases[$scope.Level][h][1];
+        }
+
+        // Add advancement points.
         $scope.Stats[$scope.Character.AP1Stat].Current += 1;
         $scope.Stats[$scope.Character.AP2Stat].Current += 1;
         $scope.Stats[$scope.Character.AP3Stat].Current += 1;

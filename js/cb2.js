@@ -508,6 +508,22 @@ function CB2Ctrl($scope, $http) {
             }
         }
 
+        for (a = 0; a < $scope.Career1.StatIncreases.length; a++) {
+            $scope.APFields[$scope.Career1.StatIncreases[a][0]].Starting += $scope.Career1.StatIncreases[a][1];
+        }
+
+        for (b = 0; b < $scope.Career2.StatIncreases.length; b++) {
+            $scope.APFields[$scope.Career2.StatIncreases[b][0]].Starting += $scope.Career2.StatIncreases[b][1];
+        }
+
+        for (c = 0; c < $scope.Career1.StatMaxIncreases.Hero.length; c++) {
+            $scope.APFields[$scope.Career1.StatMaxIncreases.Hero[c][0]].Max += $scope.Career1.StatMaxIncreases.Hero[c][1];
+        }
+
+        for (d = 0; d < $scope.Career2.StatMaxIncreases.Hero.length; d++) {
+            $scope.APFields[$scope.Career2.StatMaxIncreases.Hero[d][0]].Max += $scope.Career2.StatMaxIncreases.Hero[d][1];
+        }
+
         $scope.recalcAPs();
     }
 

@@ -187,7 +187,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
                         <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">{{RaceDefMod}}</p>
+                            <p class="csStatBoxVal">{{Race.DefMod}}</p>
                             <p class="csStatBoxStat small">RACIAL<br>MODIFIER</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>

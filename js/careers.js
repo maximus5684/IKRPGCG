@@ -16,6 +16,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 50,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -57,6 +59,8 @@ careerArr = [
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['Mechanika Weapon worth up to 750 gc','Mechanika Suit of Armor worth up to 750 gc'],
         StartingGold: 50,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -147,6 +151,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: ['Rune Reader'],
         Abilities: ['Arcane Defenses','Arcane Scholar','Great Power','University Education'],
@@ -237,6 +243,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 200,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -291,6 +299,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -343,6 +353,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -390,6 +402,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -437,6 +451,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 150,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -492,6 +508,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -539,6 +557,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 25,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -584,6 +604,8 @@ careerArr = [
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['magelock pistol','magelock rifle'],
         StartingGold: 25,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -670,6 +692,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -735,6 +759,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 100,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: ['Hyper Perception'],
         Abilities: [
@@ -781,6 +807,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 25,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: ['Aristocrat','Military Officer','Soldier','Warcaster'],
         FreeBenefits: [],
         Abilities: [
@@ -816,6 +844,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 100,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -856,6 +886,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -902,6 +934,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 100,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -950,6 +984,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 100,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1009,6 +1045,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1062,6 +1100,8 @@ careerArr = [
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['hand cannon','pair of repeating pistols'],
         StartingGold: 50,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1101,6 +1141,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1186,6 +1228,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1271,6 +1315,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1330,6 +1376,8 @@ careerArr = [
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['heavy rifle','repeating long rifle'],
         StartingGold: 50,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1373,6 +1421,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 100,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1429,6 +1479,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1508,6 +1560,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1587,6 +1641,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [['PHY',1]],
+        StatMaxIncreases: { Hero: [['PHY',1]], Vet: [['PHY',1]], Epic: [['PHY',1]] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1665,6 +1721,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [['SPD',1]],
+        StatMaxIncreases: { Hero: [['SPD',1]], Vet: [['SPD',1]], Epic: [['SPD',1]] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1743,6 +1801,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 100,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1800,6 +1860,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 0,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: ['Aristocrat','Knight','Man-at-Arms','Military Officer','Soldier','Warcaster'],
         FreeBenefits: [],
         Abilities: [
@@ -1846,6 +1908,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 75,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
         Abilities: [
@@ -1903,6 +1967,8 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingAssetChoiceOptions: [],
         StartingGold: 25,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: ['Military Officer','Ranger','Rifleman','Soldier','Warcaster'],
         FreeBenefits: [],
         Abilities: [
@@ -1958,9 +2024,11 @@ careerArr = [
             'mechanika hand weapon',
             'mechanika hand cannon'
         ],
+        StartingGold: 0,
+        StatIncreases: [],
+        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: [],
         FreeBenefits: [],
-        StartingGold: 0,
         Abilities: [
             'Bond',
             'Field Marshal: Magical Attack',
