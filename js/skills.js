@@ -1,10 +1,14 @@
 milSkillsArr = [
+        { Name: "Archery", BaseStat: "POI" },
 	{ Name: "Crossbow", BaseStat: "POI" },
 	{ Name: "Great Weapon", BaseStat: "PRW" },
 	{ Name: "Hand Weapon", BaseStat: "PRW" },
+        { Name: "Lance", BaseStat: "PRW" },
+        { Name: "Light Artillery", BaseStat: "POI" },
 	{ Name: "Pistol", BaseStat: "POI" },
 	{ Name: "Rifle", BaseStat: "POI" },
-	{ Name: "Thrown", BaseStat: "PRW" },
+        { Name: "Shield", BaseStat: "PRW" },
+	{ Name: "Thrown Weapon", BaseStat: "PRW" },
 	{ Name: "Unarmed Combat", BaseStat: "PRW" }
 ];
 
