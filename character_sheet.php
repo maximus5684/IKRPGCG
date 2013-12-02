@@ -74,7 +74,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <div class="csStatBox small" style="right: 10px; top: 5px; width: 100px">
                             <p class="csStatBoxVal">{{Level}}</p>
                             <p class="csStatBoxStat" style="border-top: 1px solid #000000">LEVEL</p>
-                            <p class="csStatBoxVal">{{XP}}&#160;&#160;<button class="btn btn-mini" data-toggle="modal" data-target="#editXP" ng-show="displayEditXP()"><i class="icon-pencil"></i></button></p>
+                            <p class="csStatBoxVal"><a style="cursor: pointer" data-toggle="modal" data-target="#editXP">{{Character.XP}}</a></p>
                             <p class="csStatBoxStat small" style="border-top: 1px solid #000000">TOTAL XP EARNED</p>
                         </div>
                     </div>
@@ -177,7 +177,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox" style="padding: 5px">
                         <p class="csBoxHead">DEF</p>
                         <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">{{Def}}</p>
+                            <p class="csStatBoxVal">{{TotalDEF}}</p>
                             <p class="csStatBoxStat small"><br>TOTAL DEF</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> = </strong></p>
@@ -201,7 +201,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox" style="padding: 5px">
                         <p class="csBoxHead">ARM</p>
                         <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">{{Arm}}</p>
+                            <p class="csStatBoxVal">{{TotalARM}}</p>
                             <p class="csStatBoxStat small"><br>TOTAL ARM</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> = </strong></p>
@@ -237,13 +237,13 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="Skill in MilitarySkills">
+                                <tr ng-repeat="Skill in CharMSkills">
                                     <td><small>{{Skill.Name}} ({{Skill.BaseStat}})</small></td>
                                     <td><strong>{{displaySkillBase(Skill.BaseStat)}}</strong></td>
                                     <td>+</td>
                                     <td><strong>{{Skill.Level}}</strong></td>
                                     <td>=</td>
-                                    <td><strong>{{Skill.Total}}</strong></td>
+                                    <td><strong>{{displaySkillTotal(Skill)}}</strong></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -259,13 +259,13 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="Skill in OccupationalSkills">
+                                <tr ng-repeat="Skill in CharOSkills">
                                     <td><small>{{Skill.Name}} ({{Skill.BaseStat}})</small></td>
                                     <td><strong>{{displaySkillBase(Skill.BaseStat)}}</strong></td>
                                     <td>+</td>
                                     <td><strong>{{Skill.Level}}</strong></td>
                                     <td>=</td>
-                                    <td><strong>{{Skill.Total}}</strong></td>
+                                    <td><strong>{{displaySkillTotal(Skill)}}</strong></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -276,7 +276,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox" style="padding: 5px">
                         <p class="csBoxHead">INITIATIVE</p>
                         <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">{{Initiative}}</p>
+                            <p class="csStatBoxVal">{{TotalInit}}</p>
                             <p class="csStatBoxStat small">TOTAL<br>INITIATIVE</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> = </strong></p>
@@ -300,7 +300,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox" style="padding: 5px">
                         <p class="csBoxHead">COMMAND</p>
                         <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">{{CmdRange}}</p>
+                            <p class="csStatBoxVal">{{TotalCMD}}</p>
                             <p class="csStatBoxStat small">TOTAL CMD<br>RANGE</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> = </strong></p>
@@ -310,7 +310,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
                         <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">{{displaySkillTotal('Command','O')}}</p>
+                            <p class="csStatBoxVal">{{getCommandSkill()}}</p>
                             <p class="csStatBoxStat small">COMMAND<br>SKILL</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>

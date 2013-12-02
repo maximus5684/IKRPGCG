@@ -8,6 +8,8 @@ function CSCtrl($scope, $http) {
 
     $scope.CharUrl = 'ajax/characters.php';
     $scope.Error = null;
+    $scope.Character = null;
+    $scope.Archetype = null;
     $scope.Race = null;
     $scope.Career1 = null;
     $scope.Career2 = null;
@@ -25,9 +27,16 @@ function CSCtrl($scope, $http) {
     $scope.RangedWeapon1 = '';
     $scope.RangedWeapon2 = '';
 
+    // Totals
+    
+    $scope.TotalDEF = 0;
+    $scope.TotalInit = 0;
+    $scope.TotalARM = 0;
+    $scope.TotalCMD = 0;
+    
     /////////////////////////////////////////////////////////////////////
     /////                                                           /////
-    /////       Lookup Arrays/Objects                               /////
+    /////       User Arrays/Objects                                 /////
     /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
@@ -43,22 +52,9 @@ function CSCtrl($scope, $http) {
         PER: { Current: 0, Max: 0 }
     };
 
-    $scope.Races = raceArr; // In races.js
-    $scope.Archetypes = archArr; // In archetypes.js
-    $scope.Careers = careerArr; // In careers.js
-
-    /////////////////////////////////////////////////////////////////////
-    /////                                                           /////
-    /////       User Arrays/Objects                                 /////
-    /////                                                           /////
-    /////////////////////////////////////////////////////////////////////
-
     // Example: { Name: "Test Skill", BaseStat: "PHY", Level: 0, Total: 0 }
     $scope.CharMSkills = [];
     $scope.CharOSkills = [];
-
-    $scope.MilitarySkills = milSkillsArr; // from skills.js
-    $scope.OccupationalSkills = occSkillsArr; // from skills.js
 
     // Example: { Name: "Test Armor", Description: "Blah", SPD: 0, DEF: 0, ARM: 0 }
     $scope.Armor = [];
@@ -74,10 +70,24 @@ function CSCtrl($scope, $http) {
 
     /////////////////////////////////////////////////////////////////////
     /////                                                           /////
+    /////       Lookup Arrays/Objects                               /////
+    /////                                                           /////
+    /////////////////////////////////////////////////////////////////////
+
+    $scope.Races = raceArr; // In races.js
+    $scope.Archetypes = archArr; // In archetypes.js
+    $scope.Careers = careerArr; // In careers.js
+
+    $scope.MilitarySkills = milSkillsArr; // from skills.js
+    $scope.OccupationalSkills = occSkillsArr; // from skills.js
+
+    /////////////////////////////////////////////////////////////////////
+    /////                                                           /////
     /////       Public/Scope Functions                              /////
     /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
+    // Get character from AJAX function and load defaults.
     $scope.GetChar = function(CharID) {
         $http.post($scope.CharUrl, { ReqType: 'GetChar', CharacterID: CharID }).success(function(data, status) {
             if (typeof data !== 'object') {
@@ -85,6 +95,10 @@ function CSCtrl($scope, $http) {
             } else {
                 $scope.Character = data;
                 $scope.loadCharacterDefaults();
+                $scope.calcTotalDEF();
+                $scope.calcTotalInit();
+                $scope.calcTotalARM();
+                $scope.calcTotalCMD();
             }
         }).error(function(data, status) {
             if (data !== null) {
@@ -96,6 +110,32 @@ function CSCtrl($scope, $http) {
     }
    
     $scope.loadCharacterDefaults = function() {
+        $scope.Character.LanguagesChosen = JSON.parse($scope.Character.LanguagesChosen);
+        
+        if ($scope.Character.Career1MSkillsChosen !== null) {
+            $scope.Character.Career1MSkillsChosen = JSON.parse($scope.Character.Career1MSkillsChosen);
+        }
+
+        if ($scope.Character.Career2MSkillsChosen !== null) {
+            $scope.Character.Career2MSkillsChosen = JSON.parse($scope.Character.Career2MSkillsChosen);
+        }
+
+        if ($scope.Character.Career1OSkillsChosen !== null) {
+            $scope.Character.Career1OSkillsChosen = JSON.parse($scope.Character.Career1OSkillsChosen);
+        }
+
+        if ($scope.Character.Career2OSkillsChosen !== null) {
+            $scope.Character.Career2OSkillsChosen = JSON.parse($scope.Character.Career2OSkillsChosen);
+        }
+
+        if ($scope.Character.Career1AssetsChosen !== null) {
+            $scope.Character.Career1AssetsChosen = JSON.parse($scope.Character.Career1AssetsChosen);
+        }
+
+        if ($scope.Character.Career2AssetsChosen !== null) {
+            $scope.Character.Career2AssetsChosen = JSON.parse($scope.Character.Career2AssetsChosen);
+        }
+
         $scope.Level = $scope.xpLevel($scope.Character.XP);
 
         for (a = 0; a < $scope.Races.length; a++) {
@@ -198,6 +238,200 @@ function CSCtrl($scope, $http) {
         $scope.Stats[$scope.Character.AP1Stat].Current += 1;
         $scope.Stats[$scope.Character.AP2Stat].Current += 1;
         $scope.Stats[$scope.Character.AP3Stat].Current += 1;
+
+        // Populate military skills list.
+        tempMSkills = [];
+
+        for (i = 0; i < $scope.Career1.StartingMilitarySkills.length; i++) {
+            if ($scope.Character.HRCareer1MSkillToReplace !== null) {
+                if ($scope.Character.Career1MSkillToReplace == $scope.Career1.StartingMilitarySkills[i][0]) {
+                    tempMSkills.push([$scope.Character.HRCareer1MSkillReplacedWith, $scope.Career1.StartingMilitarySkills[i][1]]);
+                } else {
+                    tempMSkills.push($scope.Career1.StartingMilitarySkills[i]);
+                }
+            } else {
+                tempMSkills.push($scope.Career1.StartingMilitarySkills[i]);
+            }
+        }
+
+        for (j = 0; j < $scope.Career2.StartingMilitarySkills.length; j++) {
+            tempSkill = [];
+
+            if ($scope.Character.HRCareer2MSkillToReplace !== null) {
+                if ($scope.Character.HRCareer2MSkillToReplace == $scope.Career2.StartingMilitarySkills[j][0]) {
+                    tempSkill = [$scope.Character.HRCareer2MSkillReplacedWith, $scope.Career2.StartingMilitarySkills[j][1]];
+                } else {
+                    tempSkill = $scope.Career2.StartingMilitarySkills[j];
+                }
+            } else {
+                tempSkill = $scope.Career2.StartingMilitarySkills[j];
+            }
+            
+            index = -1;
+
+            for (k = 0; k < tempMSkills.length; k++) {
+                if (tempSkill[0] == tempMSkills[k][0]) {
+                    index = k;
+                }
+            }
+
+            if (index > -1) {
+                tempMSkills[index][1] += tempSkill[1];
+            } else {
+                tempMSkills.push(tempSkill);
+            }
+        }
+       
+        if ($scope.Character.Career1MSkillsChosen !== null) {
+            for (j = 0; j < $scope.Character.Career1MSkillsChosen.length; j++) {
+                found = false;
+                index = -1;
+
+                for (k = 0; k < tempMSkills.length; k++) {
+                    if ($scope.Character.Career1MSkillsChosen[j][0] == tempMSkills[k][0]) {
+                        found = true;
+                        index = k;
+                    }
+                }
+
+                if (found) {
+                    tempMSkills[index][1] += $scope.Character.Career1MSkillsChosen[j][1];
+                } else {
+                    tempMSkills.push($scope.Character.Career1MSkillsChosen[j]);
+                }
+            }
+        }
+
+        if ($scope.Character.Career2MSkillsChosen !== null) {
+            for (j = 0; j < $scope.Character.Career2MSkillsChosen.length; j++) {
+                found = false;
+                index = -1;
+
+                for (k = 0; k < tempMSkills.length; k++) {
+                    if ($scope.Character.Career2MSkillsChosen[j][0] == tempMSkills[k][0]) {
+                        found = true;
+                        index = k;
+                    }
+                }
+
+                if (found) {
+                    tempMSkills[index][1] += $scope.Character.Career2MSkillsChosen[j][1];
+                } else {
+                    tempMSkills.push($scope.Character.Career2MSkillsChosen[j]);
+                }
+            }
+        }
+
+        tempMSkills.sort();
+
+        for (l = 0; l < tempMSkills.length; l++) {
+            baseStat = '';
+
+            for (m = 0; m < $scope.MilitarySkills.length; m++) {
+                if (tempMSkills[l][0] == $scope.MilitarySkills[m].Name) {
+                    baseStat = $scope.MilitarySkills[m].BaseStat;
+                }
+            }
+
+            $scope.CharMSkills.push({ Name: tempMSkills[l][0], BaseStat: baseStat, Level: tempMSkills[l][1], Total: tempMSkills[l][1] });
+        }
+        
+        // Populate occupational skills list.
+        tempOSkills = [];
+
+        for (n = 0; n < $scope.Career1.StartingOccupationalSkills.length; n++) {
+            if ($scope.Character.HRCareer1OSkillToReplace !== null) {
+                if ($scope.Career1.StartingOccupationalSkills[n][0] == $scope.Character.HRCareer1OSkillToReplace) {
+                    tempOSkills.push([$scope.Character.HRCareer1OSkillReplacedWith, $scope.Career1.StartingOccupationalSkills[n][1]]);
+                } else {
+                    tempOSkills.push($scope.Career1.StartingOccupationalSkills[n]);
+                }
+            } else {
+                tempOSkills.push($scope.Career1.StartingOccupationalSkills[n]);
+            }
+        }
+
+        for (o = 0; o < $scope.Career2.StartingOccupationalSkills.length; o++) {
+            tempSkill = [];
+            
+            if ($scope.Character.HRCareer2OSkillToReplace !== null) {
+                if ($scope.Character.HRCareer2OSkillToReplace == $scope.Career2.StartingOccupationalSkills[o][0]) {
+                    tempSkill = [$scope.Character.HRCareer2OSkillReplacedWith, $scope.Career2.StartingOccupationalSkills[o][1]];
+                } else {
+                    tempSkill = $scope.Career2.StartingOccupationalSkills[o];
+                }
+            } else {
+                tempSkill = $scope.Career2.StartingOccupationalSkills[o];
+            }
+           
+            index = -1;
+
+            for (p = 0; p < tempOSkills.length; p++) {
+                if (tempSkill[0] == tempOSkills[p][0]) {
+                    index = p;
+                }
+            }
+
+            if (index > -1) {
+                tempOSkills[index][1] += tempSkill[1];
+            } else {
+                tempOSkills.push(tempSkill);
+            }
+        }
+       
+        if ($scope.Character.Career1OSkillsChosen !== null) {
+            for (q = 0; q < $scope.Character.Career1OSkillsChosen.length; q++) {
+                found = false;
+                index = -1;
+
+                for (r = 0; r < tempOSkills.length; r++) {
+                    if ($scope.Character.Career1OSkillsChosen[q][0] == tempOSkills[r][0]) {
+                        found = true;
+                        index = k;
+                    }
+                }
+
+                if (found) {
+                    tempOSkills[index][1] += $scope.Character.Career1OSkillsChosen[q][1];
+                } else {
+                    tempOSkills.push($scope.Character.Career1OSkillsChosen[q]);
+                }
+            }
+        }
+
+        if ($scope.Character.Career2OSkillsChosen !== null) {
+            for (s = 0; s < $scope.Character.Career2OSkillsChosen.length; s++) {
+                found = false;
+                index = -1;
+
+                for (t = 0; t < tempOSkills.length; t++) {
+                    if ($scope.Character.Career2OSkillsChosen[s][0] == tempOSkills[t][0]) {
+                        found = true;
+                        index = k;
+                    }
+                }
+
+                if (found) {
+                    tempOSkills[index][1] += $scope.Character.Career2OSkillsChosen[s][1];
+                } else {
+                    tempOSkills.push($scope.Character.Career2OSkillsChosen[s]);
+                }
+            }
+        }
+
+        tempOSkills.sort();
+
+        for (u = 0; u < tempOSkills.length; u++) {
+            baseStat = '';
+
+            for (v = 0; v < $scope.OccupationalSkills.length; v++) {
+                if (tempOSkills[u][0] == $scope.OccupationalSkills[v].Name) {
+                    baseStat = $scope.OccupationalSkills[v].BaseStat;
+                }
+            }
+
+            $scope.CharOSkills.push({ Name: tempOSkills[u][0], BaseStat: baseStat, Level: tempOSkills[u][1], Total: tempOSkills[u][1] });
+        }
     }
 
     $scope.xpLevel = function(xp) {
@@ -210,22 +444,6 @@ function CSCtrl($scope, $http) {
         }
     }
     
-    $scope.updateXP = function() {
-        $scope.Level = xpLevel($scope.Character.XP);
-
-        if ($scope.XP > -1 && $scope.Race !== null) {
-            updateMaxStats();
-        }
-    };
-
-    $scope.displayEditXP = function() {
-        if (($scope.Career1 !== null || $scope.Career2 !== null) && $scope.Race !== null) {
-            return true;
-        } else {
-            return false;
-        }
-    };
-
     $scope.displaySkillBase = function(baseStat) {
         if (baseStat == 'Social') {
             return 'SOC';
@@ -234,26 +452,44 @@ function CSCtrl($scope, $http) {
         }
     };
 
-    $scope.displaySkillTotal = function(skillName,skillType) {
-        if (skillType == "M") {
-            for(i = 0; i < $scope.MilitarySkills.length; i++) {
-                if (skillName == $scope.MilitarySkills[i].Name) {
-                    return $scope.MilitarySkills[i].Level;
-                }
-            }
-            throw 'SkillNotFoundError';
-        } else if (skillType == "O") {
-            for(i = 0; i < $scope.OccupationalSkills.length; i++) {
-                if (skillName == $scope.OccupationalSkills[i].Name) {
-                    return $scope.OccupationalSkills[i].Level;
-                }
-            }
-            throw 'SkillNotFoundError';
+    $scope.displaySkillTotal = function(skill) {
+        if (skill.BaseStat == 'Social') {
+            return '-';
         } else {
-            throw 'SkillTypeError';
+            return skill.Level + $scope.Stats[baseStat].Current;
         }
-    };
+    }
 
+    $scope.getCommandSkill = function() {
+        skillLvl = 0;
+        
+        for (a = 0; a < $scope.CharOSkills.length; a++) {
+            if ($scope.CharOSkills[a].Name == 'Command') {
+                skillLvl = $scope.CharOSkills[a].Level;
+            }
+        }
+
+        return skillLvl;
+    }
+
+    // Functions to calculate totals.
+    $scope.calcTotalDEF = function() {
+        $scope.TotalDEF = $scope.Stats.SPD.Current + $scope.Stats.AGL.Current + $scope.Stats.PER.Current + $scope.Race.DefMod;
+    }
+
+    $scope.calcTotalInit = function() {
+        $scope.TotalInit = $scope.Stats.SPD.Current + $scope.Stats.PRW.Current + $scope.Stats.PER.Current + $scope.Race.InitMod;
+    }
+
+    $scope.calcTotalARM = function() {
+        $scope.TotalARM = $scope.Stats.PHY.Current;
+    }
+
+    $scope.calcTotalCMD = function() {
+        $scope.TotalCMD = $scope.Stats.INT.Current + $scope.getCommandSkill();
+    }
+
+    // Functions to show/hide weapons.
     $scope.hideRanged1 = function() {
             if (($scope.MeleeWeapon1 !== '' && $scope.MeleeWeapon2 !== '')) {
                     $scope.RangedWeapon1 = '';
@@ -296,250 +532,6 @@ function CSCtrl($scope, $http) {
     /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
-    function updateMaxStats() {
-            $scope.Stats.PHY.Max = $scope.Race.Stats.PHY[levelPos()];
-            $scope.Stats.SPD.Max = $scope.Race.Stats.SPD[levelPos()];
-            $scope.Stats.STR.Max = $scope.Race.Stats.STR[levelPos()];
-            $scope.Stats.AGL.Max = $scope.Race.Stats.AGL[levelPos()];
-            $scope.Stats.PRW.Max = $scope.Race.Stats.PRW[levelPos()];
-            $scope.Stats.POI.Max = $scope.Race.Stats.POI[levelPos()];
-            $scope.Stats.INT.Max = $scope.Race.Stats.INT[levelPos()];
-            $scope.Stats.ARC.Max = $scope.Race.Stats.ARC[levelPos()];
-            $scope.Stats.PER.Max = $scope.Race.Stats.PER[levelPos()];
-    }
-
-    function updateWillpower() {
-        $scope.Willpower = $scope.Stats.PHY.Current + $scope.Stats.INT.Current;
-    }
-
-    function updateDef() {
-        $scope.Def = $scope.Stats.SPD.Current + $scope.Stats.AGL.Current + $scope.Stats.PER.Current + $scope.RaceDefMod;
-    }
-
-    function updateInitiative() {
-        $scope.Initiative = $scope.Stats.SPD.Current + $scope.Stats.PRW.Current + $scope.Stats.PER.Current;
-    }
-
-    function updateArm() {
-        $scope.Arm = $scope.Stats.PHY.Current;
-    }
-
-    function updateCmdRange() {
-        for (i = 0; i < $scope.OccupationalSkills.length; i++) {
-            if ($scope.OccupationalSkills[i].Name == 'Command') {
-                $scope.CmdRange = $scope.Stats.INT.Current + parseInt($scope.OccupationalSkills[i].Level, 10);
-            }
-        }
-    }
-
-    function levelPos() {
-        switch ($scope.Level) {
-            case 'Hero':
-                return 1;
-            case 'Veteran':
-                return 2;
-            case 'Epic':
-                return 3;
-        }
-    }
-
-    function addCareerSkills(career) {
-        // Add Military Skills
-        for (i = 0; i < career.StartingMilitarySkills.length; i++) {
-            var mFound = false;
-            
-            for (j = 0; j < $scope.MilitarySkills.length; j++) {
-                if (career.StartingMilitarySkills[i][0] == $scope.MilitarySkills[j].Name) {
-                    $scope.MilitarySkills[j].From.push(career.Name);
-                    $scope.MilitarySkills[j].Level += career.StartingMilitarySkills[i][1];
-                    $scope.updateSkill($scope.MilitarySkills[j]);
-                    mFound = true;
-                }
-            }
-
-            if (!mFound) {                              
-                $scope.MilitarySkills.push({ Name: career.StartingMilitarySkills[i][0],
-                                            From: [career.Name],
-                                            BaseStat: lookupSkillBaseStat(career.StartingMilitarySkills[i][0], "M"),
-                                            Level: career.StartingMilitarySkills[i][1],
-                                            Total: 0 });
-                $scope.updateSkill($scope.MilitarySkills[$scope.MilitarySkills.length - 1]);
-            }
-        }
-
-        $scope.MilitarySkills.sort(compareSkillsByName);
-
-        //Add Occupational Skills
-        for (k = 0; k < career.StartingOccupationalSkills.length; k++) {
-            var oFound = false;
-            
-            for (l = 0; l < $scope.OccupationalSkills.length; l++) {
-                if (career.StartingOccupationalSkills[k][0] == $scope.OccupationalSkills[l].Name) {
-                    $scope.OccupationalSkills[l].From.push(career.Name);
-                    $scope.OccupationalSkills[l].Level += career.StartingOccupationalSkills[k][1];
-                    $scope.updateSkill($scope.OccupationalSkills[l]);
-                    oFound = true;
-                }
-            }
-
-            if (!oFound) {                              
-                $scope.OccupationalSkills.push({ Name: career.StartingOccupationalSkills[k][0],
-                                                From: [career.Name],
-                                                BaseStat: lookupSkillBaseStat(career.StartingOccupationalSkills[k][0], "O"),
-                                                Level: career.StartingOccupationalSkills[k][1],
-                                                Total: 0 });
-                $scope.updateSkill($scope.OccupationalSkills[$scope.OccupationalSkills.length - 1]);
-            }
-        }
-
-        $scope.OccupationalSkills.sort(compareSkillsByName);
-        updateSkills();
-    }
-
-    function removeCareerSkills() {
-        //Remove Career Skills
-        currentCareers = [];
-
-        if ($scope.Career1 !== null) {
-            currentCareers.push($scope.Career1.Name);
-        }
-
-        if ($scope.Career2 !== null) {
-            currentCareers.push($scope.Career2.Name);
-        }
-
-        if ($scope.Career3 !== null) {
-            currentCareers.push($scope.Career3.Name);
-        }
-
-        if ($scope.Career4 !== null) {
-            currentCareers.push($scope.Career4.Name);
-        }
-
-        var mSkillsToRemove = [];
-
-        for (l = 0; l < $scope.MilitarySkills.length; l++) {
-            var mFromsToRemove = [];
-
-            for (m = 0; m < $scope.MilitarySkills[l].From.length; m++) {
-                if ($scope.MilitarySkills[l].From[m] != "Base" && currentCareers.indexOf($scope.MilitarySkills[l].From[m]) == -1) {
-                    for (n = 0; n < $scope.Careers.length; n++) {
-                        if ($scope.Careers[n].Name == $scope.MilitarySkills[l].From[m]) {
-                            for (o = 0; o < $scope.Careers[n].StartingMilitarySkills.length; o++) {
-                                if ($scope.Careers[n].StartingMilitarySkills[o][0] == $scope.MilitarySkills[l].Name) {
-                                    $scope.MilitarySkills[l].Level -= $scope.Careers[n].StartingMilitarySkills[o][1];
-                                }
-                            }
-                        }
-                    }
-
-                    mFromsToRemove.push($scope.MilitarySkills[l].From[m]);
-                }
-            }
-
-            for (p = 0; p < mFromsToRemove.length; p++) {
-                $scope.MilitarySkills[l].From.splice($scope.MilitarySkills[l].From.indexOf(mFromsToRemove[p]),1);
-            }
-
-            if ($scope.MilitarySkills[l].From.length < 1) {
-                mSkillsToRemove.push($scope.MilitarySkills[l]);
-            }
-        }
-
-        for (q = 0; q < mSkillsToRemove.length; q++) {
-            $scope.MilitarySkills.splice($scope.MilitarySkills.indexOf(mSkillsToRemove[q]),1);
-        }
-
-        var oSkillsToRemove = [];
-
-        for (l = 0; l < $scope.OccupationalSkills.length; l++) {
-            var oFromsToRemove = [];
-
-            for (m = 0; m < $scope.OccupationalSkills[l].From.length; m++) {
-                if ($scope.OccupationalSkills[l].From[m] != "Base") {
-                    for (n = 0; n < $scope.Careers.length; n++) {
-                        if ($scope.Careers[n].Name == $scope.OccupationalSkills[l].From[m]) {
-                            for (o = 0; o < $scope.Careers[n].StartingOccupationalSkills.length; o++) {
-                                if ($scope.Careers[n].StartingOccupationalSkills[o][0] == $scope.OccupationalSkills[l].Name) {
-                                    $scope.OccupationalSkills[l].Level -= $scope.Careers[n].StartingOccupationalSkills[o][1];
-                                }
-                            }
-                        }
-                    }
-
-                    oFromsToRemove.push($scope.OccupationalSkills[l].From[m]);
-                }
-            }
-
-            for (p = 0; p < oFromsToRemove.length; p++) {
-                $scope.OccupationalSkills[l].From.splice($scope.OccupationalSkills[l].From.indexOf(oFromsToRemove[p]),1);
-            }
-
-            if ($scope.OccupationalSkills[l].From.length < 1) {
-                oSkillsToRemove.push($scope.OccupationalSkills[l]);
-            }
-        }
-
-        for (q = 0; q < oSkillsToRemove.length; q++) {
-            $scope.OccupationalSkills.splice($scope.OccupationalSkills.indexOf(oSkillsToRemove[q]),1);
-        }
-        updateSkills();            
-    }
-
-    function lookupSkillBaseStat(skillName, skillType) {
-        var skillLookup;
-        
-        if (skillType == "M") {
-            skillLookup = $scope.MilitarySkillsLookup;
-        } else if (skillType == "O") {
-            skillLookup = $scope.OccupationalSkillsLookup;
-        } else {
-            throw 'SkillTypeError';
-        }
-
-        var foundSkills = [];
-
-        for (k1 = 0; k1 < skillLookup.length; k1++) {
-            if (skillLookup[k1].Name == skillName) {
-                foundSkills.push(skillLookup[k1]);
-            }
-        }
-
-        if (foundSkills.length > 1) {
-            var lowestStatName = foundSkills[0].BaseStat;
-            var lowestStatVal = $scope.Stats[foundSkills[0].BaseStat].Current;
-
-            for (j1 = 1; j1 < foundSkills.length; j1++) {
-                if ($scope.Stats[foundSkills.BaseStat].Current < lowestStatVal) {
-                    lowestStatName = foundSkills[j1].BaseStat;
-                    lowestStatVal = $scope.Stats[foundSkills[j1].BaseStat].Current;
-                }
-            }
-
-            return lowestStatName;
-        } else {
-            return foundSkills[0].BaseStat;
-        }
-    }
-
-    function updateSkills() {
-        for (i = 0; i < $scope.MilitarySkills.length; i++) {
-            if ($scope.MilitarySkills[i].BaseStat != 'Social') {
-                $scope.MilitarySkills[i].Total = parseInt($scope.MilitarySkills[i].Level, 10) + $scope.Stats[$scope.MilitarySkills[i].BaseStat].Current;
-            } else {
-                $scope.MilitarySkills[i].Total = $scope.MilitarySkills[i].Level;
-            }
-        }
-
-        for (i = 0; i < $scope.OccupationalSkills.length; i++) {
-            if ($scope.OccupationalSkills[i].BaseStat != 'Social') {
-                $scope.OccupationalSkills[i].Total = parseInt($scope.OccupationalSkills[i].Level, 10) + $scope.Stats[$scope.OccupationalSkills[i].BaseStat].Current;
-            } else {
-                $scope.OccupationalSkills[i].Total = $scope.OccupationalSkills[i].Level;
-            }
-        }
-    }
-    
     function compareSkillsByName(skillA, skillB) {
         if (skillA.Name > skillB.Name) {
             return 1;
@@ -554,71 +546,6 @@ function CSCtrl($scope, $http) {
         } else {
             return -1;
         }
-    }
-
-    function reAddMissingCareer(careerList) {
-        careerLists = [$scope.Career1List,
-                        $scope.Career2List,
-                        $scope.Career3List,
-                        $scope.Career4List
-                    ];
-
-        newSelectedCareers = [];
-        missingCareer = '';
-
-        if ($scope.Career1 !== null) {
-            if (selectedCareers[0] != $scope.Career1.Name) {
-                missingCareer = selectedCareers[0];
-            }
-        } else {
-            if (selectedCareers[0] !== '') {
-                missingCareer = selectedCareers[0];
-            }
-        }
-
-        if ($scope.Career2 !== null) {
-            if (selectedCareers[1] != $scope.Career2.Name) {
-                missingCareer = selectedCareers[1];
-            }
-        } else {
-            if (selectedCareers[1] !== '') {
-                missingCareer = selectedCareers[1];
-            }
-        }
-
-        if ($scope.Career3 !== null) {
-            if (selectedCareers[2] != $scope.Career3.Name) {
-                missingCareer = selectedCareers[2];
-            }
-        } else {
-            if (selectedCareers[2] !== '') {
-                missingCareer = selectedCareers[2];
-            }
-        }
-
-        if ($scope.Career4 !== null) {
-            if (selectedCareers[3] != $scope.Career4.Name) {
-                missingCareer = selectedCareers[3];
-            }
-        } else {
-            if (selectedCareers[3] !== '') {
-                missingCareer = selectedCareers[3];
-            }
-        }
-
-        if (missingCareer !== '') {
-            for (j = 0; j < $scope.Careers.length; j++) {
-                if ($scope.Careers[j].Name == missingCareer) {
-                    for (k = 0; k < careerLists.length; k++) {
-                        if (careerLists[k] != careerList) {
-                            careerLists[k].push($scope.Careers[j]);
-                        }                            
-                    }
-                }
-            }
-        }
-        
-        careerList.sort(compareCareersByName);
     }
     
     function compareCareersByName(careerA, careerB) {
