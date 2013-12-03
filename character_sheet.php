@@ -320,7 +320,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox">
                         <div class="csBoxHead">BENEFITS</div>
                         <dl class="csList">
-                            <dt ng-repeat-start="Benefit in CharBenefits">{{Benefit.Name}}</dt>
+                            <dt ng-repeat-start="Benefit in CharBenefits">{{Benefit.Name}}{{displayBenefitAssocObj(Benefit)}}</dt>
                             <dd ng-repeat-end>{{Benefit.Desc}}</dd>
                         </dl>
                     </div>

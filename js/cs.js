@@ -552,6 +552,16 @@ function CSCtrl($scope, $http) {
         }
     }
 
+    $scope.displayBenefitAssocObj = function(benefit) {
+        bao = '';
+        
+        if (benefit.BenefitAssocObj !== '') {
+            bao = ' (' + benefit.BenefitAssocObj + ')'
+        }
+
+        return bao;
+    }
+
     $scope.getCommandSkill = function() {
         skillLvl = 0;
         

@@ -17,7 +17,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group">
                     <label class="control-label" for="ArchBenefit">Archetype Benefit ({{Character.Archetype}}):</label>
                     <div class="controls">
-                        <select id="ArchBenefit" ng-model="Character.Benefit" ng-options="Benefit.Name for Benefit in Benefits" ng-change="selectBenefit()">
+                        <select id="ArchBenefit" ng-model="Character.Benefit" ng-options="Benefit.Name as Benefit.Name for Benefit in Benefits" ng-change="selectBenefit()">
                             <option value="">...</option>
                         </select>
                         <span ng-hide="checkBenefit()" class="label label-warning">Required</span><br>
