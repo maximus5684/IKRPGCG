@@ -318,7 +318,14 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <div class="clear">&#160;</div>
                     </div>
                     <div class="csBox">
-                        <div class="csBoxHead">BENIFITS AND ABILITIES</div>
+                        <div class="csBoxHead">BENEFITS</div>
+                        <dl class="csList">
+                            <dt ng-repeat-start="Benefit in CharBenefits">{{Benefit.Name}}</dt>
+                            <dd ng-repeat-end>{{Benefit.Desc}}</dd>
+                        </dl>
+                    </div>
+                    <div class="csBox">
+                        <div class="csBoxHead">ABILITIES</div>
                         <table class="csTable table-striped">
                             <thead>
                                 <tr>
@@ -327,8 +334,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>&#160;</td>
+                                <tr ng-repeat="Ability in CharAbilities">
+                                    <td>{{Ability.Name}}</td>
                                     <td>&#160;</td>
                                 </tr>
                             </tbody>

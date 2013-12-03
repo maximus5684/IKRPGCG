@@ -9,7 +9,7 @@ function CB2Ctrl($scope, $http) {
     $scope.Career2 = null;
     $scope.RacialBenefits = null;
     $scope.CareerBenefits = null;
-    $scope.RacialAbilitiesRequired = false;
+    $scope.RacialAbilityRequired = false;
     $scope.RacialAbilityChoices = [];
     $scope.RacialAbilities = null;
     $scope.CareerAbilities = null;
@@ -104,8 +104,16 @@ function CB2Ctrl($scope, $http) {
         
         for (a = 0; a < $scope.Archetypes.length; a++) {
             if ($scope.Archetypes[a].Name == $scope.Character.Archetype) {
-                $scope.Benefits = $scope.Archetypes[a].Benefits;
-                break;
+                if ($scope.Character.ArcaneTradition !== null) {
+                    for (a1 = 0; a1 < $scope.Archetypes[a].Benefits.length; a1++) {
+                        if ($scope.Archetypes[a].Benefits[a1].ReqArcaneTradition == '' || $scope.Archetypes[a].Benefits[a1].ReqArcaneTradition == $scope.Character.ArcaneTradition) {
+                            $scope.Benefits.push($scope.Archetypes[a].Benefits[a1]);
+                        }
+                    }
+                } else {
+                    $scope.Benefits = $scope.Archetypes[a].Benefits;
+                    break;
+                }
             }
         }
 
@@ -169,7 +177,7 @@ function CB2Ctrl($scope, $http) {
 
         //Select career-related values.
         if ($scope.Race.AbilityChoices > 0) {
-            $scope.RacialAbilitiesRequired = true;
+            $scope.RacialAbilityRequired = true;
         
             $scope.RacialAbilityChoices = $scope.Career1.Abilities;
 
@@ -346,7 +354,7 @@ function CB2Ctrl($scope, $http) {
             $scope.AdditionalStudySpellList.sort();
         } else {
             $scope.AdditionalStudySpellList = [];
-            $scope.Character.AdditionalStudySpell = null;
+            $scope.Character.BenefitAssocObj = null;
         }
     }
 
@@ -367,7 +375,7 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.checkAdditionalStudySpell = function() {
-        if ($scope.Character === null || $scope.Character.AdditionalStudySpell === null) {
+        if ($scope.Character === null || $scope.Character.BenefitAssocObj === null) {
             return false;
         } else {
             return true;
@@ -669,7 +677,7 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.checkRacialAbility = function() {
-        if ($scope.Character === null || $scope.Character.RacialAbilitiesChosen === null) {
+        if ($scope.Character === null || $scope.Character.RacialAbilityChosen === null) {
             return false;
         } else {
             return true;
@@ -1134,7 +1142,7 @@ function CB2Ctrl($scope, $http) {
                 disableSubmit = true;
             }
 
-            if ($scope.Character.Benefit == 'Additional Study' && $scope.Character.AdditionalStudySpell == null) {
+            if ($scope.Character.Benefit == 'Additional Study' && $scope.Character.BenefitAssocObj == null) {
                 disableSubmit = true;
             }
 
@@ -1154,7 +1162,7 @@ function CB2Ctrl($scope, $http) {
                 disableSubmit = true;
             }
 
-            if ($scope.RacialAbilitiesRequired && $scope.Character.RacialAbilitiesChosen == null) {
+            if ($scope.RacialAbilityRequired && $scope.Character.RacialAbilityChosen == null) {
                 disableSubmit = true;
             }
 

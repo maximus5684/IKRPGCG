@@ -16,9 +16,6 @@ function CSCtrl($scope, $http) {
     $scope.Career3 = null;
     $scope.Career4 = null;
     $scope.Level = 'Hero';
-    $scope.Initiative = 0;
-    $scope.Willpower = 0;
-    $scope.CmdRange = 0;
     $scope.NewWornArmorSpd = 0;
     $scope.NewWornArmorDef = 0;
     $scope.NewWornArmorArm = 0;
@@ -55,6 +52,9 @@ function CSCtrl($scope, $http) {
     // Example: { Name: "Test Skill", BaseStat: "PHY", Level: 0, Total: 0 }
     $scope.CharMSkills = [];
     $scope.CharOSkills = [];
+
+    $scope.CharBenefits = [];
+    $scope.CharAbilities = [];
 
     // Example: { Name: "Test Armor", Description: "Blah", SPD: 0, DEF: 0, ARM: 0 }
     $scope.Armor = [];
@@ -432,6 +432,98 @@ function CSCtrl($scope, $http) {
 
             $scope.CharOSkills.push({ Name: tempOSkills[u][0], BaseStat: baseStat, Level: tempOSkills[u][1], Total: tempOSkills[u][1] });
         }
+
+        // Populate benefits list.
+        tempBenefits = [];
+
+        for (w = 0; w < $scope.Race.Benefits.length; w++) {
+            tempBenefits.push({ Name: $scope.Race.Benefits[w], BenefitAssocObj: '' });
+        }
+
+        for (x = 0; x < $scope.Career1.FreeBenefits.length; x++) {
+            found = false;
+            
+            for (y = 0; y < tempBenefits.length; y++) {
+                if ($scope.Career1.FreeBenefits[x] == tempBenefits[y].Name) {
+                    found = true;
+                }
+            }
+
+            if (!found) {
+                tempBenefits.push({ Name: $scope.Career1.FreeBenefits[x], BenefitAssocObj: '' });
+            }
+        }
+
+        for (z = 0; z < $scope.Career2.FreeBenefits.length; z++) {
+            found = false;
+            
+            for (aa = 0; aa < tempBenefits.length; aa++) {
+                if ($scope.Career2.FreeBenefits[z] == tempBenefits[aa].Name) {
+                    found = true;
+                }
+            }
+
+            if (!found) {
+                tempBenefits.push({ name: $scope.Career2.FreeBenefits[z], BenefitAssocObj: '' });
+            }
+        }
+
+        if ($scope.Character.BenefitAssocObj !== null) {
+            tempBenefits.push({ Name: $scope.Character.Benefit, BenefitAssocObj: $scope.Character.BenefitAssocObj });
+        } else {
+            tempBenefits.push({ Name: $scope.Character.Benefit, BenefitAssocObj: '' });
+        }
+
+        tempBenefits.sort();
+
+        for (ab = 0; ab < tempBenefits.length; ab++) {
+            for (ac = 0; ac < $scope.Archetypes.length; ac++) {
+                for (ad = 0; ad < $scope.Archetypes[ac].Benefits.length; ad++) {
+                    if ($scope.Archetypes[ac].Benefits[ad].Name == tempBenefits[ab].Name) {
+                        $scope.CharBenefits.push({ Name: tempBenefits[ab].Name, Desc: $scope.Archetypes[ac].Benefits[ad].Desc, BenefitAssocObj: tempBenefits[ab].BenefitAssocObj });
+                    }
+                }
+            }
+        }
+
+        // Populate abilities list.
+        tempAbilities = [];
+        
+        for (ae = 0; ae < $scope.Race.Abilities.length; ae++) {
+            tempAbilities.push({ Name: $scope.Race.Abilities[ae], AbAssocObj: '' });
+        }
+
+        for (af = 0; af < $scope.Career1.StartingAbilities.length; af++) {
+            if ($scope.Character.HRCareer1AbToReplace !== null && $scope.Character.HRCareer1AbToReplace == $scope.Career1.StartingAbilities[af]) {
+                tempAbilities.push({ Name: $scope.Character.HRCareer1AbReplacedWith, AbAssocObj: $scope.Character.HRCareer1AbReplacedWithAssocObj });
+            } else {
+                tempAbilities.push({ Name: $scope.Career1.StartingAbilities[af], AbAssocObj: '' });
+            }
+        }
+
+        for (ag = 0; ag < $scope.Career2.StartingAbilities.length; ag++) {
+            if ($scope.Character.HRCareer2AbToReplace !== null && $scope.Character.HRCareer2AbToReplace == $scope.Career2.StartingAbilities[ag]) {
+                if ($scope.Character.HRCareer2AbReplacedWithAssocObj !== null) {
+                    tempAbilities.push({ Name: $scope.Character.HRCareer2AbReplacedWith, AbAssocObj: $scope.Character.HRCareer2AbReplacedWithAssocObj });
+                } else {
+                    tempAbilities.push({ Name: $scope.Character.HRCareer2AbReplacedWith, AbAssocObj: '' });
+                }
+            } else {
+                tempAbilities.push({ Name: $scope.Career2.StartingAbilities[ag], AbAssocObj: '' });
+            }
+        }
+
+        if ($scope.Character.RacialAbilityChosen !== null) {
+            if ($scope.Character.RacialAbilityAssocObj !== null) {
+                tempAbilities.push({ Name: $scope.Character.RacialAbilityChosen, AbAssocObj: $scope.Character.RacialAbilityAssocObj });
+            } else {
+                tempAbilities.push({ Name: $scope.Character.RacialAbilityChosen, AbAssocObj: '' });
+            }
+        }
+
+        tempAbilities.sort();
+
+        $scope.CharAbilities = tempAbilities;
     }
 
     $scope.xpLevel = function(xp) {

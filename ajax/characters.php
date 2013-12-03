@@ -54,9 +54,9 @@ if ($charsReq->ReqType == 'GetUserChars') {
             $result = $sth->fetch();
 
             if ($result['UserID'] == $_SESSION['UserID']) {
-                $sth = $pdo->prepare("UPDATE characters SET Status = 'Complete', Benefit = :benefit, AdditionalStudySpell = :asspell, " .
+                $sth = $pdo->prepare("UPDATE characters SET Status = 'Complete', Benefit = :benefit, BenefitAssocObj = :benefitassocobj, " .
                     "LanguagesChosen = :langschosen, RacialConnectionDetails = :racialcondetails, RacialStatIncreaseChosen = :racialstatincrease, " .
-                    "RacialAbilitiesChosen = :racialabilities, Career1MSkillsChosen = :career1mskills, Career2MSkillsChosen = :career2mskills, " .
+                    "RacialAbilityChosen = :racialability, Career1MSkillsChosen = :career1mskills, Career2MSkillsChosen = :career2mskills, " .
                     "Career1OSkillsChosen = :career1oskills, Career2OSkillsChosen = :career2oskills, " .
                     "Career1ConnectionDetails = :career1condetails, Career2ConnectionDetails = :career2condetails, " .
                     "Career1AssetsChosen = :career1assets, Career2AssetsChosen = :career2assets, AP1Stat = :ap1stat, AP2Stat = :ap2stat, AP3Stat = :ap3stat, " .
@@ -69,11 +69,11 @@ if ($charsReq->ReqType == 'GetUserChars') {
                     "HRCareer1SpellReplacedWith = :hrcareer1spellreplacedwith, HRCareer2SpellToReplace = :hrcareer2spelltoreplace, " .
                     "HRCareer2SpellReplacedWith = :hrcareer2spellreplacedwith WHERE CharacterID = :characterid");
                 $sth->bindParam(':benefit', $charsReq->Character->Benefit);
-                $sth->bindParam(':asspell', $charsReq->Character->AdditionalStudySpell);
+                $sth->bindParam(':benefitassocobj', $charsReq->Character->BenefitAssocObj);
                 $sth->bindParam(':langschosen', json_encode($charsReq->Character->LanguagesChosen));
                 $sth->bindParam(':racialcondetails', $charsReq->Character->RacialConnectionDetails);
                 $sth->bindParam(':racialstatincrease', $charsReq->Character->RacialStatIncreaseChosen);
-                $sth->bindParam(':racialabilities', $charsReq->Character->RacialAbilitiesChosen);
+                $sth->bindParam(':racialability', $charsReq->Character->RacialAbilityChosen);
                 
                 if ($charsReq->Character->Career1MSkillsChosen === null) {
                     $sth->bindParam(':career1mskills', $charsReq->Character->Career1MSkillsChosen);

@@ -17,7 +17,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group">
                     <label class="control-label" for="ArchBenefit">Archetype Benefit ({{Character.Archetype}}):</label>
                     <div class="controls">
-                        <select id="ArchBenefit" ng-model="Character.Benefit" ng-options="Benefit for Benefit in Benefits" ng-change="selectBenefit()">
+                        <select id="ArchBenefit" ng-model="Character.Benefit" ng-options="Benefit.Name for Benefit in Benefits" ng-change="selectBenefit()">
                             <option value="">...</option>
                         </select>
                         <span ng-hide="checkBenefit()" class="label label-warning">Required</span><br>
@@ -28,16 +28,16 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="checkAdditionalStudy()">
                     <label class="control-label" for="AdditionalStudySpell">Additional Study Spell:</label>
                     <div class="controls">
-                        <select id="AdditionalStudySpell" ng-model="Character.AdditionalStudySpell" ng-options="Spell for Spell in AdditionalStudySpellList">
+                        <select id="AdditionalStudySpell" ng-model="Character.BenefitAssocObj" ng-options="Spell for Spell in AdditionalStudySpellList">
                             <option value="">...</option>
                         </select>
                         <span ng-hide="checkAdditionalStudySpell()" class="label label-warning">Required</span>
                     </div>
                 </div>
-                <div class="control-group" ng-show="RacialAbilitiesRequired">
+                <div class="control-group" ng-show="RacialAbilityRequired">
                     <label class="control-label" for="RacialAbility">Select an additional starting ability from your careers (racial bonus):</label>
                     <div class="controls">
-                        <select id="RacialAbility" ng-model="Character.RacialAbilitiesChosen" ng-options="Option for Option in RacialAbilityChoices">
+                        <select id="RacialAbility" ng-model="Character.RacialAbilityChosen" ng-options="Option for Option in RacialAbilityChoices">
                             <option value="">...</option>
                         </select>
                         <span ng-hide="checkRacialAbility()" class="label label-warning">Required</span><br>

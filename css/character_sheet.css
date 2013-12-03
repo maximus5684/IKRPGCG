@@ -144,6 +144,14 @@ body {
     text-align: left;
 }
 
+.csList {
+    margin: 5px;
+}
+
+.csList dd {
+    margin-bottom: 5px;
+}
+
 .csBigText {
     float: right;
     margin: 0 5px;
