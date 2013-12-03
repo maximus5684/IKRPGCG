@@ -474,7 +474,7 @@ function CSCtrl($scope, $http) {
             tempBenefits.push({ Name: $scope.Character.Benefit, BenefitAssocObj: '' });
         }
 
-        tempBenefits.sort();
+        tempBenefits.sort(compareByNameAsc);
 
         for (ab = 0; ab < tempBenefits.length; ab++) {
             for (ac = 0; ac < $scope.Archetypes.length; ac++) {
@@ -521,7 +521,7 @@ function CSCtrl($scope, $http) {
             }
         }
 
-        tempAbilities.sort();
+        tempAbilities.sort(compareByNameAsc);
 
         $scope.CharAbilities = tempAbilities;
     }
@@ -640,8 +640,16 @@ function CSCtrl($scope, $http) {
         }
     }
     
-    function compareCareersByName(careerA, careerB) {
-        if (careerA.Name < careerB.Name) {
+    function compareByNameAsc(objA, objB) {
+        if (objA.Name > objB.Name) {
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+    
+    function compareByNameDesc(objA, objB) {
+        if (objA.Name < objB.Name) {
             return 1;
         } else {
             return -1;
