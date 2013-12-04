@@ -2,7 +2,7 @@ function CB2Ctrl($scope, $http) {
     $scope.Url = 'ajax/characters.php';
     $scope.Error = null;
     $scope.Character = null;
-    $scope.Benefits = null;
+    $scope.Benefits = [];
     $scope.AdditionalStudySpellList = [];
     $scope.Race = null;
     $scope.Career1 = null;

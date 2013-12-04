@@ -10,7 +10,7 @@ if ($charsReq->ReqType == 'GetUserChars') {
     $charsList = array();
     
     try {
-        $sth = $pdo->prepare('SELECT CharacterID, Status, Name, Race, Career1, Career2, XP FROM characters WHERE UserID = :userid');
+        $sth = $pdo->prepare('SELECT CharacterID, Status, CharacterJSON FROM characters WHERE UserID = :userid');
         $sth->bindParam(':userid', $_SESSION['UserID']);
         $sth->execute();
         $sth->setFetchMode(PDO::FETCH_OBJ);
@@ -25,19 +25,9 @@ if ($charsReq->ReqType == 'GetUserChars') {
     }
 } elseif ($charsReq->ReqType == 'AddChar') {
     try {
-        $sth = $pdo->prepare('INSERT INTO characters (UserID, Name, Race, Faith, DefiningChars, Sex, Height, Weight, Archetype, Career1, Career2, ArcaneTradition) VALUES (:userid, :name, :race, :faith, :definingchars, :sex, :height, :weight, :archetype, :career1, :career2, :arcanetradition)');
+        $sth = $pdo->prepare('INSERT INTO characters (UserID, CharacterJSON) VALUES (:userid, :charjson)');
         $sth->bindParam(':userid', $_SESSION['UserID']);
-        $sth->bindParam(':name', $charsReq->Name);
-        $sth->bindParam(':race', $charsReq->Race);
-        $sth->bindParam(':faith', $charsReq->Faith);
-        $sth->bindParam(':definingchars', $charsReq->DefiningChars);
-        $sth->bindParam(':sex', $charsReq->Sex);
-        $sth->bindParam(':height', $charsReq->Height);
-        $sth->bindParam(':weight', $charsReq->Weight);
-        $sth->bindParam(':archetype', $charsReq->Archetype);
-        $sth->bindParam(':career1', $charsReq->Career1);
-        $sth->bindParam(':career2', $charsReq->Career2);
-        $sth->bindParam(':arcanetradition', $charsReq->ArcaneTradition);
+        $sth->bindParam(':charjson', json_encode($charsReq->Character));
         $sth->execute();
 
         echo $pdo->lastInsertId();
@@ -54,86 +44,9 @@ if ($charsReq->ReqType == 'GetUserChars') {
             $result = $sth->fetch();
 
             if ($result['UserID'] == $_SESSION['UserID']) {
-                $sth = $pdo->prepare("UPDATE characters SET Status = 'Complete', Benefit = :benefit, BenefitAssocObj = :benefitassocobj, " .
-                    "LanguagesChosen = :langschosen, RacialConnectionDetails = :racialcondetails, RacialStatIncreaseChosen = :racialstatincrease, " .
-                    "RacialAbilityChosen = :racialability, Career1MSkillsChosen = :career1mskills, Career2MSkillsChosen = :career2mskills, " .
-                    "Career1OSkillsChosen = :career1oskills, Career2OSkillsChosen = :career2oskills, " .
-                    "Career1ConnectionDetails = :career1condetails, Career2ConnectionDetails = :career2condetails, " .
-                    "Career1AssetsChosen = :career1assets, Career2AssetsChosen = :career2assets, AP1Stat = :ap1stat, AP2Stat = :ap2stat, AP3Stat = :ap3stat, " .
-                    "HRCareer1AbToReplace = :hrcareer1abtoreplace, HRCareer1AbReplacedWith = :hrcareer1abreplacedwith, HRCareer2AbToReplace = :hrcareer2abtoreplace, " .
-                    "HRCareer2AbReplacedWith = :hrcareer2abreplacedwith, HRCareer1OSkillToReplace = :hrcareer1oskilltoreplace, " .
-                    "HRCareer1OSkillReplacedWith = :hrcareer1oskillreplacedwith, HRCareer2OSkillToReplace = :hrcareer2oskilltoreplace, " .
-                    "HRCareer2OSkillReplacedWith = :hrcareer2oskillreplacedwith, HRCareer1MSkillToReplace = :hrcareer1mskilltoreplace, " .
-                    "HRCareer1MSkillReplacedWith = :hrcareer1mskillreplacedwith, HRCareer2MSkillToReplace = :hrcareer2mskilltoreplace, " .
-                    "HRCareer2MSkillReplacedWith = :hrcareer2mskillreplacedwith, HRCareer1SpellToReplace = :hrcareer1spelltoreplace, " .
-                    "HRCareer1SpellReplacedWith = :hrcareer1spellreplacedwith, HRCareer2SpellToReplace = :hrcareer2spelltoreplace, " .
-                    "HRCareer2SpellReplacedWith = :hrcareer2spellreplacedwith WHERE CharacterID = :characterid");
-                $sth->bindParam(':benefit', $charsReq->Character->Benefit);
-                $sth->bindParam(':benefitassocobj', $charsReq->Character->BenefitAssocObj);
-                $sth->bindParam(':langschosen', json_encode($charsReq->Character->LanguagesChosen));
-                $sth->bindParam(':racialcondetails', $charsReq->Character->RacialConnectionDetails);
-                $sth->bindParam(':racialstatincrease', $charsReq->Character->RacialStatIncreaseChosen);
-                $sth->bindParam(':racialability', $charsReq->Character->RacialAbilityChosen);
-                
-                if ($charsReq->Character->Career1MSkillsChosen === null) {
-                    $sth->bindParam(':career1mskills', $charsReq->Character->Career1MSkillsChosen);
-                } else { 
-                    $sth->bindParam(':career1mskills', json_encode($charsReq->Character->Career1MSkillsChosen));
-                }
-
-                if ($charsReq->Character->Career2MSkillsChosen === null) {
-                    $sth->bindParam(':career2mskills', $charsReq->Character->Career2MSkillsChosen);
-                } else { 
-                    $sth->bindParam(':career2mskills', json_encode($charsReq->Character->Career2MSkillsChosen));
-                }
-
-                if ($charsReq->Character->Career1OSkillsChosen === null) {
-                    $sth->bindParam(':career1oskills', $charsReq->Character->Career1OSkillsChosen);
-                } else {
-                    $sth->bindParam(':career1oskills', json_encode($charsReq->Character->Career1OSkillsChosen));
-                }
-
-                if ($charsReq->Character->Career2OSkillsChosen === null) {
-                    $sth->bindParam(':career2oskills', $charsReq->Character->Career2OSkillsChosen);
-                } else {
-                    $sth->bindParam(':career2oskills', json_encode($charsReq->Character->Career2OSkillsChosen));
-                }
-
-                $sth->bindParam(':career1condetails', $charsReq->Character->Career1ConnectionDetails);
-                $sth->bindParam(':career2condetails', $charsReq->Character->Career2ConnectionDetails);
-
-                if ($charsReq->Character->Career1AssetsChosen === null) {
-                    $sth->bindParam(':career1assets', json_encode($charsReq->Character->Career1AssetsChosen));
-                } else {
-                    $sth->bindParam(':career1assets', json_encode($charsReq->Character->Career1AssetsChosen));
-                }
-
-                if ($charsReq->Character->Career2AssetsChosen === null) {
-                    $sth->bindParam(':career2assets', $charsReq->Character->Career2AssetsChosen);
-                } else {
-                    $sth->bindParam(':career2assets', json_encode($charsReq->Character->Career2AssetsChosen));
-                }
-
-                $sth->bindParam(':ap1stat', $charsReq->Character->AP1Stat);
-                $sth->bindParam(':ap2stat', $charsReq->Character->AP2Stat);
-                $sth->bindParam(':ap3stat', $charsReq->Character->AP3Stat);
-                $sth->bindParam(':hrcareer1abtoreplace', $charsReq->Character->HRCareer1AbToReplace);
-                $sth->bindParam(':hrcareer1abreplacedwith', $charsReq->Character->HRCareer1AbReplacedWith);
-                $sth->bindParam(':hrcareer2abtoreplace', $charsReq->Character->HRCareer2AbToReplace);
-                $sth->bindParam(':hrcareer2abreplacedwith', $charsReq->Character->HRCareer2AbReplacedWith);
-                $sth->bindParam(':hrcareer1oskilltoreplace', $charsReq->Character->HRCareer1OSkillToReplace);
-                $sth->bindParam(':hrcareer1oskillreplacedwith', $charsReq->Character->HRCareer1OSkillReplacedWith);
-                $sth->bindParam(':hrcareer2oskilltoreplace', $charsReq->Character->HRCareer2OSkillToReplace);
-                $sth->bindParam(':hrcareer2oskillreplacedwith', $charsReq->Character->HRCareer2OSkillReplacedWith);
-                $sth->bindParam(':hrcareer1mskilltoreplace', $charsReq->Character->HRCareer1MSkillToReplace);
-                $sth->bindParam(':hrcareer1mskillreplacedwith', $charsReq->Character->HRCareer1MSkillReplacedWith);
-                $sth->bindParam(':hrcareer2mskilltoreplace', $charsReq->Character->HRCareer2MSkillToReplace);
-                $sth->bindParam(':hrcareer2mskillreplacedwith', $charsReq->Character->HRCareer2MSkillReplacedWith);
-                $sth->bindParam(':hrcareer1spelltoreplace', $charsReq->Character->HRCareer1SpellToReplace);
-                $sth->bindParam(':hrcareer1spellreplacedwith', $charsReq->Character->HRCareer1SpellReplacedWith);
-                $sth->bindParam(':hrcareer2spelltoreplace', $charsReq->Character->HRCareer2SpellToReplace);
-                $sth->bindParam(':hrcareer2spellreplacedwith', $charsReq->Character->HRCareer2SpellReplacedWith);
-                $sth->bindParam(':characterid', $charsReq->Character->CharacterID);
+                $sth = $pdo->prepare("UPDATE characters SET Status = 'Complete', CharacterJSON = :charjson WHERE CharacterID = :characterid");
+                $sth->bindParam(':charjson', $charsReq->Character);
+                $sth->bindParam(':characterid', $charsReq->CharacterID);
                 $sth->execute();
             } else {
                 echo 'Error: Character does not match logged-in user.';

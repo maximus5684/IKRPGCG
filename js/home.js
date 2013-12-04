@@ -40,6 +40,12 @@ function HomeCtrl($scope, $http) {
         $http.post($scope.Url, { ReqType: 'GetUserChars' }).success(function(data, status) {
             $scope.Status = status;
             $scope.Characters = data;
+
+            for (i = 0; i < $scope.Characters.length; i++) {
+                if ($scope.Characters[i].CharacterJSON !== '') {
+                    $scope.Characters[i].CharacterJSON = JSON.parse($scope.Characters[i].CharacterJSON);
+                }
+            }
         }).error(function(data, status) {
             $scope.Data = data || 'Request failed';
             $scope.Status = status;

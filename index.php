@@ -24,11 +24,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 </thead>
                 <tbody>
                     <tr ng-repeat="Character in Characters">
-                        <td>{{Character.Name}}</td>
-                        <td>{{Character.Race}}</td>
-                        <td>{{Character.Career1}}</td>
-                        <td>{{Character.Career2}}</td>
-                        <td class="center">{{Character.XP}}</td>
+                        <td>{{Character.CharacterJSON.Name}}</td>
+                        <td>{{Character.CharacterJSON.Race}}</td>
+                        <td>{{Character.CharacterJSON.Career1}}</td>
+                        <td>{{Character.CharacterJSON.Career2}}</td>
+                        <td class="center">{{Character.CharacterJSON.XP}}</td>
                         <td class="center">{{Character.Status}}</td>
                         <td class="center"><a ng-href="{{editUrl($index)}}"><i class="icon-pencil"></i></a></td>
                         <td class="center">

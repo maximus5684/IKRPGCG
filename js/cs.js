@@ -437,7 +437,7 @@ function CSCtrl($scope, $http) {
         tempBenefits = [];
 
         for (w = 0; w < $scope.Race.Benefits.length; w++) {
-            tempBenefits.push({ Name: $scope.Race.Benefits[w], BenefitAssocObj: '' });
+            tempBenefits.push({ Name: $scope.Race.Benefits[w], Property: '' });
         }
 
         for (x = 0; x < $scope.Career1.FreeBenefits.length; x++) {
@@ -450,7 +450,7 @@ function CSCtrl($scope, $http) {
             }
 
             if (!found) {
-                tempBenefits.push({ Name: $scope.Career1.FreeBenefits[x], BenefitAssocObj: '' });
+                tempBenefits.push({ Name: $scope.Career1.FreeBenefits[x], Property: '' });
             }
         }
 
@@ -464,14 +464,14 @@ function CSCtrl($scope, $http) {
             }
 
             if (!found) {
-                tempBenefits.push({ name: $scope.Career2.FreeBenefits[z], BenefitAssocObj: '' });
+                tempBenefits.push({ name: $scope.Career2.FreeBenefits[z], Property: '' });
             }
         }
 
         if ($scope.Character.BenefitAssocObj !== null) {
-            tempBenefits.push({ Name: $scope.Character.Benefit, BenefitAssocObj: $scope.Character.BenefitAssocObj });
+            tempBenefits.push({ Name: $scope.Character.Benefit, Property: $scope.Character.BenefitAssocObj });
         } else {
-            tempBenefits.push({ Name: $scope.Character.Benefit, BenefitAssocObj: '' });
+            tempBenefits.push({ Name: $scope.Character.Benefit, Property: '' });
         }
 
         tempBenefits.sort(compareByNameAsc);
@@ -480,7 +480,7 @@ function CSCtrl($scope, $http) {
             for (ac = 0; ac < $scope.Archetypes.length; ac++) {
                 for (ad = 0; ad < $scope.Archetypes[ac].Benefits.length; ad++) {
                     if ($scope.Archetypes[ac].Benefits[ad].Name == tempBenefits[ab].Name) {
-                        $scope.CharBenefits.push({ Name: tempBenefits[ab].Name, Desc: $scope.Archetypes[ac].Benefits[ad].Desc, BenefitAssocObj: tempBenefits[ab].BenefitAssocObj });
+                        $scope.CharBenefits.push({ Name: tempBenefits[ab].Name, HasProperty: $scope.Archetypes[ac].Benefits[ad].HasProperty, Property: tempBenefits[ab].Property, Book: $scope.Archetypes[ac].Benefits[ad].Book, Page: $scope.Archetypes[ac].Benefits[ad].Page });
                     }
                 }
             }
@@ -552,11 +552,11 @@ function CSCtrl($scope, $http) {
         }
     }
 
-    $scope.displayBenefitAssocObj = function(benefit) {
+    $scope.displayBenefitProperty = function(benefit) {
         bao = '';
         
-        if (benefit.BenefitAssocObj !== '') {
-            bao = ' (' + benefit.BenefitAssocObj + ')'
+        if (benefit.HasProperty) {
+            bao = ' (' + benefit.Property + ')'
         }
 
         return bao;

@@ -4,6 +4,7 @@ $pageTitle = 'Character Builder - Iron Kingdoms Character Generator';
 include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
 
         <link href="css/character_builder.css" rel="stylesheet">
+        <script src="js/character.js"></script>
         <script src="js/races.js"></script>
         <script src="js/archetypes.js"></script>
         <script src="js/careers.js"></script>
@@ -32,14 +33,14 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group">
                     <label class="control-label" for="CharName">Character Name:</label>
                     <div class="controls">
-                        <input type="text" id="CharName" ng-model="Name" maxlength="255">
+                        <input type="text" id="CharName" ng-model="Character.Name" maxlength="255">
                         <span ng-hide="Name" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Sex">Sex:</label>
                     <div class="controls">
-                        <select id="Sex" style="width: 60px" ng-model="Sex" ng-change="selectSex()">
+                        <select id="Sex" style="width: 60px" ng-model="Character.Sex" ng-change="selectSex()">
                             <option value="M">M</option>
                             <option value="F">F</option>
                         </select>
@@ -48,13 +49,13 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group">
                     <label class="control-label" for="DefiningChars">Defining Characteristics:</label>
                     <div class="controls">
-                        <input type="text" id="DefiningChars" ng-model="DefiningChars">
+                        <input type="text" id="DefiningChars" ng-model="Character.DefiningCharacteristics">
                     </div>
                 </div>
                 <div class="control-group">
                     <label class="control-label" for="Faith">Faith:</label>
                     <div class="controls">
-                        <input type="text" id="Faith" ng-model="Faith" maxlength="100">
+                        <input type="text" id="Faith" ng-model="Character.Faith" maxlength="100">
                     </div>
                 </div>
                 <div class="control-group">
@@ -71,7 +72,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <label class="control-label" for="Height">Height:</label>
                     <div class="controls">
                         <div class="input-append">
-                            <input type="number" id="Height" ng-model="Height" style="width: 40px"><span class="add-on">in.</span>
+                            <input type="number" id="Height" ng-model="Character.Height" style="width: 40px"><span class="add-on">in.</span>
                         </div>
                     </div>
                 </div>
@@ -79,7 +80,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <label class="control-label" for="Weight">Weight:</label>
                     <div class="controls">
                         <div class="input-append">
-                            <input type="number" id="Weight" ng-model="Weight" style="width: 50px"><span class="add-on">lbs.</span>
+                            <input type="number" id="Weight" ng-model="Character.Weight" style="width: 50px"><span class="add-on">lbs.</span>
                         </div>
                     </div>
                 </div>
@@ -106,7 +107,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="checkCareer1()">
                     <label class="control-label" for="Career1">Career 2:</label>
                     <div class="controls">
-                        <select id="Career2" ng-model="Career2" ng-options="Career.Name for Career in Career2List">
+                        <select id="Career2" ng-model="Career2" ng-options="Career.Name for Career in Career2List" ng-change="selectCareer2()">
                             <option value="">...</option>
                         </select>
                         <span ng-hide="Career2" class="label label-warning">Required</span>

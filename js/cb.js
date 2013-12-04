@@ -1,12 +1,20 @@
 function CBCtrl($scope, $http) {
     // Builder Variables
-    $scope.Name = '';
-    $scope.Sex = 'M';
-    $scope.DefiningChars = '';
-    $scope.Faith = '';
+    $scope.Character =
+    {
+        Name: '',
+        Race: '',
+        DefiningCharacteristics: '',
+        Faith: '',
+        Sex: 'M',
+        Height: '',
+        Weight: '',
+        Archetype: '',
+        Career1: '',
+        Career2: '',
+        XP: 0
+    };
     $scope.Race = null;
-    $scope.Height = '';
-    $scope.Weight = '';
     $scope.Archetype = null;
     $scope.Career1 = null;
     $scope.Career2 = null;
@@ -30,39 +38,39 @@ function CBCtrl($scope, $http) {
     $scope.selectSex = function() {
         // Set the height and weight min/max values according to the race.
         if ($scope.Race !== null) {
-            if ($scope.Height !== '') {
-                if ($scope.Sex == "M") {
-                    if (parseInt($scope.Height) < $scope.Race.HeightMale[0]) {
-                        $scope.Height = $scope.Race.HeightMale[0];
-                    } else if (parseInt($scope.Height) > $scope.Race.HeightMale[1]) {
-                        $scope.Height = $scope.Race.HeightMale[1];
+            if ($scope.Character.Height !== '') {
+                if ($scope.Character.Sex == "M") {
+                    if (parseInt($scope.Character.Height) < $scope.Race.HeightMale[0]) {
+                        $scope.Character.Height = $scope.Race.HeightMale[0];
+                    } else if (parseInt($scope.Character.Height) > $scope.Race.HeightMale[1]) {
+                        $scope.Character.Height = $scope.Race.HeightMale[1];
                     }
-                } else if ($scope.Sex == "F") {
-                    if (parseInt($scope.Height) < $scope.Race.HeightFemale[0]) {
-                        $scope.Height = $scope.Race.HeightFemale[0];
-                    } else if (parseInt($scope.Height) > $scope.Race.HeightFemale[1]) {
-                        $scope.Height = $scope.Race.HeightFemale[1];
+                } else if ($scope.Character.Sex == "F") {
+                    if (parseInt($scope.Character.Height) < $scope.Race.HeightFemale[0]) {
+                        $scope.Character.Height = $scope.Race.HeightFemale[0];
+                    } else if (parseInt($scope.Character.Height) > $scope.Race.HeightFemale[1]) {
+                        $scope.Character.Height = $scope.Race.HeightFemale[1];
                     }
                 }
             }
 
-            if ($scope.Weight !== '') {
-                if ($scope.Sex == "M") {
-                    if (parseInt($scope.Weight) < $scope.Race.WeightMale[0]) {
-                        $scope.Weight = $scope.Race.WeightMale[0];
-                    } else if (parseInt($scope.Weight) > $scope.Race.WeightMale[1]) {
-                        $scope.Weight = $scope.Race.WeightMale[1];
+            if ($scope.Character.Weight !== '') {
+                if ($scope.Character.Sex == "M") {
+                    if (parseInt($scope.Character.Weight) < $scope.Race.WeightMale[0]) {
+                        $scope.Character.Weight = $scope.Race.WeightMale[0];
+                    } else if (parseInt($scope.Character.Weight) > $scope.Race.WeightMale[1]) {
+                        $scope.Character.Weight = $scope.Race.WeightMale[1];
                     }
-                } else if ($scope.Sex == "F") {
-                    if (parseInt($scope.Weight) < $scope.Race.WeightFemale[0]) {
-                        $scope.Weight = $scope.Race.WeightFemale[0];
-                    } else if (parseInt($scope.Weight) > $scope.Race.WeightFemale[1]) {
-                        $scope.Weight = $scope.Race.WeightFemale[1];
+                } else if ($scope.Character.Sex == "F") {
+                    if (parseInt($scope.Character.Weight) < $scope.Race.WeightFemale[0]) {
+                        $scope.Character.Weight = $scope.Race.WeightFemale[0];
+                    } else if (parseInt($scope.Character.Weight) > $scope.Race.WeightFemale[1]) {
+                        $scope.Character.Weight = $scope.Race.WeightFemale[1];
                     }
                 }                
             }
             
-            if ($scope.Sex == "M") {
+            if ($scope.Character.Sex == "M") {
                 $("#Height").attr({
                     min: $scope.Race.HeightMale[0],
                     max: $scope.Race.HeightMale[1]
@@ -107,10 +115,14 @@ function CBCtrl($scope, $http) {
     $scope.resetRace = function() {
         // Clear everything from race down.
         $scope.Race = null;
+        $scope.Character.Race = '';
         $scope.Archetype = null;
+        $scope.Character.Archetype = '';
         $scope.Career1 = null;
+        $scope.Character.Career1 = '';
         $scope.Career1List = [];
         $scope.Career2 = null;
+        $scope.Character.Career2 = '';
         $scope.Career2List = [];
         
         $("#Height").attr({
@@ -132,35 +144,39 @@ function CBCtrl($scope, $http) {
             popArchetypes();
             
             // Set initial height and weight values.
-            if ($scope.Sex == "M") {
+            if ($scope.Character.Sex == "M") {
                 $("#Height").attr({
                     min: $scope.Race.HeightMale[0],
                     max: $scope.Race.HeightMale[1]
                 });
                 
-                $scope.Height = $scope.Race.HeightMale[0];
+                $scope.Character.Height = $scope.Race.HeightMale[0];
                 
                 $("#Weight").attr({
                     min: $scope.Race.WeightMale[0],
                     max: $scope.Race.WeightMale[1]
                 });
                 
-                $scope.Weight = $scope.Race.WeightMale[0];
-            } else if ($scope.Sex == "F") {
+                $scope.Character.Weight = $scope.Race.WeightMale[0];
+            } else if ($scope.Character.Sex == "F") {
                 $("#Height").attr({
                     min: $scope.Race.HeightFemale[0],
                     max: $scope.Race.HeightFemale[1]
                 });
                 
-                $scope.Height = $scope.Race.HeightFemale[0];
+                $scope.Character.Height = $scope.Race.HeightFemale[0];
                 
                 $("#Weight").attr({
                     min: $scope.Race.WeightFemale[0],
                     max: $scope.Race.WeightFemale[1]
                 });
                 
-                $scope.Weight = $scope.Race.WeightFemale[0];
+                $scope.Character.Weight = $scope.Race.WeightFemale[0];
             }
+
+            $scope.Character.Race = $scope.Race.Name;
+        } else {
+            $scope.Character.Race = '';
         }
     };
     
@@ -185,9 +201,12 @@ function CBCtrl($scope, $http) {
     $scope.resetArchetype = function() {
         // Reset everything from archetype down.
         $scope.Archetype = null;
+        $scope.Character.Archetype = '';
         $scope.Career1 = null;
+        $scope.Character.Career1 = '';
         $scope.Career1List = [];
         $scope.Career2 = null;
+        $scope.Character.Career2 = '';
         $scope.Career2List = [];
     };
     
@@ -195,6 +214,10 @@ function CBCtrl($scope, $http) {
         if ($scope.Archetype !== null) {
             // Populate the first career drop-down.
             popCareer1();
+
+            $scope.Character.Archetype = $scope.Archetype.Name;
+        } else {
+            $scope.Character.Archetype = '';
         }
     };
     
@@ -231,7 +254,9 @@ function CBCtrl($scope, $http) {
     $scope.resetCareer1 = function() {
         // Reset first and second careers.
         $scope.Career1 = null;
+        $scope.Character.Career1 = '';
         $scope.Career2 = null;
+        $scope.Character.Career2 = '';
         $scope.Career2List = [];
     };
     
@@ -239,6 +264,10 @@ function CBCtrl($scope, $http) {
         // Populate second career drop-down.
         if ($scope.Career1 !== null) {
             popCareer2();
+
+            $scope.Character.Career1 = $scope.Career1.Name;
+        } else {
+            $scope.Character.Career1 = '';
         }
     };
     
@@ -252,10 +281,19 @@ function CBCtrl($scope, $http) {
                 return false;
             }
         }
-    }
+    };
     
     $scope.resetCareer2 = function() {
         $scope.Career2 = null;
+        $scope.Character.Career2 = '';
+    };
+
+    $scope.selectCareer2 = function() {
+        if ($scope.Career2 !== null) {
+            $scope.Character.Career2 = $scope.Career2.Name;
+        } else {
+            $scope.Character.Career2 = '';
+        }
     };
     
     function compareCareersByName(careerA, careerB) {
@@ -399,7 +437,7 @@ function CBCtrl($scope, $http) {
     }
     
     $scope.submitCheck = function() {
-        if ($scope.Name != '' && $scope.Career2 !== null) {
+        if ($scope.Character.Name != '' && $scope.Career2 !== null) {
             return false;
         } else {
             return true;
@@ -415,27 +453,17 @@ function CBCtrl($scope, $http) {
     }
 
     $scope.AddChar = function() {
-        newCharReq = {
-            ReqType: 'AddChar',
-            Name: $scope.Name,
-            Sex: $scope.Sex,
-            DefiningChars: $scope.DefiningChars,
-            Faith: $scope.Faith,
-            Race: $scope.Race.Name,
-            Height: $scope.Height,
-            Weight: $scope.Weight,
-            Archetype: $scope.Archetype.Name,
-            Career1: $scope.Career1.Name,
-            Career2: $scope.Career2.Name,
-            ArcaneTradition: null
-        }
-
         if ($scope.Archetype.Name == 'Gifted') {
             if ($scope.Career1.Name == 'Warcaster' || $scope.Career2.Name == 'Warcaster') {
-                newCharReq.ArcaneTradition = 'Focuser';
+                $scope.Character.ArcaneTradition = 'Focuser';
             } else {
-                newCharReq.Arcanetradition = 'Will Weaver';
+                $scope.Character.Arcanetradition = 'Will Weaver';
             }
+        }
+
+        newCharReq = {
+            ReqType: 'AddChar',
+            Character: $scope.Character
         }
 
         $http.post($scope.Url, newCharReq).success(function(data, status) {

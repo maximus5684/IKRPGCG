@@ -319,23 +319,37 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                     <div class="csBox">
                         <div class="csBoxHead">BENEFITS</div>
-                        <dl class="csList">
-                            <dt ng-repeat-start="Benefit in CharBenefits">{{Benefit.Name}}{{displayBenefitAssocObj(Benefit)}}</dt>
-                            <dd ng-repeat-end>{{Benefit.Desc}}</dd>
-                        </dl>
-                    </div>
-                    <div class="csBox">
-                        <div class="csBoxHead">ABILITIES</div>
-                        <table class="csTable table-striped">
+                        <table class="csTable table-striped" id="benefTable">
                             <thead>
                                 <tr>
                                     <th class="small" style="text-align: left">NAME</th>
-                                    <th class="small">DESCRIPTION/NOTES</th>
+                                    <th class="small">BOOK</th>
+                                    <th class="small">PAGE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="Benefit in CharBenefits">
+                                    <td>{{Benefit.Name}}{{displayBenefitProperty(Benefit)}}</td>
+                                    <td>{{Benefit.Book}}</td>
+                                    <td>{{Benefit.Page}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="csBox">
+                        <div class="csBoxHead">ABILITIES</div>
+                        <table class="csTable table-striped" id="abilTable">
+                            <thead>
+                                <tr>
+                                    <th class="small" style="text-align: left">NAME</th>
+                                    <th class="small">BOOK</th>
+                                    <th class="small">PAGE</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="Ability in CharAbilities">
                                     <td>{{Ability.Name}}</td>
+                                    <td>&#160;</td>
                                     <td>&#160;</td>
                                 </tr>
                             </tbody>
