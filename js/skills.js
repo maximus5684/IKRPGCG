@@ -1,4 +1,5 @@
-milSkillsArr = [
+milSkillsArr =
+[
         { Name: "Archery", BaseStat: "POI" },
 	{ Name: "Crossbow", BaseStat: "POI" },
 	{ Name: "Great Weapon", BaseStat: "PRW" },
@@ -12,11 +13,12 @@ milSkillsArr = [
 	{ Name: "Unarmed Combat", BaseStat: "PRW" }
 ];
 
-occSkillsArr = [
+occSkillsArr =
+[
 	{ Name: "Alchemy", BaseStat: "INT" },
 	{ Name: "Bribery", BaseStat: "Social" },
 	{ Name: "Command", BaseStat: "Social" },
-	{ Name: "Craft", BaseStat: "INT" },
+	{ Name: "Craft", BaseStat: "INT", HasProperty: true },
 	{ Name: "Cryptography", BaseStat: "INT" },
 	{ Name: "Deception", BaseStat: "Social" },
 	{ Name: "Disguise", BaseStat: "INT" },
@@ -24,8 +26,7 @@ occSkillsArr = [
 	{ Name: "Etiquette", BaseStat: "Social" },
 	{ Name: "Fell Calling", BaseStat: "POI" },
 	{ Name: "Forensic Science", BaseStat: "INT" },
-	{ Name: "Forgery", BaseStat: "AGL" },
-	{ Name: "Forgery", BaseStat: "INT" },
+	{ Name: "Forgery", BaseStat: "AGL", BaseStat2: "INT" },
 	{ Name: "Interrogation", BaseStat: "Social" },
 	{ Name: "Law", BaseStat: "INT" },
 	{ Name: "Lock Picking", BaseStat: "AGL" },
@@ -37,13 +38,16 @@ occSkillsArr = [
 	{ Name: "Pickpocket", BaseStat: "AGL" },
 	{ Name: "Research", BaseStat: "INT" },
 	{ Name: "Rope Use", BaseStat: "AGL" },
-	{ Name: "Sailing", BaseStat: "INT" },
-	{ Name: "Sailing", BaseStat: "STR" },
+	{ Name: "Sailing", BaseStat: "INT", BaseStat2: "STR" },
 	{ Name: "Seduction", BaseStat: "Social" },
 	{ Name: "Sneak", BaseStat: "AGL" },
 	{ Name: "Streetwise", BaseStat: "PER" },
 	{ Name: "Survival", BaseStat: "PER" },
-	{ Name: "Tracking", BaseStat: "PER" },
+	{ Name: "Tracking", BaseStat: "PER" }
+];
+
+genSkillsArr = 
+[
 	{ Name: "Animal Handling", BaseStat: "Social" },
 	{ Name: "Climbing", BaseStat: "AGL" },
 	{ Name: "Detection", BaseStat: "PER" },
@@ -51,7 +55,7 @@ occSkillsArr = [
 	{ Name: "Gambling", BaseStat: "PER" },
 	{ Name: "Intimidation", BaseStat: "Social" },
 	{ Name: "Jumping", BaseStat: "PHY" },
-	{ Name: "Lore", BaseStat: "INT" },
+	{ Name: "Lore", BaseStat: "INT", HasProperty: true },
 	{ Name: "Riding", BaseStat: "AGL" },
 	{ Name: "Swimming", BaseStat: "STR" }
 ];

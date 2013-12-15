@@ -2,6 +2,7 @@ langArr = [
     'Aeric',
     'Caspian',
     'Cygnaran',
+    'Five Cant',
     'Gobberish',
     'Idrian',
     'Khadoran',
