@@ -2,2021 +2,1662 @@ careerArr = [
     {
         Name: "Alchemist",
         StartingCareerOnly: false,
-        StartingAbilities: ['Grenadier', 'Poison Resistance'],
-        StartingConnections: [],
-        StartingMilitarySkills: [['Hand Weapon',1], ['Thrown Weapon',1]],
-        StartingOccupationalSkills: [['Alchemy',1], ['Medicine',1]],
+        StartingAbilities: [{ Name: 'Grenadier' }, { Name: 'Poison Resistance' }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Thrown Weapon', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Alchemy', Level: 1 }, { Name: 'Medicine', Level: 1 }],
         StartingMSkillChoices: 0,
-        StartingMSkillChoicesOptions: [],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
         StartingAssets: ['alchemist\'s leather', 'gas mask', 'traveling alchemist\'s kit', 'any five alchemical grenades', 'grenadier\'s bandolier'],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 50,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Bomber',
-            'Brew Master',
-            'Fast Cook',
-            'Field Alchemist',
-            'Fire in the Hole!',
-            'Free Style', 'Grenadier',
-            'Poison Resistance'
+        Abilities:
+        [
+            { Name: 'Bomber' },
+            { Name: 'Brew Master' },
+            { Name: 'Fast Cook' },
+            { Name: 'Field Alchemist' },
+            { Name: 'Fire in the Hole!' },
+            { Name: 'Free Style' },
+            { Name: 'Grenadier' },
+            { Name: 'Poison Resistance' }
         ],
-        Connections: ['Connections (alchemical order)'],
-        MilitarySkills: [['Hand Weapon',2], ['Thrown Weapon',4], ['Unarmed Combat',2]],
-        OccupationalSkills: [
-            ['Alchemy',4],
-            ['Craft (any)',4],
-            ['Forgery',2],
-            ['General Skills',4],
-            ['Medicine',4],
-            ['Negotiation',4],
-            ['Research',4]
-        ],
-        SpellList: []
+        Connections: [{ Name: 'alchemical order', Type: 'Generic' }],
+        MilitarySkills: [{ Name: 'Hand Weapon', Level: 2 }, { Name: 'Thrown Weapon', Level: 4 }, { Name: 'Unarmed Combat', Level: 2 }],
+        OccupationalSkills:
+        [
+            { Name: 'Alchemy', Level: 4 },
+            { Name: 'Craft', Level: 4, Type: 'Generic', Property: 'any' },
+            { Name: 'Forgery', Level: 2 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Medicine', Level: 4 },
+            { Name: 'Negotiation', Level: 4 },
+            { Name: 'Research', Level: 4 }
+        ]
     },
     {
         Name: "Arcane Mechanik",
         StartingCareerOnly: false,
-        StartingAbilities: ['Inscribe Formulae'],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Craft (gunsmithing)',1],['Craft (metalworking)',1],['Mechanikal Engineering',1]],
+        StartingAbilities: [{ Name: 'Inscribe Formulae' }],
+        StartingOccupationalSkills: 
+        [
+            { Name: 'Craft', Level: 1, Type: 'Specific', Property: 'gunsmithing' },
+            { Name: 'Craft', Level: 1, Type: 'Specific', Property: 'metalworking' },
+            { Name: 'Mechanikal Engineering', Level: 1 }
+        ],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Hand Weapon',1],['Rifle',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Rifle', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
         StartingSpells: ['Arcantrik Bolt', 'Polarity Shield'],
-        StartingSpecial: '',
         StartingAssets: ['Rune Etching Kit'],
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['Mechanika Weapon worth up to 750 gc','Mechanika Suit of Armor worth up to 750 gc'],
         StartingGold: 50,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            '\'Jack Marshal',
-            'Ace Commander',
-            'Arcane Engineer',
-            'Drive: Assault',
-            'Drive: Pronto',
-            'Inscribe Formulae',
-            'Resourceful',
-            'Steamo'
+        Abilities:
+        [
+            { Name: '\'Jack Marshal' },
+            { Name: 'Ace Commander' },
+            { Name: 'Arcane Engineer' },
+            { Name: 'Drive: Assault' },
+            { Name: 'Drive: Pronto' },
+            { Name: 'Inscribe Formulae' },
+            { Name: 'Resourceful' },
+            { Name: 'Steamo' }
         ],
-        Connections: ['Connections (mechaniks organization)'],
-        MilitarySkills: [['Hand Weapon',2], ['Light Artillery',2], ['Rifle',2]],
-        OccupationalSkills: [
-            ['Command',1]
-            ['Craft (any)',4],
-            ['Cryptography',3],
-            ['General Skills',4],
-            ['Mechanikal Engineering',4],
-            ['Negotiation',2],
-            ['Research',3]
+        Connections: [{ Name: 'mechaniks organization', Type: 'General' }],
+        MilitarySkills: [{ Name: 'Hand Weapon', Level: 2 }, { Name: 'Light Artillery', Level: 2 }, { Name: 'Rifle', Level: 2 }],
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 1 },
+            { Name: 'Craft', Level: 4, Type: 'Generic', Property: 'any' },
+            { Name: 'Cryptography', Level: 3 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Mechanikal Engineering', Level: 4 },
+            { Name: 'Negotiation', Level: 2 },
+            { Name: 'Research', Level: 3 }
         ],
-        SpellList: [
-            {
-                Cost: 1, 
-                Spells: [
-                    'Jackhammer',
-                    'Jump Start',
-                    'Locomotion',
-                    'Power Booster',
-                    'Protection from Electricity',
-                    'Return Fire',
-                    'Short Out'
-                ]
-            },
-            {
-                Cost: 2,
-                Spells: [
-                    'Arcantrik Bolt',
-                    'Electrify',
-                    'Fortify',
-                    'Polarity Shield',
-                    'Positive Charge',
-                    'Redline',
-                    'Refuge',
-                    'Temper Metal'
-                ]
-            },
-            {
-                Cost: 3,
-                Spells: [
-                    'Broadside',
-                    'Electrical Blast',
-                    'Fail Safe',
-                    'Force Field',
-                    'Full Throttle',
-                    'Grind',
-                    'Guided Fire',
-                    'Iron Aggression',
-                    'Superiority'
-                ]
-            },
-            {
-                Cost: 4,
-                Spells: [
-                    'Black Out',
-                    'Tide of Steel',
-                    'Voltaic Lock'
-                ]
-            }
+        SpellList:
+        [
+            'Arcantrik Bolt',
+            'Black Out',
+            'Broadside',
+            'Electrical Blast',
+            'Electrify',
+            'Fail Safe',
+            'Force Field',
+            'Fortify',
+            'Full Throttle',
+            'Grind',
+            'Guided Fire',
+            'Iron Aggression',
+            'Jackhammer',
+            'Jump Start',
+            'Locomotion',
+            'Polarity Shield',
+            'Positive Charge',
+            'Power Booster',
+            'Protection from Electricity',
+            'Redline',
+            'Refuge',
+            'Return Fire',
+            'Short Out',
+            'Superiority',
+            'Temper Metal',
+            'Tide of Steel',
+            'Voltaic Lock'
         ]
     },
     {
         Name: "Arcanist",
         StartingCareerOnly: false,
-        StartingAbilities: ['Great Power'],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Lore (Arcane)',1],['Research',1]],
+        StartingAbilities: [{ Name: 'Great Power' }],
+        StartingOccupationalSkills: [{ Name: 'Lore', Type: 'Specific', Property: 'Arcane', Level: 1 },{ Name: 'Research', Level: 1 }],
         StartingMSkillChoices: 0,
-        StartingMSkillChoicesOptions: [],
         StartingOSkillChoices: 0,
-        StartingOSkilLChoicesOptions: [],
         StartingSpells: ['Arcane Bolt','Aura of Protection','Light in the Darkness'],
         StartingSpecial: 'A character who chooses Arcanist as one of his two starting careers gains the Rune Reader Gifted archetype benefit.',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: ['Rune Reader'],
-        Abilities: ['Arcane Defenses','Arcane Scholar','Great Power','University Education'],
-        Connections: ['Connections (magical order)'],
-        MilitarySkills: [],
-        OccupationalSkills: [
-            ['Craft (any)',2],
-            ['Etiquette',2],
-            ['General Skills',4],
-            ['Negotiation',2],
-            ['Oratory',2],
-            ['Research',4]
+        FreeBenefits: [{ Name: 'Rune Reader' }],
+        Abilities: [{ Name: 'Arcane Defenses' },{ Name: 'Arcane Scholar' },{ Name: 'Great Power' },{ Name: 'University Education' }],
+        Connections: [{ Name: 'magical order', Type: 'Generic' }],
+        OccupationalSkills:
+        [
+            { Name: 'Craft', Type: 'Generic', Property: 'any', Level: 2 },
+            { Name: 'Etiquette', Level: 2 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Negotiation', Level: 2 },
+            { Name: 'Oratory', Level: 2 },
+            { Name: 'Research', Level: 4 }
         ],
-        SpellList: [
-            {
-                Cost: 1,
-                Spells: [
-                    'Arcane Strike',
-                    'Blizzard',
-                    'Fire Starter',
-                    'Guided Blade',
-                    'Influence',
-                    'Light in the Darkness',
-                    'Protection from Cold',
-                    'Protection from Electricity',
-                    'Protection from Fire',
-                    'Storm Tossed'
-                ]
-            },
-            {
-                Cost: 2,
-                Spells: [
-                    'Arcane Bolt',
-                    'Ashen Cloud',
-                    'Aura of Protection',
-                    'Banishing Ward',
-                    'Celerity',
-                    'Foxhole',
-                    'Hand of Fate',
-                    'Howling Flames',
-                    'Icy Grip',
-                    'Occultation',
-                    'Rock Wall',
-                    'Telekinesis',
-                    'True Sight',
-                    'Vision',
-                    'Wind Blast'
-                ]
-            },
-            { 
-                Cost: 3,
-                Spells: [
-                    'Fog of War',
-                    'Force Field',
-                    'Hex Blast',
-                    'Inhospitable Ground',
-                    'Lightning Tendrils',
-                    'Mirage',
-                    'Rift',
-                    'Rock Hammer',
-                    'Zephyr'
-                ]
-            },
-            {
-                Cost: 4,
-                Spells: [
-                    'Force Hammer',
-                    'Overmind',
-                    'Tempest'
-                ]
-            }
+        SpellList:
+        [
+            'Arcane Bolt',
+            'Arcane Strike',
+            'Ashen Cloud',
+            'Aura of Protection',
+            'Banishing Ward',
+            'Blizzard',
+            'Celerity',
+            'Fire Starter',
+            'Fog of War',
+            'Force Field',
+            'Force Hammer',
+            'Foxhole',
+            'Guided Blade',
+            'Hand of Fate',
+            'Hex Blast',
+            'Howling Flames',
+            'Icy Grip',
+            'Influence',
+            'Inhospitable Ground',
+            'Light in the Darkness',
+            'Lightning Tendrils',
+            'Mirage',
+            'Occultation',
+            'Overmind',
+            'Protection from Cold',
+            'Protection from Electricity',
+            'Protection from Fire',
+            'Rift',
+            'Rock Hammer',
+            'Rock Wall',
+            'Storm Tossed',
+            'Telekinesis',
+            'Tempest',
+            'True Sight',
+            'Vision',
+            'Wind Blast',
+            'Zephyr'
         ]
     },
     {
         Name: "Aristocrat",
         StartingCareerOnly: true,
-        StartingAbilities: ['Good Breeding','Language (any)','Privilege'],
-        StartingConnections: ['Connections (nobility)'],
-        StartingMilitarySkills: [['Hand Weapon',1]],
-        StartingOccupationalSkills: [['Command',1],['Etiquette',1]],
+        StartingAbilities: [{ Name: 'Good Breeding' }, { Name: 'Language', Type: 'Generic', Property: 'any' }, { Name: 'Privilege' }],
+        StartingConnections: [{ Name: 'nobility', Type: 'Generic' }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Command', Level: 1 },{ Name: 'Etiquette', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Archery',1],['Pistol',1],['Rifle',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Archery', Level: 1 },{ Name: 'Pistol', Level: 1 },{ Name: 'Rifle', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkilLChoicesOptions: [],
-        StartingSpells: [],
         StartingSpecial: 'A character who choses Aristocrat as one of his two starting careers gains 50 gc each month from his family holdings.',
-        StartingAssets: [''],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 200,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Advisor',
-            'Appraise',
-            'Battle Plan: Call to Action',
-            'Expert Rider',
-            'Good Breeding',
-            'Language',
-            'Natural Leader',
-            'Poison Resistance',
-            'Privilege',
-            'Rallying Cry',
-            'Swift Rider'
+        Abilities:
+        [
+            { Name: 'Advisor' },
+            { Name: 'Appraise' },
+            { Name: 'Battle Plan: Call to Action' },
+            { Name: 'Expert Rider' },
+            { Name: 'Good Breeding' },
+            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Natural Leader' },
+            { Name: 'Poison Resistance' },
+            { Name: 'Privilege' },
+            { Name: 'Rallying Cry' },
+            { Name: 'Swift Rider' }
         ],
-        Connections: ['Connections (any)'],
-        MilitarySkills: [
-            ['Archery',2],
-            ['Hand Weapon',3],
-            ['Lance',3],
-            ['Pistol',2],
-            ['Rifle',3]
+        Connections: [{ Name: 'any', Type: 'Generic' }],
+        MilitarySkills:
+        [
+            { Name: 'Archery', Level: 2 },
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Lance', Level: 3 },
+            { Name: 'Pistol', Level: 2 },
+            { Name: 'Rifle', Level: 3 }
         ],
-        OccupationalSkills: [
-            ['Bribery',4],
-            ['Command',4],
-            ['Cryptography',2],
-            ['Deception',4],
-            ['Etiquette',4],
-            ['General Skills',4],
-            ['Law',4],
-            ['Negotiation',4],
-            ['Oratory',4],
-            ['Seduction',4]
-        ],
-        SpellList: []
+        OccupationalSkills:
+        [
+            { Name: 'Bribery', Level: 4 },
+            { Name: 'Command', Level: 4 },
+            { Name: 'Cryptography', Level: 2 },
+            { Name: 'Deception', Level: 4 },
+            { Name: 'Etiquette', Level: 4 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Law', Level: 4 },
+            { Name: 'Negotiation', Level: 4 },
+            { Name: 'Oratory', Level: 4 },
+            { Name: 'Seduction', Level: 4 }
+        ]
     },
     {
         Name: "Bounty Hunter",
         StartingCareerOnly: false,
-        StartingAbilities: ['Binding','Take Down'],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Detection',1],['Intimidation',1],['Rope Use',1],['Tracking',1]],
+        StartingAbilities: [{ Name: 'Binding' }, { Name: 'Take Down' }],
+        StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 },{ Name: 'Intimidation', Level: 1 },{ Name: 'Rope Use', Level: 1 },{ Name: 'Tracking', Level: 1 }],
         StartingMSkillChoices: 2,
-        StartingMSkillChoicesOptions: [['Crossbow',1],['Hand Weapon',1],['Pistol',1],['Rifle',1],['Unarmed Combat',1]],
+        StartingMSkillChoicesOptions: 
+        [
+            { Name: 'Crossbow', Level: 1 },
+            { Name: 'Hand Weapon', Level: 1 },
+            { Name: 'Pistol', Level: 1 },
+            { Name: 'Rifle', Level: 1 },
+            { Name: 'Unarmed Combat', Level: 1 }
+        ],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Binding',
-            'Crossbowman',
-            'Head-Butt',
-            'Language (Five-Cant)',
-            'Pursuit',
-            'Roll With It',
-            'Take Down',
-            'Waylay'
+        Abilities:
+        [
+            { Name: 'Binding' },
+            { Name: 'Crossbowman' },
+            { Name: 'Head-Butt' },
+            { Name: 'Language', Type: 'Specific', Property: 'Five Cant' },
+            { Name: 'Pursuit' },
+            { Name: 'Roll With It' },
+            { Name: 'Take Down' },
+            { Name: 'Waylay' }
         ],
-        Connections: ['Connections (any)'],
-        MilitarySkills: [
-            ['Crossbow',3],
-            ['Hand Weapon',2],
-            ['Pistol',2],
-            ['Rifle',3],
-            ['Unarmed Combat',4]
+        Connections: [{ Name: 'any', Type: 'Generic' }],
+        MilitarySkills:
+        [
+            { Name: 'Crossbow', Level: 3 },
+            { Name: 'Hand Weapon', Level: 2 },
+            { Name: 'Pistol', Level: 2 },
+            { Name: 'Rifle', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 4 }
         ],
-        OccupationalSkills: [
-            ['Bribery',2],
-            ['Deception',2],
-            ['Disguise',2],
-            ['General Skills',4],
-            ['Interrogation',2],
-            ['Law',2],
-            ['Negotiation',4],
-            ['Rope Use',4],
-            ['Sneak',3],
-            ['Streetwise',4],
-            ['Tracking',4]
-        ],
-        SpellList: []
+        OccupationalSkills:
+        [
+            { Name: 'Bribery', Level: 2 },
+            { Name: 'Deception', Level: 2 },
+            { Name: 'Disguise', Level: 2 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Interrogation', Level: 2 },
+            { Name: 'Law', Level: 2 },
+            { Name: 'Negotiation', Level: 4 },
+            { Name: 'Rope Use', Level: 4 },
+            { Name: 'Sneak', Level: 3 },
+            { Name: 'Streetwise', Level: 4 },
+            { Name: 'Tracking', Level: 4 }
+        ]
     },
     {
         Name: "Cutthroat",
         StartingCareerOnly: false,
-        StartingAbilities: ['Anatomical Precision','Backstab','Prowl'],
-        StartingConnections: [],
-        StartingMilitarySkills: [['Hand Weapon',1]],
-        StartingOccupationalSkills: [['Intimidation',1],['Sneak',1],['Streetwise',1]],
+        StartingAbilities: [{ Name: 'Anatomical Precision' }, { Name: 'Backstab' }, { Name: 'Prowl' }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Intimidation', Level: 1 }, { Name: 'Sneak', Level: 1 }, { Name: 'Streetwise', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Crossbow',1],['Thrown Weapon',1],['Unarmed Combat',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Crossbow', Level: 1 }, { Name: 'Thrown Weapon', Level: 1 }, { Name: 'Unarmed Combat', Level: 1 }],
         startingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Anatomical Precision',
-            'Backstab',
-            'Blood Spiller',
-            'Camouflage',
-            'Chain Attack: Bleed Out',
-            'Fast Draw',
-            'Language (Five Cant)',
-            'Prowl',
-            'Specialization (Assassin Blade)',
-            'Two-Weapon Fighting',
-            'Waylay'
+        Abilities:
+        [
+            { Name: 'Anatomical Precision' },
+            { Name: 'Backstab' },
+            { Name: 'Blood Spiller' },
+            { Name: 'Camouflage' },
+            { Name: 'Chain Attack: Bleed Out' },
+            { Name: 'Fast Draw' },
+            { Name: 'Language', Type: 'Specific', Property: 'Five Cant' },
+            { Name: 'Prowl' },
+            { Name: 'Specialization', Type: 'Specific', Property: 'Assassin Blade' },
+            { Name: 'Two-Weapon Fighting' },
+            { Name: 'Waylay' }
         ],
-        Connections: ['Connections (criminal)'],
-        MilitarySkills: [
-            ['Crossbow',2],
-            ['Hand Weapon',4],
-            ['Thrown Weapon',3],
-            ['Unarmed Combat',3]
+        Connections: [{ Name: 'criminal', Type: 'Generic' }],
+        MilitarySkills:
+        [
+            { Name: 'Crossbow', Level: 2 },
+            { Name: 'Hand Weapon', Level: 4 },
+            { Name: 'Thrown Weapon', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 3 }
         ],
-        OccupationalSkills: [
-            ['General Skills',4],
-            ['Interrogation',2],
-            ['Sneak',4],
-            ['Streetwise',4]
-        ],
-        SpellList: []
+        OccupationalSkills:
+        [
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Interrogation', Level: 2 },
+            { Name: 'Sneak', Level: 4 },
+            { Name: 'Streetwise', Level: 4 }
+        ]
     },
     {
         Name: "Duelist",
         StartingCareerOnly: false,
-        StartingAbilities: ['Parry','Riposte'],
-        StartingConnections: [],
-        StartingMilitarySkills: [['Hand Weapon',1],['Pistol',1]],
-        StartingOccupationalSkills: [['Gambling',1],['Intimidation',1],['Jumping',1]],
+        StartingAbilities: [{ Name: 'Parry' }, { Name: 'Riposte' }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Pistol', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Gambling', Level: 1 }, { Name: 'Intimidation', Level: 1 }, { Name: 'Jumping', Level: 1 }],
         StartingMSkillChoices: 0,
-        StartingMSkillChoicesOptions: [],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Acrobatics',
-            'Fast Draw',
-            'Gunfighter',
-            'Parry',
-            'Precision Strike',
-            'Quick Work',
-            'Riposte',
-            'Roll With It',
-            'Two-Weapon Fighting'
+        Abilities:
+        [
+            { Name: 'Acrobatics' },
+            { Name: 'Fast Draw' },
+            { Name: 'Gunfighter' },
+            { Name: 'Parry' },
+            { Name: 'Precision Strike' },
+            { Name: 'Quick Work' },
+            { Name: 'Riposte' },
+            { Name: 'Roll With It' },
+            { Name: 'Two-Weapon Fighting' }
         ],
-        Connections: [],
-        MilitarySkills: [
-            ['Hand Weapon',4],
-            ['Pistol',4],
-            ['Thrown Weapon',3],
-            ['Unarmed Combat',2]
+        MilitarySkills:
+        [
+            { Name: 'Hand Weapon', Level: 4 },
+            { Name: 'Pistol', Level: 4 },
+            { Name: 'Thrown Weapon', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 2 }
         ],
-        OccupationalSkills: [
-            ['Etiquette',2],
-            ['General Skills',4],
-            ['Law',2],
-            ['Oratory',2],
-            ['Seduction',3],
-            ['Streetwise',2]
-        ],
-        SpellList: []
+        OccupationalSkills:
+        [
+            { Name: 'Etiquette', Level: 2 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Law', Level: 2 },
+            { Name: 'Oratory', Level: 2 },
+            { Name: 'Seduction', Level: 3 },
+            { Name: 'Streetwise', Level: 2 }
+        ]
     },
     {
         Name: "Explorer",
         StartingCareerOnly: false,
-        StartingAbilities: ['Big Game Hunter','Language (any)','Port of Call'],
-        StartingConnections: ['Connections (patron)'],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Detection',1],['Medicine',1],['Navigation',1],['Survival',1]],
+        StartingAbilities: [{ Name: 'Big Game Hunter' }, { Name: 'Language', Type: 'Generic', Property: 'any' }, { Name: 'Port of Call' }],
+        StartingConnections: [{ Name: 'patron', Type: 'Generic' }],
+        StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Medicine', Level: 1 }, { Name: 'Navigation', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Archery',1],['Hand Weapon',1],['Pistol',1],['Rifle',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Archery', Level: 1 }, { Name: 'Hand Weapon', Level: 1 }, { Name: 'Pistol', Level: 1 }, { Name: 'Rifle', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
         StartingSpecial: 'A character who chooses Explorer as one of his two starting careers gains 25 gc each month from his patron for as long as he continues to explore new regions, report back regularly, and bring his patron occasional gifts from exotic places.',
         StartingAssets: ['map case','spyglass'],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 150,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Battle Plan: Reconnaissance',
-            'Big Game Hunter',
-            'Disease Resistance',
-            'Expert Rider',
-            'Language',
-            'Natural Leader',
-            'Poison Resistance',
-            'Port of Call',
-            'Signal Language',
-            'Swift Rider'
+        Abilities:
+        [
+            { Name: 'Battle Plan: Reconnaissance' },
+            { Name: 'Big Game Hunter' },
+            { Name: 'Disease Resistance' },
+            { Name: 'Expert Rider' },
+            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Natural Leader' },
+            { Name: 'Poison Resistance' },
+            { Name: 'Port of Call' },
+            { Name: 'Signal Language' },
+            { Name: 'Swift Rider' }
         ],
-        Connections: ['Connections (wealthy patrons)','Connections (isolated tribe or people)'],
-        MilitarySkills: [
-            ['Archery',2],
-            ['Crossbow',2],
-            ['Hand Weapon',2],
-            ['Pistol',2],
-            ['Rifle',3],
-            ['Thrown Weapon',2],
-            ['Unarmed Combat',2]
+        Connections: [{ Name: 'wealthy patrons', Type: 'Generic' }, { Name: 'isolated tribe or people', Type: 'Generic' }],
+        MilitarySkills:
+        [
+            { Name: 'Archery', Level: 2 },
+            { Name: 'Crossbow', Level: 2 },
+            { Name: 'Hand Weapon', Level: 2 },
+            { Name: 'Pistol', Level: 2 },
+            { Name: 'Rifle', Level: 3 },
+            { Name: 'Thrown Weapon', Level: 2 },
+            { Name: 'Unarmed Combat', Level: 2 }
         ],
-        OccupationalSkills: [
-            ['Command',4],
-            ['Craft (any)',2],
-            ['Cryptography',2],
-            ['Etiquette',2],
-            ['General Skills',4],
-            ['Medicine',2],
-            ['Navigation',4],
-            ['Negotiation',4],
-            ['Rope Use',4],
-            ['Survival',4]
-        ],
-        SpellList: []
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 4 },
+            { Name: 'Craft', Type: 'Generic', Property: 'any', Level: 2 },
+            { Name: 'Cryptography', Level: 2 },
+            { Name: 'Etiquette', Level: 2 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Medicine', Level: 2 },
+            { Name: 'Navigation', Level: 4 },
+            { Name: 'Negotiation', Level: 4 },
+            { Name: 'Rope Use', Level: 4 },
+            { Name: 'Survival', Level: 4 }
+        ]
     },
     {
         Name: "Fell Caller",
         StartingCareerOnly: false,
-        StartingAbilities: ['Fell Call: Signal Call','Fell Call: Sonic Blast'],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Command',1],['Fell Calling',2],['Lore (Trollkin)',1],['Oratory',1]],
+        StartingAbilities: [{ Name: 'Fell Call: Signal Call' }, { Name: 'Fell Call: Sonic Blast' }],
+        StartingOccupationalSkills: 
+        [
+            { Name: 'Command', Level: 1 },
+            { Name: 'Fell Calling', Level: 2 },
+            { Name: 'Lore', Type: 'Specific', Property: 'Trollkin', Level: 1 },
+            { Name: 'Oratory', Level: 1 }
+        ],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Great Weapon',1],['Hand Weapon',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Great Weapon', Level: 1 }, { Name: 'Hand Weapon', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Battle Plan: Call to Action',
-            'Fell Call: Cacophony',
-            'Fell Call: Call of Defiance',
-            'Fell Call: Ground Shaker',
-            'Fell Call: Heroic Ballad',
-            'Fell Call: Reverberation',
-            'Fell Call: Signal Call',
-            'Fell Call: Sonic Blast',
-            'Legacy of Bragg',
-            'Natural Leader'
+        Abilities: 
+        [
+            { Name: 'Battle Plan: Call to Action' },
+            { Name: 'Fell Call: Cacophony' },
+            { Name: 'Fell Call: Call of Defiance' },
+            { Name: 'Fell Call: Ground Shaker' },
+            { Name: 'Fell Call: Heroic Ballad' },
+            { Name: 'Fell Call: Reverberation' },
+            { Name: 'Fell Call: Signal Call' },
+            { Name: 'Fell Call: Sonic Blast' },
+            { Name: 'Legacy of Bragg' },
+            { Name: 'Natural Leader' }
         ],
-        Connections: ['Connections (Kriel)'],
-        MilitarySkills: [
-            ['Great Weapon',3],
-            ['Hand Weapon',3],
-            ['Thrown Weapon',3],
-            ['Unarmed Combat',3]
+        Connections: [{ Name: 'Kriel', Type: 'Specific' }],
+        MilitarySkills: 
+        [
+            { Name: 'Great Weapon', Level: 3 },
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Thrown Weapon', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 3 }
         ],
-        OccupationalSkills: [
-            ['Command',4],
-            ['Fell Calling',4],
-            ['General Skills',4],
-            ['Oratory',4],
-            ['Seduction',2]
-        ],
-        SpellList: []
+        OccupationalSkills: 
+        [
+            { Name: 'Command', Level: 4 },
+            { Name: 'Fell Calling', Level: 4 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Oratory', Level: 4 },
+            { Name: 'Seduction', Level: 2 }
+        ]
     },
     {
         Name: "Field Mechanik",
         StartingCareerOnly: false,
-        StartingAbilities: ['\'Jack Marshal','Bodge','Hit the Deck!'],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Command',1],['Craft (metalworking)',1],['Mechanikal Engineering',1]],
+        StartingAbilities: [{ Name: '\'Jack Marshal' }, { Name: 'Bodge' }, { Name: 'Hit the Deck!' }],
+        StartingOccupationalSkills:
+        [
+            { Name: 'Command', Level: 1 },
+            { Name: 'Craft', Type: 'Specific', Property: 'metalworking', Level: 1 },
+            { Name: 'Mechanikal Engineering', Level: 1 }
+        ],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Hand Weapon',1],['Pistol',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Pistol', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
         StartingAssets: ['mechanik\'s toolkit','light laborjack with up to 200gc of weapons'],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 25,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            '\'Jack Masrhal',
-            'Ace Commander',
-            'Bodge',
-            'Dodger',
-            'Drive: Ancillary Attack',
-            'Drive: Assault',
-            'Drive: Off Road',
-            'Drive: Pronto',
-            'Hit the Deck!',
-            'Iron Sentinel',
-            'Scrounge',
-            'Steamo',
-            'Tune Up'
+        Abilities: 
+        [
+            { Name: '\'Jack Masrhal' },
+            { Name: 'Ace Commander' },
+            { Name: 'Bodge' },
+            { Name: 'Dodger' },
+            { Name: 'Drive: Ancillary Attack' },
+            { Name: 'Drive: Assault' },
+            { Name: 'Drive: Off Road' },
+            { Name: 'Drive: Pronto' },
+            { Name: 'Hit the Deck!' },
+            { Name: 'Iron Sentinel' },
+            { Name: 'Scrounge' },
+            { Name: 'Steamo' },
+            { Name: 'Tune Up' }
         ],
-        Connections: ['Connections (mechaniks organization)'],
-        MilitarySkills: [['Hand Weapon',2],['Pistol',2]],
-        OccupationalSkills: [
-            ['Command',3],
-            ['Craft (any)',4],
-            ['General Skills',4],
-            ['Mechanikal Engineering',4],
-            ['Negotiation',3]
-        ],
-        SpellList: []
+        Connections: [{ Name: 'mechaniks organization', Type: 'Generic' }],
+        MilitarySkills: [{ Name: 'Hand Weapon', Level: 2 }, { Name: 'Pistol', Level: 2 }],
+        OccupationalSkills: 
+        [
+            { Name: 'Command', Level: 3 },
+            { Name: 'Craft', Type: 'Generic', Property: 'any', Level: 4 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Mechanikal Engineering', Level: 4 },
+            { Name: 'Negotiation', Level: 3 }
+        ]
     },
     {
         Name: "Gun Mage",
         StartingCareerOnly: false,
-        StartingAbilities: ['Craft Rune Shot','Fast Reload'],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Detection',1],['Intimidation',1]],
+        StartingAbilities: [{ Name: 'Craft Rune Shot' }, { Name: 'Fast Reload' }],
+        StartingOccupationalSkills: [{ Name: 'Detection', Level: 1}, { Name: 'Intimidation', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Pistol',1],['Rifle',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Pistol', Level: 1 }, { Name: 'Rifle', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: ['Rune Shot: Accuracy','Rune Shot: Brutal','Rune Shot: Thunderbolt'],
-        StartingSpecial: '',
+        StartingSpells: [{ Name: 'Rune Shot: Accuracy' }, { Name: 'Rune Shot: Brutal' }, { Name: 'Rune Shot: Thunderbolt' }],
         StartingAssets: ['ammo bandolier','rune shot casting kit','powder','10 rounds of ammunition'],
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['magelock pistol','magelock rifle'],
         StartingGold: 25,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Arcane Precision',
-            'Craft Rune Shot',
-            'Fast Draw',
-            'Fast Reload',
-            'Gunfighter',
-            'Keen Eyed'
+        Abilities: 
+        [
+            { Name: 'Arcane Precision' },
+            { Name: 'Craft Rune Shot' },
+            { Name: 'Fast Draw' },
+            { Name: 'Fast Reload' },
+            { Name: 'Gunfighter' },
+            { Name: 'Keen Eyed' }
         ],
-        Connections: ['Connections (gun mage order)'],
-        MilitarySkills: [['Pistol',4],['Rifle',4]],
-        OccupationalSkills: [
-            ['General Skills',4],
-            ['Seduction',2]
-        ],
-        SpellList: [
-            {
-                Cost: 1,
-                Spells: [
-                    'Return Fire',
-                    'Rune Shot: Accuracy',
-                    'Rune Shot: Black Penny',
-                    'Rune Shot: Brutal',
-                    'Rune Shot: Iron Rot',
-                    'Rune Shot: Molten Shot',
-                    'Rune Shot: Silencer',
-                    'Rune Shot: Spontaneous Combustion',
-                    'Rune Shot: Thunderbolt'
-                ]
-            },
-            {
-                Cost: 2,
-                Spells: [
-                    'Fire Group',
-                    'Heightened Reflexes',
-                    'Refuge',
-                    'Rune Shot: Fire Beacon',
-                    'Rune Shot: Shadow Fire',
-                    'Rune Shot: Trick Shot',
-                    'Snipe',
-                    'True Sight'
-                ]
-            },
-            {
-                Cost: 3,
-                Spells: [
-                    'Guided Fire',
-                    'Rune Shot: Detonator',
-                    'Rune Shot: Earth Shaker',
-                    'Rune Shot: Phantom Seeker',
-                    'Rune Shot: Spell Craker'
-                ]
-            },
-            {
-                Cost: 4,
-                Spells: [
-                    'Rune Shot: Freeze Fire',
-                    'Rune Shot: Heart Stopper',
-                    'Rune Shot: Momentum'
-                ]
-            }
+        Connections: [{ Name: 'gun mage order', Type: 'Generic' }],
+        MilitarySkills: [{ Name: 'Pistol', Level: 4 }, { Name: 'Rifle', Level: 4 }],
+        OccupationalSkills: [{ Name: 'General Skills', Level: 4 }, { Name: 'Seduction', Level: 2 }],
+        SpellList: 
+        [
+            'Fire Group',
+            'Guided Fire',
+            'Heightened Reflexes',
+            'Refuge',
+            'Return Fire',
+            'Rune Shot: Accuracy',
+            'Rune Shot: Black Penny',
+            'Rune Shot: Brutal',
+            'Rune Shot: Detonator',
+            'Rune Shot: Earth Shaker',
+            'Rune Shot: Fire Beacon',
+            'Rune Shot: Freeze Fire',
+            'Rune Shot: Heart Stopper',
+            'Rune Shot: Iron Rot',
+            'Rune Shot: Molten Shot',
+            'Rune Shot: Momentum',
+            'Rune Shot: Phantom Seeker',
+            'Rune Shot: Shadow Fire',
+            'Rune Shot: Silencer',
+            'Rune Shot: Spell Craker',
+            'Rune Shot: Spontaneous Combustion',
+            'Rune Shot: Thunderbolt',
+            'Rune Shot: Trick Shot',
+            'Snipe',
+            'True Sight'
         ]
     },
     {
         Name: "Highwayman",
         StartingCareerOnly: false,
-        StartingAbilities: ['Ambush','Saddle Shot'],
-        StartingConnections: [],
-        StartingMilitarySkills: [['Hand Weapon',1]],
-        StartingOccupationalSkills: [
-            ['Animal Handling',1],
-            ['Detection',1],
-            ['Intimidation',1],
-            ['Riding',1]
+        StartingAbilities: [{ Name: 'Ambush' }, { Name: 'Saddle Shot' }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }],
+        StartingOccupationalSkills: 
+        [
+            { Name: 'Animal Handling', Level: 1 },
+            { Name: 'Detection', Level: 1 },
+            { Name: 'Intimidation', Level: 1 },
+            { Name: 'Riding', Level: 1 }
         ],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Archery',1],['Crossbow',1],['Pistol',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Archery', Level: 1 }, { Name: 'Crossbow', Level: 1 }, { Name: 'Pistol', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
         StartingAssets: ['mask','riding horse','tack'],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Ambush',
-            'Appraise',
-            'Binding',
-            'Expert Rider',
-            'Fast Draw',
-            'Fast Reload',
-            'Light Cavalry',
-            'Prowl',
-            'Ride-By Attack',
-            'Saddle Shot',
-            'Swift Hunter',
-            'Swift Rider',
-            'Traceless Path',
-            'Two-Weapon Fighting',
-            'Waylay'
+        Abilities: 
+        [
+            { Name: 'Ambush' },
+            { Name: 'Appraise' },
+            { Name: 'Binding' },
+            { Name: 'Expert Rider' },
+            { Name: 'Fast Draw' },
+            { Name: 'Fast Reload' },
+            { Name: 'Light Cavalry' },
+            { Name: 'Prowl' },
+            { Name: 'Ride-By Attack' },
+            { Name: 'Saddle Shot' },
+            { Name: 'Swift Hunter' },
+            { Name: 'Swift Rider' },
+            { Name: 'Traceless Path' },
+            { Name: 'Two-Weapon Fighting' },
+            { Name: 'Waylay' }
         ],
-        Connections: ['Connections (criminal)'],
-        MilitarySkills: [
-            ['Archery',3],
-            ['Crossbow',3],
-            ['Hand Weapon',3],
-            ['Pistol',3],
-            ['Unarmed Combat',3]
+        Connections: [{ Name: 'criminal', Type: 'Generic' }],
+        MilitarySkills: 
+        [
+            { Name: 'Archery', Level: 3 },
+            { Name: 'Crossbow', Level: 3 },
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Pistol', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 3 }
         ],
-        OccupationalSkills: [
-            ['Bribery',2],
-            ['Deception',3],
-            ['Disguise',2],
-            ['General Skills',4],
-            ['Interrogation',2],
-            ['Negotiation',4],
-            ['Rope Use',4],
-            ['Seduction',4],
-            ['Sneak',4],
-            ['Survival',2]
-        ],
-        SpellList: []
+        OccupationalSkills: 
+        [
+            { Name: 'Bribery', Level: 2 },
+            { Name: 'Deception', Level: 3 },
+            { Name: 'Disguise', Level: 2 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Interrogation', Level: 2 },
+            { Name: 'Negotiation', Level: 4 },
+            { Name: 'Rope Use', Level: 4 },
+            { Name: 'Seduction', Level: 4 },
+            { Name: 'Sneak', Level: 4 },
+            { Name: 'Survival', Level: 2 }
+        ]
     },
     {
         Name: "Investigator",
         StartingCareerOnly: false,
-        StartingAbilities: ['Astute','Language (any)'],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [
-            ['Detection',1],
-            ['Forensic Science',1],
-            ['Interrogation',1],
-            ['Law',1],
-            ['Medicine',1],
-            ['Sneak',1]
+        StartingAbilities: [{ Name: 'Astute' }, { Name: 'Language', Type: 'Generic', Property: 'any' }],
+        StartingOccupationalSkills: 
+        [
+            { Name: 'Detection', Level: 1 },
+            { Name: 'Forensic Science', Level: 1 },
+            { Name: 'Interrogation', Level: 1 },
+            { Name: 'Law', Level: 1 },
+            { Name: 'Medicine', Level: 1 },
+            { Name: 'Sneak', Level: 1 }
         ],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Hand Weapon',1],['Pistol',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Pistol', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
         StartingSpecial: 'A character who chooses Investigator as one of his two starting careers gains the Hyper Perception Intellectual archetype benefit.',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 100,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: ['Hyper Perception'],
-        Abilities: [
-            'Anatomical Precision',
-            'Astute',
-            'Iron Will',
-            'Language',
-            'Prowl',
-            'Sign Language',
-            'Truth Reader'
+        FreeBenefits: [{ Name: 'Hyper Perception' }],
+        Abilities: 
+        [
+            { Name: 'Anatomical Precision' },
+            { Name: 'Astute' },
+            { Name: 'Iron Will' },
+            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Prowl' },
+            { Name: 'Sign Language' },
+            { Name: 'Truth Reader' }
         ],
-        Connections: ['Connections (any)'],
-        MilitarySkills: [['Hand Weapon',2],['Pistol',2],['Unarmed Combat',2]],
-        OccupationalSkills: [
-            ['Cryptography',4],
-            ['Deception',4],
-            ['Etiquette',2],
-            ['Forensic Science',4],
-            ['General Skills',4],
-            ['Interrogation',4],
-            ['Law',4],
-            ['Medicine',2],
-            ['Negotiation',3],
-            ['Research',4],
-            ['Sneak',4],
-            ['Streetwise',4]
-        ],
-        SpellList: []
+        Connections: [{ Name: 'any', Type: 'Generic' }],
+        MilitarySkills: [{ Name: 'Hand Weapon', Level: 2 }, { Name: 'Pistol', Level: 2 }, { Name: 'Unarmed Combat', Level: 2 }],
+        OccupationalSkills: 
+        [
+            { Name: 'Cryptography', Level: 4 },
+            { Name: 'Deception', Level: 4 },
+            { Name: 'Etiquette', Level: 2 },
+            { Name: 'Forensic Science', Level: 4 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Interrogation', Level: 4 },
+            { Name: 'Law', Level: 4 },
+            { Name: 'Medicine', Level: 2 },
+            { Name: 'Negotiation', Level: 3 },
+            { Name: 'Research', Level: 4 },
+            { Name: 'Sneak', Level: 4 },
+            { Name: 'Streetwise', Level: 4 }
+        ]
     },
     {
         Name: "Iron Fang",
         StartingCareerOnly: true,
-        StartingAbilities: ['Fast Rearm (Blasting Pike)','Specialization (Blasting Pike)'],
-        StartingConnections: ['Connections (Khadoran military)'],
-        StartingMilitarySkills: [['Great Weapon',1],['Sheild',1]],
-        StartingOccupationalSkills: [['Command',1],['Survival',1]],
+        StartingAbilities: [{ Name: 'Fast Rearm', Type: 'Specific', Property: 'Blasting Pike' }, { Name: 'Specialization', Type: 'Specific', Property: 'Blasting Pike' }],
+        StartingConnections: [{ Name: 'Khadoran military', Type: 'Specific' }],
+        StartingMilitarySkills: [{ Name: 'Great Weapon', Level: 1 }, { Name: 'Sheild', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Command', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 0,
-        StartingMSkillChoicesOptions: [],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
         StartingSpecial: 'A character starting with the Iron Fang career must choose between Aristocrat, Military Officer, Soldier, or Warcaster for his second career.',
         StartingAssets: ['blasting pike','spear head','10 blasting heads','Iron Fang full plate','shield'],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 25,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: ['Aristocrat','Military Officer','Soldier','Warcaster'],
-        FreeBenefits: [],
-        Abilities: [
-            'Defensive Line',
-            'Fast Arm (Blasting Pike)',
-            'Hyper Awareness',
-            'Load Bearing',
-            'Precision Strike',
-            'Relentless Charge',
-            'Rock Solid',
-            'Specialization (Blasting Pike)',
-            'Swift Rider'
+        Abilities: 
+        [
+            { Name: 'Defensive Line' },
+            { Name: 'Fast Arm', Property: 'Blasting Pike' },
+            { Name: 'Hyper Awareness' },
+            { Name: 'Load Bearing' },
+            { Name: 'Precision Strike' },
+            { Name: 'Relentless Charge' },
+            { Name: 'Rock Solid' },
+            { Name: 'Specialization', Property: 'Blasting Pike' },
+            { Name: 'Swift Rider' }
         ],
-        Connections: ['Connections (Khadoran military)'],
-        MilitarySkills: [['Great Weapon',4],['Lance',4],['Shield',4],['Unarmed Combat',3]],
-        OccupationalSkills: [['Command',4],['General Skills',4],['Survival',2]],
-        SpellList: []
+        Connections: [{ Name: 'Khadoran military', Type: 'Specific' }],
+        MilitarySkills: [{ Name: 'Great Weapon', Level: 4 }, { Name: 'Lance', Level: 4 }, { Name: 'Shield', Level: 4 }, { Name: 'Unarmed Combat', Level: 3 }],
+        OccupationalSkills: [{ Name: 'Command', Level: 4 }, { Name: 'General Skills', Level: 4 }, { Name: 'Survival', Level: 2 }]
     },
     {
         Name: "Knight",
         StartingCareerOnly: false,
-        StartingAbilities: ['Cleave','Defender'],
-        StartingConnections: ['Connections (knightly order)'],
-        StartingMilitarySkills: [['Great Weapon',1],['Hand Weapon',1],['Sheild',1]],
-        StartingOccupationalSkills: [['Command',1],['Etiquette',1],['Lore (knightly order)',1]],
-        StartingMSkillChoices: 0,
-        StartingMSkillChoicesOptions: [],
-        StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
-        StartingAssets: [],
-        StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
-        StartingGold: 100,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Cavalry Charge',
-            'Cleave',
-            'Combat Rider',
-            'Defender',
-            'Defensive Line',
-            'Expert Rider',
-            'Iron Will',
-            'Load Bearing',
-            'Natural Leader',
-            'Precision Strike',
-            'Press the Attack',
-            'Relentless Charge',
-            'Ride-By Attack',
-            'Shield Slam'
+        StartingAbilities: [{ Name: 'Cleave' }, { Name: 'Defender' }],
+        StartingConnections: [{ Name: 'knightly order', Type: 'Generic' }],
+        StartingMilitarySkills: [{ Name: 'Great Weapon', Level: 1 }, { Name: 'Hand Weapon', Level: 1 }, { Name: 'Sheild', Level: 1 }],
+        StartingOccupationalSkills: 
+        [
+            { Name: 'Command', Level: 1 },
+            { Name: 'Etiquette', Level: 1 },
+            { Name: 'Lore', Type: 'Generic', Property: 'knightly order', Level: 1 }
         ],
-        Connections: ['Connections (knightly order)'],
-        MilitarySkills: [['Great Weapon',4],['Hand Weapon',4],['Lance',4],['Shield',4],['Unarmed Combat',3]],
-        OccupationalSkills: [['Command',4],['Etiquette',2],['General Skills',4],['Law',2]],
-        SpellList: []
+        StartingMSkillChoices: 0,
+        StartingOSkillChoices: 0,
+        StartingAssetChoices: 0,
+        StartingGold: 100,
+        Abilities: 
+        [
+            { Name: 'Cavalry Charge' },
+            { Name: 'Cleave' },
+            { Name: 'Combat Rider' },
+            { Name: 'Defender' },
+            { Name: 'Defensive Line' },
+            { Name: 'Expert Rider' },
+            { Name: 'Iron Will' },
+            { Name: 'Load Bearing' },
+            { Name: 'Natural Leader' },
+            { Name: 'Precision Strike' },
+            { Name: 'Press the Attack' },
+            { Name: 'Relentless Charge' },
+            { Name: 'Ride-By Attack' },
+            { Name: 'Shield Slam' }
+        ],
+        Connections: [{ Name: 'knightly order', Type: 'Generic' }],
+        MilitarySkills: 
+        [
+            { Name: 'Great Weapon', Level: 4 },
+            { Name: 'Hand Weapon', Level: 4 },
+            { Name: 'Lance', Level: 4 },
+            { Name: 'Shield', Level: 4 },
+            { Name: 'Unarmed Combat', Level: 3 }
+        ],
+        OccupationalSkills: 
+        [
+            { Name: 'Command', Level: 4 },
+            { Name: 'Etiquette', Level: 2 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Law', Level: 2 }
+        ]
     },
     {
         Name: "Mage Hunter",
         StartingCareerOnly: false,
-        StartingAbilities: ['Arcane Assassin','Iron Will'],
-        StartingConnections: ['Connections (Retribution of Scyrah)'],
-        StartingMilitarySkills: [['Hand Weapon',1]],
-        StartingOccupationalSkills: [['Climbing',1],['Jumping',1],['Sneak',1],['Tracking',1]],
+        StartingAbilities: [{ Name: 'Arcane Assassin' }, { Name: 'Iron Will' }],
+        StartingConnections: [{ Name: 'Retribution of Scyrah', Type: 'Specific' }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Climbing', Level: 1 }, { Name: 'Jumping', Level: 1 }, { Name: 'Sneak', Level: 1 }, { Name: 'Tracking', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Archery',1],['Crossbow',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Archery', Level: 1 }, { Name: 'Crossbow', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Arcane Assassin',
-            'Camouflage',
-            'Crackshot',
-            'Crossbowman',
-            'Fast Draw',
-            'Fast Reload',
-            'Iron Will',
-            'Mage Killer',
-            'Parry',
-            'Quick Work',
-            'Shadow Magic',
-            'Traceless Path'
+        Abilities: 
+        [
+            { Name: 'Arcane Assassin' },
+            { Name: 'Camouflage' },
+            { Name: 'Crackshot' },
+            { Name: 'Crossbowman' },
+            { Name: 'Fast Draw' },
+            { Name: 'Fast Reload' },
+            { Name: 'Iron Will' },
+            { Name: 'Mage Killer' },
+            { Name: 'Parry' },
+            { Name: 'Quick Work' },
+            { Name: 'Shadow Magic' },
+            { Name: 'Traceless Path' }
         ],
-        Connections: ['Connections (Retribution of Scyrah)'],
-        MilitarySkills: [['Archery',4],['Crossbow',4],['Hand Weapon',4],['Thrown Weapon',2]],
-        OccupationalSkills: [
-            ['Deception',2],
-            ['Disguise',2],
-            ['General Skills',4],
-            ['Rope Use',3],
-            ['Sneak',4],
-            ['Survival',2],
-            ['Tracking',4]
+        Connections: [{ Name: 'Retribution of Scyrah', Type: 'Specific' }],
+        MilitarySkills: 
+        [
+            { Name: 'Archery', Level: 4 },
+            { Name: 'Crossbow', Level: 4 },
+            { Name: 'Hand Weapon', Level: 4 },
+            { Name: 'Thrown Weapon', Level: 2 }
         ],
-        SpellList: []
+        OccupationalSkills: 
+        [
+            { Name: 'Deception', Level: 2 },
+            { Name: 'Disguise', Level: 2 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Rope Use', Level: 3 },
+            { Name: 'Sneak', Level: 4 },
+            { Name: 'Survival', Level: 2 },
+            { Name: 'Tracking', Level: 4 }
+        ]
     },
     {
         Name: "Man-at-Arms",
         StartingCareerOnly: false,
-        StartingAbilities: ['Defensive Line','Shield Guard'],
-        StartingConnections: [],
-        StartingMilitarySkills: [['Great Weapon',1],['Shield',1]],
-        StartingOccupationalSkills: [['Command',1],['Detection',1]],
+        StartingAbilities: [{ Name: 'Defensive Line' }, { Name: 'Shield Guard' }],
+        StartingMilitarySkills: [{ Name: 'Great Weapon', Level: 1 }, { Name: 'Shield', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Command', Level: 1 }, { Name: 'Detection', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Hand Weapon',1],['Pistol',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Pistol', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 100,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Bodyguard',
-            'Cleave',
-            'Defensive Line',
-            'Girded',
-            'Iron Will',
-            'Load Bearing',
-            'Retaliatory Strike',
-            'Set Defense',
-            'Shield Guard',
-            'Shield Slam',
-            'Specialization (Halberd)',
-            'Specialization (Spear)'
+        Abilities: 
+        [
+            { Name: 'Bodyguard' },
+            { Name: 'Cleave' },
+            { Name: 'Defensive Line' },
+            { Name: 'Girded' },
+            { Name: 'Iron Will' },
+            { Name: 'Load Bearing' },
+            { Name: 'Retaliatory Strike' },
+            { Name: 'Set Defense' },
+            { Name: 'Shield Guard' },
+            { Name: 'Shield Slam' },
+            { Name: 'Specialization', Type: 'Specific', Property: 'Halberd' },
+            { Name: 'Specialization', Type: 'Specific', Property: 'Spear' }
         ],
-        Connections: ['Connections (employer)'],
-        MilitarySkills: [
-            ['Great Weapon',4],
-            ['Hand Weapon',3],
-            ['Pistol',3],
-            ['Shield',4],
-            ['Unarmed Combat',3]
+        Connections: [{ Name: 'employer', Type: 'Generic' }],
+        MilitarySkills: 
+        [
+            { Name: 'Great Weapon', Level: 4 },
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Pistol', Level: 3 },
+            { Name: 'Shield', Level: 4 },
+            { Name: 'Unarmed Combat', Level: 3 }
         ],
-        OccupationalSkills: [
-            ['Command',3],
-            ['Craft (metalworking)',2],
-            ['General Skills',4]
-        ],
-        SpellList: []
+        OccupationalSkills: 
+        [
+            { Name: 'Command', Level: 3 },
+            { Name: 'Craft', Type: 'Specific', Property: 'metalworking', Level: 2 },
+            { Name: 'General Skills', Level: 4 }
+        ]
     },
     {
         Name: "Military Officer",
         StartingCareerOnly: false,
-        StartingAbilities: ['Battle Plan: Call to Action','Natural Leader','Team Leader'],
-        StartingConnections: [],
-        StartingMilitarySkills: [['Hand Weapon',1]],
-        StartingOccupationalSkills: [['Command',1],['Medicine',1],['Navigation',1]],
+        StartingAbilities: [{ Name: 'Battle Plan: Call to Action' }, { Name: 'Natural Leader' }, { Name: 'Team Leader' }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Command', Level: 1 }, { Name: 'Medicine', Level: 1 }, { Name: 'Navigation', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Great Weapon',1],['Pistol',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Great Weapon', Level: 1 }, { Name: 'Pistol', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
         StartingAssets: ['officer\'s uniform'],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 100,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            '\'Jack Marshal',
-            'Ace Commander',
-            'Battle Commander',
-            'Battle Plan: Call to Action',
-            'Battle Plan: Coordinated Strike',
-            'Battle Plan: Desperate Pace',
-            'Battle Plan: Go to Ground',
-            'Cavalry Charge',
-            'Defender',
-            'Drive: Assault',
-            'Drive: Pronto',
-            'Expert Rider',
-            'Good Breeding',
-            'Natural Leader',
-            'Port of Call',
-            'Ride-By Attack',
-            'Saddle Shot',
-            'Signal Language',
-            'Team Leader'
+        Abilities: 
+        [
+            { Name: '\'Jack Marshal' },
+            { Name: 'Ace Commander' },
+            { Name: 'Battle Commander' },
+            { Name: 'Battle Plan: Call to Action' },
+            { Name: 'Battle Plan: Coordinated Strike' },
+            { Name: 'Battle Plan: Desperate Pace' },
+            { Name: 'Battle Plan: Go to Ground' },
+            { Name: 'Cavalry Charge' },
+            { Name: 'Defender' },
+            { Name: 'Drive: Assault' },
+            { Name: 'Drive: Pronto' },
+            { Name: 'Expert Rider' },
+            { Name: 'Good Breeding' },
+            { Name: 'Natural Leader' },
+            { Name: 'Port of Call' },
+            { Name: 'Ride-By Attack' },
+            { Name: 'Saddle Shot' },
+            { Name: 'Signal Language' },
+            { Name: 'Team Leader' }
         ],
-        Connections: ['Connections (mercenary company or kingdom\'s military)'],
-        MilitarySkills: [
-            ['Great Weapon',4],
-            ['Hand Weapon',4],
-            ['Pistol',4]
+        Connections: [{ Name: 'mercenary company or kingdom\'s military', Type: 'Generic' }],
+        MilitarySkills: 
+        [
+            { Name: 'Great Weapon', Level: 4 },
+            { Name: 'Hand Weapon', Level: 4 },
+            { Name: 'Pistol', Level: 4 }
         ],
-        OccupationalSkills: [
-            ['Command',4],
-            ['Cryptography',4],
-            ['Etiquette',4],
-            ['General Skills',4],
-            ['Interrogation',4],
-            ['Law',4],
-            ['Medicine',4],
-            ['Navigation',4],
-            ['Oratory',4]
-        ],
-        SpellList: []
+        OccupationalSkills: 
+        [
+            { Name: 'Command', Level: 4 },
+            { Name: 'Cryptography', Level: 4 },
+            { Name: 'Etiquette', Level: 4 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Interrogation', Level: 4 },
+            { Name: 'Law', Level: 4 },
+            { Name: 'Medicine', Level: 4 },
+            { Name: 'Navigation', Level: 4 },
+            { Name: 'Oratory', Level: 4 }
+        ]
     },
     {
         Name: "Pirate",
         StartingCareerOnly: false,
-        StartingAbilities: ['Gang','Steady','Specialization (Cutlass)'],
-        StartingConnections: [],
-        StartingMilitarySkills: [['Hand Weapon',1]],
-        StartingOccupationalSkills: [['Climbing',1],['Intimidation',1],['Sailing',1],['Swimming',1]],
+        StartingAbilities: [{ Name: 'Gang' }, { Name: 'Steady' }, { Name: 'Specialization', Type: 'Specific', Property: 'Cutlass' }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Levels: 1 }],
+        StartingOccupationalSkills:
+        [
+            { Name: 'Climbing', Level: 1 },
+            { Name: 'Intimidation', Level: 1 },
+            { Name: 'Sailing', Level: 1 },
+            { Name: 'Swimming', Level: 1 }
+        ],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Pistol',1],['Thrown Weapon',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Pistol', Level: 1 }, { Name: 'Thrown Weapon', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Binding',
-            'Disease Resistance',
-            'Gang',
-            'Gunfighter',
-            'Head-Butt',
-            'Languages',
-            'Port of Call',
-            'Quick Work',
-            'Specialization (Cutlass)',
-            'Steady',
-            'Sucker!',
-            'Waylay'
+        Abilities: 
+        [
+            { Name: 'Binding' },
+            { Name: 'Disease Resistance' },
+            { Name: 'Gang' },
+            { Name: 'Gunfighter' },
+            { Name: 'Head-Butt' },
+            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Port of Call' },
+            { Name: 'Quick Work' },
+            { Name: 'Specialization', Type: 'Specific', Property: 'Cutlass' },
+            { Name: 'Steady' },
+            { Name: 'Sucker!' },
+            { Name: 'Waylay' }
         ],
-        Connections: ['Connections (pirate crew)'],
-        MilitarySkills: [
-            ['Hand Weapon',3],
-            ['Light Artillery',2],
-            ['Pistol',3],
-            ['Rifle',2],
-            ['Thrown Weapon',3],
-            ['Unarmed Combat',3]
+        Connections: [{ Name: 'pirate crew', Type: 'Generic' }],
+        MilitarySkills:
+        [
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Light Artillery', Level: 2 },
+            { Name: 'Pistol', Level: 3 },
+            { Name: 'Rifle', Level: 2 },
+            { Name: 'Thrown Weapon', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 3 }
         ],
-        OccupationalSkills: [
-            ['Command',2],
-            ['Deception',3],
-            ['General Skills',4],
-            ['Navigation',4],
-            ['Negotiation',2],
-            ['Rope Use',4],
-            ['Sailing',4]
-        ],
-        SpellList: []
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 2 },
+            { Name: 'Deception', Level: 3 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Navigation', Level: 4 },
+            { Name: 'Negotiation', Level: 2 },
+            { Name: 'Rope Use', Level: 4 },
+            { Name: 'Sailing', Level: 4 }
+        ]
     },
     {
         Name: "Pistoleer",
         StartingCareerOnly: false,
-        StartingAbilities: ['Fast Draw','Gunfighter','Return Fire'],
-        StartingConnections: [],
-        StartingMilitarySkills: [['Pistol',1]],
-        StartingOccupationalSkills: [['Detection',1],['Intimidation',1],['Sneak',1]],
+        StartingAbilities: [{ Name: 'Fast Draw' }, { Name: 'Gunfighter' }, { Name: 'Return Fire' }],
+        StartingMilitarySkills: [{ Name: 'Pistol', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Intimidation', Level: 1 }, { Name: 'Sneak', Level: 1 }],
         StartingMSkillChoices: 0,
-        StartingMSkillChoicesOptions: [],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
         StartingAssets: ['ammo bandolier','ammunition for 10 shots'],
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['hand cannon','pair of repeating pistols'],
         StartingGold: 50,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Chain Attack: Pin Down',
-            'Dodger',
-            'Fast Draw',
-            'Fast Reload',
-            'Gunfighter',
-            'Return Fire',
-            'Swift Hunter',
-            'Targeteer',
-            'Two-Weapon Fighting'
+        Abilities:
+        [
+            { Name: 'Chain Attack: Pin Down' },
+            { Name: 'Dodger' },
+            { Name: 'Fast Draw' },
+            { Name: 'Fast Reload' },
+            { Name: 'Gunfighter' },
+            { Name: 'Return Fire' },
+            { Name: 'Swift Hunter' },
+            { Name: 'Targeteer' },
+            { Name: 'Two-Weapon Fighting' }
         ],
-        Connections: [],
-        MilitarySkills: [['Pistol',4]],
-        OccupationalSkills: [
-            ['Craft (gunsmithing)',2],
-            ['General Skills',4],
-            ['Sneak',3]
-        ],
-        SpellList: []
+        MilitarySkills: [{ Name: 'Pistol', Level: 4 }],
+        OccupationalSkills:
+        [
+            { Name: 'Craft (gunsmithing)', Type: 'Specific', Property: 'gunsmithing', Level: 2 },
+            { Name: 'General Skills', Level: 4, },
+            { Name: 'Sneak', Level: 3 }
+        ]
     },
     {
         Name: "Priest of Menoth",
         StartingCareerOnly: false,
-        StartingAbilities: ['Dispel'],
-        StartingConnections: ['Connections (Menite temple)'],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Lore (Menite faith)',1],['Oratory',1]],
+        StartingAbilities: [{ Name: 'Dispel' }],
+        StartingConnections: [{ Name: 'Menite temple', Type: 'Generic' }],
+        StartingOccupationalSkills: [{ Name: 'Lore', Type: 'Specific', Property: 'Menite faith', Level: 1 }, { Name: 'Oratory', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Great Weapon',1],['Hand Weapon',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Great Weapon', Level: 1 }, { Name: 'Hand Weapon', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
         StartingSpells: ['Guided Blade','Ignite','Immolation'],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Choir',
-            'Language',
-            'Natural Leader',
-            'Rallying Cry',
-            'University Education'
+        Abilities:
+        [
+            { Name: 'Choir' },
+            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Natural Leader' },
+            { Name: 'Rallying Cry' },
+            { Name: 'University Education' }
         ],
-        Connections: ['Connections (character\'s church)'],
-        MilitarySkills: [['Great Weapon',3],['Hand Weapon',3],['Shield',2]],
-        OccupationalSkills: [
-            ['Command',2],
-            ['Cryptography',2],
-            ['Etiquette',4],
-            ['General Skills',4],
-            ['Law',4],
-            ['Medicine',4],
-            ['Negotiation',4],
-            ['Oratory',4],
-            ['Research',4]
+        Connections: [{ Name: 'character\'s church', Type: 'Generic' }],
+        MilitarySkills: [{ Name: 'Great Weapon', Level: 3 }, { Name: 'Hand Weapon', Level: 3 }, { Name: 'Shield', Level: 2 }],
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 2 },
+            { Name: 'Cryptography', Level: 2 },
+            { Name: 'Etiquette', Level: 4 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Law', Level: 4 },
+            { Name: 'Medicine', Level: 4 },
+            { Name: 'Negotiation', Level: 4 },
+            { Name: 'Oratory', Level: 4 },
+            { Name: 'Research', Level: 4 }
         ],
-        SpellList: [
-            {
-                Cost: 1,
-                Spells: [
-                    'Flames of Wrath',
-                    'Guided Blade',
-                    'Influence',
-                    'Protection from Fire'
-                ]
-            },
-            {
-                Cost: 2,
-                Spells: [
-                    'Ashen Cloud',
-                    'Banishing Ward',
-                    'Hymn of Battle',
-                    'Hymn of Passage',
-                    'Ignite',
-                    'Immolation',
-                    'Righteous Flames',
-                    'Vision',
-                    'Wall of Fire'
-                ]
-            },
-            {
-                Cost: 3,
-                Spells: [
-                    'Cleansing Fire',
-                    'Crevasse',
-                    'Crusaders Call',
-                    'Hex Blast',
-                    'Lamentation',
-                    'Purification',
-                    'True Path'
-                ]
-            },
-            {
-                Cost: 4,
-                Spells: [
-                    'Ashes to Ashes',
-                    'Blazing Effigy',
-                    'Hymn of Shielding'
-                ]
-            }
+        SpellList:
+        [
+            'Ashen Cloud',
+            'Ashes to Ashes',
+            'Banishing Ward',
+            'Blazing Effigy',
+            'Cleansing Fire',
+            'Crevasse',
+            'Crusaders Call',
+            'Flames of Wrath',
+            'Guided Blade',
+            'Hex Blast',
+            'Hymn of Battle',
+            'Hymn of Passage',
+            'Hymn of Shielding',
+            'Ignite',
+            'Immolation',
+            'Influence',
+            'Lamentation',
+            'Protection from Fire',
+            'Purification',
+            'Righteous Flames',
+            'True Path',
+            'Vision',
+            'Wall of Fire'
         ]
     },
     {
         Name: "Priest of Morrow",
         StartingCareerOnly: false,
-        StartingAbilities: ['Empower'],
-        StartingConnections: ['Connections (Morrowan church)'],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Lore (Morrowan faith)',1],['Medicine',1]],
+        StartingAbilities: [{ Name: 'Empower' }],
+        StartingConnections: [{ Name: 'Morrowan church', Type: 'Generic' }],
+        StartingOccupationalSkills: [{ Name: 'Lore', Type: 'Specific', Property: 'Morrowan faith', Level: 1 }, { Name: 'Medicine', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Great Weapon',1],['Hand Weapon',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Great Weapon', Level: 1 }, { Name: 'Hand Weapon', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
         StartingSpells: ['Blade of Radiance','Solovin\'s Boon','True Sight'],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Choir',
-            'Language',
-            'Natural Leader',
-            'Rallying Cry',
-            'University Education'
+        Abilities:
+        [
+            { Name: 'Choir' },
+            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Natural Leader' },
+            { Name: 'Rallying Cry' },
+            { Name: 'University Education' }
         ],
-        Connections: ['Connections (character\'s church)'],
-        MilitarySkills: [['Great Weapon',3],['Hand Weapon',3],['Shield',2]],
-        OccupationalSkills: [
-            ['Command',2],
-            ['Cryptography',2],
-            ['Etiquette',4],
-            ['General Skills',4],
-            ['Law',4],
-            ['Medicine',4],
-            ['Negotiation',4],
-            ['Oratory',4],
-            ['Research',4]
+        Connections: [{ Name: 'character\'s church', Type: 'Generic' }],
+        MilitarySkills: [{ Name: 'Great Weapon', Level: 3 }, { Name: 'Hand Weapon', Level: 3 }, { Name: 'Shield', Level: 2 }],
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 2 },
+            { Name: 'Cryptography', Level: 2 },
+            { Name: 'Etiquette', Level: 4 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Law', Level: 4 },
+            { Name: 'Medicine', Level: 4 },
+            { Name: 'Negotiation', Level: 4 },
+            { Name: 'Oratory', Level: 4 },
+            { Name: 'Research', Level: 4 }
         ],
-        SpellList: [
-            {
-                Cost: 1,
-                Spells: [
-                    'Blessing of Health',
-                    'Guided Blade',
-                    'Light in the Darkness',
-                    'Solovin\'s Boon'
-                ]
-            },
-            {
-                Cost: 2,
-                Spells: [
-                    'Aura of Protection',
-                    'Banishing Ward',
-                    'Blade of Radiance',
-                    'Blessings of War',
-                    'Eyes of Truth',
-                    'Hand of Fate',
-                    'Shield of Faith',
-                    'Triage',
-                    'True Sight'
-                ]
-            },
-            {
-                Cost: 3,
-                Spells: [
-                    'Blessing of Morrow',
-                    'Crusader\'s Call',
-                    'Daylight',
-                    'Prayer of Guidance',
-                    'Sanguine Blessing',
-                    'Sunburst',
-                    'True Path'
-                ]
-            },
-            {
-                Cost: 4,
-                Spells: [
-                    'Force of Faith',
-                    'Heal',
-                    'Star Fire'
-                ]
-            }
+        SpellList:
+        [
+            'Aura of Protection',
+            'Banishing Ward',
+            'Blade of Radiance',
+            'Blessing of Health',
+            'Blessing of Morrow',
+            'Blessings of War',
+            'Crusader\'s Call',
+            'Daylight',
+            'Eyes of Truth',
+            'Force of Faith',
+            'Guided Blade',
+            'Hand of Fate',
+            'Heal',
+            'Light in the Darkness',
+            'Prayer of Guidance',
+            'Sanguine Blessing',
+            'Shield of Faith',
+            'Solovin\'s Boon',
+            'Star Fire',
+            'Sunburst',
+            'Triage',
+            'True Path',
+            'True Sight'
         ]
     },
     {
         Name: "Ranger",
         StartingCareerOnly: false,
-        StartingAbilities: ['Camouflage','Pathfinder'],
-        StartingConnections: [],
-        StartingMilitarySkills: [['Hand Weapon',1]],
-        StartingOccupationalSkills: [['Detection',1],['Sneak',1],['Survival',1],['Tracking',1]],
+        StartingAbilities: [{ Name: 'Camouflage' }, { Name: 'Pathfinder' }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }],
+        StartingOccupationalSkills:
+        [
+            { Name: 'Detection', Level: 1 },
+            { Name: 'Sneak', Level: 1 },
+            { Name: 'Survival', Level: 1 },
+            { Name: 'Tracking', Level: 1 }
+        ],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Archery',1],['Crossbow',1],['Pistol,1'],['Rifle',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Archery', Level: 1 }, { Name: 'Crossbow', Level: 1 }, { Name: 'Pistol', Level: 1 }, { Name: 'Rifle', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Battle Plan: Go to Ground',
-            'Battle Plan: Reconnaissance',
-            'Battle Plan: Shadow Camouflage',
-            'Disease Resistance',
-            'Fast Reload',
-            'Light Cavalry',
-            'Night Fighter',
-            'Pathfinder',
-            'Prowl',
-            'Saddle Shot',
-            'Signal Language',
-            'Swift Hunter',
-            'Swift Rider',
-            'Traceless Path'
+        Abilities:
+        [
+            { Name: 'Battle Plan: Go to Ground' },
+            { Name: 'Battle Plan: Reconnaissance' },
+            { Name: 'Battle Plan: Shadow Camouflage' },
+            { Name: 'Disease Resistance' },
+            { Name: 'Fast Reload' },
+            { Name: 'Light Cavalry' },
+            { Name: 'Night Fighter' },
+            { Name: 'Pathfinder' },
+            { Name: 'Prowl' },
+            { Name: 'Saddle Shot' },
+            { Name: 'Signal Language' },
+            { Name: 'Swift Hunter' },
+            { Name: 'Swift Rider' },
+            { Name: 'Traceless Path' }
         ],
-        Connections: [],
-        MilitarySkills: [
-            ['Archery',4],
-            ['Crossbow',3],
-            ['Hand Weapon',2],
-            ['Pistol',2],
-            ['Rifle',4],
-            ['Thrown Weapon',4],
-            ['Unarmed Combat',3]
+        MilitarySkills:
+        [
+            { Name: 'Archery', Level: 4 },
+            { Name: 'Crossbow', Level: 3 },
+            { Name: 'Hand Weapon', Level: 2 },
+            { Name: 'Pistol', Level: 2 },
+            { Name: 'Rifle', Level: 4 },
+            { Name: 'Thrown Weapon', Level: 4 },
+            { Name: 'Unarmed Combat', Level: 3 }
         ],
-        OccupationalSkills: [
-            ['Command',3],
-            ['Craft (any)',2],
-            ['Cryptography',1],
-            ['General Skills',4],
-            ['Medicine',3],
-            ['Navigation',4],
-            ['Rope Use',4],
-            ['Sneak',4],
-            ['Survival',4],
-            ['Tracking',4]
-        ],
-        SpellList: []
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 3 },
+            { Name: 'Craft', Type: 'Generic', Property: 'any', Level: 2 },
+            { Name: 'Cryptography', Level: 1 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Medicine', Level: 3 },
+            { Name: 'Navigation', Level: 4 },
+            { Name: 'Rope Use', Level: 4 },
+            { Name: 'Sneak', Level: 4 },
+            { Name: 'Survival', Level: 4 },
+            { Name: 'Tracking', Level: 4 }
+        ]
     },
     {
         Name: "Rifleman",
         StartingCareerOnly: false,
-        StartingAbilities: ['Crackshot','Dual Shot','Marksman'],
-        StartingConnections: [],
-        StartingMilitarySkills: [['Rifle',1]],
-        StartingOccupationalSkills: [['Climbing',1],['Detection',1],['Survival',1]],
+        StartingAbilities: [{ Name: 'Crackshot' }, { Name: 'Dual Shot' }, { Name: 'Marksman' }],
+        StartingMilitarySkills: [{ Name: 'Rifle', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Climbing', Level: 1 }, { Name: 'Detection', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 0,
-        StartingMSkillChoicesOptions: [],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
         StartingAssets: ['ammo bandolier','powder','ammunition for 10 shots'],
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['heavy rifle','repeating long rifle'],
         StartingGold: 50,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Crackshot',
-            'Dual Shot',
-            'Fast Reload',
-            'Marksman',
-            'Night Fighter',
-            'Return Fire',
-            'Saddle Shot',
-            'Sniper',
-            'Swift Hunter',
-            'Targeteer'
+        Abilities:
+        [
+            { Name: 'Crackshot' },
+            { Name: 'Dual Shot' },
+            { Name: 'Fast Reload' },
+            { Name: 'Marksman' },
+            { Name: 'Night Fighter' },
+            { Name: 'Return Fire' },
+            { Name: 'Saddle Shot' },
+            { Name: 'Sniper' },
+            { Name: 'Swift Hunter' },
+            { Name: 'Targeteer' }
         ],
-        Connections: [],
-        MilitarySkills: [['Rifle',4]],
-        OccupationalSkills: [['Craft (gunsmithing)',4],['General Skills',4],['Survival',3]],
-        SpellList: []
+        MilitarySkills: [{ Name: 'Rifle', Level: 4 }],
+        OccupationalSkills:
+        [
+            { Name: 'Craft', Type: 'Specific', Property: 'gunsmithing', Level: 4 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Survival', Level: 3 }
+        ]
     },
     {
         Name: "Soldier",
         StartingCareerOnly: false,
-        StartingAbilities: ['Find Cover','Sentry'],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Detection',1],['Driving',1],['Medicine',1],['Survival',1]],
+        StartingAbilities: [{ Name: 'Find Cover' }, { Name: 'Sentry' }],
+        StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Driving', Level: 1 }, { Name: 'Medicine', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 2,
-        StartingMSkillChoicesOptions: [
-            ['Hand Weapon',1],
-            ['Pistol',1],
-            ['Crossbow',1],
-            ['Great Weapon',1],
-            ['Rifle',1],
-            ['Thrown Weapon',1]
+        StartingMSkillChoicesOptions: 
+        [
+            { Name: 'Hand Weapon', Level: 1 },
+            { Name: 'Pistol', Level: 1 },
+            { Name: 'Crossbow', Level: 1 },
+            { Name: 'Great Weapon', Level: 1 },
+            { Name: 'Rifle', Level: 1 },
+            { Name: 'Thrown Weapon', Level: 1 }
         ],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 100,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
         Abilities: [
-            '\'Jack Marshal',
-            'Cautious Advance',
-            'Cavalry Charge',
-            'Disease Resistance',
-            'Fast Reload',
-            'Find Cover',
-            'Grenadier',
-            'Hit the Deck!',
-            'Language',
-            'Ride-By Attack',
-            'Roll With It',
-            'Saddle Shot',
-            'Sentry'
+            { Name: '\'Jack Marshal' },
+            { Name: 'Cautious Advance' },
+            { Name: 'Cavalry Charge' },
+            { Name: 'Disease Resistance' },
+            { Name: 'Fast Reload' },
+            { Name: 'Find Cover' },
+            { Name: 'Grenadier' },
+            { Name: 'Hit the Deck!' },
+            { Name: 'Language' },
+            { Name: 'Ride-By Attack' },
+            { Name: 'Roll With It' },
+            { Name: 'Saddle Shot' },
+            { Name: 'Sentry' }
         ],
-        Connections: ['Connections (kingdom military or mercenary company)'],
-        MilitarySkills: [
-            ['Crossbow',3],
-            ['Great Weapon',4],
-            ['Light Artillery',3],
-            ['Hand Weapon',3],
-            ['Pistol',3],
-            ['Rifle',4],
-            ['Shield',2],
-            ['Thrown Weapon',3],
-            ['Unarmed Combat',3]
+        Connections: [{ Name: 'kingdom military or mercenary company', Type: 'Generic' }],
+        MilitarySkills:
+        [
+            { Name: 'Crossbow', Level: 3 },
+            { Name: 'Great Weapon', Level: 4 },
+            { Name: 'Light Artillery', Level: 3 },
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Pistol', Level: 3 },
+            { Name: 'Rifle', Level: 4 },
+            { Name: 'Shield', Level: 2 },
+            { Name: 'Thrown Weapon', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 3 }
         ],
-        OccupationalSkills: [
-            ['Command',3],
-            ['General Skills',4],
-            ['Medicine',3],
-            ['Navigation',2],
-            ['Sneak',2],
-            ['Survival',3]
-        ],
-        SpellList: []
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 3 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Medicine', Level: 3 },
+            { Name: 'Navigation', Level: 2 },
+            { Name: 'Sneak', Level: 2 },
+            { Name: 'Survival', Level: 3 }
+        ]
     },
     {
         Name: "Sorcerer (Fire)",
         StartingCareerOnly: true,
-        StartingAbilities: ['Immunity: Fire'],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Detection',1],['Survival',1]],
+        StartingAbilities: [{ Name: 'Immunity: Fire' }],
+        StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Archery',1],['Crossbow',1],['Hand Weapon',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Archery', Level: 1 }, { Name: 'Crossbow', Level: 1 }, { Name: 'Hand Weapon', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
         StartingSpells: ['Fire Starter','Howling Flames','Wall of Fire'],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Camouflage',
-            'Dodger',
-            'Elemental Mastery',
-            'Immunity: Fire',
-            'Traceless Path'
+        Abilities:
+        [
+            { Name: 'Camouflage' },
+            { Name: 'Dodger' },
+            { Name: 'Elemental Mastery' },
+            { Name: 'Immunity: Fire' },
+            { Name: 'Traceless Path' }
         ],
-        Connections: [],
-        MilitarySkills: [
-            ['Archery',3],
-            ['Crossbow',3],
-            ['Hand Weapon',3],
-            ['Thrown Weapon',2],
-            ['Unarmed Combat',2]
+        MilitarySkills:
+        [
+            { Name: 'Archery', Level: 3 },
+            { Name: 'Crossbow', Level: 3 },
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Thrown Weapon', Level: 2 },
+            { Name: 'Unarmed Combat', Level: 2 }
         ],
-        OccupationalSkills: [
-            ['General Skills',4],
-            ['Sneak',3],
-            ['Survival',3]
+        OccupationalSkills:
+        [
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Sneak', Level: 3 },
+            { Name: 'Survival', Level: 3 }
         ],
-        SpellList: [
-            {
-                Cost: 1,
-                Spells: [
-                    'Fire Starter',
-                    'Flames of Wrath',
-                    'Protection from Fire'
-                ]
-            },
-            {
-                Cost: 2,
-                Spells: [
-                    'Ashen Cloud',
-                    'Extinguisher',
-                    'Howling Flames',
-                    'Ignite',
-                    'Immolation',
-                    'Wall of Fire'
-                ]
-            },
-            {
-                Cost: 3,
-                Spells: [
-                    'Barrier of Flames',
-                    'Cleansing Fire',
-                    'Flare',
-                    'Fuel the Flames',
-                    'Inferno'
-                ]
-            },
-            {
-                Cost: 4,
-                Spells: [
-                    'Ashes to Ashes',
-                    'Blazing Effigy',
-                    'Sea of Fire'
-                ]
-            }
+        SpellList:
+        [
+            'Ashen Cloud',
+            'Ashes to Ashes',
+            'Barrier of Flames',
+            'Blazing Effigy',
+            'Cleansing Fire',
+            'Extinguisher',
+            'Fire Starter',
+            'Flames of Wrath',
+            'Flare',
+            'Fuel the Flames',
+            'Howling Flames',
+            'Ignite',
+            'Immolation',
+            'Inferno',
+            'Protection from Fire',
+            'Sea of Fire',
+            'Wall of Fire'
         ]
     },
     {
         Name: "Sorcerer (Ice)",
         StartingCareerOnly: true,
-        StartingAbilities: ['Immunity: Cold'],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Detection',1],['Survival',1]],
+        StartingAbilities: [{ Name: 'Immunity: Cold' }],
+        StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Archery',1],['Crossbow',1],['Hand Weapon',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Archery', Level: 1 }, { Name: 'Crossbow', Level: 1 }, { Name: 'Hand Weapon', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
         StartingSpells: ['Blizzard','Chiller','Ice Bolt'],
-        StartingSpecial: '',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Camouflage',
-            'Dodger',
-            'Elemental Mastery',
-            'Immunity: Cold',
-            'Traceless Path'
+        Abilities:
+        [
+            { Name: 'Camouflage' },
+            { Name: 'Dodger' },
+            { Name: 'Elemental Mastery' },
+            { Name: 'Immunity: Cold' },
+            { Name: 'Traceless Path' }
         ],
-        Connections: [],
-        MilitarySkills: [
-            ['Archery',3],
-            ['Crossbow',3],
-            ['Hand Weapon',3],
-            ['Thrown Weapon',2],
-            ['Unarmed Combat',2]
+        MilitarySkills:
+        [
+            { Name: 'Archery', Level: 3 },
+            { Name: 'Crossbow', Level: 3 },
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Thrown Weapon', Level: 2 },
+            { Name: 'Unarmed Combat', Level: 2 }
         ],
-        OccupationalSkills: [
-            ['General Skills',4],
-            ['Sneak',3],
-            ['Survival',3]
+        OccupationalSkills:
+        [
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Sneak', Level: 3 },
+            { Name: 'Survival', Level: 3 }
         ],
-        SpellList: [
-            {
-                Cost: 1,
-                Spells: [
-                    'Blizzard',
-                    'Ice Shield',
-                    'Protection from Cold'
-                ]
-            },
-            {
-                Cost: 2,
-                Spells: [
-                    'Chiller',
-                    'Frostbite',
-                    'Ice Bolt',
-                    'Icy Grip',
-                    'Shatter Storm',
-                    'Staying Winter\'s Hand'
-                ]
-            },
-            {
-                Cost: 3,
-                Spells: [
-                    'Brittle Frost',
-                    'Deep Freeze',
-                    'Frozen Ground',
-                    'Hoarfrost',
-                    'Winter Storm'
-                ]
-            },
-            {
-                Cost: 4,
-                Spells: [
-                    'Freezing Grip',
-                    'Freezing Mist',
-                    'White Out'
-                ]
-            }
+        SpellList:
+        [
+            'Blizzard',
+            'Brittle Frost',
+            'Chiller',
+            'Deep Freeze',
+            'Freezing Grip',
+            'Freezing Mist',
+            'Frostbite',
+            'Frozen Ground',
+            'Hoarfrost',
+            'Ice Shield',
+            'Ice Bolt',
+            'Icy Grip',
+            'Protection from Cold',
+            'Shatter Storm',
+            'Staying Winter\'s Hand',
+            'White Out',
+            'Winter Storm'
         ]
     },
     {
         Name: "Sorcerer (Stone)",
         StartingCareerOnly: true,
-        StartingAbilities: [],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Detection',1],['Survival',1]],
+        StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Archery',1],['Crossbow',1],['Hand Weapon',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Archery', Level: 1 }, { Name: 'Crossbow', Level: 1 }, { Name: 'Hand Weapon', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
         StartingSpells: ['Battering Ram','Solid Ground','Stone Stance'],
         StartingSpecial: 'Stone sorcerers begin with +1 PHY and +1 to their racial maximum PHY at each level.',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
         StatIncreases: [['PHY',1]],
         StatMaxIncreases: { Hero: [['PHY',1]], Vet: [['PHY',1]], Epic: [['PHY',1]] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Camouflage',
-            'Dodger',
-            'Elemental Mastery',
-            'Traceless Path'
+        Abilities:
+        [
+            { Name: 'Camouflage' },
+            { Name: 'Dodger' },
+            { Name: 'Elemental Mastery' },
+            { Name: 'Traceless Path' }
         ],
-        Connections: [],
-        MilitarySkills: [
-            ['Archery',3],
-            ['Crossbow',3],
-            ['Hand Weapon',3],
-            ['Thrown Weapon',2],
-            ['Unarmed Combat',2]
+        MilitarySkills:
+        [
+            { Name: 'Archery', Level: 3 },
+            { Name: 'Crossbow', Level: 3 },
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Thrown Weapon', Level: 2 },
+            { Name: 'Unarmed Combat', Level: 2 }
         ],
-        OccupationalSkills: [
-            ['General Skills',4],
-            ['Sneak',3],
-            ['Survival',3]
+        OccupationalSkills:
+        [
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Sneak', Level: 3 },
+            { Name: 'Survival', Level: 3 }
         ],
-        SpellList: [
-            {
-                Cost: 1,
-                Spells: [
-                    'Earth\'s Cradle',
-                    'Entangle',
-                    'Stone Stance'
-                ]
-            },
-            {
-                Cost: 2,
-                Spells: [
-                    'Battering Ram',
-                    'Fortify',
-                    'Foxhole',
-                    'Rock Wall',
-                    'Solid Ground',
-                    'Stone Strength'
-                ]
-            },
-            {
-                Cost: 3,
-                Spells: [
-                    'Crevasse',
-                    'Earthquake',
-                    'Inhospitable Ground',
-                    'Rift',
-                    'Rock Hammer'
-                ]
-            },
-            {
-                Cost: 4,
-                Spells: [
-                    'Earthsplitter',
-                    'Obliteration',
-                    'Shock Wave'
-                ]
-            }
+        SpellList:
+        [
+            'Battering Ram',
+            'Crevasse',
+            'Earth\'s Cradle',
+            'Earthquake',
+            'Earthsplitter',
+            'Entangle',
+            'Fortify',
+            'Foxhole',
+            'Inhospitable Ground',
+            'Obliteration',
+            'Rift',
+            'Rock Hammer',
+            'Rock Wall',
+            'Shock Wave',
+            'Solid Ground',
+            'Stone Stance',
+            'Stone Strength'
         ]
     },
     {
         Name: "Sorcerer (Storm)",
         StartingCareerOnly: true,
-        StartingAbilities: [],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Detection',1],['Survival',1]],
+        StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Archery',1],['Crossbow',1],['Hand Weapon',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Archery', Level: 1 }, { Name: 'Crossbow', Level: 1 }, { Name: 'Hand Weapon', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
         StartingSpells: ['Razor Wind','Storm Tossed','Wind Blast'],
         StartingSpecial: 'Storm sorcerers begin with +1 SPD and +1 to their racial maximum SPD at each level.',
-        StartingAssets: [],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
         StatIncreases: [['SPD',1]],
         StatMaxIncreases: { Hero: [['SPD',1]], Vet: [['SPD',1]], Epic: [['SPD',1]] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Camouflage',
-            'Dodger',
-            'Elemental Mastery',
-            'Traceless Path'
+        Abilities:
+        [
+            { Name: 'Camouflage' },
+            { Name: 'Dodger' },
+            { Name: 'Elemental Mastery' },
+            { Name: 'Traceless Path' }
         ],
-        Connections: [],
-        MilitarySkills: [
-            ['Archery',3],
-            ['Crossbow',3],
-            ['Hand Weapon',3],
-            ['Thrown Weapon',2],
-            ['Unarmed Combat',2]
+        MilitarySkills:
+        [
+            { Name: 'Archery', Level: 3 },
+            { Name: 'Crossbow', Level: 3 },
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Thrown Weapon', Level: 2 },
+            { Name: 'Unarmed Combat', Level: 2 }
         ],
-        OccupationalSkills: [
-            ['General Skills',4],
-            ['Sneak',3],
-            ['Survival',3]
+        OccupationalSkills:
+        [
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Sneak', Level: 3 },
+            { Name: 'Survival', Level: 3 }
         ],
-        SpellList: [
-            {
-                Cost: 1,
-                Spells: [
-                    'Fair Winds',
-                    'Storm Tossed',
-                    'Wind Strike'
-                ]
-            },
-            {
-                Cost: 2,
-                Spells: [
-                    'Boundless Charge',
-                    'Celerity',
-                    'Razor Wind',
-                    'Telekinesis',
-                    'Wind Blast',
-                    'Wings of Air'
-                ]
-            },
-            {
-                Cost: 3,
-                Spells: [
-                    'Chain Lightning',
-                    'Deceleration',
-                    'Fog of War',
-                    'Lightning Tendrils',
-                    'Zephyr'
-                ]
-            },
-            {
-                Cost: 4,
-                Spells: [
-                    'Raging Winds',
-                    'Tempest',
-                    'Tornado'
-                ]
-            }
+        SpellList:
+        [
+            'Boundless Charge',
+            'Celerity',
+            'Chain Lightning',
+            'Deceleration',
+            'Fair Winds',
+            'Fog of War',
+            'Lightning Tendrils',
+            'Raging Winds',
+            'Razor Wind',
+            'Storm Tossed',
+            'Telekinesis',
+            'Tempest',
+            'Tornado',
+            'Wind Blast',
+            'Wind Strike',
+            'Wings of Air',
+            'Zephyr'
         ]
     },
     {
         Name: "Spy",
         StartingCareerOnly: false,
-        StartingAbilities: ['Battle Plan: Shadow','Cover Identity','Language (choose one)'],
-        StartingConnections: ['Connections (intelligence network)'],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [['Command',1],['Deception',1],['Detection',1],['Disguise',1],['Sneak',1]],
+        StartingAbilities: [{ Name: 'Battle Plan: Shadow' }, { Name: 'Cover Identity' }, { Name: 'Language', Type: 'Generic', Property: 'any' }],
+        StartingConnections: [{ Name: 'intelligence network', Type: 'Generic' }],
+        StartingOccupationalSkills:
+        [
+            { Name: 'Command', Level: 1 },
+            { Name: 'Deception', Level: 1 },
+            { Name: 'Detection', Level: 1 },
+            { Name: 'Disguise', Level: 1 },
+            { Name: 'Sneak', Level: 1 }
+        ],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Hand Weapon',1],['Pistol',1],['Thrown Weapon',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Pistol', Level: 1 }, { Name: 'Thrown Weapon', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
         StartingAssets: ['forged identity papers'],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 100,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Battle Plan: Shadow',
-            'Cover Identity',
-            'Iron Will',
-            'Language',
-            'Poison Resistance',
-            'Prowl',
-            'Signal Language',
-            'Truth Reader',
-            'Waylay'
+        Abilities:
+        [
+            { Name: 'Battle Plan: Shadow' },
+            { Name: 'Cover Identity' },
+            { Name: 'Iron Will' },
+            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Poison Resistance' },
+            { Name: 'Prowl' },
+            { Name: 'Signal Language' },
+            { Name: 'Truth Reader' },
+            { Name: 'Waylay' }
         ],
-        Connections: ['Connections (any)'],
-        MilitarySkills: [
-            ['Hand Weapon',3],
-            ['Pistol',3],
-            ['Thrown Weapon',3],
-            ['Unarmed Combat',3]
+        Connections: [{ Name: 'any', Type: 'Generic' }],
+        MilitarySkills:
+        [
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Pistol', Level: 3 },
+            { Name: 'Thrown Weapon', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 3 }
         ],
-        OccupationalSkills: [
-            ['Bribery',4],
-            ['Command',3],
-            ['Cryptography',4],
-            ['Deception',4],
-            ['Disguise',4],
-            ['Escape Artist',4],
-            ['Etiquette',4],
-            ['Forgery',4],
-            ['General Skills',4],
-            ['Interrogation',4],
-            ['Law',4],
-            ['Lock Picking',2],
-            ['Negotiation',4],
-            ['Seduction',4],
-            ['Sneak',4],
-            ['Streetwise',4]
-        ],
-        SpellList: []
+        OccupationalSkills:
+        [
+            { Name: 'Bribery', Level: 4 },
+            { Name: 'Command', Level: 3 },
+            { Name: 'Cryptography', Level: 4 },
+            { Name: 'Deception', Level: 4 },
+            { Name: 'Disguise', Level: 4 },
+            { Name: 'Escape Artist', Level: 4 },
+            { Name: 'Etiquette', Level: 4 },
+            { Name: 'Forgery', Level: 4 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Interrogation', Level: 4 },
+            { Name: 'Law', Level: 4 },
+            { Name: 'Lock Picking', Level: 2 },
+            { Name: 'Negotiation', Level: 4 },
+            { Name: 'Seduction', Level: 4 },
+            { Name: 'Sneak', Level: 4 },
+            { Name: 'Streetwise', Level: 4 }
+        ]
     },
     {
         Name: "Stormblade",
         StartingCareerOnly: true,
-        StartingAbilities: ['Blaster','Specialization (Storm Glaive)'],
-        StartingConnections: ['Connections (Cygnaran military)'],
-        StartingMilitarySkills: [['Great Weapon',1]],
-        StartingOccupationalSkills: [['Command',1],['Detection',1],['Etiquette',1]],
+        StartingAbilities: [{ Name: 'Blaster' }, { Name: 'Specialization', Type: 'Specific', Property: 'Storm Glaive' }],
+        StartingConnections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
+        StartingMilitarySkills: [{ Name: 'Great Weapon', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Command', Level: 1 }, { Name: 'Detection', Level: 1 }, { Name: 'Etiquette', Level: 1 }],
         StartingMSkillChoices: 0,
-        StartingMSkillChoicesOptions: [],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
         StartingSpecial: 'A character starting with the Stormblade career must choose between Aristocrat, Knight, Man-at-Arms, Military Officer, Soldier, or Warcaster for his second career.',
         StartingAssets: ['Storm Glaive','Storm Knight Armor'],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 0,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: ['Aristocrat','Knight','Man-at-Arms','Military Officer','Soldier','Warcaster'],
-        FreeBenefits: [],
-        Abilities: [
-            '\'Jack Marshal',
-            'Blaster',
-            'Gunfighter',
-            'Load Bearing',
-            'Quick Work',
-            'Relentless Charge',
-            'Specialization (Storm Glaive)'
+        Abilities:
+        [
+            { Name: '\'Jack Marshal' },
+            { Name: 'Blaster' },
+            { Name: 'Gunfighter' },
+            { Name: 'Load Bearing' },
+            { Name: 'Quick Work' },
+            { Name: 'Relentless Charge' },
+            { Name: 'Specialization', Type: 'Specific', Property: 'Storm Glaive' }
         ],
-        Connections: ['Connections (Cygnaran military)'],
-        MilitarySkills: [['Great Weapon',4]],
-        OccupationalSkills: [
-            ['Command',4],
-            ['Etiquette',2],
-            ['General Skills',4],
-            ['Medicine',2]
-        ],
-        SpellList: []
+        Connections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
+        MilitarySkills: [{ Name: 'Great Weapon', Level: 4 }],
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 4 },
+            { Name: 'Etiquette', Level: 2 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Medicine', Level: 2 }
+        ]
     },
     {
         Name: "Thief",
         StartingCareerOnly: false,
-        StartingAbilities: ['Conniver','Dodger'],
-        StartingConnections: [],
-        StartingMilitarySkills: [],
-        StartingOccupationalSkills: [
-            ['Bribery',1],
-            ['Deception',1],
-            ['Escape Artist',1],
-            ['Lock Picking',2],
-            ['Pickpocket',2],
-            ['Sneak',1],
-            ['Streetwise',1]
+        StartingAbilities: [{ Name: 'Conniver' }, { Name: 'Dodger' }],
+        StartingOccupationalSkills:
+        [
+            { Name: 'Bribery', Level: 1 },
+            { Name: 'Deception', Level: 1 },
+            { Name: 'Escape Artist', Level: 1 },
+            { Name: 'Lock Picking', Level: 2 },
+            { Name: 'Pickpocket', Level: 2 },
+            { Name: 'Sneak', Level: 1 },
+            { Name: 'Streetwise', Level: 1 }
         ],
         StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [['Hand Weapon',1],['Thrown Weapon',1]],
+        StartingMSkillChoicesOptions: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Thrown Weapon', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
-        StartingSpecial: '',
         StartingAssets: ['thief\'s tools'],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 75,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Appraise',
-            'Camouflage',
-            'Card Sharp',
-            'Conniver',
-            'Dodger',
-            'Fleet Foot',
-            'Get Away',
-            'Language (Five Cant)',
-            'Parry',
-            'Prowl',
-            'Traceless Path'
+        Abilities:
+        [
+            { Name: 'Appraise' },
+            { Name: 'Camouflage' },
+            { Name: 'Card Sharp' },
+            { Name: 'Conniver' },
+            { Name: 'Dodger' },
+            { Name: 'Fleet Foot' },
+            { Name: 'Get Away' },
+            { Name: 'Language', Type: 'Specific', Property: 'Five Cant' },
+            { Name: 'Parry' },
+            { Name: 'Prowl' },
+            { Name: 'Traceless Path' }
         ],
-        Connections: ['Connections (criminal)'],
-        MilitarySkills: [
-            ['Hand Weapon',3],
-            ['Pistol',2],
-            ['Thrown Weapon',3],
-            ['Unarmed Combat',2]
+        Connections: [{ Name: 'criminal', Type: 'Generic' }],
+        MilitarySkills:
+        [
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Pistol', Level: 2 },
+            { Name: 'Thrown Weapon', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 2 }
         ],
-        OccupationalSkills: [
-            ['Bribery',4],
-            ['Craft (any)',2],
-            ['Deception',4],
-            ['Disguise',4],
-            ['Escape Artist',4],
-            ['Etiquette',1],
-            ['Forgery',4],
-            ['General Skills',4],
-            ['Law',2],
-            ['Lock Picking',4],
-            ['Negotiation',4],
-            ['Pickpocket',4],
-            ['Sneak',4],
-            ['Streetwise',4]
-        ],
-        SpellList: []
+        OccupationalSkills:
+        [
+            { Name: 'Bribery', Level: 4 },
+            { Name: 'Craft', Type: 'Generic', Property: 'any', Level: 2 },
+            { Name: 'Deception', Level: 4 },
+            { Name: 'Disguise', Level: 4 },
+            { Name: 'Escape Artist', Level: 4 },
+            { Name: 'Etiquette', Level: 1 },
+            { Name: 'Forgery', Level: 4 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Law', Level: 2 },
+            { Name: 'Lock Picking', Level: 4 },
+            { Name: 'Negotiation', Level: 4 },
+            { Name: 'Pickpocket', Level: 4 },
+            { Name: 'Sneak', Level: 4 },
+            { Name: 'Streetwise', Level: 4 }
+        ]
     },
     {
         Name: "Trencher",
         StartingCareerOnly: true,
-        StartingAbilities: ['Bayonet Charge','Dig In'],
-        StartingConnections: ['Connections (Cygnaran military)'],
-        StartingMilitarySkills: [['Great Weapon',1],['Rifle',1],['Thrown Weapon',1]],
-        StartingOccupationalSkills: [['Command',1],['Detection',1]],
+        StartingAbilities: [{ Name: 'Bayonet Charge' }, { Name: 'Dig In' }],
+        StartingConnections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
+        StartingMilitarySkills: [{ Name: 'Great Weapon', Level: 1 }, { Name: 'Rifle', Level: 1 }, { Name: 'Thrown Weapon', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Command', Level: 1 }, { Name: 'Detection', Level: 1 }],
         StartingMSkillChoices: 0,
-        StartingMSkillChoicesOptions: [],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
-        StartingSpells: [],
         StartingSpecial: 'A character starting with the Trencher career must choose between Military Officer, Ranger, Rifleman, Soldier, or Warcaster for his second career.',
         StartingAssets: ['ammo bandolier','bayonet','entrenching spade','military rifle','3 smoke grenades','Trencher medium infantry armor'],
         StartingAssetChoices: 0,
-        StartingAssetChoiceOptions: [],
         StartingGold: 25,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
         ResSecondCareers: ['Military Officer','Ranger','Rifleman','Soldier','Warcaster'],
-        FreeBenefits: [],
-        Abilities: [
-            '\'Jack Marshal',
-            'Anatomical Precision',
-            'Bayonet Charge',
-            'Bomber',
-            'Dig In',
-            'Fire in the Hole!',
-            'Grenadier',
-            'Hit the Deck!',
-            'Relentless Charge',
-            'Specialization (Bayonet)'
+        Abilities:
+        [
+            { Name: '\'Jack Marshal' },
+            { Name: 'Anatomical Precision' },
+            { Name: 'Bayonet Charge' },
+            { Name: 'Bomber' },
+            { Name: 'Dig In' },
+            { Name: 'Fire in the Hole!' },
+            { Name: 'Grenadier' },
+            { Name: 'Hit the Deck!' },
+            { Name: 'Relentless Charge' },
+            { Name: 'Specialization', Type: 'Specific', Property: 'Bayonet' }
         ],
-        Connections: ['Connections (Cygnaran military)'],
-        MilitarySkills: [
-            ['Great Weapon',3],
-            ['Light Artillery',4],
-            ['Hand Weapon',3],
-            ['Pistol',3],
-            ['Rifle',4],
-            ['Thrown Weapon',4],
-            ['Unarmed Combat',3]
+        Connections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
+        MilitarySkills:
+        [
+            { Name: 'Great Weapon', Level: 3 },
+            { Name: 'Light Artillery', Level: 4 },
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Pistol', Level: 3 },
+            { Name: 'Rifle', Level: 4 },
+            { Name: 'Thrown Weapon', Level: 4 },
+            { Name: 'Unarmed Combat', Level: 3 }
         ],
-        OccupationalSkills: [
-            ['Command',3],
-            ['General Skills',4],
-            ['Interrogation',3],
-            ['Medicine',3],
-            ['Sneak',3],
-            ['Survival',3]
-        ],
-        SpellList: []
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 3 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Interrogation', Level: 3 },
+            { Name: 'Medicine', Level: 3 },
+            { Name: 'Sneak', Level: 3 },
+            { Name: 'Survival', Level: 3 }
+        ]
     },
     {
         Name: "Warcaster",
         StartingCareerOnly: true,
-        StartingAbilities: ['Bond'],
-        StartingConnections: [],
-        StartingMilitarySkills: [['Hand Weapon',1],['Pistol',1]],
-        StartingOccupationalSkills: [['Command',1],['Detection',1]],
+        StartingAbilities: [{ Name: 'Bond' }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Pistol', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Command', Level: 1 }, { Name: 'Detection', Level: 1 }],
         StartingMSkillChoices: 0,
-        StartingMSkillChoicesOptions: [],
         StartingOSkillChoices: 0,
-        StartingOSkillChoicesOptions: [],
         StartingSpells: ['Boundless Charge','Convection'],
         StartingSpecial: 'Change the character\'s arcane tradition to focuser if he has another arcane career. A warcaster can boost only with mechanikal weapons they are bonded to.',
-        StartingAssets: [],
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: [
             'warcaster armor (light)',
@@ -2025,76 +1666,56 @@ careerArr = [
             'mechanika hand cannon'
         ],
         StartingGold: 0,
-        StatIncreases: [],
-        StatMaxIncreases: { Hero: [], Veteran: [], Epic: [] },
-        ResSecondCareers: [],
-        FreeBenefits: [],
-        Abilities: [
-            'Bond',
-            'Field Marshal: Magical Attack',
-            'Field Marshal: Relentless Charge',
-            'Field Marshal: Shield Guard',
-            'Natural Leader'
+        Abilities:
+        [
+            { Name: 'Bond' },
+            { Name: 'Field Marshal: Magical Attack' },
+            { Name: 'Field Marshal: Relentless Charge' },
+            { Name: 'Field Marshal: Shield Guard' },
+            { Name: 'Natural Leader' }
         ],
-        Connections: ['Connections (kingdom or mercenary company)'],
-        MilitarySkills: [
-            ['Great Weapon',3],
-            ['Hand Weapon',3],
-            ['Pistol',3],
-            ['Unarmed Combat',2]
+        Connections: [{ Name: 'kingdom or mercenary company', Type: 'Generic' }],
+        MilitarySkills:
+        [
+            { Name: 'Great Weapon', Level: 3 },
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Pistol', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 2 }
         ],
-        OccupationalSkills: [
-            ['Command',4],
-            ['General Skills',4]
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 4 },
+            { Name: 'General Skills', Level: 4 }
         ],
-        SpellList: [
-            {
-                Cost: 1,
-                Spells: [
-                    'Arcane Strike',
-                    'Jump Start',
-                    'Return Fire'
-                ]
-            },
-            {
-                Cost: 2,
-                Spells: [
-                    'Arcane Bolt',
-                    'Aura of Protection',
-                    'Battering Ram',
-                    'Boundless Charge',
-                    'Convection',
-                    'Fortify',
-                    'Foxhole',
-                    'Redline',
-                    'Refuge',
-                    'Snipe',
-                    'Temper Metal',
-                    'Transference'
-                ]
-            },
-            {
-                Cost: 3,
-                Spells: [
-                    'Awareness',
-                    'Batten Down the Hatches',
-                    'Eliminator',
-                    'Fail Safe',
-                    'Grind',
-                    'Guided Fire',
-                    'Iron Aggression',
-                    'Rift',
-                    'Superiority'
-                ]
-            },
-            {
-                Cost: 4,
-                Spells: [
-                    'Force Hammer',
-                    'Obliteration',
-                    'Tide of Steel'
-                ]
-            }
+        SpellList:
+        [
+            'Arcane Bolt',
+            'Arcane Strike',
+            'Aura of Protection',
+            'Awareness',
+            'Batten Down the Hatches',
+            'Battering Ram',
+            'Boundless Charge',
+            'Convection',
+            'Eliminator',
+            'Fail Safe',
+            'Force Hammer',
+            'Fortify',
+            'Foxhole',
+            'Grind',
+            'Guided Fire',
+            'Iron Aggression',
+            'Jump Start',
+            'Obliteration',
+            'Redline',
+            'Refuge',
+            'Return Fire',
+            'Rift',
+            'Snipe',
+            'Superiority',
+            'Temper Metal',
+            'Tide of Steel',
+            'Transference'
         ]
     }
 ];

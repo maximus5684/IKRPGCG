@@ -3,7 +3,7 @@
     <head>
         <title><?php echo $pageTitle; ?></title>
         <script src="js/angular.min.js"></script>
-        <script src="js/jquery-1.8.1.min.js"></script>
+        <script src="js/jquery-2.0.3.min.js"></script>
         <link href="css/bootstrap.min.css" rel="stylesheet" media="all">
         <link href="css/main.css" rel="stylesheet" media="all">
         <link href="css/print.css" rel="stylesheet" media="print">
