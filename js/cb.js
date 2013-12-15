@@ -243,7 +243,7 @@ function CBCtrl($scope, $http) {
         if ($scope.Career1 === null) {
             return false;
         } else {
-            if ($scope.Career1.StartingSpecial != '') {
+            if ('StartingSpecial' in $scope.Career1) {
                 return true;
             } else {
                 return false;
@@ -275,7 +275,7 @@ function CBCtrl($scope, $http) {
         if ($scope.Career2 === null) {
             return false;
         } else {
-            if ($scope.Career2.StartingSpecial != '') {
+            if ('StartingSpecial' in $scope.Career2) {
                 return true;
             } else {
                 return false;
@@ -313,19 +313,21 @@ function CBCtrl($scope, $http) {
             archList.push(archArr[i2]);
         }
         
-        archsToRemove = [];
+        if ('ResArchetypes' in $scope.Race) {
+            archsToRemove = [];
 
-        for (i = 0; i < $scope.Race.ResArchetypes.length; i++) {
-            for (m = 0; m < archList.length; m++) {
-                if ($scope.Race.ResArchetypes[i] == archList[m].Name) {
-                    archsToRemove.push(archList[m]);
+            for (i = 0; i < $scope.Race.ResArchetypes.length; i++) {
+                for (m = 0; m < archList.length; m++) {
+                    if ($scope.Race.ResArchetypes[i] == archList[m].Name) {
+                        archsToRemove.push(archList[m]);
+                    }
                 }
             }
-        }
-        
-        for (n = 0; n < archsToRemove.length; n++) {
-            if (archList.indexOf(archsToRemove[n]) > -1) {
-                archList.splice(archList.indexOf(archsToRemove[n]), 1);
+            
+            for (n = 0; n < archsToRemove.length; n++) {
+                if (archList.indexOf(archsToRemove[n]) > -1) {
+                    archList.splice(archList.indexOf(archsToRemove[n]), 1);
+                }
             }
         }
 
@@ -339,20 +341,22 @@ function CBCtrl($scope, $http) {
             $scope.Career1List.push($scope.Careers[g]);
         }
         
-        careersToRemove = [];
-        
-        for (j = 0; j < $scope.Careers.length; j++) {
-            if ($scope.Race.ResCareers.indexOf($scope.Careers[j].Name) > -1) {
-                careersToRemove.push($scope.Careers[j]);
+        if ('ResCareers' in $scope.Race) {
+            careersToRemove = [];
+            
+            for (j = 0; j < $scope.Careers.length; j++) {
+                if ($scope.Race.ResCareers.indexOf($scope.Careers[j].Name) > -1) {
+                    careersToRemove.push($scope.Careers[j]);
+                }
+            }
+            
+            for (l = 0; l < careersToRemove.length; l++) {
+                if ($scope.Career1List.indexOf(careersToRemove[l]) > -1) {
+                    $scope.Career1List.splice($scope.Career1List.indexOf(careersToRemove[l]), 1);
+                }
             }
         }
-        
-        for (l = 0; l < careersToRemove.length; l++) {
-            if ($scope.Career1List.indexOf(careersToRemove[l]) > -1) {
-                $scope.Career1List.splice($scope.Career1List.indexOf(careersToRemove[l]), 1);
-            }
-        }
-        
+
         if ($scope.Archetype.Name !== 'Gifted') {
             giftedCareers = [
                 'Arcane Mechanik',
@@ -398,7 +402,7 @@ function CBCtrl($scope, $http) {
         // to only that list. Otherwise, check all the remaining careers for restricted
         // career lists and remove those from the 2nd list if the 1st career is not
         // in their restricted list.
-        if ($scope.Career1.ResSecondCareers.length > 0) {
+        if ('ResSecondCareers' in $scope.Career1) {
             for (bb2 = 0; bb2 < $scope.Career2List.length; bb2++) {
                 if ($scope.Career1.ResSecondCareers.indexOf($scope.Career2List[bb2].Name) == -1) {
                     careersToRemove.push($scope.Career2List[bb2]);
@@ -410,7 +414,7 @@ function CBCtrl($scope, $http) {
             }
         } else {
             for (bb4 = 0; bb4 < $scope.Career2List.length; bb4++) {
-                if ($scope.Career2List[bb4].ResSecondCareers.length > 0) {
+                if ('ResSecondCareers' in $scope.Career2List[bb4]) {
                     if ($scope.Career2List[bb4].ResSecondCareers.indexOf($scope.Career1.Name) == -1) {
                         careersToRemove.push($scope.Career2List[bb4]);
                     }
