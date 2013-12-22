@@ -37,9 +37,14 @@ $pageTitle = 'Home - Iron Kingdoms Character Generator';
                         </div>
                     </div>
                 </form>
-                <p id="resultWrap" ng-show="ResultShow()" class="center" style="float: left; width: 820px">
+                <p id="resultWrap" class="center" style="display: none; float: left; width: 820px">
                     <span class="label label-{{ResultClass}}">{{Result}}</span>
                 </p>
             </div>
         </div>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#loginEmail").focus();
+            });
+        </script>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/footer.php'); ?>

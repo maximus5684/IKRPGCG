@@ -2,8 +2,10 @@ function CB2Ctrl($scope, $http) {
     $scope.Url = 'ajax/characters.php';
     $scope.Error = null;
     $scope.Character = null;
+    $scope.Benefit = null;
     $scope.Benefits = [];
-    $scope.AdditionalStudySpellList = [];
+    $scope.BenefitPropertySpellList = [];
+    $scope.BenefitPropertyMSkillList = [];
     $scope.Race = null;
     $scope.Career1 = null;
     $scope.Career2 = null;
@@ -19,7 +21,8 @@ function CB2Ctrl($scope, $http) {
     $scope.RacialStatIncreaseRequired = false;
     $scope.AdvancementPoints = 3;
     // [0] = Starting, [1] = Max, [2] = AP Points, [3] = Field Min, [4] = Field Max
-    $scope.APFields = {
+    $scope.APFields =
+    {
         PHY: { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
         SPD: { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
         STR: { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
@@ -70,8 +73,9 @@ function CB2Ctrl($scope, $http) {
     $scope.HRSpellCareer2List = [];
 
     $scope.Races = raceArr;
-    $scope.Archetypes = archArr;    
+    $scope.Archetypes = archArr; 
     $scope.Careers = careerArr;
+    $scope.Spells = spellsArr;
 
     // Initial function to load character.
     $scope.GetChar = function(CharID) {
@@ -79,7 +83,8 @@ function CB2Ctrl($scope, $http) {
             if (typeof data !== 'object') {
                 $scope.Error = data;
             } else {
-                $scope.Character = data;
+                $scope.CharacterRow = data;
+                $scope.Character = JSON.parse($scope.CharacterRow.CharacterJSON);
                 $scope.loadCharacterDefaults();
             }
         }).error(function(data, status) {
@@ -100,13 +105,14 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.loadCharacterDefaults = function() {
+        $scope.Character.Benefit = null;
         $scope.Character.LanguagesChosen = [null, null, null];
         
         for (a = 0; a < $scope.Archetypes.length; a++) {
             if ($scope.Archetypes[a].Name == $scope.Character.Archetype) {
-                if ($scope.Character.ArcaneTradition !== null) {
+                if ('ArcaneTradition' in $scope.Character) {
                     for (a1 = 0; a1 < $scope.Archetypes[a].Benefits.length; a1++) {
-                        if ($scope.Archetypes[a].Benefits[a1].ReqArcaneTradition == '' || $scope.Archetypes[a].Benefits[a1].ReqArcaneTradition == $scope.Character.ArcaneTradition) {
+                        if (!('ReqArcaneTradition' in $scope.Archetypes[a].Benefits[a1]) || $scope.Archetypes[a].Benefits[a1].ReqArcaneTradition == $scope.Character.ArcaneTradition) {
                             $scope.Benefits.push($scope.Archetypes[a].Benefits[a1]);
                         }
                     }
@@ -125,19 +131,23 @@ function CB2Ctrl($scope, $http) {
         }
         
         // Set race-related values.
-        for (c = 0; c < $scope.Race.Benefits.length; c++) {
-            if ($scope.RacialBenefits === null) {
-                $scope.RacialBenefits = $scope.Race.Benefits[c];
-            } else {
-                $scope.RacialBenefits += ', ' + $scope.Race.Benefits[c];
+        if ('Benefits' in $scope.Race) {
+            for (c = 0; c < $scope.Race.Benefits.length; c++) {
+                if ($scope.RacialBenefits === null) {
+                    $scope.RacialBenefits = $scope.Race.Benefits[c];
+                } else {
+                    $scope.RacialBenefits += ', ' + $scope.Race.Benefits[c];
+                }
             }
         }
 
-        for (c1 = 0; c1 < $scope.Race.Abilities.length; c1++) {
-            if ($scope.RacialAbilities === null) {
-                $scope.RacialAbilities = $scope.Race.Abilities[c1];
-            } else {
-                $scope.RacialAbilities += ', ' + $scope.Race.Abilities[c1];
+        if ('Abilities' in $scope.Race) {
+            for (c1 = 0; c1 < $scope.Race.Abilities.length; c1++) {
+                if ($scope.RacialAbilities === null) {
+                    $scope.RacialAbilities = $scope.Race.Abilities[c1];
+                } else {
+                    $scope.RacialAbilities += ', ' + $scope.Race.Abilities[c1];
+                }
             }
         }
 
@@ -145,7 +155,11 @@ function CB2Ctrl($scope, $http) {
             $scope.Language1Required = true;
             
             for (g = 0; g < langArr.length; g++) {
-                if ($scope.Race.StartLangs.indexOf(langArr[g]) == -1) {
+                if ('StartLangs' in $scope.Race) {
+                    if ($scope.Race.StartLangs.indexOf(langArr[g]) == -1) {
+                        $scope.Language1Choices.push(langArr[g]);
+                    }
+                } else {
                     $scope.Language1Choices.push(langArr[g]);
                 }
             }
@@ -159,12 +173,14 @@ function CB2Ctrl($scope, $http) {
             $scope.Language3Required = true;
         }
 
-        if ($scope.Race.Connections.length > 0) {
+        if ('Connections' in $scope.Race) {
             $scope.RacialConnections = true;
+            $scope.Character.RacialConnections = Array($scope.Race.Connections.length);
         }
 
         if ($scope.Race.StatIncreaseChoices > 0) {
             $scope.RacialStatIncreaseRequired = true;
+            $scope.Character.RacialStatIncreaseChosen = null;
         }
 
         for (d = 0; d < $scope.Careers.length; d++) {
@@ -188,37 +204,47 @@ function CB2Ctrl($scope, $http) {
             }
 
             $scope.RacialAbilityChoices.sort();
+
+            $scope.Character.RacialAbilityChosen = null;
         }
 
-        for (e = 0; e < $scope.Career1.FreeBenefits.length; e++) {
-            if ($scope.CareerBenefits === null) {
-                $scope.CareerBenefits = $scope.Career1.FreeBenefits[e];
-            } else {
-                $scope.CareerBenefits += ', ' + $scope.Career1.FreeBenefits[e];
+        if ('FreeBenefits' in $scope.Career1) {
+            for (e = 0; e < $scope.Career1.FreeBenefits.length; e++) {
+                if ($scope.CareerBenefits === null) {
+                    $scope.CareerBenefits = $scope.Career1.FreeBenefits[e];
+                } else {
+                    $scope.CareerBenefits += ', ' + $scope.Career1.FreeBenefits[e];
+                }
             }
         }
-                
-        for (f = 0; f < $scope.Career2.FreeBenefits.length; f++) {
-            if ($scope.CareerBenefits === null) {
-                $scope.CareerBenefits = $scope.Career2.FreeBenefits[f];
-            } else {
-                $scope.CareerBenefits += ', ' + $scope.Career2.FreeBenefits[f];
-            }
-        }
-
-        for (f1 = 0; f1 < $scope.Career1.StartingAbilities.length; f1++) {
-            if ($scope.CareerAbilities === null) {
-                $scope.CareerAbilities = $scope.Career1.StartingAbilities[f1];
-            } else {
-                $scope.CareerAbilities += ', ' + $scope.Career1.StartingAbilities[f1];
+            
+        if ('FreeBenefits' in $scope.Career2) {
+            for (f = 0; f < $scope.Career2.FreeBenefits.length; f++) {
+                if ($scope.CareerBenefits === null) {
+                    $scope.CareerBenefits = $scope.Career2.FreeBenefits[f];
+                } else {
+                    $scope.CareerBenefits += ', ' + $scope.Career2.FreeBenefits[f];
+                }
             }
         }
 
-        for (f2 = 0; f2 < $scope.Career2.StartingAbilities.length; f2++) {
-            if ($scope.CareerAbilities === null) {
-                $scope.CareerAbilities = $scope.Career2.StartingAbilities[f2];
-            } else {
-                $scope.CareerAbilities += ', ' + $scope.Career2.StartingAbilities[f2];
+        if ('StartingAbilities' in $scope.Career1) {
+            for (f1 = 0; f1 < $scope.Career1.StartingAbilities.length; f1++) {
+                if ($scope.CareerAbilities === null) {
+                    $scope.CareerAbilities = $scope.Career1.StartingAbilities[f1];
+                } else {
+                    $scope.CareerAbilities += ', ' + $scope.Career1.StartingAbilities[f1];
+                }
+            }
+        }
+
+        if ('StartingAbilities' in $scope.Career2) {
+            for (f2 = 0; f2 < $scope.Career2.StartingAbilities.length; f2++) {
+                if ($scope.CareerAbilities === null) {
+                    $scope.CareerAbilities = $scope.Career2.StartingAbilities[f2];
+                } else {
+                    $scope.CareerAbilities += ', ' + $scope.Career2.StartingAbilities[f2];
+                }
             }
         }
 
@@ -226,7 +252,7 @@ function CB2Ctrl($scope, $http) {
             $scope.Career1MSkillsRequired = true;
 
             for (j = 0; j < $scope.Career1.StartingMSkillChoicesOptions.length; j++) {
-                $scope.Career1MSkillsCBs.push({ Name: $scope.Career1.StartingMSkillChoicesOptions[j][0], Level: $scope.Career1.StartingMSkillChoicesOptions[j][1], Checked: false, Disabled: false });
+                $scope.Career1MSkillsCBs.push({ Name: $scope.Career1.StartingMSkillChoicesOptions[j].Name, Level: $scope.Career1.StartingMSkillChoicesOptions[j].Level, Checked: false, Disabled: false });
             }
 
             $scope.Character.Career1MSkillsChosen = [];
@@ -236,7 +262,11 @@ function CB2Ctrl($scope, $http) {
             $scope.Career1OSkillsRequired = true;
         
             for (j1 = 0; j1 < $scope.Career1.StartingOSkillChoicesOptions.length; j1++) {
-                $scope.Career1OSkillsCBs.push({ Name: $scope.Career1.StartingOSkillChoicesOptions[j1][0], Level: $scope.Career1.StartingOSkillChoicesOptions[j1][1], Checked: false, Disabled: false });
+                if ('Property' in $scope.Career1.StartingOSkillChoicesOptions[j1]) {
+                    $scope.Career1OSkillsCBs.push({ Name: $scope.Career1.StartingOSkillChoicesOptions[j1].Name, Level: $scope.Career1.StartingOSkillChoicesOptions[j1].Level, Type: $scope.Career1.StartingOSkillChoicesOptions[j1].Type, Property: $scope.Career1.StartingOSkillChoicesOptions[j1].Property, Checked: false, Disabled: false });
+                } else {
+                    $scope.Career1OSkillsCBs.push({ Name: $scope.Career1.StartingOSkillChoicesOptions[j1].Name, Level: $scope.Career1.StartingOSkillChoicesOptions[j1].Level, Checked: false, Disabled: false });
+                }
             }
 
             $scope.Character.Career1OSkillsChosen = [];
@@ -246,7 +276,7 @@ function CB2Ctrl($scope, $http) {
             $scope.Career2MSkillsRequired = true;
         
             for (j2 = 0; j2 < $scope.Career2.StartingMSkillChoicesOptions.length; j2++) {
-                $scope.Career2MSkillsCBs.push({ Name: $scope.Career2.StartingMSkillChoicesOptions[j2][0], Level: $scope.Career2.StartingMSkillChoicesOptions[j2][1], Checked: false, Disabled: false });
+                $scope.Career2MSkillsCBs.push({ Name: $scope.Career2.StartingMSkillChoicesOptions[j2].Name, Level: $scope.Career2.StartingMSkillChoicesOptions[j2].Level, Checked: false, Disabled: false });
             }
 
             $scope.Character.Career2MSkillsChosen = [];
@@ -256,18 +286,24 @@ function CB2Ctrl($scope, $http) {
             $scope.Career2OSkillsRequired = true;
         
             for (j3 = 0; j3 < $scope.Career2.StartingOSkillChoicesOptions.length; j3++) {
-                $scope.Career2OSkillsCBs.push({ Name: $scope.Career2.StartingOSkillChoicesOptions[j3][0], Level: $scope.Career2.StartingOSkillChoicesOptions[j3][1], Checked: false, Disabled: false });
+                if ('Property' in $scope.Career2.StartingOSkillChoicesOptions[j3]) {
+                    $scope.Career2OSkillsCBs.push({ Name: $scope.Career2.StartingOSkillChoicesOptions[j3].Name, Level: $scope.Career2.StartingOSkillChoicesOptions[j3].Level, Type: $scope.Career2OSkillChoicesOptions[j3].Type, Property: $scope.Career2OSkillChoicesOptions[j3].Property, Checked: false, Disabled: false });
+                } else {
+                    $scope.Career2OSkillsCBs.push({ Name: $scope.Career2.StartingOSkillChoicesOptions[j3].Name, Level: $scope.Career2.StartingOSkillChoicesOptions[j3].Level, Checked: false, Disabled: false });
+                }
             }
 
             $scope.Character.Career2OSkillsChosen = [];
         }
 
-        if ($scope.Career1.StartingConnections.length > 0) {
+        if ('StartingConnections' in $scope.Career1) {
             $scope.Career1Connections = true;
+            $scope.Character.Career1Connections = Array($scope.Career1.Connections.length);
         }
 
-        if ($scope.Career2.StartingConnections.length > 0) {
+        if ('StartingConnections' in $scope.Career2) {
             $scope.Career2Connections = true;
+            $scope.Character.Career2Connections = Array($scope.Career2.Connections.length);
         }
 
         if ($scope.Career1.StartingAssetChoices > 0) {
@@ -292,90 +328,108 @@ function CB2Ctrl($scope, $http) {
         
         $scope.setAPFields();
 
-        if ($scope.Career1.StartingAbilities.length > 0 && ($scope.Career1.StartingAbilities.length < $scope.Career1.Abilities.length)) {
+        if ('StartingAbilities' in $scope.Career1 && ($scope.Career1.StartingAbilities.length < $scope.Career1.Abilities.length)) {
             $scope.HRAbilityC1 = true;
             $scope.HRAbility = true;
         }
         
-        if ($scope.Career2.StartingAbilities.length > 0 && ($scope.Career2.StartingAbilities.length < $scope.Career2.Abilities.length)) {
+        if ('StartingAbilities' in $scope.Career2 && ($scope.Career2.StartingAbilities.length < $scope.Career2.Abilities.length)) {
             $scope.HRAbilityC2 = true;
             $scope.HRAbility = true;
         }
 
-        if ($scope.Career1.StartingMilitarySkills.length > 0 && ($scope.Career1.StartingMilitarySkills.length < $scope.Career1.MilitarySkills.length)) {
+        if ('StartingMilitarySkills' in $scope.Career1 && ($scope.Career1.StartingMilitarySkills.length < $scope.Career1.MilitarySkills.length)) {
             $scope.HRMSkillC1 = true;
             $scope.HRMSkill = true;
         }
         
-        if ($scope.Career2.StartingMilitarySkills.length > 0 && ($scope.Career2.StartingMilitarySkills.length < $scope.Career2.MilitarySkills.length)) {
+        if ('StartingMilitarySkills' in $scope.Career2 && ($scope.Career2.StartingMilitarySkills.length < $scope.Career2.MilitarySkills.length)) {
             $scope.HRMSkillC2 = true;
             $scope.HRMSkill = true;
         }
 
-        if ($scope.Career1.StartingOccupationalSkills.length > 0 && ($scope.Career1.StartingOccupationalSkills.length < $scope.Career1.OccupationalSkills.length)) {
+        if ('StartingOccupationalSkills' in $scope.Career1 && ($scope.Career1.StartingOccupationalSkills.length < $scope.Career1.OccupationalSkills.length)) {
             $scope.HROSkillC1 = true;
             $scope.HROSkill = true;
         }
         
-        if ($scope.Career2.StartingOccupationalSkills.length > 0 && ($scope.Career2.StartingOccupationalSkills.length < $scope.Career2.OccupationalSkills.length)) {
+        if ('StartingOccupationalSkills' in $scope.Career2 && ($scope.Career2.StartingOccupationalSkills.length < $scope.Career2.OccupationalSkills.length)) {
             $scope.HROSkillC2 = true;
             $scope.HROSkill = true;
         }
 
-        if ($scope.Career1.StartingSpells.length > 0) {
+        if ('StartingSpells' in $scope.Career1) {
             $scope.HRSpellC1 = true;
             $scope.HRSpell = true;
         }
         
-        if ($scope.Career2.StartingSpells.length > 0) {
+        if ('StartingSpells' in $scope.Career2) {
             $scope.HRSpellC2 = true;
             $scope.HRSpell = true;
         }
     }
 
     $scope.selectBenefit = function() {
-        if ($scope.Character.Benefit !== null && $scope.Character.Benefit == 'Additional Study') {
-            for (j = 0; j < $scope.Career1.SpellList.length; j++) {
-                for (i = 0; i < $scope.Career1.SpellList[j].Spells.length; i++) {
-                    if ($scope.AdditionalStudySpellList.indexOf($scope.Career1.SpellList[j].Spells[i]) == -1) {
-                        $scope.AdditionalStudySpellList.push($scope.Career1.SpellList[j].Spells[i]);
+        if ($scope.Benefit !== null) {
+            $scope.Character.Benefit = $scope.Benefit.Name;
+            
+            if ('HasProperty' in $scope.Benefit) {
+                $scope.Character.BenefitProperty = null;
+                
+                if ($scope.Benefit.PropertyType == 'Spell') {
+                    if ('SpellList' in $scope.Career1) {
+                        for (var i = 0; i < $scope.Career1.SpellList.length; i++) {
+                            if ($scope.BenefitPropertySpellList.indexOf($scope.Career1.SpellList[i]) == -1) {
+                                $scope.BenefitPropertySpellList.push($scope.Career1.SpellList[i]);
+                            }
+                        }
                     }
-                }
-            }
 
-            for (j = 0; j < $scope.Career2.SpellList.length; j++) {
-                for (i = 0; i < $scope.Career2.SpellList[j].Spells.length; i++) {
-                    if ($scope.AdditionalStudySpellList.indexOf($scope.Career2.SpellList[j].Spells[i]) == -1) {
-                        $scope.AdditionalStudySpellList.push($scope.Career2.SpellList[j].Spells[i]);
+                    if ('SpellList' in $scope.Career2) {
+                        for (var i = 0; i < $scope.Career2.SpellList.length; i++) {
+                            if ($scope.BenefitPropertySpellList.indexOf($scope.Career2.SpellList[i]) == -1) {
+                                $scope.BenefitPropertySpellList.push($scope.Career2.SpellList[i]);
+                            }
+                        }
                     }
-                }
-            }
+                    
+                    $scope.BenefitPropertySpellList.sort();
+                } else if ($scope.Benefit.PropertyType == 'Military Skill') {
 
-            $scope.AdditionalStudySpellList.sort();
+                }
+            } else {
+                $scope.BenefitPropertySpellList = [];
+                $scope.BenefitPropertyMSkillList = [];
+                delete $scope.Character.BenefitProperty;
+            }
         } else {
-            $scope.AdditionalStudySpellList = [];
-            $scope.Character.BenefitAssocObj = null;
+            $scope.Character.Benefit = null;
+            delete $scope.Character.BenefitProperty;
         }
     }
 
     $scope.checkBenefit = function() {
-        if ($scope.Character === null || $scope.Character.Benefit === null) {
+        if ($scope.Benefit === null) {
             return false;
         } else {
             return true;
         }
     }
 
-    $scope.checkAdditionalStudy = function() {
-        if ($scope.Character !== null && $scope.Character.Benefit == 'Additional Study') {
-            return true;
-        } else {
+    $scope.checkBenefitPropertySpell = function() {
+        if ($scope.Benefit === null) {
             return false;
+        } else {
+            if ('HasProperty' in $scope.Benefit && $scope.Benefit.PropertyType == 'Spell') {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 
-    $scope.checkAdditionalStudySpell = function() {
-        if ($scope.Character === null || $scope.Character.BenefitAssocObj === null) {
+    $scope.checkBenefitProperty = function() {
+        if ($scope.Character === null || $scope.Character.BenefitProperty === null) {
             return false;
         } else {
             return true;
@@ -383,7 +437,7 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.checkRacialStatIncrease = function() {
-        if ($scope.Character === null || $scope.Character.RacialStatIncreaseChosen === null) {
+        if ($scope.Character === nulll || !('RacialStatIncreaseChosen' in $scope.Character) || $scope.Character.RacialStatIncreaseChosen === null) {
             return false;
         } else {
             return true;
@@ -400,7 +454,7 @@ function CB2Ctrl($scope, $http) {
         if (!$scope.RacialStatIncreaseRequired) {
             return true;
         } else {
-            if ($scope.Character === null || $scope.Character.RacialStatIncreaseChosen === null) {
+            if ($scope.Character === null || (('RacialStatIncreaseChosen' in $scope.Character) && $scope.Character.RacialStatIncreaseChosen === null)) {
                 return false;
             } else {
                 return true;
@@ -450,7 +504,7 @@ function CB2Ctrl($scope, $http) {
 
         $scope.APFields.PER.Max = $scope.Race.Stats.PER.MaxHero;
 
-        if ($scope.Race.StatIncreases.length > 0) {
+        if ('StatIncreases' in $scope.Race) {
             for (g1 = 0; g1 < $scope.Race.StatIncreases.length; g1++) {
                 switch($scope.Race.StatIncreases[g1]) {
                     case 'PHY':
@@ -516,20 +570,28 @@ function CB2Ctrl($scope, $http) {
             }
         }
 
-        for (a = 0; a < $scope.Career1.StatIncreases.length; a++) {
-            $scope.APFields[$scope.Career1.StatIncreases[a][0]].Starting += $scope.Career1.StatIncreases[a][1];
+        if ('StatIncreases' in $scope.Career1) {
+            for (a = 0; a < $scope.Career1.StatIncreases.length; a++) {
+                $scope.APFields[$scope.Career1.StatIncreases[a][0]].Starting += $scope.Career1.StatIncreases[a][1];
+            }
         }
 
-        for (b = 0; b < $scope.Career2.StatIncreases.length; b++) {
-            $scope.APFields[$scope.Career2.StatIncreases[b][0]].Starting += $scope.Career2.StatIncreases[b][1];
+        if ('StatIncreases' in $scope.Career2) {
+            for (b = 0; b < $scope.Career2.StatIncreases.length; b++) {
+                $scope.APFields[$scope.Career2.StatIncreases[b][0]].Starting += $scope.Career2.StatIncreases[b][1];
+            }
         }
 
-        for (c = 0; c < $scope.Career1.StatMaxIncreases.Hero.length; c++) {
-            $scope.APFields[$scope.Career1.StatMaxIncreases.Hero[c][0]].Max += $scope.Career1.StatMaxIncreases.Hero[c][1];
+        if ('StatMaxIncreases' in $scope.Career1) {
+            for (c = 0; c < $scope.Career1.StatMaxIncreases.Hero.length; c++) {
+                $scope.APFields[$scope.Career1.StatMaxIncreases.Hero[c][0]].Max += $scope.Career1.StatMaxIncreases.Hero[c][1];
+            }
         }
 
-        for (d = 0; d < $scope.Career2.StatMaxIncreases.Hero.length; d++) {
-            $scope.APFields[$scope.Career2.StatMaxIncreases.Hero[d][0]].Max += $scope.Career2.StatMaxIncreases.Hero[d][1];
+        if ('StatMaxIncreases' in $scope.Career2) {
+            for (d = 0; d < $scope.Career2.StatMaxIncreases.Hero.length; d++) {
+                $scope.APFields[$scope.Career2.StatMaxIncreases.Hero[d][0]].Max += $scope.Career2.StatMaxIncreases.Hero[d][1];
+            }
         }
 
         $scope.recalcAPs();
@@ -669,7 +731,7 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.checkRacialStatIncrease = function() {
-        if ($scope.Character === null || $scope.Character.RacialStatIncreaseChosen === null) {
+        if ($scope.Character === null || !('RacialStatIncreaseChosen' in $scope.Character) || $scope.Character.RacialStatIncreaseChosen === null) {
             return false;
         } else {
             return true;
@@ -677,7 +739,7 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.checkRacialAbility = function() {
-        if ($scope.Character === null || $scope.Character.RacialAbilityChosen === null) {
+        if ($scope.Character === null || !('RacialAbilityChosen' in $scope.Character) || $scope.Character.RacialAbilityChosen === null) {
             return false;
         } else {
             return true;
@@ -699,7 +761,7 @@ function CB2Ctrl($scope, $http) {
         for (k = 0; k < $scope.Career1MSkillsCBs.length; k++) {
             if ($scope.Career1MSkillsCBs[k].Checked) {
                 checked++;
-                $scope.Character.Career1MSkillsChosen.push([$scope.Career1MSkillsCBs[k].Name, $scope.Career1MSkillsCBs[k].Level]);
+                $scope.Character.Career1MSkillsChosen.push({ Name: $scope.Career1MSkillsCBs[k].Name, Level: $scope.Career1MSkillsCBs[k].Level });
             }
         }
 
@@ -731,7 +793,12 @@ function CB2Ctrl($scope, $http) {
         for (k = 0; k < $scope.Career1OSkillsCBs.length; k++) {
             if ($scope.Career1OSkillsCBs[k].Checked) {
                 checked++;
-                $scope.Character.Career1OSkillsChosen.push([$scope.Career1OSkillsCBs[k].Name, $scope.Career1OSkillsCBs[k].Level]);
+
+                if ('Property' in $scope.Career1OSkillsCBs[k]) {
+                    $scope.Character.Career1OSkillsChosen.push({ Name: $scope.Career1OSkillsCBs[k].Name, Level: $scope.Career1OSkillsCBs[k].Level, Property: $scope.Career1OSkillsCBs[k].Property });
+                } else {
+                    $scope.Character.Career1OSkillsChosen.push({ Name: $scope.Career1OSkillsCBs[k].Name, Level: $scope.Career1OSkillsCBs[k].Level });
+                }
             }
         }
 
@@ -763,7 +830,7 @@ function CB2Ctrl($scope, $http) {
         for (k = 0; k < $scope.Career2MSkillsCBs.length; k++) {
             if ($scope.Career2MSkillsCBs[k].Checked) {
                 checked++;
-                $scope.Character.Career2MSkillsChosen.push([$scope.Career2MSkillsCBs[k].Name, $scope.Career2MSkillsCBs[k].Level]);
+                $scope.Character.Career2MSkillsChosen.push({ Name: $scope.Career2MSkillsCBs[k].Name, Level: $scope.Career2MSkillsCBs[k].Level });
             }
         }
 
@@ -795,7 +862,12 @@ function CB2Ctrl($scope, $http) {
         for (k = 0; k < $scope.Career2OSkillsCBs.length; k++) {
             if ($scope.Career2OSkillsCBs[k].Checked) {
                 checked++;
-                $scope.Character.Career2OSkillsChosen.push([$scope.Career2OSkillsCBs[k].Name, $scope.Career2OSkillsCBs[k].Level]);
+
+                if ('Property' in $scope.Career2OSkillsCBs[k]) {
+                    $scope.Character.Career2OSkillsChosen.push({ Name: $scope.Career2OSkillsCBs[k].Name, Level: $scope.Career2OSkillsCBs[k].Level, Property: $scope.Career2OSkillsCBs[k].Property });
+                } else {
+                    $scope.Character.Career2OSkillsChosen.push({ Name: $scope.Career2OSkillsCBs[k].Name, Level: $scope.Career2OSkillsCBs[k].Level });
+                }
             }
         }
 
@@ -877,16 +949,21 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.selectHRAbSwap = function() {
-        if (!$scope.HRAbilityChecked) {
+        if ($scope.HRAbilityChecked) {
             $scope.Character.HRCareer1AbToReplace = null;
             $scope.Character.HRCareer1AbReplacedWith = null;
             $scope.Character.HRCareer2AbToReplace = null;
             $scope.Character.HRCareer2AbReplacedWith = null;
+        } else {
+            delete $scope.Character.HRCareer1AbToReplace;
+            delete $scope.Character.HRCareer1AbReplacedWith;
+            delete $scope.Character.HRCareer2AbToReplace;
+            delete $scope.Character.HRCareer2AbReplacedWith;
         }
     }
 
     $scope.checkHRAbCareer1From = function() {
-        if ($scope.Character === null || $scope.Character.HRCareer1AbToReplace === null || $scope.HRAbilityChecked == false) {
+        if ($scope.Character === null || !('HRCareer1AbToReplace' in $scope.Character) || $scope.Character.HRCareer1AbToReplace === null) {
             return false;
         } else {
             return true;
@@ -898,19 +975,21 @@ function CB2Ctrl($scope, $http) {
 
         if ($scope.Character !== null && $scope.Character.HRCareer1AbToReplace !== null) {
             for (j = 0; j < $scope.Career1.Abilities.length; j++) {
-                if ($scope.Career1.Abilities[j] != $scope.Character.HRCareer1AbToReplace) {
+                if ($scope.Career1.Abilities[j].Name != $scope.Character.HRCareer1AbToReplace.Name) {
                     $scope.HRAbCareer1List.push($scope.Career1.Abilities[j]);
                 }
             }
         } else {
             if ($scope.Character !== null) {
-                $scope.Character.HRCareer1AbReplacedWith = null;
+                if ('HRCareer1AbReplacedWith' in $scope.Character) {
+                    $scope.Character.HRCareer1AbReplacedWith = null;
+                }
             }
         }
     }
 
     $scope.checkHRAbCareer2From = function() {
-        if ($scope.Character === null || $scope.Character.HRCareer2AbToReplace === null || $scope.HRAbilityChecked == false) {
+        if ($scope.Character === null || !('HRCareer2AbToReplace' in $scope.Character) || $scope.Character.HRCareer2AbToReplace === null) {
             return false;
         } else {
             return true;
@@ -922,28 +1001,35 @@ function CB2Ctrl($scope, $http) {
 
         if ($scope.Character !== null && $scope.Character.HRCareer2AbToReplace !== null) {
             for (j = 0; j < $scope.Career2.Abilities.length; j++) {
-                if ($scope.Career2.Abilities[j] != $scope.Character.HRCareer2AbToReplace) {
+                if ($scope.Career2.Abilities[j].Name != $scope.Character.HRCareer2AbToReplace.Name) {
                     $scope.HRAbCareer2List.push($scope.Career2.Abilities[j]);
                 }
             }
         } else {
             if ($scope.Character !== null) {
-                $scope.Character.HRCareer2AbReplacedWith = null;
+                if ('HRCareer2AbReplacedWith' in $scope.Character) {
+                    $scope.Character.HRCareer2AbReplacedWith = null;
+                }
             }
         }
     }
     
     $scope.selectHRMSkillSwap = function() {
-        if (!$scope.HRMSkillChecked) {
+        if ($scope.HRMSkillChecked) {
             $scope.Character.HRCareer1MSkillToReplace = null;
             $scope.Character.HRCareer1MSkillReplacedWith = null;
             $scope.Character.HRCareer2MSkillToReplace = null;
             $scope.Character.HRCareer2MSkillReplacedWith = null;
+        } else {
+            delete $scope.Character.HRCareer1MSkillToReplace;
+            delete $scope.Character.HRCareer1MSkillReplacedWith;
+            delete $scope.Character.HRCareer2MSkillToReplace;
+            delete $scope.Character.HRCareer2MSkillReplacedWith;
         }
     }
 
     $scope.checkHRMSkillCareer1From = function() {
-        if ($scope.Character === null || $scope.Character.HRCareer1MSkillToReplace === null || $scope.HRMSkillChecked == false) {
+        if ($scope.Character === null || !('HRCareer1MSkillToReplace' in $scope.Character) || $scope.Character.HRCareer1MSkillToReplace === null) {
             return false;
         } else {
             return true;
@@ -955,19 +1041,21 @@ function CB2Ctrl($scope, $http) {
 
         if ($scope.Character !== null && $scope.Character.HRCareer1MSkillToReplace !== null) {
             for (j = 0; j < $scope.Career1.MilitarySkills.length; j++) {
-                if ($scope.Career1.MilitarySkills[j][0] != $scope.Character.HRCareer1MSkillToReplace[0]) {
+                if ($scope.Career1.MilitarySkills[j].Name != $scope.Character.HRCareer1MSkillToReplace.Name) {
                     $scope.HRMSkillCareer1List.push($scope.Career1.MilitarySkills[j]);
                 }
             }
         } else {
             if ($scope.Character !== null) {
-                $scope.Character.HRCareer1MSkillReplacedWith = null;
+                if ('HRCareer1MSkillReplacedWith' in $scope.Character) {
+                    $scope.Character.HRCareer1MSkillReplacedWith = null;
+                }
             }
         }
     }
 
     $scope.checkHRMSkillCareer2From = function() {
-        if ($scope.Character === null || $scope.Character.HRCareer2MSkillToReplace === null || $scope.HRMSkillChecked == false) {
+        if ($scope.Character === null || !('HRCareer2MSkillToReplace' in $scope.Character) ||  $scope.Character.HRCareer2MSkillToReplace === null) {
             return false;
         } else {
             return true;
@@ -979,28 +1067,35 @@ function CB2Ctrl($scope, $http) {
 
         if ($scope.Character !== null && $scope.Character.HRCareer2MSkillToReplace !== null) {
             for (j = 0; j < $scope.Career2.MilitarySkills.length; j++) {
-                if ($scope.Career2.MilitarySkills[j][0] != $scope.Character.HRCareer2MSkillToReplace[0]) {
+                if ($scope.Career2.MilitarySkills[j].Name != $scope.Character.HRCareer2MSkillToReplace.Name) {
                     $scope.HRMSkillCareer2List.push($scope.Career2.MilitarySkills[j]);
                 }
             }
         } else {
             if ($scope.Character !== null) {
-                $scope.Character.HRCareer2MSkillReplacedWith = null;
+                if ('HRCareer2MSkillReplacedWith' in $scope.Character) {
+                    $scope.Character.HRCareer2MSkillReplacedWith = null;
+                }
             }
         }
     }
     
     $scope.selectHROSkillSwap = function() {
-        if (!$scope.HROSkillChecked) {
+        if ($scope.HROSkillChecked) {
             $scope.Character.HRCareer1OSkillToReplace = null;
             $scope.Character.HRCareer1OSkillReplacedWith = null;
             $scope.Character.HRCareer2OSkillToReplace = null;
             $scope.Character.HRCareer2OSkillReplacedWith = null;
+        } else {
+            delete $scope.Character.HRCareer1OSkillToReplace;
+            delete $scope.Character.HRCareer1OSkillReplacedWith;
+            delete $scope.Character.HRCareer2OSkillToReplace;
+            delete $scope.Character.HRCareer2OSkillReplacedWith;
         }
     }
 
     $scope.checkHROSkillCareer1From = function() {
-        if ($scope.Character === null || $scope.Character.HRCareer1OSkillToReplace === null || $scope.HROSkillChecked == false) {
+        if ($scope.Character === null || !('HRCareer1OSkillToReplace' in $scope.Character) || $scope.Character.HRCareer1OSkillToReplace === null) {
             return false;
         } else {
             return true;
@@ -1012,19 +1107,21 @@ function CB2Ctrl($scope, $http) {
 
         if ($scope.Character !== null && $scope.Character.HRCareer1OSkillToReplace !== null) {
             for (j = 0; j < $scope.Career1.OccupationalSkills.length; j++) {
-                if ($scope.Career1.OccupationalSkills[j][0] != $scope.Character.HRCareer1OSkillToReplace[0]) {
+                if ($scope.Career1.OccupationalSkills[j].Name != $scope.Character.HRCareer1OSkillToReplace.Name) {
                     $scope.HROSkillCareer1List.push($scope.Career1.OccupationalSkills[j]);
                 }
             }
         } else {
             if ($scope.Character !== null) {
-                $scope.Character.HRCareer1OSkillReplacedWith = null;
+                if ('HRCareer1OSkillReplacedWith' in $scope.Character) {
+                    $scope.Character.HRCareer1OSkillReplacedWith = null;
+                }
             }
         }
     }
 
     $scope.checkHROSkillCareer2From = function() {
-        if ($scope.Character === null || $scope.Character.HRCareer2OSkillToReplace === null || $scope.HROSkillChecked == false) {
+        if ($scope.Character === null || !('HRCareer2OSkillToReplace' in $scope.Character) || $scope.Character.HRCareer2OSkillToReplace === null) {
             return false;
         } else {
             return true;
@@ -1036,28 +1133,35 @@ function CB2Ctrl($scope, $http) {
 
         if ($scope.Character !== null && $scope.Character.HRCareer2OSkillToReplace !== null) {
             for (j = 0; j < $scope.Career2.OccupationalSkills.length; j++) {
-                if ($scope.Career2.OccupationalSkills[j][0] != $scope.Character.HRCareer2OSkillToReplace[0]) {
+                if ($scope.Career2.OccupationalSkills[j].Name != $scope.Character.HRCareer2OSkillToReplace.Name) {
                     $scope.HROSkillCareer2List.push($scope.Career2.OccupationalSkills[j]);
                 }
             }
         } else {
             if ($scope.Character !== null) {
-                $scope.Character.HRCareer2OSkillReplacedWith = null;
+                if ('HRCareer2OSkillReplacedWith' in $scope.Character) {
+                    $scope.Character.HRCareer2OSkillReplacedWith = null;
+                }
             }
         }
     }
 
     $scope.selectHRSpellSwap = function() {
-        if (!$scope.HRSpellChecked) {
+        if ($scope.HRSpellChecked) {
             $scope.Character.HRCareer1SpellToReplace = null;
             $scope.Character.HRCareer1SpellReplacedWith = null;
             $scope.Character.HRCareer2SpellToReplace = null;
             $scope.Character.HRCareer2SpellReplacedWith = null;
+        } else {
+            delete $scope.Character.HRCareer1SpellToReplace;
+            delete $scope.Character.HRCareer1SpellReplacedWith;
+            delete $scope.Character.HRCareer2SpellToReplace;
+            delete $scope.Character.HRCareer2SpellReplacedWith;
         }
     }
 
     $scope.checkHRSpellCareer1From = function() {
-        if ($scope.Character === null || $scope.Character.HRCareer1SpellToReplace === null || $scope.HRSpellChecked == false) {
+        if ($scope.Character === null || !('HRCareer1SpellToReplace' in $scope.Character) || $scope.Character.HRCareer1SpellToReplace === null) {
             return false;
         } else {
             return true;
@@ -1081,13 +1185,15 @@ function CB2Ctrl($scope, $http) {
             $scope.HRSpellCareer1List.sort();
         } else {
             if ($scope.Character !== null) {
-                $scope.Character.HRCareer1SpellReplacedWith = null;
+                if ('HRCareer1SpellReplacedWith' in $scope.Character) {
+                    $scope.Character.HRCareer1SpellReplacedWith = null;
+                }
             }
         }
     }
 
     $scope.checkHRSpellCareer2From = function() {
-        if ($scope.Character === null || $scope.Character.HRCareer2SpellToReplace === null || $scope.HRSpellChecked == false) {
+        if ($scope.Character === null || !('HRCareer2SpellToReplace' in $scope.Character) || $scope.Character.HRCareer2SpellToReplace === null) {
             return false;
         } else {
             return true;
@@ -1111,7 +1217,9 @@ function CB2Ctrl($scope, $http) {
             $scope.HRSpellCareer2List.sort();
         } else {
             if ($scope.Character !== null) {
-                $scope.Character.HRCareer2SpellReplacedWith = null;
+                if ('HRCareer2SpellReplacedWith' in $scope.Character) {
+                    $scope.Character.HRCareer2SpellReplacedWith = null;
+                }
             }
         }
     }
@@ -1135,34 +1243,34 @@ function CB2Ctrl($scope, $http) {
     $scope.submitCheck = function() {
         disableSubmit = false;
 
-        if ($scope.Character == null) {
+        if ($scope.Character === null) {
             disableSubmit = true;
         } else {
-            if ($scope.Character.Benefit == null) {
+            if ($scope.Benefit === null) {
+                disableSubmit = true;
+            } else {
+                if ('HasProperty' in $scope.Benefit && $scope.Benefit.PropertyType == 'Spell' && $scope.Character.BenefitProperty === null) {
+                    disableSubmit = true;
+                }
+            }
+
+            if ($scope.Language1Required && $scope.Character.LanguagesChosen[0] === null) {
                 disableSubmit = true;
             }
 
-            if ($scope.Character.Benefit == 'Additional Study' && $scope.Character.BenefitAssocObj == null) {
+            if ($scope.Language2Required && $scope.Character.LanguagesChosen[1] === null) {
                 disableSubmit = true;
             }
 
-            if ($scope.Language1Required && $scope.Character.LanguagesChosen[0] == null) {
+            if ($scope.Language3Required && $scope.Character.LanguagesChosen[2] === null) {
                 disableSubmit = true;
             }
 
-            if ($scope.Language2Required && $scope.Character.LanguagesChosen[1] == null) {
+            if ($scope.RacialStatIncreaseRequired && $scope.Character.RacialStatIncreaseChosen === null) {
                 disableSubmit = true;
             }
 
-            if ($scope.Language3Required && $scope.Character.LanguagesChosen[2] == null) {
-                disableSubmit = true;
-            }
-
-            if ($scope.RacialStatIncreaseRequired && $scope.Character.RacialStatIncreaseChosen == null) {
-                disableSubmit = true;
-            }
-
-            if ($scope.RacialAbilityRequired && $scope.Character.RacialAbilityChosen == null) {
+            if ($scope.RacialAbilityRequired && $scope.Character.RacialAbilityChosen === null) {
                 disableSubmit = true;
             }
 
@@ -1194,35 +1302,35 @@ function CB2Ctrl($scope, $http) {
                 disableSubmit = true;
             }
 
-            if ($scope.Character.HRCareer1AbToReplace !== null && $scope.Character.HRCareer1AbReplacedWith == null) {
+            if ($scope.Character.HRCareer1AbToReplace !== null && $scope.Character.HRCareer1AbReplacedWith === null) {
                 disableSubmit = true;
             }
 
-            if ($scope.Character.HRCareer2AbToReplace !== null && $scope.Character.HRCareer2AbReplacedWith == null) {
+            if ($scope.Character.HRCareer2AbToReplace !== null && $scope.Character.HRCareer2AbReplacedWith === null) {
                 disableSubmit = true;
             }
 
-            if ($scope.Character.HRCareer1OSkillToReplace !== null && $scope.Character.HRCareer1OSkillReplacedWith == null) {
+            if ($scope.Character.HRCareer1OSkillToReplace !== null && $scope.Character.HRCareer1OSkillReplacedWith === null) {
                 disableSubmit = true;
             }
 
-            if ($scope.Character.HRCareer2OSkillToReplace !== null && $scope.Character.HRCareer2OSkillReplacedWith == null) {
+            if ($scope.Character.HRCareer2OSkillToReplace !== null && $scope.Character.HRCareer2OSkillReplacedWith === null) {
                 disableSubmit = true;
             }
 
-            if ($scope.Character.HRCareer1MSkillToReplace !== null && $scope.Character.HRCareer1MSkillReplacedWith == null) {
+            if ($scope.Character.HRCareer1MSkillToReplace !== null && $scope.Character.HRCareer1MSkillReplacedWith === null) {
                 disableSubmit = true;
             }
 
-            if ($scope.Character.HRCareer2MSkillToReplace !== null && $scope.Character.HRCareer2MSkillReplacedWith == null) {
+            if ($scope.Character.HRCareer2MSkillToReplace !== null && $scope.Character.HRCareer2MSkillReplacedWith === null) {
                 disableSubmit = true;
             }
 
-            if ($scope.Character.HRCareer1SpellToReplace !== null && $scope.Character.HRCareer1SpellReplacedWith == null) {
+            if ($scope.Character.HRCareer1SpellToReplace !== null && $scope.Character.HRCareer1SpellReplacedWith === null) {
                 disableSubmit = true;
             }
 
-            if ($scope.Character.HRCareer2SpellToReplace !== null && $scope.Character.HRCareer2SpellReplacedWith == null) {
+            if ($scope.Character.HRCareer2SpellToReplace !== null && $scope.Character.HRCareer2SpellReplacedWith === null) {
                 disableSubmit = true;
             }
         }

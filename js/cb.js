@@ -461,7 +461,7 @@ function CBCtrl($scope, $http) {
             if ($scope.Career1.Name == 'Warcaster' || $scope.Career2.Name == 'Warcaster') {
                 $scope.Character.ArcaneTradition = 'Focuser';
             } else {
-                $scope.Character.Arcanetradition = 'Will Weaver';
+                $scope.Character.ArcaneTradition = 'Will Weaver';
             }
         }
 

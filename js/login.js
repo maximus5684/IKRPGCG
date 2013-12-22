@@ -27,11 +27,13 @@ function LoginCtrl($scope, $http) {
                     $scope.Result = 'The email address you entered was not found.';
                     $scope.EmailClass = ' error';
                     $scope.PassClass = '';
+                    $scope.ResultClass = 'warning';
                     resultShowFade();
                 } else if ($scope.Data == 'BadPassword') {
                     $scope.Result = 'The password you entered was incorrect.';
                     $scope.EmailClass = '';
                     $scope.PassClass = ' error';
+                    $scope.ResultClass = 'warning';
                     resultShowFade();
                 } else if ($scope.Data == 'OKLogin') {
                     $scope.Result = 'Login successful. Redirecting...';

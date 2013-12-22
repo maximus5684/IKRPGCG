@@ -36,7 +36,7 @@ spellsArr =
     {
         Name: 'Ashen Cloud',
         Cost: 2,
-        Range: CTRL,
+        Range: 'CTRL',
         AOE: 3,
         POW: '-',
         UP: 'YES',
@@ -883,7 +883,7 @@ spellsArr =
     {
         Name: 'Jump Start',
         Cost: 1,
-        Range: 'SELF,
+        Range: 'SELF',
         AOE: 'CTRL',
         POW: '-',
         UP: 'NO',
@@ -1286,6 +1286,7 @@ spellsArr =
         OFF: 'NO',
         Book: 'Core Rules',
         Page: 243
+    },
     {
         Name: 'Rune Shot: Molten Shot',
         Cost: 1,
