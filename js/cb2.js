@@ -1416,19 +1416,73 @@ function CB2Ctrl($scope, $http) {
         
         if ('Benefits' in $scope.Race) {
             for (var i = 0; i < $scope.Race.Benefits.length; i++) {
-                $scope.Character.Benefits.push({ Name: $scope.Race.Benefit[i].Name });
+                var found = false;
+
+                for (var i1 = 0; i1 < $scope.Character.Benefits.length; i1++) {
+                    if ($scope.Race.Benefits[i].Name == $scope.Character.Benefits[i1].Name) {
+                        for (var i2 = 0; i2 < $scope.Archetypes.length; i2++) {
+                            for (var i3 = 0; i3 < $scope.Archetypes[i2].Benefits.length; i3++) {
+                                if ($scope.Archetypes[i2].Benefits[i3].Name == $scope.Race.Benefits[i].Name) {
+                                    if (!('HasProperty' in $scope.Archetypes[i2].Benefits[i3])) {
+                                        found = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (!found) {
+                    $scope.Character.Benefits.push({ Name: $scope.Race.Benefits[i].Name });
+                }
             }
         }
 
         if ('FreeBenefits' in $scope.Career1) {
             for (var i = 0; i < $scope.Career1.FreeBenefits.length; i++) {
-                $scope.Character.Benefits.push({ Name: $scope.Career1.FreeBenefits[i].Name });
+                var found = false;
+
+                for (var i1 = 0; i1 < $scope.Character.Benefits.length; i1++) {
+                    if ($scope.Career1.FreeBenefits[i].Name == $scope.Character.Benefits[i1].Name) {
+                        for (var i2 = 0; i2 < $scope.Archetypes.length; i2++) {
+                            for (var i3 = 0; i3 < $scope.Archetypes[i2].Benefits.length; i3++) {
+                                if ($scope.Archetypes[i2].Benefits[i3].Name == $scope.Career1.FreeBenefits[i].Name) {
+                                    if (!('HasProperty' in $scope.Archetypes[i2].Benefits[i3])) {
+                                        found = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (!found) {
+                    $scope.Character.Benefits.push({ Name: $scope.Career1.FreeBenefits[i].Name });
+                }
             }
         }
 
         if ('FreeBenefits' in $scope.Career2) {
             for (var i = 0; i < $scope.Career2.FreeBenefits.length; i++) {
-                $scope.Character.Benefits.push({ Name: $scope.Career2.FreeBenefits[i].Name });
+                var found = false;
+                
+                for (var i1 = 0; i1 < $scope.Character.Benefits.length; i1++) {
+                    if ($scope.Career2.FreeBenefits[i].Name == $scope.Character.Benefits[i1].Name) {
+                        for (var i2 = 0; i2 < $scope.Archetypes.length; i2++) {
+                            for (var i3 = 0; i3 < $scope.Archetypes[i2].Benefits.length; i3++) {
+                                if ($scope.Archetypes[i2].Benefits[i3].Name == $scope.Career2.FreeBenefits[i].Name) {
+                                    if (!('HasProperty' in $scope.Archetypes[i2].Benefits[i3])) {
+                                        found = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (!found) {
+                    $scope.Character.Benefits.push({ Name: $scope.Career2.FreeBenefits[i].Name });
+                }
             }
         }
 
@@ -1477,9 +1531,32 @@ function CB2Ctrl($scope, $http) {
                 if ($scope.HRCareer1MSkillToReplace !== null && $scope.Career1.StartingMilitarySkills[i].Name == $scope.HRCareer1MSkillToReplace.Name) {
                     var mskill = $scope.HRCareer1MSkillReplacedWith;
                     mskill.Level = $scope.Career1.StartingMilitarySkills[i].Level;
-                    $scope.Character.MilitarySkills.push(mskill);
+
+                    var found = false;
+
+                    for (var i1 = 0; i1 < $scope.Character.MilitarySkills.length; i1++) {
+                        if (mskill.Name == $scope.Character.MilitarySkills[i1].Name) {
+                            $scope.Character.MilitarySkills[i1].Level += mskill.Level;
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        $scope.Character.MilitarySkills.push(mskill);
+                    }
                 } else {
-                    $scope.Character.MilitarySkills.push($scope.Career1.StartingMilitarySkills[i]);
+                    var found = false;
+
+                    for (var i1 = 0; i1 < $scope.Character.MilitarySkills.length; i1++) {
+                        if ($scope.Career1.StartingMilitarySkills[i].Name == $scope.Character.MilitarySkills[i1].Name) {
+                            $scope.Character.MilitarySkills[i1].Level += $scope.Career1.StartingMilitarySkills[i].Level;
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        $scope.Character.MilitarySkills.push($scope.Career1.StartingMilitarySkills[i]);
+                    }
                 }
             }
         }
@@ -1493,10 +1570,33 @@ function CB2Ctrl($scope, $http) {
                 if ($scope.HRCareer2MSkillToReplace !== null && $scope.Career2.StartingMilitarySkills[i].Name == $scope.HRCareer2MSkillToReplace.Name) {
                     var mskill = $scope.HRCareer2MSkillReplacedWith;
                     mskill.Level = $scope.Career2.StartingMilitarySkills[i].Level;
-                    $scope.Character.MilitarySkills.push(mskill);
+
+                    var found = false;
+
+                    for (var i1 = 0; i1 < $scope.Character.MilitarySkills.length; i1++) {
+                        if (mskill.Name == $scope.Character.MilitarySkills[i1].Name) {
+                            $scope.Character.MilitarySkills[i1].Level += mskill.Level;
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        $scope.Character.MilitarySkills.push(mskill);
+                    }
                 } else {
-                    $scope.Character.MilitarySkills.push($scope.Career2.StartingMilitarySkills[i]);
-                }
+                    var found = false;
+
+                    for (var i1 = 0; i1 < $scope.Character.MilitarySkills.length; i1++) {
+                        if ($scope.Career2.StartingMilitarySkills[i].Name == $scope.Character.MilitarySkills[i1].Name) {
+                            $scope.Character.MilitarySkills[i1].Level += $scope.Career2.StartingMilitarySkills[i].Level;
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        $scope.Character.MilitarySkills.push($scope.Career2.StartingMilitarySkills[i]);
+                    }
+               }
             }
         }
 
@@ -1506,7 +1606,18 @@ function CB2Ctrl($scope, $http) {
             }
 
             for (var i = 0; i < $scope.Career1MSkillsChosen.length; i++) {
-                $scope.Character.MilitarySkills.push($scope.Career1MSkillsChosen[i]);
+                var found = false;
+
+                for (var i1 = 0; i1 < $scope.Character.MilitarySkills.length; i1++) {
+                    if ($scope.Career1MSkillsChosen[i].Name == $scope.Character.MilitarySkills[i1].Name) {
+                        $scope.Character.MilitarySkills[i1].Level += $scope.Career1MSkillsChosen[i].Level;
+                        found = true;
+                    }
+                }
+
+                if (!found) {
+                    $scope.Character.MilitarySkills.push($scope.Career1MSkillsChosen[i]);
+                }
             }
         }
 
@@ -1516,7 +1627,18 @@ function CB2Ctrl($scope, $http) {
             }
 
             for (var i = 0; i < $scope.Career2MSkillsChosen.length; i++) {
-                $scope.Character.MilitarySkills.push($scope.Career2MSkillsChosen[i]);
+                var found = false;
+
+                for (var i1 = 0; i1 < $scope.Character.MilitarySkills.length; i1++) {
+                    if ($scope.Career2MSkillsChosen[i].Name == $scope.Character.MilitarySkills[i1].Name) {
+                        $scope.Character.MilitarySkills[i1].Level += $scope.Career2MSkillsChosen[i].Level;
+                        found = true;
+                    }
+                }
+
+                if (!found) {
+                    $scope.Character.MilitarySkills.push($scope.Career2MSkillsChosen[i]);
+                }
             }
         }
         
@@ -1534,9 +1656,36 @@ function CB2Ctrl($scope, $http) {
                 if ($scope.HRCareer1OSkillToReplace !== null && $scope.Career1.StartingOccupationalSkills[i].Name == $scope.HRCareer1OSkillToReplace.Name) {
                     var oskill = $scope.HRCareer1OSkillReplacedWith;
                     oskill.Level = $scope.Career1.StartingOccupationalSkills[i].Level;
-                    $scope.Character.OccupationalSkills.push(oskill);
+
+                    var found = false;
+
+                    for (var i1 = 0; i1 < $scope.Character.OccupationalSkills.length; i1++) {
+                        if (oskill.Name == $scope.Character.OccupationalSkills[i1].Name) {
+                            if (!('Type' in oskill)) {
+                                $scope.Character.OccupationalSkills[i1].Level += oskill.Level;
+                                found = true;
+                            }
+                        }
+                    }
+
+                    if (!found) {
+                        $scope.Character.OccupationalSkills.push(oskill);
+                    }
                 } else {
-                    $scope.Character.OccupationalSkills.push($scope.Career1.StartingOccupationalSkills[i]);
+                    var found = false;
+
+                    for (var i1 = 0; i1 < $scope.Character.OccupationalSkills.length; i1++) {
+                        if ($scope.Career1.StartingOccupationalSkills[i].Name == $scope.Character.OccupationalSkills[i1].Name) {
+                            if (!('Type' in $scope.Career1.StartingOccupationalSkills[i])) {
+                                $scope.Character.OccupationalSkills[i1].Level += $scope.Career1.StartingOccupationalSkills[i].Level;
+                                found = true;
+                            }
+                        }
+                    }
+
+                    if (!found) {
+                        $scope.Character.OccupationalSkills.push($scope.Career1.StartingOccupationalSkills[i]);
+                    }
                 }
             }
         }
@@ -1550,9 +1699,36 @@ function CB2Ctrl($scope, $http) {
                 if ($scope.HRCareer2OSkillToReplace !== null && $scope.Career2.StartingOccupationalSkills[i].Name == $scope.HRCareer2OSkillToReplace.Name) {
                     var oskill = $scope.HRCareer2OSkillReplacedWith;
                     oskill.Level = $scope.Career2.StartingOccupationalSkills[i].Level;
-                    $scope.Character.OccupationalSkills.push(oskill);
+
+                    var found = false;
+
+                    for (var i1 = 0; i1 < $scope.Character.OccupationalSkills.length; i1++) {
+                        if (oskill.Name == $scope.Character.OccupationalSkills[i1].Name) {
+                            if (!('Type' in oskill)) {
+                                $scope.Character.OccupationalSkills[i1].Level += oskill.Level;
+                                found = true;
+                            }
+                        }
+                    }
+
+                    if (!found) {
+                        $scope.Character.OccupationalSkills.push(oskill);
+                    }
                 } else {
-                    $scope.Character.OccupationalSkills.push($scope.Career2.StartingOccupationalSkills[i]);
+                    var found = false;
+
+                    for (var i1 = 0; i1 < $scope.Character.OccupationalSkills.length; i1++) {
+                        if ($scope.Career2.StartingOccupationalSkills[i].Name == $scope.Character.OccupationalSkills[i1].Name) {
+                            if (!('Type' in $scope.Career2.StartingOccupationalSkills[i])) {
+                                $scope.Character.OccupationalSkills[i1].Level += $scope.Career2.StartingOccupationalSkills[i].Level;
+                                found = true;
+                            }
+                        }
+                    }
+
+                    if (!found) {
+                        $scope.Character.OccupationalSkills.push($scope.Career2.StartingOccupationalSkills[i]);
+                    }
                 }
             }
         }
@@ -1563,7 +1739,20 @@ function CB2Ctrl($scope, $http) {
             }
 
             for (var i = 0; i < $scope.Career1OSkillsChosen.length; i++) {
-                $scope.Character.OccupationalSkills.push($scope.Career1OSkillsChosen[i]);
+                var found = false;
+
+                for (var i1 = 0; i1 < $scope.Character.OccupationalSkills.length; i1++) {
+                    if ($scope.Career1OSkillsChosen[i].Name == $scope.Character.OccupationalSkills[i1].Name) {
+                        if (!('Type' in $scope.Career1OSkillsChosen[i])) {
+                            $scope.Character.OccupationalSkills[i1].Level += $scope.Career1OSkillsChosen[i].Level;
+                            found = true;
+                        }
+                    }
+                }
+
+                if (!found) {
+                    $scope.Character.OccupationalSkills.push($scope.Career1OSkillsChosen[i]);
+                }
             }
         }
 
@@ -1573,7 +1762,20 @@ function CB2Ctrl($scope, $http) {
             }
 
             for (var i = 0; i < $scope.Career2OSkillsChosen.length; i++) {
-                $scope.Character.OccupationalSkills.push($scope.Career2OSkillsChosen[i]);
+                var found = false;
+
+                for (var i1 = 0; i1 < $scope.Character.OccupationalSkills.length; i1++) {
+                    if ($scope.Career2OSkillsChosen[i].Name == $scope.Character.OccupationalSkills[i1].Name) {
+                        if (!('Type' in $scope.Career2OSkillsChosen[i])) {
+                            $scope.Character.OccupationalSkills[i1].Level += $scope.Career2OSkillsChosen[i].Level;
+                            found = true;
+                        }
+                    }
+                }
+
+                if (!found) {
+                    $scope.Character.OccupationalSkills.push($scope.Career2OSkillsChosen[i]);
+                }
             }
         }
         
@@ -1588,7 +1790,31 @@ function CB2Ctrl($scope, $http) {
             }
 
             for (var i = 0; i < $scope.Career1.StartingSpells.length; i++) {
-                $scope.Character.Spells.push($scope.Career1.StartingSpells[i]);
+                if ($scope.HRCareer1SpellToReplace !== null && $scope.HRCareer1SpellToReplace == $scope.Career1.StartingSpells[i]) {
+                    var found = false;
+
+                    for (var i1 = 0; i1 < $scope.Character.Spells.length; i1++) {
+                        if ($scope.Career1.StartingSpells[i] == $scope.HRCareer1SpellReplacedWith) {
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        $scope.Character.Spells.push($scope.HRCareer1SpellReplacedWith);
+                    }
+                } else {
+                    var found = false;
+
+                    for (var i1 = 0; i1 < $scope.Character.Spells.length; i1++) {
+                        if ($scope.Career1.StartingSpells[i] == $scope.Character.Spells[i1]) {
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        $scope.Character.Spells.push($scope.Career1.StartingSpells[i]);
+                    }
+                }
             }
         }
 
@@ -1598,7 +1824,31 @@ function CB2Ctrl($scope, $http) {
             }
 
             for (var i = 0; i < $scope.Career2.StartingSpells.length; i++) {
-                $scope.Character.Spells.push($scope.Career2.StartingSpells[i]);
+                if ($scope.HRCareer2SpellToReplace !== null && $scope.HRCareer2SpellToReplace == $scope.Career2.StartingSpells[i]) {
+                    var found = false;
+
+                    for (var i1 = 0; i1 < $scope.Character.Spells.length; i1++) {
+                        if ($scope.Career2.StartingSpells[i] == $scope.HRCareer2SpellReplacedWith) {
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        $scope.Character.Spells.push($scope.HRCareer2SpellReplacedWith);
+                    }
+                } else {
+                    var found = false;
+
+                    for (var i1 = 0; i1 < $scope.Character.Spells.length; i1++) {
+                        if ($scope.Career2.StartingSpells[i] == $scope.Character.Spells[i2]) {
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        $scope.Character.Spells.push($scope.Career2.StartingSpells[i]);
+                    }
+                }
             }
         }
 

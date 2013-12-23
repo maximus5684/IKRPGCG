@@ -1349,7 +1349,7 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingGold: 75,
         StatIncreases: [['PHY',1]],
-        StatMaxIncreases: { Hero: [['PHY',1]], Vet: [['PHY',1]], Epic: [['PHY',1]] },
+        StatMaxIncreases: { Hero: [['PHY',1]], Veteran: [['PHY',1]], Epic: [['PHY',1]] },
         Abilities:
         [
             { Name: 'Camouflage' },
@@ -1404,7 +1404,7 @@ careerArr = [
         StartingAssetChoices: 0,
         StartingGold: 75,
         StatIncreases: [['SPD',1]],
-        StatMaxIncreases: { Hero: [['SPD',1]], Vet: [['SPD',1]], Epic: [['SPD',1]] },
+        StatMaxIncreases: { Hero: [['SPD',1]], Veteran: [['SPD',1]], Epic: [['SPD',1]] },
         Abilities:
         [
             { Name: 'Camouflage' },
