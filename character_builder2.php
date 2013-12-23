@@ -8,6 +8,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
         <script src="js/archetypes.js"></script> 
         <script src="js/careers.js"></script> 
         <script src="js/languages.js"></script>
+        <script src="js/abilities.js"></script>
+        <script src="js/skills.js"></script>
         <script src="js/spells.js"></script>
         <script src="js/cb2.js"></script> 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
@@ -18,7 +20,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group">
                     <label class="control-label" for="ArchBenefit">Archetype Benefit ({{Character.Archetype}}):</label>
                     <div class="controls">
-                        <select id="ArchBenefit" ng-model="Benefit" ng-options="Benefit as Benefit.Name for Benefit in Benefits" ng-change="selectBenefit()">
+                        <select id="ArchBenefit" ng-model="Benefit" ng-options="Benefit as Benefit.Name for Benefit in Benefits">
                             <option value="">...</option>
                         </select>
                         <span ng-hide="checkBenefit()" class="label label-warning">Required</span><br>
@@ -26,19 +28,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <span ng-show="CareerBenefits"><br>Career Benefits: {{CareerBenefits}}</span>
                     </div>
                 </div>
-                <div class="control-group" ng-show="checkBenefitPropertySpell()">
-                    <label class="control-label" for="AdditionalStudySpell">Additional Study Spell:</label>
-                    <div class="controls">
-                        <select id="BenefitPropertySpell" ng-model="Character.BenefitProperty" ng-options="Spell for Spell in BenefitPropertySpellList">
-                            <option value="">...</option>
-                        </select>
-                        <span ng-hide="checkBenefitProperty()" class="label label-warning">Required</span>
-                    </div>
-                </div>
                 <div class="control-group" ng-show="RacialAbilityRequired">
                     <label class="control-label" for="RacialAbility">Select an additional starting ability from your careers (racial bonus):</label>
                     <div class="controls">
-                        <select id="RacialAbility" ng-model="Character.RacialAbilityChosen" ng-options="Ability.Name as Ability.Name for Ability in RacialAbilityChoices">
+                        <select id="RacialAbility" ng-model="RacialAbilityChosen" ng-options="Ability as Ability.Name for Ability in RacialAbilityChoices">
                             <option value="">...</option>
                         </select>
                         <span ng-hide="checkRacialAbility()" class="label label-warning">Required</span><br>
@@ -192,28 +185,12 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         </ul>
                     </div>
                 </div>
-                <div class="control-group" ng-show="RacialConnections">
-                    <label class="control-label" for="RacialConnectionDetails">Racial Connection:</label>
+                <div class="control-group" ng-show="checkGenericConnections()">
+                    <label class="control-label" for="ConnectionDetails">Connection Details:</label>
                     <div class="controls">
-                        {{Race.Connections[0]}}<br>
-                        <input type="checkbox" name="RacialConnectionDetails" ng-model="ShowRacialConnectionDetails"> To change the details of this connection (the text between the parentheses), click this checkbox.
-                        <span ng-show="ShowRacialConnectionDetails"><br><br>Details: <input type="text" ng-model="Character.RacialConnectionDetails"></span>
-                    </div>
-                </div>
-                <div class="control-group" ng-show="Career1Connections">
-                    <label class="control-label" for="Career1ConnectionDetails">{{Career1.Name}} Connection:</label>
-                    <div class="controls">
-                        {{Career1.StartingConnections[0]}}<br>
-                        <input type="checkbox" name="Career1ConnectionDetails" ng-model="ShowCareer1ConnectionDetails"> To change the details of this connection (the text between the parentheses), click this checkbox.
-                        <span ng-show="ShowCareer1ConnectionDetails"><br><br>Details: <input type="text" ng-model="Character.Career1ConnectionDetails"></span>
-                    </div>
-                </div>
-                <div class="control-group" ng-show="Career2Connections">
-                    <label class="control-label" for="Career2ConnectionDetails"> Connection:</label>
-                    <div class="controls">
-                        {{Career2.StartingConnections[0]}}<br>
-                        <input type="checkbox" name="Career2ConnectionDetails" ng-model="ShowCareer2ConnectionDetails"> To change the details of this connection (the text between the parentheses), click this checkbox.
-                        <span ng-show="ShowCareer2ConnectionDetails"><br><br>Details: <input type="text" ng-model="Character.Career2ConnectionDetails"></span>
+                        <ul id="connectionList">
+                            <li ng-repeat="Connection in Character.Connections">Connections (<input type="text" name="Connections" ng-model="Connection.Name" ng-disabled="checkSpecificConnection(Connection)" style="vertical-align: middle">)</li>
+                        </ul> 
                     </div>
                 </div>
                 <div class="control-group" ng-show="Career1AssetsRequired">
@@ -260,7 +237,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="HRAbilityChecked && HRAbilityC1">
                     <label for="HRAbCareer1From" class="control-label">{{Career1.Name}} ability to replace:</label>
                     <div class="controls">
-                        <select id="HRAbCareer1From" ng-model="Character.HRCareer1AbToReplace" ng-options="Ability as Ability.Name for Ability in Career1.StartingAbilities" ng-change="selectHRAbCareer1From()">
+                        <select id="HRAbCareer1From" ng-model="HRCareer1AbToReplace" ng-options="Ability as Ability.Name for Ability in Career1.StartingAbilities" ng-change="selectHRAbCareer1From()">
                             <option value="">...</option>
                         </select>
                     </div>
@@ -268,16 +245,16 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="checkHRAbCareer1From()">
                     <label for="HRAbCareer1To" class="control-label">Replace {{Career1.Name}} ability with:</label>
                     <div class="controls">
-                        <select id="HRAbCareer1To" ng-model="Character.HRCareer1AbReplacedWith" ng-options="Ability as Ability.Name for Ability in HRAbCareer1List">
+                        <select id="HRAbCareer1To" ng-model="HRCareer1AbReplacedWith" ng-options="Ability as Ability.Name for Ability in HRAbCareer1List">
                             <option value="">...</option>
                         </select>
-                        <span ng-hide="Character.HRCareer1AbReplacedWith !== null" class="label label-warning">Required</span>
+                        <span ng-hide="HRCareer1AbReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HRAbilityChecked && HRAbilityC2">
                     <label for="HRAbCareer2From" class="control-label">{{Career2.Name}} ability to replace:</label>
                     <div class="controls">
-                        <select id="HRAbCareer2From" ng-model="Character.HRCareer2AbToReplace" ng-options="Ability as Ability.Name for Ability in Career2.StartingAbilities" ng-change="selectHRAbCareer2From()">
+                        <select id="HRAbCareer2From" ng-model="HRCareer2AbToReplace" ng-options="Ability as Ability.Name for Ability in Career2.StartingAbilities" ng-change="selectHRAbCareer2From()">
                             <option value="">...</option>
                         </select>
                     </div>
@@ -285,16 +262,16 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="checkHRAbCareer2From()">
                     <label for="HRAbCareer2To" class="control-label">Replace {{Career2.Name}} ability with:</label>
                     <div class="controls">
-                        <select id="HRAbCareer2To" ng-model="Character.HRCareer2AbReplacedWith" ng-options="Ability as Ability.Name for Ability in HRAbCareer2List">
+                        <select id="HRAbCareer2To" ng-model="HRCareer2AbReplacedWith" ng-options="Ability as Ability.Name for Ability in HRAbCareer2List">
                             <option value="">...</option>
                         </select>
-                        <span ng-hide="Character.HRCareer2AbReplacedWith !== null" class="label label-warning">Required</span>
+                        <span ng-hide="HRCareer2AbReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HRMSkillChecked && HRMSkillC1">
                     <label for="HRMSkillCareer1From" class="control-label">{{Career1.Name}} military skill to replace:</label>
                     <div class="controls">
-                        <select id="HRMSkillCareer1From" ng-model="Character.HRCareer1MSkillToReplace" ng-options="Skill as Skill.Name for Skill in Career1.StartingMilitarySkills" ng-change="selectHRMSkillCareer1From()">
+                        <select id="HRMSkillCareer1From" ng-model="HRCareer1MSkillToReplace" ng-options="Skill as Skill.Name for Skill in Career1.StartingMilitarySkills" ng-change="selectHRMSkillCareer1From()">
                             <option value="">...</option>
                         </select>
                     </div>
@@ -302,16 +279,16 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="checkHRMSkillCareer1From()">
                     <label for="HRMSkillCareer1To" class="control-label">Replace {{Career1.Name}} military skill with:</label>
                     <div class="controls">
-                        <select id="HRMSkillCareer1To" ng-model="Character.HRCareer1MSkillReplacedWith" ng-options="Skill as Skill.Name for Skill in HRMSkillCareer1List">
+                        <select id="HRMSkillCareer1To" ng-model="HRCareer1MSkillReplacedWith" ng-options="Skill as Skill.Name for Skill in HRMSkillCareer1List">
                             <option value="">...</option>
                         </select>
-                        <span ng-hide="Character.HRCareer1MSkillReplacedWith !== null" class="label label-warning">Required</span>
+                        <span ng-hide="HRCareer1MSkillReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HRMSkillChecked && HRMSkillC2">
                     <label for="HRMSkillCareer2From" class="control-label">{{Career2.Name}} military skill to replace:</label>
                     <div class="controls">
-                        <select id="HRMSkillCareer2From" ng-model="Character.HRCareer2MSkillToReplace" ng-options="Skill as Skill.Name for Skill in Career2.StartingMilitarySkills" ng-change="selectHRMSkillCareer2From()">
+                        <select id="HRMSkillCareer2From" ng-model="HRCareer2MSkillToReplace" ng-options="Skill as Skill.Name for Skill in Career2.StartingMilitarySkills" ng-change="selectHRMSkillCareer2From()">
                             <option value="">...</option>
                         </select>
                     </div>
@@ -319,16 +296,16 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="checkHRMSkillCareer2From()">
                     <label for="HRMSkillCareer1To" class="control-label">Replace {{Career2.Name}} military skill with:</label>
                     <div class="controls">
-                        <select id="HRMSkillCareer1To" ng-model="Character.HRCareer2MSkillReplacedWith" ng-options="Skill as Skill.Name for Skill in HRMSkillCareer2List">
+                        <select id="HRMSkillCareer1To" ng-model="HRCareer2MSkillReplacedWith" ng-options="Skill as Skill.Name for Skill in HRMSkillCareer2List">
                             <option value="">...</option>
                         </select>
-                        <span ng-hide="Character.HRCareer2MSkillReplacedWith !== null" class="label label-warning">Required</span>
+                        <span ng-hide="HRCareer2MSkillReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HROSkillChecked && HROSkillC1">
                     <label for="HROSkillCareer1From" class="control-label">{{Career1.Name}} occupational skill to replace:</label>
                     <div class="controls">
-                        <select id="HROSkillCareer1From" ng-model="Character.HRCareer1OSkillToReplace" ng-options="Skill as Skill.Name for Skill in Career1.StartingOccupationalSkills" ng-change="selectHROSkillCareer1From()">
+                        <select id="HROSkillCareer1From" ng-model="HRCareer1OSkillToReplace" ng-options="Skill as Skill.Name for Skill in Career1.StartingOccupationalSkills" ng-change="selectHROSkillCareer1From()">
                             <option value="">...</option>
                         </select>
                     </div>
@@ -336,16 +313,16 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="checkHROSkillCareer1From()">
                     <label for="HROSkillCareer1To" class="control-label">Replace {{Career1.Name}} occupational skill with:</label>
                     <div class="controls">
-                        <select id="HROSkillCareer1To" ng-model="Character.HRCareer1OSkillReplacedWith" ng-options="Skill as Skill.Name for Skill in HROSkillCareer1List">
+                        <select id="HROSkillCareer1To" ng-model="HRCareer1OSkillReplacedWith" ng-options="Skill as Skill.Name for Skill in HROSkillCareer1List">
                             <option value="">...</option>
                         </select>
-                        <span ng-hide="Character.HRCareer1OSkillReplacedWith !== null" class="label label-warning">Required</span>
+                        <span ng-hide="HRCareer1OSkillReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HROSkillChecked && HROSkillC2">
                     <label for="HROSkillCareer2From" class="control-label">{{Career2.Name}} occupational skill to replace:</label>
                     <div class="controls">
-                        <select id="HROSkillCareer2From" ng-model="Character.HRCareer2OSkillToReplace" ng-options="Skill as Skill.Name for Skill in Career2.StartingOccupationalSkills" ng-change="selectHROSkillCareer2From()">
+                        <select id="HROSkillCareer2From" ng-model="HRCareer2OSkillToReplace" ng-options="Skill as Skill.Name for Skill in Career2.StartingOccupationalSkills" ng-change="selectHROSkillCareer2From()">
                             <option value="">...</option>
                         </select>
                     </div>
@@ -353,16 +330,16 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="checkHROSkillCareer2From()">
                     <label for="HROSkillCareer1To" class="control-label">Replace {{Career2.Name}} occupational skill with:</label>
                     <div class="controls">
-                        <select id="HROSkillCareer1To" ng-model="Character.HRCareer2OSkillReplacedWith" ng-options="Skill as Skill.Name for Skill in HROSkillCareer2List">
+                        <select id="HROSkillCareer1To" ng-model="HRCareer2OSkillReplacedWith" ng-options="Skill as Skill.Name for Skill in HROSkillCareer2List">
                             <option value="">...</option>
                         </select>
-                        <span ng-hide="Character.HRCareer2OSkillReplacedWith !== null" class="label label-warning">Required</span>
+                        <span ng-hide="HRCareer2OSkillReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HRSpellChecked && HRSpellC1">
                     <label for="HRSpellCareer1From" class="control-label">{{Career1.Name}} spell to replace:</label>
                     <div class="controls">
-                        <select id="HRSpellCareer1From" ng-model="Character.HRCareer1SpellToReplace" ng-options="Spell for Spell in Career1.StartingSpells" ng-change="selectHRSpellCareer1From()">
+                        <select id="HRSpellCareer1From" ng-model="HRCareer1SpellToReplace" ng-options="Spell for Spell in Career1.StartingSpells" ng-change="selectHRSpellCareer1From()">
                             <option value="">...</option>
                         </select>
                     </div>
@@ -370,16 +347,16 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="checkHRSpellCareer1From()">
                     <label for="HRSpellCareer1To" class="control-label">Replace {{Career1.Name}} spell with:</label>
                     <div class="controls">
-                        <select id="HRSpellCareer1To" ng-model="Character.HRCareer1SpellReplacedWith" ng-options="Spell for Spell in HRSpellCareer1List">
+                        <select id="HRSpellCareer1To" ng-model="HRCareer1SpellReplacedWith" ng-options="Spell for Spell in HRSpellCareer1List">
                             <option value="">...</option>
                         </select>
-                        <span ng-hide="Character.HRCareer1SpellReplacedWith !== null" class="label label-warning">Required</span>
+                        <span ng-hide="HRCareer1SpellReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group" ng-show="HRSpellChecked && HRSpellC2">
                     <label for="HRSpellCareer2From" class="control-label">{{Career2.Name}} spell to replace:</label>
                     <div class="controls">
-                        <select id="HRSpellCareer2From" ng-model="Character.HRCareer2SpellToReplace" ng-options="Spell for Spell in Career2.StartingSpells" ng-change="selectHRSpellCareer2From()">
+                        <select id="HRSpellCareer2From" ng-model="HRCareer2SpellToReplace" ng-options="Spell for Spell in Career2.StartingSpells" ng-change="selectHRSpellCareer2From()">
                             <option value="">...</option>
                         </select>
                     </div>
@@ -387,10 +364,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="checkHRSpellCareer2From()">
                     <label for="HRSpellCareer1To" class="control-label">Replace {{Career2.Name}} spell with:</label>
                     <div class="controls">
-                        <select id="HRSpellCareer1To" ng-model="Character.HRCareer2SpellReplacedWith" ng-options="Spell for Spell in HRSpellCareer2List">
+                        <select id="HRSpellCareer1To" ng-model="HRCareer2SpellReplacedWith" ng-options="Spell for Spell in HRSpellCareer2List">
                             <option value="">...</option>
                         </select>
-                        <span ng-hide="Character.HRCareer2SpellReplacedWith !== null" class="label label-warning">Required</span>
+                        <span ng-hide="HRCareer2SpellReplacedWith !== null" class="label label-warning">Required</span>
                     </div>
                 </div>
                 <div class="control-group">

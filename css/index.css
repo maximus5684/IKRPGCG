@@ -10,6 +10,10 @@
     text-align: center;
 }
 
+#characterTable td:last-child a {
+    cursor: pointer;
+}
+
 #deleteChar {
     margin: -115px 0 0 -236px;
     width: 470px;

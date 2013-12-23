@@ -500,7 +500,7 @@ careerArr = [
         StartingMSkillChoices: 1,
         StartingMSkillChoicesOptions: [{ Name: 'Pistol', Level: 1 }, { Name: 'Rifle', Level: 1 }],
         StartingOSkillChoices: 0,
-        StartingSpells: [{ Name: 'Rune Shot: Accuracy' }, { Name: 'Rune Shot: Brutal' }, { Name: 'Rune Shot: Thunderbolt' }],
+        StartingSpells: ['Rune Shot: Accuracy', 'Rune Shot: Brutal', 'Rune Shot: Thunderbolt'],
         StartingAssets: ['ammo bandolier','rune shot casting kit','powder','10 rounds of ammunition'],
         StartingAssetChoices: 1,
         StartingAssetChoiceOptions: ['magelock pistol','magelock rifle'],
@@ -1450,7 +1450,12 @@ careerArr = [
     {
         Name: "Spy",
         StartingCareerOnly: false,
-        StartingAbilities: [{ Name: 'Battle Plan: Shadow' }, { Name: 'Cover Identity' }, { Name: 'Language', Type: 'Generic', Property: 'any' }],
+        StartingAbilities:
+        [
+            { Name: 'Battle Plan: Shadow' },
+            { Name: 'Cover Identity', Type: 'Generic', Property: 'career' },
+            { Name: 'Language', Type: 'Generic', Property: 'any' }
+        ],
         StartingConnections: [{ Name: 'intelligence network', Type: 'Generic' }],
         StartingOccupationalSkills:
         [
@@ -1469,7 +1474,7 @@ careerArr = [
         Abilities:
         [
             { Name: 'Battle Plan: Shadow' },
-            { Name: 'Cover Identity' },
+            { Name: 'Cover Identity', Type: 'Generic', Property: 'career' },
             { Name: 'Iron Will' },
             { Name: 'Language', Type: 'Generic', Property: 'any' },
             { Name: 'Poison Resistance' },
@@ -1518,7 +1523,6 @@ careerArr = [
         StartingSpecial: 'A character starting with the Stormblade career must choose between Aristocrat, Knight, Man-at-Arms, Military Officer, Soldier, or Warcaster for his second career.',
         StartingAssets: ['Storm Glaive','Storm Knight Armor'],
         StartingAssetChoices: 0,
-        StartingGold: 0,
         ResSecondCareers: ['Aristocrat','Knight','Man-at-Arms','Military Officer','Soldier','Warcaster'],
         Abilities:
         [
@@ -1651,7 +1655,7 @@ careerArr = [
     {
         Name: "Warcaster",
         StartingCareerOnly: true,
-        StartingAbilities: [{ Name: 'Bond' }],
+        StartingAbilities: [{ Name: 'Bond', Type: 'Generic', Property: 'bond slot' }],
         StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Pistol', Level: 1 }],
         StartingOccupationalSkills: [{ Name: 'Command', Level: 1 }, { Name: 'Detection', Level: 1 }],
         StartingMSkillChoices: 0,
@@ -1665,10 +1669,9 @@ careerArr = [
             'mechanika hand weapon',
             'mechanika hand cannon'
         ],
-        StartingGold: 0,
         Abilities:
         [
-            { Name: 'Bond' },
+            { Name: 'Bond', Type: 'Generic', Property: 'bond slot' },
             { Name: 'Field Marshal: Magical Attack' },
             { Name: 'Field Marshal: Relentless Charge' },
             { Name: 'Field Marshal: Shield Guard' },

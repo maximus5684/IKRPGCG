@@ -6,11 +6,22 @@ function HomeCtrl($scope, $http) {
     $scope.CharToDelete = null;
    
     $scope.editUrl = function(charIndex) {
+        var url = '';
+
         if ($scope.Characters[charIndex].Status == 'Incomplete') {
-            return "/character_builder2.php?CharacterID=" + $scope.Characters[charIndex].CharacterID;
+            switch ($scope.Characters[charIndex].PageComplete) {
+                case "1":
+                    url = "/character_builder2.php?CharacterID=";
+                    break;
+                case "2":
+                    url = "/character_builder3.php?CharacterID=";
+                    break;
+            }
         } else {
-            return "/character_sheet.php?CharacterID=" + $scope.Characters[charIndex].CharacterID;
+            url = "/character_sheet.php?CharacterID=";
         }
+
+        return url + $scope.Characters[charIndex].CharacterID;
     }
 
     $scope.DeleteCharAsk = function(charIndex) {

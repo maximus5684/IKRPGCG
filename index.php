@@ -3,8 +3,8 @@
 $pageTitle = 'Home - Iron Kingdoms Character Generator';
 include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
 
-        <link href="css/home.css" rel="stylesheet">
-        <script src="js/home.js"></script>
+        <link href="css/index.css" rel="stylesheet">
+        <script src="js/index.js"></script>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
 
         <div class="container" id="mainContain" ng-controller="HomeCtrl" ng-init="GetCharacters()">

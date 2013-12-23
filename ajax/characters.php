@@ -10,7 +10,7 @@ if ($charsReq->ReqType == 'GetUserChars') {
     $charsList = array();
     
     try {
-        $sth = $pdo->prepare('SELECT CharacterID, Status, CharacterJSON FROM characters WHERE UserID = :userid');
+        $sth = $pdo->prepare('SELECT CharacterID, Status, PageComplete, CharacterJSON FROM characters WHERE UserID = :userid');
         $sth->bindParam(':userid', $_SESSION['UserID']);
         $sth->execute();
         $sth->setFetchMode(PDO::FETCH_OBJ);
@@ -37,15 +37,17 @@ if ($charsReq->ReqType == 'GetUserChars') {
 } elseif ($charsReq->ReqType == 'BuildChar') {
     try {
         $sth = $pdo->prepare('SELECT UserID FROM characters WHERE CharacterID = :charid');
-        $sth->bindParam(':charid', $charsReq->Character->CharacterID);
+        $sth->bindParam(':charid', $charsReq->CharacterID);
         $sth->execute();
 
         if ($sth->rowCount() > 0) {
             $result = $sth->fetch();
 
             if ($result['UserID'] == $_SESSION['UserID']) {
-                $sth = $pdo->prepare("UPDATE characters SET Status = 'Complete', CharacterJSON = :charjson WHERE CharacterID = :characterid");
-                $sth->bindParam(':charjson', $charsReq->Character);
+                $sth = $pdo->prepare("UPDATE characters SET Status = :status, PageComplete = :pc, CharacterJSON = :charjson WHERE CharacterID = :characterid");
+                $sth->bindParam(':status', $charsReq->Status);
+                $sth->bindParam(':pc', $charsReq->PageComplete);
+                $sth->bindParam(':charjson', json_encode($charsReq->Character));
                 $sth->bindParam(':characterid', $charsReq->CharacterID);
                 $sth->execute();
             } else {

@@ -86,7 +86,7 @@ abilArr =
     },
     {
         Name: 'Battle Plan: Call to Action',
-        PrereqOSkills: [{ Name: 'Command", Level: 1 }],
+        PrereqOSkills: [{ Name: 'Command', Level: 1 }],
         Book: 'Core Rules',
         Page: 157
     },
@@ -169,6 +169,7 @@ abilArr =
     },
     {
         Name: 'Bond',
+        HasProperty: true,
         Book: 'Core Rules',
         Page: 158
     },

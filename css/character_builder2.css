@@ -34,3 +34,8 @@
     text-align: center;
     width: 30px;
 }
+
+#connectionList li input {
+    margin-right: 0;
+    vertical-align: middle;
+}
