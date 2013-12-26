@@ -13,6 +13,7 @@ function CB3Ctrl($scope, $http) {
 
     $scope.Careers = careerArr;
     $scope.Archetypes = archArr;
+    $scope.Abilities = abilArr;
     $scope.Languages = langArr;
 
     // Initial function to load character.
@@ -72,18 +73,24 @@ function CB3Ctrl($scope, $http) {
         // Check for abilities with properties.
         if ('Abilities' in $scope.Character) {
             for (var i = 0; i < $scope.Character.Abilities.length; i++) {
-                if ('Type' in $scope.Character.Abilities[i]) {
-                    if ($scope.Character.Abilities[i].Type != 'Specific') {
-                        var tempAbil = { Name: $scope.Character.Abilities[i].Name, Type: $scope.Character.Abilities[i].Type, Property: $scope.Character.Abilities[i].Property };
+                for (var i1 = 0; i1 < $scope.Abilities.length; i1++) {
+                    if ($scope.Character.Abilities[i].Name == $scope.Abilities[i1].Name) {
+                        if ('HasProperty' in $scope.Abilities[i1]) {
+                            if ($scope.Character.Abilities[i].Type != 'Specific') {
+                                var tempAbil = { Name: $scope.Character.Abilities[i].Name, Type: $scope.Character.Abilities[i].Type };
 
-                        if ('PropertyType' in $scope.Character.Abilities[i]) {
-                            tempAbil.Property = null;
-                            tempAbil.PropertyType = $scope.Character.Abilities[i].PropertyType;
-                            tempAbil.PropertiesList = getAbilityPropertiesList($scope.Character.Abilities[i].PropertyType);
+                                if ('PropertyType' in $scope.Abilities[i1]) {
+                                    tempAbil.Property = null;
+                                    tempAbil.PropertyType = $scope.Character.Abilities[i].PropertyType;
+                                    tempAbil.PropertiesList = getAbilityPropertiesList($scope.Abilities[i1].PropertyType);
+                                } else {
+                                    tempAbil.Property = $scope.Character.Abilities[i].Property;
+                                }
+
+                                $scope.AbilitiesWithProperties.push(tempAbil);
+                                $scope.HasAbilitiesWithProperties = true;
+                            }
                         }
-                        
-                        $scope.AbilitiesWithProperties.push(tempAbil);
-                        $scope.HasAbilitiesWithProperties = true;
                     }
                 }
             }
