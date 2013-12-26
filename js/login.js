@@ -6,7 +6,16 @@ function LoginCtrl($scope, $http) {
     $scope.EmailClass = '';
     $scope.PassClass = '';
     $scope.ResultClass = 'warning';
-    
+    $scope.RedirURL = null;
+
+    $scope.SetRedir = function(redir_url) {
+        if (redir_url == '') {
+            $scope.RedirURL = '/index.php';
+        } else {
+            $scope.RedirURL = redir_url;
+        }
+    }
+
     $scope.LoginCheck = function() {
         if ($scope.Email === '') {
             $scope.Result = 'Email address is required.';
@@ -41,7 +50,7 @@ function LoginCtrl($scope, $http) {
                     $scope.PassClass = '';
                     $scope.ResultClass = 'success';
                     resultShowFade();
-                    setTimeout("window.location = '/index.php'",2500);
+                    setTimeout("window.location = '" + $scope.RedirURL + "'",2500);
                 } else {
                     $scope.Result = $scope.Data;
                     $scope.EmailClass = '';

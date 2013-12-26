@@ -1,9 +1,9 @@
 <?php session_start();
 //Login Check
-
 if (strpos(str_replace('/', '', $_SERVER['SCRIPT_NAME']), 'login.php') === FALSE) {
     if (!(isset($_SESSION["LoggedIn"])) || $_SESSION["LoggedIn"] != "OK") {
-        header( 'Location: login.php?Reason=Inactive' );
+        $redir_url = 'Location: login.php?Reason=Inactive' . urlencode($_SERVER['SCRIPT_NAME']) . urlencode('?' . $_SERVER['QUERY_STRING']);
+        header( $redir_url );
     }
 }
 
