@@ -28,18 +28,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <span ng-show="CareerBenefits"><br>Career Benefits: {{CareerBenefits}}</span>
                     </div>
                 </div>
-                <div class="control-group" ng-show="RacialAbilityRequired">
-                    <label class="control-label" for="RacialAbility">Select an additional starting ability from your careers (racial bonus):</label>
-                    <div class="controls">
-                        <select id="RacialAbility" ng-model="RacialAbilityChosen" ng-options="Ability as Ability.Name for Ability in RacialAbilityChoices">
-                            <option value="">...</option>
-                        </select>
-                        <span ng-hide="checkRacialAbility()" class="label label-warning">Required</span><br>
-                        <span ng-show="RacialAbilities"><br>Racial Abilities: {{RacialAbilities}}</span>
-                        <span ng-show="CareerAbilities"><br>Career Abilities: {{CareerAbilities}}</span>
-                        <span class="label label-important"><br>Note:</span> Some abilities have prerequisites and this page does not take this into consideration.
-                    </div>
-                </div>
                 <div class="control-group" ng-show="RacialStatIncreaseRequired">
                     <label class="control-label" for="RacialStatIncrease">Select a stat to increase by +1 (racial bonus):</label>
                     <div class="controls">

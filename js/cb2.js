@@ -10,11 +10,6 @@ function CB2Ctrl($scope, $http) {
     $scope.Career2 = null;
     $scope.RacialBenefits = null;
     $scope.CareerBenefits = null;
-    $scope.RacialAbilityRequired = false;
-    $scope.RacialAbilityChoices = [];
-    $scope.RacialAbilityChosen = null;
-    $scope.RacialAbilities = null;
-    $scope.CareerAbilities = null;
     $scope.Connections = false;
     $scope.RacialStatIncreaseRequired = false;
     $scope.AdvancementPoints = 3;
@@ -166,17 +161,6 @@ function CB2Ctrl($scope, $http) {
             }
         }
 
-        // Create racial abilities list (if exists).
-        if ('Abilities' in $scope.Race) {
-            for (c1 = 0; c1 < $scope.Race.Abilities.length; c1++) {
-                if ($scope.RacialAbilities === null) {
-                    $scope.RacialAbilities = $scope.Race.Abilities[c1];
-                } else {
-                    $scope.RacialAbilities += ', ' + $scope.Race.Abilities[c1];
-                }
-            }
-        }
-
         // If they get a language from their race, create the languages list and make required.
         if ($scope.Race.LangChoices > 0) {
             $scope.Language1Required = true;
@@ -225,21 +209,6 @@ function CB2Ctrl($scope, $http) {
             } else if ($scope.Careers[d].Name == $scope.Character.Career2) {
                 $scope.Career2 = $scope.Careers[d];
             }
-        }
-
-        // If they get a racial ability choice, make it required and build the list of abilities to choose from.
-        if ($scope.Race.AbilityChoices > 0) {
-            $scope.RacialAbilityRequired = true;
-        
-            $scope.RacialAbilityChoices = $scope.Career1.Abilities;
-
-            for (e1 = 0; e1 < $scope.Career2.Abilities.length; e1++) {
-                if ($scope.RacialAbilityChoices.indexOf($scope.Career2.Abilities[e1]) == -1) {
-                    $scope.RacialAbilityChoices.push($scope.Career2.Abilities[e1]);
-                }
-            }
-
-            $scope.RacialAbilityChoices.sort(byName);
         }
 
         // If they get benefits from either career, create the CareerBenefits list and add them to it.
@@ -789,14 +758,6 @@ function CB2Ctrl($scope, $http) {
         }
     }
 
-    $scope.checkRacialAbility = function() {
-        if ($scope.RacialAbilityChosen === null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     $scope.checkCareer1MSkills = function() {
         if ($scope.Career1MSkillsRequired && $scope.Career1MSkillsChosen.length < $scope.Career1.StartingMSkillChoices) {
             return false;
@@ -1310,10 +1271,6 @@ function CB2Ctrl($scope, $http) {
             }
 
             if ($scope.RacialStatIncreaseRequired && $scope.Character.RacialStatIncreaseChosen === null) {
-                disableSubmit = true;
-            }
-
-            if ($scope.RacialAbilityRequired && $scope.RacialAbilityChosen === null) {
                 disableSubmit = true;
             }
 
