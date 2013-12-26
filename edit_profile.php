@@ -51,7 +51,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 </div>
                 <div class="control-group">
                     <div class="controls">
-                        <button type="submit" class="btn" ng-click="editProfile()">Save Changes</button>
+                        <button type="submit" class="btn btn-primary" ng-click="editProfile()">Save</button>
+                        <button type="submit" class="btn" ng-click="cancelClick()">Cancel</button>
                         <span id="resultWrap" class="label label-{{ResultClass}}">{{Result}}</span>
                     </div>
                 </div>

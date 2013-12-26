@@ -119,6 +119,11 @@ function ProfileCtrl($scope, $http) {
             return true;
         }
     };
+
+    $scope.cancelClick = function() {
+        window.location.href = '/index.php';
+        return false;
+    }
     
     $scope.emailClass = function() {
         if ($scope.invalidEmail() || typeof $scope.Email === 'undefined') {
