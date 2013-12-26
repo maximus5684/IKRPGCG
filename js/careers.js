@@ -190,7 +190,7 @@ careerArr = [
             { Name: 'Battle Plan: Call to Action' },
             { Name: 'Expert Rider' },
             { Name: 'Good Breeding' },
-            { Name: 'Language', Type: 'Language', Property: 'any' },
+            { Name: 'Language', Type: 'Generic', PropertyType: 'Language', Property: 'any' },
             { Name: 'Natural Leader' },
             { Name: 'Poison Resistance' },
             { Name: 'Privilege' },
