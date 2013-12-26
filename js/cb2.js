@@ -1412,7 +1412,7 @@ function CB2Ctrl($scope, $http) {
 
         // Create the benefits list.
         $scope.Character.Benefits = [];
-        $scope.Character.Benefits.push($scope.Benefit.Name);
+        $scope.Character.Benefits.push({ Name: $scope.Benefit.Name });
         
         if ('Benefits' in $scope.Race) {
             for (var i = 0; i < $scope.Race.Benefits.length; i++) {
@@ -1931,7 +1931,7 @@ function CB2Ctrl($scope, $http) {
         if ('Abilities' in $scope.Character) {
             for (var i = 0; i < $scope.Character.Abilities.length; i++) {
                 if ('Type' in $scope.Character.Abilities[i]) {
-                    if ($scope.Character.Abilities[i].Type == 'Generic') {
+                    if ($scope.Character.Abilities[i].Type != 'Specific') {
                         goToPage3 = true;
                         break;
                     }
@@ -1942,7 +1942,7 @@ function CB2Ctrl($scope, $http) {
         if ('OccupationalSkills' in $scope.Character) {
             for (var i = 0; i < $scope.Character.OccupationalSkills.length; i++) {
                 if ('Type' in $scope.Character.OccupationalSkills[i]) {
-                    if ($scope.Character.OccupationalSkills[i].Type == 'Generic') {
+                    if ($scope.Character.OccupationalSkills[i].Type != 'Specific') {
                         goToPage3 = true;
                         break;
                     }

@@ -173,7 +173,7 @@ careerArr = [
     {
         Name: "Aristocrat",
         StartingCareerOnly: true,
-        StartingAbilities: [{ Name: 'Good Breeding' }, { Name: 'Language', Type: 'Generic', Property: 'any' }, { Name: 'Privilege' }],
+        StartingAbilities: [{ Name: 'Good Breeding' }, { Name: 'Language', Type: 'Generic', PropertyType: 'Language', Property: 'any' }, { Name: 'Privilege' }],
         StartingConnections: [{ Name: 'nobility', Type: 'Generic' }],
         StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }],
         StartingOccupationalSkills: [{ Name: 'Command', Level: 1 },{ Name: 'Etiquette', Level: 1 }],
@@ -190,7 +190,7 @@ careerArr = [
             { Name: 'Battle Plan: Call to Action' },
             { Name: 'Expert Rider' },
             { Name: 'Good Breeding' },
-            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Language', Type: 'Language', Property: 'any' },
             { Name: 'Natural Leader' },
             { Name: 'Poison Resistance' },
             { Name: 'Privilege' },
@@ -355,7 +355,7 @@ careerArr = [
     {
         Name: "Explorer",
         StartingCareerOnly: false,
-        StartingAbilities: [{ Name: 'Big Game Hunter' }, { Name: 'Language', Type: 'Generic', Property: 'any' }, { Name: 'Port of Call' }],
+        StartingAbilities: [{ Name: 'Big Game Hunter' }, { Name: 'Language', Type: 'Generic', PropertyType: 'Language', Property: 'any' }, { Name: 'Port of Call' }],
         StartingConnections: [{ Name: 'patron', Type: 'Generic' }],
         StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Medicine', Level: 1 }, { Name: 'Navigation', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 1,
@@ -371,7 +371,7 @@ careerArr = [
             { Name: 'Big Game Hunter' },
             { Name: 'Disease Resistance' },
             { Name: 'Expert Rider' },
-            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Language', Type: 'Generic', PropertyType: 'Language', Property: 'any' },
             { Name: 'Natural Leader' },
             { Name: 'Poison Resistance' },
             { Name: 'Port of Call' },
@@ -608,7 +608,7 @@ careerArr = [
     {
         Name: "Investigator",
         StartingCareerOnly: false,
-        StartingAbilities: [{ Name: 'Astute' }, { Name: 'Language', Type: 'Generic', Property: 'any' }],
+        StartingAbilities: [{ Name: 'Astute' }, { Name: 'Language', Type: 'Generic', PropertyType: 'Language', Property: 'any' }],
         StartingOccupationalSkills: 
         [
             { Name: 'Detection', Level: 1 },
@@ -630,7 +630,7 @@ careerArr = [
             { Name: 'Anatomical Precision' },
             { Name: 'Astute' },
             { Name: 'Iron Will' },
-            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Language', Type: 'Generic', PropertyType: 'Language', Property: 'any' },
             { Name: 'Prowl' },
             { Name: 'Sign Language' },
             { Name: 'Truth Reader' }
@@ -899,7 +899,7 @@ careerArr = [
             { Name: 'Gang' },
             { Name: 'Gunfighter' },
             { Name: 'Head-Butt' },
-            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Language', Type: 'Generic', PropertyType: 'Language', Property: 'any' },
             { Name: 'Port of Call' },
             { Name: 'Quick Work' },
             { Name: 'Specialization', Type: 'Specific', Property: 'Cutlass' },
@@ -975,7 +975,7 @@ careerArr = [
         Abilities:
         [
             { Name: 'Choir' },
-            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Language', Type: 'Generic', PropertyType: 'Language', Property: 'any' },
             { Name: 'Natural Leader' },
             { Name: 'Rallying Cry' },
             { Name: 'University Education' }
@@ -1036,7 +1036,7 @@ careerArr = [
         Abilities:
         [
             { Name: 'Choir' },
-            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Language', Type: 'Generic', PropertyType: 'Language', Property: 'any' },
             { Name: 'Natural Leader' },
             { Name: 'Rallying Cry' },
             { Name: 'University Education' }
@@ -1200,7 +1200,7 @@ careerArr = [
             { Name: 'Find Cover' },
             { Name: 'Grenadier' },
             { Name: 'Hit the Deck!' },
-            { Name: 'Language' },
+            { Name: 'Language', Type: 'Generic', PropertyType: 'Generic', Property: 'any' },
             { Name: 'Ride-By Attack' },
             { Name: 'Roll With It' },
             { Name: 'Saddle Shot' },
@@ -1454,7 +1454,7 @@ careerArr = [
         [
             { Name: 'Battle Plan: Shadow' },
             { Name: 'Cover Identity', Type: 'Generic', Property: 'career' },
-            { Name: 'Language', Type: 'Generic', Property: 'any' }
+            { Name: 'Language', Type: 'Generic', PropertyType: 'Language', Property: 'any' }
         ],
         StartingConnections: [{ Name: 'intelligence network', Type: 'Generic' }],
         StartingOccupationalSkills:
@@ -1476,7 +1476,7 @@ careerArr = [
             { Name: 'Battle Plan: Shadow' },
             { Name: 'Cover Identity', Type: 'Generic', Property: 'career' },
             { Name: 'Iron Will' },
-            { Name: 'Language', Type: 'Generic', Property: 'any' },
+            { Name: 'Language', Type: 'Generic', PropertyType: 'Language', Property: 'any' },
             { Name: 'Poison Resistance' },
             { Name: 'Prowl' },
             { Name: 'Signal Language' },
