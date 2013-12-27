@@ -143,20 +143,20 @@ function CB2Ctrl($scope, $http) {
         }
 
         // Load race into scope. 
-        for (b = 0; b < $scope.Races.length; b++) {
-            if ($scope.Races[b].Name == $scope.Character.Race) {
-                $scope.Race = $scope.Races[b];
+        for (var i = 0; i < $scope.Races.length; i++) {
+            if ($scope.Races[i].Name == $scope.Character.Race) {
+                $scope.Race = $scope.Races[i];
                 break;
             }
         }
         
         // Create racial benefits list (if exists).
         if ('Benefits' in $scope.Race) {
-            for (c = 0; c < $scope.Race.Benefits.length; c++) {
+            for (var i = 0; i < $scope.Race.Benefits.length; i++) {
                 if ($scope.RacialBenefits === null) {
-                    $scope.RacialBenefits = $scope.Race.Benefits[c];
+                    $scope.RacialBenefits = $scope.Race.Benefits[i].Name;
                 } else {
-                    $scope.RacialBenefits += ', ' + $scope.Race.Benefits[c];
+                    $scope.RacialBenefits += ', ' + $scope.Race.Benefits[i].Name;
                 }
             }
         }
@@ -165,13 +165,13 @@ function CB2Ctrl($scope, $http) {
         if ($scope.Race.LangChoices > 0) {
             $scope.Language1Required = true;
             
-            for (g = 0; g < langArr.length; g++) {
+            for (var i = 0; i < langArr.length; i++) {
                 if ('StartLangs' in $scope.Race) {
-                    if ($scope.Race.StartLangs.indexOf(langArr[g]) == -1) {
-                        $scope.Language1Choices.push(langArr[g]);
+                    if ($scope.Race.StartLangs.indexOf(langArr[i]) == -1) {
+                        $scope.Language1Choices.push(langArr[i]);
                     }
                 } else {
-                    $scope.Language1Choices.push(langArr[g]);
+                    $scope.Language1Choices.push(langArr[i]);
                 }
             }
         }
@@ -203,52 +203,52 @@ function CB2Ctrl($scope, $http) {
         }
 
         // Load the careers into the scope.
-        for (d = 0; d < $scope.Careers.length; d++) {
-            if ($scope.Careers[d].Name == $scope.Character.Career1) {
-                $scope.Career1 = $scope.Careers[d];
-            } else if ($scope.Careers[d].Name == $scope.Character.Career2) {
-                $scope.Career2 = $scope.Careers[d];
+        for (var i = 0; i < $scope.Careers.length; i++) {
+            if ($scope.Careers[i].Name == $scope.Character.Career1) {
+                $scope.Career1 = $scope.Careers[i];
+            } else if ($scope.Careers[i].Name == $scope.Character.Career2) {
+                $scope.Career2 = $scope.Careers[i];
             }
         }
 
         // If they get benefits from either career, create the CareerBenefits list and add them to it.
         if ('FreeBenefits' in $scope.Career1) {
-            for (e = 0; e < $scope.Career1.FreeBenefits.length; e++) {
+            for (var i = 0; i < $scope.Career1.FreeBenefits.length; i++) {
                 if ($scope.CareerBenefits === null) {
-                    $scope.CareerBenefits = $scope.Career1.FreeBenefits[e];
+                    $scope.CareerBenefits = $scope.Career1.FreeBenefits[i].Name;
                 } else {
-                    $scope.CareerBenefits += ', ' + $scope.Career1.FreeBenefits[e];
+                    $scope.CareerBenefits += ', ' + $scope.Career1.FreeBenefits[i].Name;
                 }
             }
         }
             
         if ('FreeBenefits' in $scope.Career2) {
-            for (f = 0; f < $scope.Career2.FreeBenefits.length; f++) {
+            for (var i = 0; i < $scope.Career2.FreeBenefits.length; i++) {
                 if ($scope.CareerBenefits === null) {
-                    $scope.CareerBenefits = $scope.Career2.FreeBenefits[f];
+                    $scope.CareerBenefits = $scope.Career2.FreeBenefits[i].Name;
                 } else {
-                    $scope.CareerBenefits += ', ' + $scope.Career2.FreeBenefits[f];
+                    $scope.CareerBenefits += ', ' + $scope.Career2.FreeBenefits[i].Name;
                 }
             }
         }
 
         // If they get starting abilities from either career, create the CareerAbilities list and add them to it.
         if ('StartingAbilities' in $scope.Career1) {
-            for (f1 = 0; f1 < $scope.Career1.StartingAbilities.length; f1++) {
+            for (var i = 0; i < $scope.Career1.StartingAbilities.length; i++) {
                 if ($scope.CareerAbilities === null) {
-                    $scope.CareerAbilities = $scope.Career1.StartingAbilities[f1];
+                    $scope.CareerAbilities = $scope.Career1.StartingAbilities[i];
                 } else {
-                    $scope.CareerAbilities += ', ' + $scope.Career1.StartingAbilities[f1];
+                    $scope.CareerAbilities += ', ' + $scope.Career1.StartingAbilities[i];
                 }
             }
         }
 
         if ('StartingAbilities' in $scope.Career2) {
-            for (f2 = 0; f2 < $scope.Career2.StartingAbilities.length; f2++) {
+            for (var i = 0; i < $scope.Career2.StartingAbilities.length; i++) {
                 if ($scope.CareerAbilities === null) {
-                    $scope.CareerAbilities = $scope.Career2.StartingAbilities[f2];
+                    $scope.CareerAbilities = $scope.Career2.StartingAbilities[i];
                 } else {
-                    $scope.CareerAbilities += ', ' + $scope.Career2.StartingAbilities[f2];
+                    $scope.CareerAbilities += ', ' + $scope.Career2.StartingAbilities[i];
                 }
             }
         }
