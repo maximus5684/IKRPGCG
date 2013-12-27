@@ -3,12 +3,13 @@
 $pageTitle = 'Character Sheet - Iron Kingdoms Character Generator';
 include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
 
-          <link href="css/character_sheet.css" rel="stylesheet">
-          <script src="js/races.js"></script>
-          <script src="js/careers.js"></script>
-          <script src="js/skills.js"></script>
-          <script src="js/archetypes.js"></script>
-          <script src="js/cs.js"></script>
+        <link href="css/character_sheet.css" rel="stylesheet">
+        <script src="js/races.js"></script>
+        <script src="js/careers.js"></script>
+        <script src="js/skills.js"></script>
+        <script src="js/archetypes.js"></script>
+        <script src="js/abilities.js"></script>
+        <script src="js/cs.js"></script>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
 
         <div class="container" id="mainContain" ng-controller="CSCtrl" data-ng-init="GetChar(<?php echo $_GET["CharacterID"]; ?>)">
@@ -177,7 +178,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox" style="padding: 5px">
                         <p class="csBoxHead">DEF</p>
                         <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">{{TotalDEF}}</p>
+                            <p class="csStatBoxVal">{{calcTotalDEF()}}</p>
                             <p class="csStatBoxStat small"><br>TOTAL DEF</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> = </strong></p>
@@ -187,7 +188,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
                         <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">{{Race.DefMod}}</p>
+                            <p class="csStatBoxVal">{{getRacialDefMod()}}</p>
                             <p class="csStatBoxStat small">RACIAL<br>MODIFIER</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
@@ -201,7 +202,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox" style="padding: 5px">
                         <p class="csBoxHead">ARM</p>
                         <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">{{TotalARM}}</p>
+                            <p class="csStatBoxVal">{{calcTotalARM()}}</p>
                             <p class="csStatBoxStat small"><br>TOTAL ARM</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> = </strong></p>
@@ -276,12 +277,12 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox" style="padding: 5px">
                         <p class="csBoxHead">INITIATIVE</p>
                         <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">{{TotalInit}}</p>
+                            <p class="csStatBoxVal">{{calcTotalInit()}}</p>
                             <p class="csStatBoxStat small">TOTAL<br>INITIATIVE</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> = </strong></p>
                         <div class="csStatBox small" style="float: right; width: 57px; position: static">
-                            <p class="csStatBoxVal">99</p>
+                            <p class="csStatBoxVal">{{getOtherInitMods()}}</p>
                             <p class="csStatBoxStat small">ADDITIONAL<br>MODIFIERS</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
@@ -300,12 +301,12 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox" style="padding: 5px">
                         <p class="csBoxHead">COMMAND</p>
                         <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">{{TotalCMD}}</p>
+                            <p class="csStatBoxVal">{{calcTotalCMD()}}</p>
                             <p class="csStatBoxStat small">TOTAL CMD<br>RANGE</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> = </strong></p>
                         <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">99</p>
+                            <p class="csStatBoxVal">{{getAbilityCmdMods()}}</p>
                             <p class="csStatBoxStat small">ABILITY<br>MODIFIERS</p>
                         </div>
                         <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
@@ -349,8 +350,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             <tbody>
                                 <tr ng-repeat="Ability in CharAbilities">
                                     <td>{{Ability.Name}}</td>
-                                    <td>&#160;</td>
-                                    <td>&#160;</td>
+                                    <td>{{Ability.Book}}</td>
+                                    <td>{{Ability.Page}}</td>
                                 </tr>
                             </tbody>
                         </table>

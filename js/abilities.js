@@ -347,6 +347,7 @@ abilArr =
     },
     {
         Name: 'Fast Draw',
+        InitMod: 2,
         Book: 'Core Rules',
         Page: 161
     },
@@ -571,6 +572,8 @@ abilArr =
     {
         Name: 'Load Bearing',
         PrereqStats: [{ Name: 'STR', Level: 5 }],
+        ArmorDEFPen: -1,
+        ArmorSPDPen: -1,
         Book: 'Core Rules',
         Page: 164
     },
@@ -588,6 +591,7 @@ abilArr =
     {
         Name: 'Natural Leader',
         PrereqOSkills: [{ Name: 'Command', Level: 1 }],
+        CMDRangeMod: 2,
         Book: 'Core Rules',
         Page: 165
     },

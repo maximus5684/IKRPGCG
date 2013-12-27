@@ -77,6 +77,7 @@ function CSCtrl($scope, $http) {
     $scope.Races = raceArr; // In races.js
     $scope.Archetypes = archArr; // In archetypes.js
     $scope.Careers = careerArr; // In careers.js
+    $scope.Abilities = abilArr; // In abilities.js
 
     $scope.MilitarySkills = milSkillsArr; // from skills.js
     $scope.OccupationalSkills = occSkillsArr; // from skills.js
@@ -227,29 +228,56 @@ function CSCtrl($scope, $http) {
 
         // Populate military skills list.
         for (var i = 0; i < $scope.Character.MilitarySkills.length; i++) {
-            tempMSkill = {};
-
             for (var i1 = 0; i1 < $scope.MilitarySkills.length; i1++) {
                 if ($scope.Character.MilitarySkills[i].Name == $scope.MilitarySkills[i1].Name) {
-                    tempMSkill.Name = $scope.Character.MilitarySkills[i].Name;
-                    tempMSkill.BaseStat = $scope.MilitarySkills[i1].BaseStat;
-
-                    if ('BaseStat2' in $scope.MilitarySkills[i1]) {
-                        tempMSkill.BaseStat2 = $scope.MilitarySkills[i1].BaseStat2;
-                    }
-
-                    tempMSkill.Level = $scope.Character.MilitarySkills[i].Level;
-                    
+                    var tempMSkill = jQuery.extend(true, {}, $scope.Character.MilitarySkills[i], $scope.MilitarySkills[i1]);
                     $scope.CharMSkills.push(tempMSkill);
                 }
             }
         }
         
-        // TODO: Populate occupational skills list.
+        // Populate occupational skills list.
+        for (var i = 0; i < $scope.Character.OccupationalSkills.length; i++) {
+            for (var i1 = 0; i1 < $scope.OccupationalSkills.length; i1++) {
+                if ($scope.Character.OccupationalSkills[i].Name == $scope.OccupationalSkills[i1].Name) {
+                    var tempOSkill = jQuery.extend(true, {}, $scope.Character.OccupationalSkills[i], $scope.OccupationalSkills[i]);
+                    $scope.CharOSkills.push(tempOSkill);
+                }
+            }
 
-        // TODO: Populate benefits list.
+            for (var i1 = 0; i1 < $scope.GeneralSkills.length; i1++) {
+                if ($scope.Character.OccupationalSkills[i].Name == $scope.GeneralSkills[i1].Name) {
+                    var tempGSkill = jQuery.extend(true, {}, $scope.Character.OccupationalSkills[i], $scope.GeneralSkills[i]);
+                    $scope.CharOSkills.push(tempGSkill);
+                }
+            }
+        }
 
-        // TODO: Populate abilities list.
+        $scope.CharOSkills.sort(byName);
+
+        // Populate benefits list.
+        for (var i = 0; i < $scope.Character.Benefits.length; i++) {
+            for (var i1 = 0; i1 < $scope.Archetypes.length; i1++) {
+                for (var i2 = 0; i2 < $scope.Archetypes[i1].Benefits.length; i2++) {
+                    if ($scope.Character.Benefits[i].Name == $scope.Archetypes[i1].Benefits[i2].Name) {
+                        var tempBen = jQuery.extend(true, {}, $scope.Character.Benefits[i], $scope.Archetypes[i1].Benefits[i2]);
+                        $scope.CharBenefits.push(tempBen);
+                    }
+                }
+            }
+        }
+
+        $scope.CharBenefits.sort(byName);
+
+        // Populate abilities list.
+        for (var i = 0; i < $scope.Character.Abilities.length; i++) {
+            for (var i1 = 0; i1 < $scope.Abilities.length; i1++) {
+                if ($scope.Character.Abilities[i].Name == $scope.Abilities[i1].Name) {
+                    var tempAbil = jQuery.extend(true, {}, $scope.Character.Abilities[i], $scope.Abilities[i1]);
+                    $scope.CharAbilities.push(tempAbil);
+                }
+            }
+        }
     }
 
     $scope.xpLevel = function(xp) {
@@ -300,21 +328,69 @@ function CSCtrl($scope, $http) {
         return skillLvl;
     }
 
+    $scope.getRacialDefMod = function() {
+        if ($scope.Race !== null && 'DefMod' in $scope.Race) {
+            return $scope.Race.DefMod;
+        } else {
+            return 0;
+        }
+    }
+
+    $scope.getOtherInitMods = function() {
+        var initMod = 0;
+
+        if ($scope.Race !== null && 'InitMod' in $scope.Race) {
+            initMod += $scope.Race.InitMod;
+        }
+
+        if ($scope.Character !== null) {
+            for (var i = 0; i < $scope.Character.Abilities.length; i++) {
+                for (var i1 = 0; i1 < $scope.Abilities.length; i1++) {
+                    if ($scope.Character.Abilities[i].Name == $scope.Abilities[i1].Name) {
+                        if ('InitMod' in $scope.Abilities[i1]) {
+                            initMod += $scope.Abilities[i1].InitMod;
+                        }
+                    }
+                }
+            }
+        }
+
+        return initMod;
+    }
+
+    $scope.getAbilityCmdMods = function() {
+        var cmdMod = 0;
+
+        if ($scope.Character !== null) {
+            for (var i = 0; i < $scope.Character.Abilities.length; i++) {
+                for (var i1 = 0; i1 < $scope.Abilities.length; i1++ ) {
+                    if ($scope.Character.Abilities[i].Name == $scope.Abilities[i1].Name) {
+                        if ('CMDRangeMod' in $scope.Abilities[i1]) {
+                            cmdMod += $scope.Abilities[i1].CMDRangeMod;
+                        }
+                    }
+                }
+            }
+        }
+
+        return cmdMod;
+    }
+
     // Functions to calculate totals.
     $scope.calcTotalDEF = function() {
-        $scope.TotalDEF = $scope.Stats.SPD.Current + $scope.Stats.AGL.Current + $scope.Stats.PER.Current + $scope.Race.DefMod;
+        return $scope.Stats.SPD.Current + $scope.Stats.AGL.Current + $scope.Stats.PER.Current + $scope.getRacialDefMod();
     }
 
     $scope.calcTotalInit = function() {
-        $scope.TotalInit = $scope.Stats.SPD.Current + $scope.Stats.PRW.Current + $scope.Stats.PER.Current + $scope.Race.InitMod;
+        return $scope.Stats.SPD.Current + $scope.Stats.PRW.Current + $scope.Stats.PER.Current + $scope.getOtherInitMods();
     }
 
     $scope.calcTotalARM = function() {
-        $scope.TotalARM = $scope.Stats.PHY.Current;
+        return $scope.Stats.PHY.Current;
     }
 
     $scope.calcTotalCMD = function() {
-        $scope.TotalCMD = $scope.Stats.INT.Current + $scope.getCommandSkill();
+        return $scope.Stats.INT.Current + $scope.getCommandSkill() + $scope.getAbilityCmdMods();
     }
 
     // Functions to show/hide weapons.
@@ -360,32 +436,8 @@ function CSCtrl($scope, $http) {
     /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
-    function compareSkillsByName(skillA, skillB) {
-        if (skillA.Name > skillB.Name) {
-            return 1;
-        } else {
-            return -1;
-        }
-    }
-
-    function compareSkillsByType(skillA, skillB) {
-        if (skillA.Type > skillB.Type) {
-            return 1;
-        } else {
-            return -1;
-        }
-    }
-    
-    function compareByNameAsc(objA, objB) {
+    function byName(objA, objB) {
         if (objA.Name > objB.Name) {
-            return 1;
-        } else {
-            return -1;
-        }
-    }
-    
-    function compareByNameDesc(objA, objB) {
-        if (objA.Name < objB.Name) {
             return 1;
         } else {
             return -1;
