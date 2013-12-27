@@ -879,7 +879,7 @@ careerArr = [
         Name: "Pirate",
         StartingCareerOnly: false,
         StartingAbilities: [{ Name: 'Gang' }, { Name: 'Steady' }, { Name: 'Specialization', Type: 'Specific', Property: 'Cutlass' }],
-        StartingMilitarySkills: [{ Name: 'Hand Weapon', Levels: 1 }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }],
         StartingOccupationalSkills:
         [
             { Name: 'Climbing', Level: 1 },

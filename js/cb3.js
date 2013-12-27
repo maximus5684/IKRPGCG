@@ -26,7 +26,9 @@ function CB3Ctrl($scope, $http) {
 
     // Initial function to load character.
     $scope.GetChar = function(CharID) {
-         $http.post($scope.Url, { ReqType: 'GetChar', CharacterID: CharID }).success(function(data, status) {
+        $scope.CharacterID = CharID;
+
+        $http.post($scope.Url, { ReqType: 'GetChar', CharacterID: CharID }).success(function(data, status) {
              if (typeof data !== 'object') {
                  $scope.Error = data;
              } else {
@@ -85,10 +87,10 @@ function CB3Ctrl($scope, $http) {
             for (var i1 = 0; i1 < $scope.Archetypes.length; i1++) {
                 for (var i2 = 0; i2 < $scope.Archetypes[i1].Benefits.length; i2++) {
                     if ($scope.Character.Benefits[i].Name == $scope.Archetypes[i1].Benefits[i2].Name && ('HasProperty' in $scope.Archetypes[i1].Benefits[i2])) {
-                        var tempBen = { Name: $scope.Character.Benefits[i].Name, PropertyType: $scope.Archetypes[i1].Benefits[i2].PropertyType };
-                        tempBen.Property = null;
-                        tempBen.PropertiesList = getBenefitPropertiesList($scope.Archetypes[i1].Benefits[i2].PropertyType);
-                        $scope.BenefitsWithProperties.push(tempBen);
+                        $scope.Character.Benefits[i].PropertyType = $scope.Archetypes[i1].Benefits[i2].PropertyType;
+                        $scope.Character.Benefits[i].Property = null;
+                        $scope.Character.Benefits[i].PropertiesList = getBenefitPropertiesList($scope.Archetypes[i1].Benefits[i2].PropertyType);
+                        $scope.BenefitsWithProperties.push($scope.Character.Benefits[i]);
                         $scope.HasBenefitsWithProperties = true;
                     }
                 }
@@ -102,17 +104,15 @@ function CB3Ctrl($scope, $http) {
                     if ($scope.Character.Abilities[i].Name == $scope.Abilities[i1].Name) {
                         if ('HasProperty' in $scope.Abilities[i1]) {
                             if ($scope.Character.Abilities[i].Type != 'Specific') {
-                                var tempAbil = { Name: $scope.Character.Abilities[i].Name, Type: $scope.Character.Abilities[i].Type };
-
                                 if ('PropertyType' in $scope.Abilities[i1]) {
-                                    tempAbil.Property = null;
-                                    tempAbil.PropertyType = $scope.Character.Abilities[i].PropertyType;
-                                    tempAbil.PropertiesList = getAbilityPropertiesList($scope.Abilities[i1].PropertyType);
+                                    $scope.Character.Abilities[i].Property = null;
+                                    $scope.Character.Abilities[i].PropertyType = $scope.Character.Abilities[i].PropertyType;
+                                    $scope.Character.Abilities[i].PropertiesList = getAbilityPropertiesList($scope.Abilities[i1].PropertyType);
                                 } else {
-                                    tempAbil.Property = $scope.Character.Abilities[i].Property;
+                                    $scope.Character.Abilities[i].Property = $scope.Character.Abilities[i].Property;
                                 }
 
-                                $scope.AbilitiesWithProperties.push(tempAbil);
+                                $scope.AbilitiesWithProperties.push($scope.Character.Abilities[i]);
                                 $scope.HasAbilitiesWithProperties = true;
                             }
                         }
@@ -324,7 +324,7 @@ function CB3Ctrl($scope, $http) {
                 }
 
                 if (prereqsMet) {
-                    $scope.RacialAbilityChoices.push(AbilitiesList[i])
+                    $scope.RacialAbilityChoices.push(AbilitiesList[i]);
                 }
             }
         }
@@ -466,6 +466,36 @@ function CB3Ctrl($scope, $http) {
         }
 
         return disableSubmit;
+    }
+
+    $scope.UpdateChar = function() {
+        // No need to update the Occupational Skills with properties, Benefits with properties,
+        // or Abilities with properties since the items in those lists are references to the actual
+        // items in the character's lists.
+
+        // Update Racial Benefit choice.
+        if ($scope.HasRacialAbilityChoice) {
+            if ($scope.RacialAbilityProperty == null) {
+                $scope.Character.Abilities.push({ Name: $scope.RacialAbilityChoice.Name });
+            } else {
+                $scope.Character.Abilities.push({ Name: $scope.RacialAbilityChoice.Name, Type: 'Generic', Property: $scope.RacialAbilityProperty });
+            }
+        }
+
+        // Build request.
+        var charRequest = { ReqType: 'BuildChar', CharacterID: $scope.CharacterID, Status: 'Complete', PageComplete: 3, Character: $scope.Character };
+
+        // Post it like a sticky note.
+        $http.post($scope.Url, charRequest).success(function(data, status) {
+            if (status !== 200 || data != '') {
+                $scope.Error = data;
+            } else {
+                var action = '/character_sheet.php?CharacterID=' + $scope.CharacterID;
+                window.location.href = action;
+            }
+        }).error(function(data, status) {
+            $scope.Error = 'Status: ' + status + '; Data: ' + data || 'Request failed.';
+        });
     }
 
     function byName(objA, objB) {
