@@ -1907,7 +1907,7 @@ function CB2Ctrl($scope, $http) {
             }
         }
 
-        if ($scope.Race.RacialAbilityChoices > 0) {
+        if ($scope.Race.AbilityChoices > 0) {
             goToPage3 = true;
         }
 

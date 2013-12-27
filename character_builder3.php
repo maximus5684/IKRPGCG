@@ -16,7 +16,17 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
         <div class="container" id="mainContain" ng-controller="CB3Ctrl" data-ng-init="GetChar(<?php echo $_GET["CharacterID"]; ?>)">
             <h2 class="center">Character Builder</h2>
             <form class="form-horizontal" id="charFinalDetailsForm" ng-submit="UpdateChar()">
-                <div id="bwpBox" ng-show="HasBenefitsWithProperties">
+                <div ng-show="HasOSkillsWithProperties">
+                    <h3>Occupational Skills</h3>
+                    <div class="control-group" ng-repeat="Skill in OSkillsWithProperties">
+                        <label class="control-label" for="SkillProperty">{{Skill.Name}} Property:</label>
+                        <div class="controls">
+                            <input type="text" id="SkillProperty" ng-model="Skill.Property">
+                            <span ng-show="Skill.Property == null || Skill.Property == ''" class="label label-warning">Required</span>
+                        </div>
+                    </div>
+                </div> 
+                <div ng-show="HasBenefitsWithProperties">
                     <h3>Benefits</h3>
                     <div class="control-group" ng-repeat="Benefit in BenefitsWithProperties">
                         <label class="control-label" for="BenefitProperty">{{Benefit.Name}} Property:</label>
@@ -38,6 +48,28 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                                 <option value="">...</option>
                             </select>
                             <span ng-show="Ability.Property == null || Ability.Property == ''" class="label label-warning">Required</span>
+                        </div>
+                    </div>
+                </div>
+                <div ng-show="HasRacialAbilityChoice">
+                    <h3>Racial Ability Choice</h3>
+                    <div class="control-group">
+                        <label class="control-label" for="RacialAbilityChoice">Racial Ability:</label>
+                        <div class="controls">
+                            <select id="RacialAbilityChoice" ng-model="RacialAbilityChoice" ng-options="Ability as Ability.Name for Ability in RacialAbilityChoices" ng-change="selectRacialAbility()">
+                                <option value="">...</option>
+                            </select>
+                            <span ng-show="RacialAbilityChoice == null" class="label label-warning">Required</span>
+                        </div>
+                    </div>
+                    <div class="control-group" ng-show="checkRacialAbilityForProperty()">
+                        <label class="control-label" for="RacialAbilityProperty">Racial Ability Property:</label>
+                        <div class="controls">
+                            <input type="text" ng-hide="checkAbilityForPropType(RacialAbilityChoice)" id="RacialAbilityProperty" ng-model="RacialAbilityProperty">
+                            <select ng-show="checkAbilityForPropType(RacialAbilityChoice)" id="RacialAbilityProperty" ng-model="RacialAbilityProperty" ng-options="Property for Property in RacialAbilityPropertyList">
+                                <option value="">...</option>
+                            </select>
+                            <span ng-show="RacialAbilityProperty == null || RacialAbilityProperty == ''" class="label label-warning">Required</span>
                         </div>
                     </div>
                 </div>
