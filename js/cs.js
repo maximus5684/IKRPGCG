@@ -23,13 +23,6 @@ function CSCtrl($scope, $http) {
     $scope.MeleeWeapon2 = '';
     $scope.RangedWeapon1 = '';
     $scope.RangedWeapon2 = '';
-
-    // Totals
-    
-    $scope.TotalDEF = 0;
-    $scope.TotalInit = 0;
-    $scope.TotalARM = 0;
-    $scope.TotalCMD = 0;
     
     /////////////////////////////////////////////////////////////////////
     /////                                                           /////
@@ -98,10 +91,6 @@ function CSCtrl($scope, $http) {
                 $scope.CharacterRow = data;
                 $scope.Character = JSON.parse($scope.CharacterRow.CharacterJSON);
                 $scope.loadCharacterDefaults();
-                $scope.calcTotalDEF();
-                $scope.calcTotalInit();
-                $scope.calcTotalARM();
-                $scope.calcTotalCMD();
             }
         }).error(function(data, status) {
             if (data !== null) {
@@ -307,13 +296,23 @@ function CSCtrl($scope, $http) {
     }
 
     $scope.displayBenefitProperty = function(benefit) {
-        bao = '';
+        bp = '';
         
-        if (benefit.HasProperty) {
-            bao = ' (' + benefit.Property + ')'
+        if ('HasProperty' in benefit) {
+            bp = ' (' + benefit.Property + ')';
         }
 
-        return bao;
+        return bp;
+    }
+
+    $scope.displayAbilityProperty = function(ability) {
+        ap = '';
+
+        if ('HasProperty' in ability) {
+            ap = ' (' + ability.Property + ')';
+        }
+
+        return ap;
     }
 
     $scope.getCommandSkill = function() {

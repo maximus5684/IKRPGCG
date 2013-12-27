@@ -349,7 +349,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="Ability in CharAbilities">
-                                    <td>{{Ability.Name}}</td>
+                                    <td>{{Ability.Name}}{{displayAbilityProperty(Ability)}}</td>
                                     <td>{{Ability.Book}}</td>
                                     <td>{{Ability.Page}}</td>
                                 </tr>
