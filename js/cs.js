@@ -229,14 +229,14 @@ function CSCtrl($scope, $http) {
         for (var i = 0; i < $scope.Character.OccupationalSkills.length; i++) {
             for (var i1 = 0; i1 < $scope.OccupationalSkills.length; i1++) {
                 if ($scope.Character.OccupationalSkills[i].Name == $scope.OccupationalSkills[i1].Name) {
-                    var tempOSkill = jQuery.extend(true, {}, $scope.Character.OccupationalSkills[i], $scope.OccupationalSkills[i]);
+                    var tempOSkill = jQuery.extend(true, {}, $scope.Character.OccupationalSkills[i], $scope.OccupationalSkills[i1]);
                     $scope.CharOSkills.push(tempOSkill);
                 }
             }
 
             for (var i1 = 0; i1 < $scope.GeneralSkills.length; i1++) {
                 if ($scope.Character.OccupationalSkills[i].Name == $scope.GeneralSkills[i1].Name) {
-                    var tempGSkill = jQuery.extend(true, {}, $scope.Character.OccupationalSkills[i], $scope.GeneralSkills[i]);
+                    var tempGSkill = jQuery.extend(true, {}, $scope.Character.OccupationalSkills[i], $scope.GeneralSkills[i1]);
                     $scope.CharOSkills.push(tempGSkill);
                 }
             }
