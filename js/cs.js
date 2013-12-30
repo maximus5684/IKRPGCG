@@ -23,6 +23,7 @@ function CSCtrl($scope, $http) {
     $scope.MeleeWeapon2 = '';
     $scope.RangedWeapon1 = '';
     $scope.RangedWeapon2 = '';
+    $scope.HasSpells = false;
     
     /////////////////////////////////////////////////////////////////////
     /////                                                           /////
@@ -42,12 +43,11 @@ function CSCtrl($scope, $http) {
         PER: { Current: 0, Max: 0 }
     };
 
-    // Example: { Name: "Test Skill", BaseStat: "PHY", Level: 0, Total: 0 }
     $scope.CharMSkills = [];
     $scope.CharOSkills = [];
-
     $scope.CharBenefits = [];
     $scope.CharAbilities = [];
+    $scope.CharSpells = [];
 
     // Example: { Name: "Test Armor", Description: "Blah", SPD: 0, DEF: 0, ARM: 0 }
     $scope.Armor = [];
@@ -71,6 +71,7 @@ function CSCtrl($scope, $http) {
     $scope.Archetypes = archArr; // In archetypes.js
     $scope.Careers = careerArr; // In careers.js
     $scope.Abilities = abilArr; // In abilities.js
+    $scope.Spells = spellsArr; // In spells.js
 
     $scope.MilitarySkills = milSkillsArr; // from skills.js
     $scope.OccupationalSkills = occSkillsArr; // from skills.js
@@ -264,6 +265,18 @@ function CSCtrl($scope, $http) {
                 if ($scope.Character.Abilities[i].Name == $scope.Abilities[i1].Name) {
                     var tempAbil = jQuery.extend(true, {}, $scope.Character.Abilities[i], $scope.Abilities[i1]);
                     $scope.CharAbilities.push(tempAbil);
+                }
+            }
+        }
+
+        // Populate spells list.
+        if ('Spells' in $scope.Character) {
+            $scope.HasSpells = true;
+            for (var i = 0; i < $scope.Character.Spells.length; i++) {
+                for (var i1 = 0; i1 < $scope.Spells.length; i1++) {
+                    if ($scope.Character.Spells[i] == $scope.Spells[i1].Name) {
+                        $scope.CharSpells.push($scope.Spells[i1]);
+                    }
                 }
             }
         }

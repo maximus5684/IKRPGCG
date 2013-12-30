@@ -29,6 +29,10 @@ body {
     width: 38px;
 }
 
+#spellTable {
+    width: 99%;
+}
+
 .csBox {
     background-color: #f9f0de;
     border: 2px solid #000000;

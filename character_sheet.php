@@ -9,6 +9,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
         <script src="js/skills.js"></script>
         <script src="js/archetypes.js"></script>
         <script src="js/abilities.js"></script>
+        <script src="js/spells.js"></script>
         <script src="js/cs.js"></script>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
 
@@ -352,6 +353,41 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                                     <td>{{Ability.Name}}{{displayAbilityProperty(Ability)}}</td>
                                     <td>{{Ability.Book}}</td>
                                     <td>{{Ability.Page}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row" ng-show="HasSpells">
+                <div class="span12">
+                    <div class="csBox">
+                        <p class="csBoxHead">SPELLS</p>
+                        <table class="csTable table-striped" id="spellTable">
+                            <thead>
+                                <tr>
+                                    <th class="small" style="text-align: left">NAME</th>
+                                    <th class="small">COST</th>
+                                    <th class="small">RNG</th>
+                                    <th class="small">AOE</th>
+                                    <th class="small">POW</th>
+                                    <th class="small">UP</th>
+                                    <th class="small">OFF</th>
+                                    <th class="small">BOOK</th>
+                                    <th class="small">PAGE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="Spell in CharSpells">
+                                    <td>{{Spell.Name}}</td>
+                                    <td>{{Spell.Cost}}</td>
+                                    <td>{{Spell.Range}}</td>
+                                    <td>{{Spell.AOE}}</td>
+                                    <td>{{Spell.POW}}</td>
+                                    <td>{{Spell.UP}}</td>
+                                    <td>{{Spell.OFF}}</td>
+                                    <td>{{Spell.Book}}</td>
+                                    <td>{{Spell.Page}}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -4,7 +4,6 @@ $pageTitle = 'Character Builder - Iron Kingdoms Character Generator';
 include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
 
         <link href="css/character_builder.css" rel="stylesheet">
-        <script src="js/character.js"></script>
         <script src="js/races.js"></script>
         <script src="js/archetypes.js"></script>
         <script src="js/careers.js"></script>
