@@ -18,6 +18,10 @@ form {
         position: relative;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 .center {
     text-align: center;
 }
@@ -29,6 +33,10 @@ form {
 
 .grey {
 	color: #999999;
+}
+
+.italic {
+    font-style: italic;
 }
 
 .small {
@@ -48,6 +56,10 @@ form {
 
 .static {
 	position: static;
+}
+
+.underline {
+    text-decoration: underline;
 }
 
 .warn-text {

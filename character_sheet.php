@@ -83,6 +83,55 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 </div>
             </div>
             <div class="row">
+                <div class="span3">
+                    <div class="csBox" style="padding-top: 0; height: 137px">
+                        <p class="csBoxHead">CHARACTER PORTRAIT</p>
+                    </div>
+                </div>
+                <div class="span3">
+                    <div class="csBox" style="padding-top: 0; height: 137px">
+                        <p class="csBoxHead">DAMAGE CAPACITY</p>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="csBox small" style="padding: 0 0 5px 5px">
+                        <p class="csBoxHead">FEAT POINTS</p>
+                        <div class="csStatBox" style="margin-top: 24px; width: 75px; float: left; position: static">
+                            <p class="csStatBoxVal" style="height: 50px">&#160;</p>
+                            <p class="csStatBoxStat">CURRENT<br>FEAT<br>POINTS</p>
+                        </div>
+                        <div id="featBox">
+                            <p class="fbHead">Feat Points can be earned by:</span>
+                            <ul class="fbFirst">
+                                <li>Critical success on a skill roll</li>
+                                <li>Destroy an enemy</li>
+                            </ul>
+                            <ul>
+                                <li>Given by the GM</li>
+                            </ul>
+                            <p class="fbHead">Feat Points can be spent to:</p>
+                            <ul class="fbFirst">
+                                <li>Remove a continuous effect</li>
+                                <li>Re-roll a failed roll</li>
+                                <li>Perform a relentless charge</li>
+                                <li>Perform a Run &amp; Gun</li>
+                                <li>Perform a Two-Fister</li>
+                                <li>Perform a Heroic Dodge</li>
+                            </ul>
+                            <ul>
+                                <li>Boost a non-combat skill roll</li>
+                                <li>Make a quick action</li>
+                                <li>Shake</li>
+                                <li>Sprint</li>
+                                <li>Parry</li>
+                                <li>Walk it Off</li>
+                            </ul>
+                        </div>
+                        <div class="clear">&#160;</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="span12">
                     <div class="csBox" style="padding-top: 0">
                         <p class="csBoxHead">STATS</p>
