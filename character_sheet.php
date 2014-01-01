@@ -45,7 +45,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         </p>
                         <div class="clear">&#160;</div>
                         <p class="csInputBox">
-                            <span class="textSpace" style="width: 152px">&#160;</span><br>
+                            <span class="textSpace" style="width: 152px">{{User.First}}</span><br>
                             <strong class="small">PLAYER NAME</strong>
                         </p>
                         <p class="csInputBox">

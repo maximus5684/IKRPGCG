@@ -6,6 +6,7 @@ function CSCtrl($scope, $http) {
     /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
+    // Character values
     $scope.CharUrl = 'ajax/characters.php';
     $scope.Error = null;
     $scope.Character = null;
@@ -24,6 +25,10 @@ function CSCtrl($scope, $http) {
     $scope.RangedWeapon1 = '';
     $scope.RangedWeapon2 = '';
     $scope.HasSpells = false;
+
+    // Profile values
+    $scope.ProfUrl = 'ajax/profile.php';
+    $scope.User = null;
     
     /////////////////////////////////////////////////////////////////////
     /////                                                           /////
@@ -84,6 +89,7 @@ function CSCtrl($scope, $http) {
     /////////////////////////////////////////////////////////////////////
 
     // Get character from AJAX function and load defaults.
+    // Also get profile from AJAX function and load defaults.
     $scope.GetChar = function(CharID) {
         $http.post($scope.CharUrl, { ReqType: 'GetChar', CharacterID: CharID }).success(function(data, status) {
             if (typeof data !== 'object') {
@@ -92,6 +98,20 @@ function CSCtrl($scope, $http) {
                 $scope.CharacterRow = data;
                 $scope.Character = JSON.parse($scope.CharacterRow.CharacterJSON);
                 $scope.loadCharacterDefaults();
+            }
+        }).error(function(data, status) {
+            if (data !== null) {
+                $scope.Error = data;
+            } else {
+                $scope.Error = 'Request failed. Status: ' + status;
+            }
+        });
+
+        $http.post($scope.ProfUrl, { ReqType: 'GetProfile' }).success(function(data, status) {
+            if (typeof data !== 'object') {
+                $scope.Error = data;
+            } else {
+                $scope.User = data;
             }
         }).error(function(data, status) {
             if (data !== null) {
