@@ -28,47 +28,47 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             <strong class="small">SEX</strong>
                         </p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="width: 210px">{{Character.DefiningChars}}</span><br>
+                            <span class="textSpace" style="width: 282px">{{Character.DefiningChars}}</span><br>
                             <strong class="small">DEFINING CHARACTERISTIC(S)</strong>
                         </p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="text-align: center; width: 45px">{{Character.Weight}}</span><br>
+                            <span class="textSpace" style="text-align: center; width: 49px">{{Character.Height}}</span><br>
+                            <strong class="small">HEIGHT</strong>
+                        </p>
+                        <p class="csInputBox">
+                            <span class="textSpace" style="text-align: center; width: 49px">{{Character.Weight}}</span><br>
                             <strong class="small">WEIGHT</strong>
                         </p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="width: 120px">{{Character.Career1}}</span><br>
-                            <strong class="small">CAREER 1</strong>
-                        </p>
-                        <p class="csInputBox">
-                            <span class="textSpace" style="width: 120px">{{Character.Career2}}</span><br>
-                            <strong class="small">CAREER 2</strong>
+                            <span class="textSpace" style="width: 110px">{{Character.Faith}}</span><br>
+                            <strong class="small">FAITH</strong>
                         </p>
                         <div class="clear">&#160;</div>
                         <p class="csInputBox">
-                            <span class="textSpace" style="width: 90px">{{Character.Archetype}}</span><br>
-                            <strong class="small">ARCHETYPE</strong>
-                        </p>
-                        <p class="csInputBox">
-                            <span class="textSpace" style="width: 90px">{{Character.Race}}</span><br>
-                            <strong class="small">RACE</strong>
-                        </p>
-                        <p class="csInputBox">
-                            <span class="textSpace" style="width: 90px">{{Character.Faith}}</span><br>
-                            <strong class="small">FAITH</strong>
-                        </p>
-                        <p class="csInputBox">
-                            <span class="textSpace" style="width: 192px">&#160;</span><br>
+                            <span class="textSpace" style="width: 152px">&#160;</span><br>
                             <strong class="small">PLAYER NAME</strong>
                         </p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="text-align: center; width: 45px">{{Character.Height}}</span><br>
-                            <strong class="small">HEIGHT</strong>
+                            <span class="textSpace" style="width: 75px">{{Character.Archetype}}</span><br>
+                            <strong class="small">ARCHETYPE</strong>
                         </p>
-                        <p class="csInputBox" ng-show="Career3 !== null">
+                        <p class="csInputBox">
+                            <span class="textSpace" style="width: 75px">{{Character.Race}}</span><br>
+                            <strong class="small">RACE</strong>
+                        </p>
+                        <p class="csInputBox">
+                            <span class="textSpace career">{{Character.Career1}}</span><br>
+                            <strong class="small">CAREER 1</strong>
+                        </p>
+                        <p class="csInputBox">
+                            <span class="textSpace career">{{Character.Career2}}</span><br>
+                            <strong class="small">CAREER 2</strong>
+                        </p>
+                        <p class="csInputBox" ng-hide="Career3 == null">
                             <span class="textSpace career">{{Career3.Name}}</span><br>
                             <strong class="small">CAREER 3</strong>
                         </p>
-                        <p class="csInputBox" ng-show="Career4 !== null">
+                        <p class="csInputBox" ng-hide="Career4 == null">
                             <span class="textSpace career">{{Career4.Name}}</span><br>
                             <strong class="small">CAREER 4</strong>
                         </p>

@@ -159,11 +159,10 @@ input[type="text"], select {
     margin-top: 5px;
     padding-left: 3px;
     vertical-align: bottom;
-    width: 120px;
 }
 
 .csInputBox .career {
-    width: 120px;
+    width: 110px;
 }
 
 .csTable {
