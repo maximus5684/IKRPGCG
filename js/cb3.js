@@ -506,7 +506,7 @@ function CB3Ctrl($scope, $http) {
                 $scope.Character.Abilities.push({ Name: $scope.RacialAbilityChoice.Name, Type: 'Generic', Property: $scope.RacialAbilityProperty });
             }
 
-            $scope.Character.Abilites.sort(byName);
+            $scope.Character.Abilities.sort(byName);
         }
 
         // Build request.
