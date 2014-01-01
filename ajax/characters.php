@@ -44,11 +44,12 @@ if ($charsReq->ReqType == 'GetUserChars') {
             $result = $sth->fetch();
 
             if ($result['UserID'] == $_SESSION['UserID']) {
-                $sth = $pdo->prepare("UPDATE characters SET Status = :status, PageComplete = :pc, CharacterJSON = :charjson WHERE CharacterID = :characterid");
+                $sth = $pdo->prepare("UPDATE characters SET Status = :status, PageComplete = :pc, CharacterJSON = :charjson, ModifiedDate = :date WHERE CharacterID = :characterid");
                 $sth->bindParam(':status', $charsReq->Status);
                 $sth->bindParam(':pc', $charsReq->PageComplete);
                 $sth->bindParam(':charjson', json_encode($charsReq->Character));
                 $sth->bindParam(':characterid', $charsReq->CharacterID);
+                $sth->bindParam(':date', date("Y-m-d H:i:s"));
                 $sth->execute();
             } else {
                 echo 'Error: Character does not match logged-in user.';
