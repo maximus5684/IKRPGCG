@@ -32,11 +32,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             <strong class="small">DEFINING CHARACTERISTIC(S)</strong>
                         </p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="text-align: center; width: 49px">{{Character.Height}}</span><br>
+                            <span class="textSpace" style="text-align: center; width: 50px">{{Character.Height}}"</span><br>
                             <strong class="small">HEIGHT</strong>
                         </p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="text-align: center; width: 49px">{{Character.Weight}}</span><br>
+                            <span class="textSpace" style="text-align: center; width: 50px">{{Character.Weight}} lbs</span><br>
                             <strong class="small">WEIGHT</strong>
                         </p>
                         <p class="csInputBox">
@@ -64,11 +64,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             <span class="textSpace career">{{Character.Career2}}</span><br>
                             <strong class="small">CAREER 2</strong>
                         </p>
-                        <p class="csInputBox" ng-hide="Career3 == null">
+                        <p class="csInputBox">
                             <span class="textSpace career">{{Career3.Name}}</span><br>
                             <strong class="small">CAREER 3</strong>
                         </p>
-                        <p class="csInputBox" ng-hide="Career4 == null">
+                        <p class="csInputBox">
                             <span class="textSpace career">{{Career4.Name}}</span><br>
                             <strong class="small">CAREER 4</strong>
                         </p>
