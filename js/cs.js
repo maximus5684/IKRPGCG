@@ -231,6 +231,25 @@ function CSCtrl($scope, $http) {
             for (var i1 = 0; i1 < $scope.OccupationalSkills.length; i1++) {
                 if ($scope.Character.OccupationalSkills[i].Name == $scope.OccupationalSkills[i1].Name) {
                     var tempOSkill = jQuery.extend(true, {}, $scope.Character.OccupationalSkills[i], $scope.OccupationalSkills[i1]);
+
+                    if (tempOSkill.BaseStat == 'Social') {
+                        tempOSkill.StatsList = [];
+                        tempOSkill.StatsList.push('PHY');
+                        tempOSkill.StatsList.push('SPD');
+                        tempOSkill.StatsList.push('STR');
+                        tempOSkill.StatsList.push('AGL');
+                        tempOSkill.StatsList.push('PRW');
+                        tempOSkill.StatsList.push('POI');
+                        tempOSkill.StatsList.push('INT');
+
+                        if ($scope.Character.Archetype == 'Gifted') {
+                            tempOSkill.StatsList.push('ARC');
+                        }
+
+                        tempOSkill.SocialStat = null;
+                        tempOSkill.StatsList.push('PER');
+                    }
+
                     $scope.CharOSkills.push(tempOSkill);
                 }
             }
@@ -238,6 +257,25 @@ function CSCtrl($scope, $http) {
             for (var i1 = 0; i1 < $scope.GeneralSkills.length; i1++) {
                 if ($scope.Character.OccupationalSkills[i].Name == $scope.GeneralSkills[i1].Name) {
                     var tempGSkill = jQuery.extend(true, {}, $scope.Character.OccupationalSkills[i], $scope.GeneralSkills[i1]);
+
+                    if (tempGSkill.BaseStat == 'Social') {
+                        tempGSkill.StatsList = [];
+                        tempGSkill.StatsList.push('PHY');
+                        tempGSkill.StatsList.push('SPD');
+                        tempGSkill.StatsList.push('STR');
+                        tempGSkill.StatsList.push('AGL');
+                        tempGSkill.StatsList.push('PRW');
+                        tempGSkill.StatsList.push('POI');
+                        tempGSkill.StatsList.push('INT');
+
+                        if ($scope.Character.Archetype == 'Gifted') {
+                            tempGSkill.StatsList.push('ARC');
+                        }
+
+                        tempGSkill.SocialStat = null;
+                        tempGSkill.StatsList.push('PER');
+                    }
+
                     $scope.CharOSkills.push(tempGSkill);
                 }
             }
@@ -292,17 +330,25 @@ function CSCtrl($scope, $http) {
         }
     }
     
-    $scope.displaySkillBase = function(baseStat) {
-        if (baseStat == 'Social') {
-            return 'SOC';
+    $scope.displaySkillBase = function(skill) {
+        if (skill.BaseStat == 'Social') {
+            if (skill.SocialStat == null) {
+                return 'SOC';
+            } else {
+                return $scope.Stats[skill.SocialStat].Current;
+            }
         } else {
-            return $scope.Stats[baseStat].Current;
+            return $scope.Stats[skill.BaseStat].Current;
         }
     };
 
     $scope.displaySkillTotal = function(skill) {
         if (skill.BaseStat == 'Social') {
-            return '-';
+            if (skill.SocialStat == null) {
+                return '-';
+            } else {
+                return skill.Level + $scope.Stats[skill.SocialStat].Current;
+            }
         } else {
             return skill.Level + $scope.Stats[skill.BaseStat].Current;
         }

@@ -2,6 +2,17 @@ body {
     -webkit-print-color-adjust: exact;
 }
 
+input[type="text"], select {
+    background-color: transparent;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    height: inherit;
+    line-height: inherit;
+    margin-bottom: 0;
+    padding: 0;
+}
+
 #editXP {
     margin: -115px 0 0 -236px;
     width: 470px;
@@ -27,6 +38,10 @@ body {
 
 #abilTable td:last-child, #benefTable td:last-child {
     width: 38px;
+}
+
+#oSkillsTable select {
+    width: 80px;
 }
 
 #spellTable {
@@ -128,12 +143,8 @@ body {
 }
 
 .csInputBox input, .csInputBox select {
-    background-color: #ffffff !important;
     border-width: 0 0 2px 0;
-    border-color: #000000;
-    -webkit-border-radius: 0;
-       -moz-border-radius: 0;
-                    border-radius: 0;
+    border-color: #000;
     margin-bottom: 0;
 }
 

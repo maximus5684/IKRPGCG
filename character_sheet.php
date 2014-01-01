@@ -280,7 +280,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             <thead>
                                 <tr>
                                     <th style="text-align: left; padding-left: 5px"><strong>MILITARY SKILLS</strong></th>
-                                    <th class="small" style="text-align: center; width: 68px">PARENT<br>SET VALUE</th>
+                                    <th class="small" style="text-align: center; width: 68px">PARENT<br>STAT VALUE</th>
                                     <th style="width:10px">&#160;</th>
                                     <th class="small" style="text-align: center; width: 48px">SKILL<br>LEVEL</th>
                                     <th style="width:10px">&#160;</th>
@@ -290,7 +290,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             <tbody>
                                 <tr ng-repeat="Skill in CharMSkills">
                                     <td><small>{{Skill.Name}} ({{Skill.BaseStat}})</small></td>
-                                    <td><strong>{{displaySkillBase(Skill.BaseStat)}}</strong></td>
+                                    <td><strong>{{displaySkillBase(Skill)}}</strong></td>
                                     <td>+</td>
                                     <td><strong>{{Skill.Level}}</strong></td>
                                     <td>=</td>
@@ -298,11 +298,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                                 </tr>
                             </tbody>
                         </table>
-                        <table class="csTable table-striped">
+                        <table id="oSkillsTable" class="csTable table-striped">
                             <thead>
                                 <tr>
                                     <th style="text-align: left; padding-left: 5px"><strong>OCCUPATIONAL SKILLS</strong></th>
-                                    <th class="small" style="text-align: center; width: 68px">PARENT<br>SET VALUE</th>
+                                    <th class="small" style="text-align: center; width: 68px">PARENT<br>STAT VALUE</th>
                                     <th style="width:10px">&#160;</th>
                                     <th class="small" style="text-align: center; width: 48px">SKILL<br>LEVEL</th>
                                     <th style="width:10px">&#160;</th>
@@ -311,8 +311,11 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             </thead>
                             <tbody>
                                 <tr ng-repeat="Skill in CharOSkills">
-                                    <td><small>{{Skill.Name}} ({{Skill.BaseStat}})</small></td>
-                                    <td><strong>{{displaySkillBase(Skill.BaseStat)}}</strong></td>
+                                    <td><small>
+                                        {{Skill.Name}} (<span ng-hide="Skill.BaseStat == 'Social'">{{Skill.BaseStat}}</span><select ng-show="Skill.BaseStat == 'Social'" ng-model="Skill.SocialStat" ng-options="Stat for Stat in Skill.StatsList">
+                                            <option value="">Social</option>
+                                        </select>)</small></td>
+                                    <td><strong>{{displaySkillBase(Skill)}}</strong></td>
                                     <td>+</td>
                                     <td><strong>{{Skill.Level}}</strong></td>
                                     <td>=</td>
