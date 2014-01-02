@@ -23,8 +23,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox" id="csHeader">
                         <p class="csBoxHead">IRON KINGDOMS ROLEPLAYING GAME CHARACTER SHEET</p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="width:240px">{{Character.Name}}</span><br>
-                            <strong class="small">CHARACTER NAME</strong>
+                            <span id="Name" class="textSpace" style="width:240px">{{Character.Name}}</span><br>
+                            <strong class="small"><a style="cursor: pointer" data-toggle="modal" data-target="#editName">CHARACTER NAME</a></strong>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace" style="text-align: center; width: 24px">{{Character.Sex}}</span><br>
@@ -620,6 +620,24 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         </table>
                     </div>
                 </div>
+            </div>
+            <div class="modal hide fade" id="editName">
+                <form ng-submit="editName()" onsubmit="javascript:$('#editName').modal('hide')">
+                    <div class="modal-body">
+                        <div class="csBox">
+                            <p class="csBoxHead">EDIT NAME</p>
+                            <p class="csInputBox control-group" style="width: 100%">
+                                <input type="text" name="ChangeName" id="ChangeName" maxlength="30" style="width: 100%" ng-model="NewName" required><br>
+                                <label class="control-label" for="ChangeName"><strong class="small">CHARACTER NAME</strong></label>
+                            </p>
+                            <div class="clear">&#160;</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Change</button>
+                    </div>
+                </form>
             </div>
             <div class="modal hide fade" id="editXP">
                 <form ng-submit="editXP()" onsubmit="javascript:$('#editXP').modal('hide')">

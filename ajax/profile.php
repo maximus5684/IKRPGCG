@@ -53,6 +53,7 @@ if ($objData->ReqType == 'EditProfile') {
         $sth->execute();
         $result = $sth->fetch();
         $numRows = $sth->rowCount();
+        $profile = new stdClass();
         
         if ($numRows > 0) {
             $profile->Email = $result['Email'];

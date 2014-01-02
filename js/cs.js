@@ -9,6 +9,7 @@ function CSCtrl($scope, $http) {
     // Character values
     $scope.CharUrl = 'ajax/characters.php';
     $scope.Error = null;
+    $scope.CharacterID = null;
     $scope.Character = null;
     $scope.Archetype = null;
     $scope.Race = null;
@@ -25,6 +26,12 @@ function CSCtrl($scope, $http) {
     $scope.RangedWeapon1 = '';
     $scope.RangedWeapon2 = '';
     $scope.HasSpells = false;
+    $scope.NewName = null;
+    $scope.NewSex = null;
+    $scope.NewDefiningChars = null;
+    $scope.NewHeight = null;
+    $scope.NewWeight = null;
+    $scope.NewFaith = null;
 
     // Profile values
     $scope.ProfUrl = 'ajax/profile.php';
@@ -91,6 +98,8 @@ function CSCtrl($scope, $http) {
     // Get character from AJAX function and load defaults.
     // Also get profile from AJAX function and load defaults.
     $scope.GetChar = function(CharID) {
+        $scope.CharacterID = CharID;
+
         $http.post($scope.CharUrl, { ReqType: 'GetChar', CharacterID: CharID }).success(function(data, status) {
             if (typeof data !== 'object') {
                 $scope.Error = data;
@@ -123,6 +132,12 @@ function CSCtrl($scope, $http) {
     }
    
     $scope.loadCharacterDefaults = function() {
+        $scope.NewName = $scope.Character.Name;
+        $scope.NewSex = $scope.Character.Sex;
+        $scope.NewDefiningChars = $scope.Character.DefiningChars;
+        $scope.NewHeight = $scope.Height;
+        $scope.NewWeight = $scope.Weight;
+        $scope.NewFaith = $scope.Faith;
         $scope.Level = $scope.xpLevel($scope.Character.XP);
 
         for (var i = 0; i < $scope.Races.length; i++) {
@@ -469,6 +484,44 @@ function CSCtrl($scope, $http) {
 
     $scope.calcTotalCMD = function() {
         return $scope.Stats.INT.Current + $scope.getCommandSkill() + $scope.getAbilityCmdMods();
+    }
+
+    // Functions to change basic character information.
+    $scope.editName = function() {
+        var oldName = $scope.Character.Name;
+
+        $scope.Character.Name = $scope.NewName;
+
+        if (submitChange()) {
+            fieldHighlight("Name");
+        } else {
+            $scope.Character.Name = oldName;
+        }
+    }
+
+    function submitChange() {
+        var noProblems = true;
+
+        $http.post($scope.CharUrl, { ReqType: 'UpdateChar', CharacterID: $scope.CharacterID, Character: $scope.Character }).success(function(data, status) {
+            if (status != 200 || data != 'OK') {
+                $scope.Error = data;
+                noProblems = false;
+            }
+        }).error(function(data, status) {
+            if (data !== null) {
+                $scope.Error = data;
+                noProblems = false;
+            } else {
+                $scope.Error = 'Request failed. Status: ' + status;
+                noProblems = false;
+            }
+        });
+
+        return noProblems;
+    }
+
+    function fieldHighlight(fieldId) {
+        $("#" + fieldId).css("background-color", "#73e67a").delay(1000).animate({ backgroundColor: "transparent" });
     }
 
     // Functions to show/hide weapons.

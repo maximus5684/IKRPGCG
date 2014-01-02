@@ -32,7 +32,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group">
                     <label class="control-label" for="CharName">Character Name:</label>
                     <div class="controls">
-                        <input type="text" id="CharName" ng-model="Character.Name" maxlength="255">
+                        <input type="text" id="CharName" maxlength="30" ng-model="Character.Name" maxlength="255">
                         <span ng-hide="Character.Name !== null && Character.Name != ''" class="label label-warning">Required</span>
                     </div>
                 </div>

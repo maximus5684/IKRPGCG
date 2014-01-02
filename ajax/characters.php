@@ -60,6 +60,32 @@ if ($charsReq->ReqType == 'GetUserChars') {
     } catch(PDOException $e) {
         echo 'Error: ' . $e->getMessage();
     }
+} elseif ($charsReq->ReqType == 'UpdateChar') {
+    try {
+        $sth = $pdo->prepare('SELECT UserID FROM characters WHERE CharacterID = :charid');
+        $sth->bindParam(':charid', $charsReq->CharacterID);
+        $sth->execute();
+
+        if ($sth->rowCount() > 0) {
+            $result = $sth->fetch();
+
+            if ($result['UserID'] == $_SESSION['UserID']) {
+                $sth = $pdo->prepare("UPDATE characters SET CharacterJSON = :charjson, ModifiedDate = :date WHERE CharacterID = :characterid");
+                $sth->bindParam(':charjson', json_encode($charsReq->Character));
+                $sth->bindParam(':date', date("Y-m-d H:i:s"));
+                $sth->bindParam(':characterid', $charsReq->CharacterID);
+                $sth->execute();
+
+                echo 'OK';
+            } else {
+                echo 'Error: Character does not match logged-in user.';
+            }
+        } else {
+            echo 'Error: Character not found.';
+        }
+    } catch(PDOException $e) {
+        echo 'Error: ' . $e->getMessage();
+    }
 } elseif ($charsReq->ReqType == 'GetChar') {
     $charsList = array();
     
