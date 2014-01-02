@@ -22,6 +22,10 @@ input[type="text"], select {
     background-color: #fa787e;
 }
 
+#errorRow h2 {
+    background-color: #f00;
+}
+
 #csHeader {
     -webkit-border-radius: 0 0 10px 10px;
        -moz-border-radius: 0 0 10px 10px;

@@ -15,6 +15,9 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
 
         <div class="container" id="mainContain" ng-controller="CSCtrl" data-ng-init="GetChar(<?php echo $_GET["CharacterID"]; ?>)">
             <!--Body content-->
+            <div id="errorRow" class="row" ng-show="Error !== null">
+                <h2 class="span12 center">{{Error}}</h2>
+            </div>
             <div class="row">
                 <div class="span12">
                     <div class="csBox" id="csHeader">
