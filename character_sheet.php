@@ -86,55 +86,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 </div>
             </div>
             <div class="row">
-                <div class="span3">
-                    <div class="csBox" style="padding-top: 0; height: 137px">
-                        <p class="csBoxHead">CHARACTER PORTRAIT</p>
-                    </div>
-                </div>
-                <div class="span3">
-                    <div class="csBox" style="padding-top: 0; height: 137px">
-                        <p class="csBoxHead">DAMAGE CAPACITY</p>
-                    </div>
-                </div>
-                <div class="span6">
-                    <div class="csBox small" style="padding: 0 0 5px 5px">
-                        <p class="csBoxHead">FEAT POINTS</p>
-                        <div class="csStatBox" style="margin-top: 24px; width: 75px; float: left; position: static">
-                            <p class="csStatBoxVal" style="height: 50px">&#160;</p>
-                            <p class="csStatBoxStat">CURRENT<br>FEAT<br>POINTS</p>
-                        </div>
-                        <div id="featBox">
-                            <p class="fbHead">Feat Points can be earned by:</span>
-                            <ul class="fbFirst">
-                                <li>Critical success on a skill roll</li>
-                                <li>Destroy an enemy</li>
-                            </ul>
-                            <ul>
-                                <li>Given by the GM</li>
-                            </ul>
-                            <p class="fbHead">Feat Points can be spent to:</p>
-                            <ul class="fbFirst">
-                                <li>Remove a continuous effect</li>
-                                <li>Re-roll a failed roll</li>
-                                <li>Perform a relentless charge</li>
-                                <li>Perform a Run &amp; Gun</li>
-                                <li>Perform a Two-Fister</li>
-                                <li>Perform a Heroic Dodge</li>
-                            </ul>
-                            <ul>
-                                <li>Boost a non-combat skill roll</li>
-                                <li>Make a quick action</li>
-                                <li>Shake</li>
-                                <li>Sprint</li>
-                                <li>Parry</li>
-                                <li>Walk it Off</li>
-                            </ul>
-                        </div>
-                        <div class="clear">&#160;</div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
                 <div class="span12">
                     <div class="csBox" style="padding-top: 0">
                         <p class="csBoxHead">STATS</p>
@@ -277,6 +228,30 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <p class="csBigText"><strong>PHY<br>STAT</strong></p>
                         <div class="clear">&#160;</div>
                     </div>
+                    <div class="csBox" style="padding: 5px">
+                        <p class="csBoxHead">INITIATIVE</p>
+                        <div class="csStatBox small" style="float: right; width: 55px; position: static">
+                            <p class="csStatBoxVal">{{calcTotalInit()}}</p>
+                            <p class="csStatBoxStat small">TOTAL<br>INITIATIVE</p>
+                        </div>
+                        <p class="csBigText" style="padding-top: 25px"><strong> = </strong></p>
+                        <div class="csStatBox small" style="float: right; width: 57px; position: static">
+                            <p class="csStatBoxVal">{{getOtherInitMods()}}</p>
+                            <p class="csStatBoxStat small">ADDITIONAL<br>MODIFIERS</p>
+                        </div>
+                        <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
+                        <div class="csStatBox small" style="float: right; width: 55px; position: static">
+                            <p class="csStatBoxVal">99</p>
+                            <p class="csStatBoxStat small">EQUIPMENT<br>MODIFIERS</p>
+                        </div>
+                        <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
+                        <p class="csBigText"><strong>PER<br>STAT</strong></p>
+                        <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
+                        <p class="csBigText"><strong>PRW<br>STAT</strong></p>
+                        <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
+                        <p class="csBigText"><strong>SPD<br>STAT</strong></p>
+                        <div class="clear">&#160;</div>
+                    </div>
                     <div class="csBox">
                         <p class="csBoxHead">SKILLS</p>
                         <table class="csTable table-striped">
@@ -330,28 +305,39 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
                 <div class="span6">
-                    <div class="csBox" style="padding: 5px">
-                        <p class="csBoxHead">INITIATIVE</p>
-                        <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">{{calcTotalInit()}}</p>
-                            <p class="csStatBoxStat small">TOTAL<br>INITIATIVE</p>
+                    <div class="csBox small" style="padding: 0 0 5px 5px">
+                        <p class="csBoxHead">FEAT POINTS</p>
+                        <div class="csStatBox" style="margin-top: 24px; width: 75px; float: left; position: static">
+                            <p class="csStatBoxVal" style="height: 65px">&#160;</p>
+                            <p class="csStatBoxStat">CURRENT<br>FEAT<br>POINTS</p>
                         </div>
-                        <p class="csBigText" style="padding-top: 25px"><strong> = </strong></p>
-                        <div class="csStatBox small" style="float: right; width: 57px; position: static">
-                            <p class="csStatBoxVal">{{getOtherInitMods()}}</p>
-                            <p class="csStatBoxStat small">ADDITIONAL<br>MODIFIERS</p>
+                        <div id="featBox">
+                            <p class="fbHead">Feat Points can be earned by:</span>
+                            <ul class="fbFirst">
+                                <li>Critical success on a skill roll</li>
+                                <li>Destroy an enemy</li>
+                            </ul>
+                            <ul>
+                                <li>Given by the GM</li>
+                            </ul>
+                            <p class="fbHead">Feat Points can be spent to:</p>
+                            <ul class="fbFirst">
+                                <li>Remove a continuous effect</li>
+                                <li>Re-roll a failed roll</li>
+                                <li>Perform a relentless charge</li>
+                                <li>Perform a Run &amp; Gun</li>
+                                <li>Perform a Two-Fister</li>
+                                <li>Perform a Heroic Dodge</li>
+                            </ul>
+                            <ul>
+                                <li>Boost a non-combat skill roll</li>
+                                <li>Make a quick action</li>
+                                <li>Shake</li>
+                                <li>Sprint</li>
+                                <li>Parry</li>
+                                <li>Walk it Off</li>
+                            </ul>
                         </div>
-                        <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
-                        <div class="csStatBox small" style="float: right; width: 55px; position: static">
-                            <p class="csStatBoxVal">99</p>
-                            <p class="csStatBoxStat small">EQUIPMENT<br>MODIFIERS</p>
-                        </div>
-                        <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
-                        <p class="csBigText"><strong>PER<br>STAT</strong></p>
-                        <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
-                        <p class="csBigText"><strong>PRW<br>STAT</strong></p>
-                        <p class="csBigText" style="padding-top: 25px"><strong> + </strong></p>
-                        <p class="csBigText"><strong>SPD<br>STAT</strong></p>
                         <div class="clear">&#160;</div>
                     </div>
                     <div class="csBox" style="padding: 5px">
@@ -411,6 +397,24 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span4">
+                    <div class="csBox" style="padding-top: 0; height: 292px">
+                        <p class="csBoxHead">CHARACTER PORTRAIT</p>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="csBox" style="padding-top: 0">
+                        <p class="csBoxHead">DAMAGE CAPACITY</p>
+                        <img src="img/no-spiral.png" alt="Damage Counter">
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="csBox" style="height: 268px">
+                        <p class="csBoxHead">NOTES</p>
                     </div>
                 </div>
             </div>

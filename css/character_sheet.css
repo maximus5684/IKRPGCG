@@ -54,6 +54,8 @@ input[type="text"], select {
 
 #featBox {
     float: right;
+    font-size: 106%;
+    padding-top: 3px;
     width: 330px;
 }
 
@@ -74,11 +76,11 @@ input[type="text"], select {
 }
 
 #featBox ul li {
-    line-height: 1.15em;
+    line-height: 1.25em;
 }
 
 .csBox {
-    background-color: #f9f0de;
+    background-color: #f8f2dd;
     border: 2px solid #000000;
     -webkit-border-radius: 0 10px 10px 10px;
        -moz-border-radius: 0 10px 10px 10px;
