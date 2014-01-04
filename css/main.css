@@ -2,6 +2,10 @@
 	-webkit-print-color-adjust: exact;
 } */
 
+a {
+    cursor: pointer;
+}
+
 #logoutButton {
     position: absolute;
     right: 10px;

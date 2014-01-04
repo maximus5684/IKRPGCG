@@ -23,20 +23,23 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox" id="csHeader">
                         <p class="csBoxHead">IRON KINGDOMS ROLEPLAYING GAME CHARACTER SHEET</p>
                         <p class="csInputBox">
-                            <span id="Name" class="textSpace" style="width:240px">{{Character.Name}}</span><br>
-                            <strong class="small"><a style="cursor: pointer" data-toggle="modal" data-target="#editName">CHARACTER NAME</a></strong>
+                            <span id="Name" class="textSpace" style="width:240px" ng-hide="EditName">{{Character.Name}}</span><input type="text" id="Name" class="textSpace" maxlength="30" style="width: 240px" ng-show="EditName" ng-model="Character.Name"><br>
+                            <strong class="small"><a ng-click="clickEditName()">CHARACTER NAME</a></strong>
                         </p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="text-align: center; width: 24px">{{Character.Sex}}</span><br>
-                            <strong class="small">SEX</strong>
+                            <span class="textSpace" style="text-align: center; width: 38px" ng-hide="EditSex">{{Character.Sex}}</span><select class="textSpace" style="margin-top: 7px; width: 41px" ng-show="EditSex" ng-model="Character.Sex">
+                                <option value="M">M</option>
+                                <option value="F">F</option>
+                            </select><br>
+                            <strong class="small"><a ng-click="clickEditSex()">SEX</a></strong>
                         </p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="width: 282px">{{Character.DefiningCharacteristics}}</span><br>
-                            <strong class="small">DEFINING CHARACTERISTIC(S)</strong>
+                            <span class="textSpace" style="width: 270px" ng-hide="EditDefiningChars">{{Character.DefiningCharacteristics}}</span><input type="text" class="textSpace" maxlength="30" style="width: 270px" ng-show="EditDefiningChars" ng-model="Character.DefiningCharacteristics"><br>
+                            <strong class="small"><a ng-click="clickEditDefiningChars()">DEFINING CHARACTERISTIC(S)</a></strong>
                         </p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="text-align: center; width: 50px">{{Character.Height}}"</span><br>
-                            <strong class="small">HEIGHT</strong>
+                            <span class="textSpace" style="text-align: center; width: 50px" ng-hide="EditHeight">{{Character.Height}}"</span><input type="number" class="textSpace" ng-model="Character.Height" style="width: 50px" ng-show="EditHeight"><br>
+                            <strong class="small"><a ng-click="clickEditHeight()">HEIGHT</a></strong>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace" style="text-align: center; width: 50px">{{Character.Weight}} lbs</span><br>

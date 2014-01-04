@@ -26,12 +26,12 @@ function CSCtrl($scope, $http) {
     $scope.RangedWeapon1 = '';
     $scope.RangedWeapon2 = '';
     $scope.HasSpells = false;
-    $scope.NewName = null;
-    $scope.NewSex = null;
-    $scope.NewDefiningCharacteristics = null;
-    $scope.NewHeight = null;
-    $scope.NewWeight = null;
-    $scope.NewFaith = null;
+    $scope.EditName = false;
+    $scope.EditSex = false;
+    $scope.EditDefiningChars = false;
+    $scope.EditHeight = false;
+    $scope.EditWeight = false;
+    $scope.EditFaith = false;
     $scope.PHYDamBoxes = 
     [
         { Disabled: false, Checked: false },
@@ -560,16 +560,20 @@ function CSCtrl($scope, $http) {
     }
 
     // Functions to change basic character information.
-    $scope.editName = function() {
-        var oldName = $scope.Character.Name;
+    $scope.clickEditName = function() {
+        $scope.EditName = !$scope.EditName;
+    }
 
-        $scope.Character.Name = $scope.NewName;
+    $scope.clickEditSex = function() {
+        $scope.EditSex = !$scope.EditSex;
+    }
 
-        if (submitChange()) {
-            fieldHighlight("Name");
-        } else {
-            $scope.Character.Name = oldName;
-        }
+    $scope.clickEditDefiningChars = function() {
+        $scope.EditDefiningChars = !$scope.EditDefiningChars;
+    }
+
+    $scope.clickEditHeight = function() {
+        $scope.EditHeight = !$scope.EditHeight;
     }
 
     function submitChange() {
