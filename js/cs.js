@@ -28,7 +28,7 @@ function CSCtrl($scope, $http) {
     $scope.HasSpells = false;
     $scope.NewName = null;
     $scope.NewSex = null;
-    $scope.NewDefiningChars = null;
+    $scope.NewDefiningCharacteristics = null;
     $scope.NewHeight = null;
     $scope.NewWeight = null;
     $scope.NewFaith = null;
@@ -188,7 +188,7 @@ function CSCtrl($scope, $http) {
     $scope.loadCharacterDefaults = function() {
         $scope.NewName = $scope.Character.Name;
         $scope.NewSex = $scope.Character.Sex;
-        $scope.NewDefiningChars = $scope.Character.DefiningChars;
+        $scope.NewDefiningCharacteristics = $scope.Character.DefiningCharacteristics;
         $scope.NewHeight = $scope.Height;
         $scope.NewWeight = $scope.Weight;
         $scope.NewFaith = $scope.Faith;

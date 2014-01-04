@@ -31,7 +31,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             <strong class="small">SEX</strong>
                         </p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="width: 282px">{{Character.DefiningChars}}</span><br>
+                            <span class="textSpace" style="width: 282px">{{Character.DefiningCharacteristics}}</span><br>
                             <strong class="small">DEFINING CHARACTERISTIC(S)</strong>
                         </p>
                         <p class="csInputBox">
