@@ -32,6 +32,60 @@ function CSCtrl($scope, $http) {
     $scope.NewHeight = null;
     $scope.NewWeight = null;
     $scope.NewFaith = null;
+    $scope.PHYDamBoxes = 
+    [
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false }
+    ];
+    $scope.AGLDamBoxes = 
+    [
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false }
+    ];
+    $scope.INTDamBoxes =
+    [
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false }
+    ];
+    $scope.PFBoxes =
+    [
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false },
+        { Disabled: false, Checked: false }
+    ];
 
     // Profile values
     $scope.ProfUrl = 'ajax/profile.php';
@@ -250,6 +304,25 @@ function CSCtrl($scope, $http) {
         $scope.Stats[$scope.Character.AP1Stat].Current += 1;
         $scope.Stats[$scope.Character.AP2Stat].Current += 1;
         $scope.Stats[$scope.Character.AP3Stat].Current += 1;
+
+        // Disable damage boxes.
+        var numToDisable = 12 - $scope.Stats.PHY.Current;
+
+        for (var i = 0; i < numToDisable; i++) {
+            $scope.PHYDamBoxes[i].Disabled = true;
+        }
+
+        numToDisable = 12 - $scope.Stats.AGL.Current;
+
+        for (var i = 0; i < numToDisable; i++) {
+            $scope.AGLDamBoxes[i].Disabled = true;
+        }
+
+        numToDisable = 12 - $scope.Stats.INT.Current;
+
+        for (var i = 0; i < numToDisable; i++) {
+            $scope.INTDamBoxes[i].Disabled = true;
+        }
 
         // Populate military skills list.
         for (var i = 0; i < $scope.Character.MilitarySkills.length; i++) {

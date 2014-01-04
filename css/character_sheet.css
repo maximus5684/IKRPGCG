@@ -52,6 +52,271 @@ input[type="text"], select {
     width: 99%;
 }
 
+#damageBox {
+    background-image: url('/img/no-spiral.png');
+    height: 292px;
+}
+
+#damageBox ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#damageBox ul li {
+    display: inline-block;
+    line-height: 0;
+    position: absolute;
+}
+
+#damageBox input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+    padding: 0;
+}
+
+#damageBox input[type="checkbox"]:checked:after {
+    content: 'X';
+    position: absolute;
+    top: 0;
+}
+
+#damageBox .damBoxList input[type="checkbox"] {
+    height: 19px;
+    width: 20px;
+}
+
+#damageBox .damBoxList input[type="checkbox"]:checked:after {
+    font-size: 1.1em;
+    left: 5px;
+}
+
+#damageBox .pfBoxList input[type="checkbox"] {
+    height: 14px;
+    width: 14px;
+}
+
+#damageBox .pfBoxList input[type="checkbox"]:checked:after {
+    font-size: 0.95em;
+    left: 4px;
+}
+
+#damageBox input[type="checkbox"]:disabled {
+    background-color: #999;
+}
+
+#damageBox #PHYLI0 {
+    left: 204px;
+    top: 53px;
+}
+
+#damageBox #PHYLI1 {
+    left: 204px;
+    top: 79px;
+}
+
+#damageBox #PHYLI2 {
+    left: 178px;
+    top: 53px;
+}
+
+#damageBox #PHYLI3 {
+    left: 178px;
+    top: 79px;
+}
+
+#damageBox #PHYLI4 {
+    left: 152px;
+    top: 53px;
+}
+
+#damageBox #PHYLI5 {
+    left: 152px;
+    top: 79px;
+}
+
+#damageBox #PHYLI6 {
+    left: 126px;
+    top: 53px;
+}
+
+#damageBox #PHYLI7 {
+    left: 126px;
+    top: 79px;
+}
+
+#damageBox #PHYLI8 {
+    left: 100px;
+    top: 53px;
+}
+
+#damageBox #PHYLI9 {
+    left: 100px;
+    top: 79px;
+}
+
+#damageBox #PHYLI10 {
+    left: 74px;
+    top: 66px;
+}
+
+#damageBox #PHYLI11 {
+    left: 48px;
+    top: 66px;
+}
+
+#damageBox #AGLLI0 {
+    left: 204px;
+    top: 125px;
+}
+
+#damageBox #AGLLI1 {
+    left: 204px;
+    top: 151px;
+}
+
+#damageBox #AGLLI2 {
+    left: 178px;
+    top: 125px;
+}
+
+#damageBox #AGLLI3 {
+    left: 178px;
+    top: 151px;
+}
+
+#damageBox #AGLLI4 {
+    left: 152px;
+    top: 125px;
+}
+
+#damageBox #AGLLI5 {
+    left: 152px;
+    top: 151px;
+}
+
+#damageBox #AGLLI6 {
+    left: 126px;
+    top: 125px;
+}
+
+#damageBox #AGLLI7 {
+    left: 126px;
+    top: 151px;
+}
+
+#damageBox #AGLLI8 {
+    left: 100px;
+    top: 125px;
+}
+
+#damageBox #AGLLI9 {
+    left: 100px;
+    top: 151px;
+}
+
+#damageBox #AGLLI10 {
+    left: 74px;
+    top: 138px;
+}
+
+#damageBox #AGLLI11 {
+    left: 48px;
+    top: 138px;
+}
+
+#damageBox #INTLI0 {
+    left: 204px;
+    top: 199px;
+}
+
+#damageBox #INTLI1 {
+    left: 204px;
+    top: 225px;
+}
+
+#damageBox #INTLI2 {
+    left: 178px;
+    top: 199px;
+}
+
+#damageBox #INTLI3 {
+    left: 178px;
+    top: 225px;
+}
+
+#damageBox #INTLI4 {
+    left: 152px;
+    top: 199px;
+}
+
+#damageBox #INTLI5 {
+    left: 152px;
+    top: 225px;
+}
+
+#damageBox #INTLI6 {
+    left: 126px;
+    top: 199px;
+}
+
+#damageBox #INTLI7 {
+    left: 126px;
+    top: 225px;
+}
+
+#damageBox #INTLI8 {
+    left: 100px;
+    top: 199px;
+}
+
+#damageBox #INTLI9 {
+    left: 100px;
+    top: 225px;
+}
+
+#damageBox #INTLI10 {
+    left: 74px;
+    top: 212px;
+}
+
+#damageBox #INTLI11 {
+    left: 48px;
+    top: 212px;
+}
+
+#damageBox #PFLI0 {
+    left: 217px;
+    top: 261px;
+}
+
+#damageBox #PFLI1 {
+    left: 198px;
+    top: 261px;
+}
+
+#damageBox #PFLI2 {
+    left: 179px;
+    top: 261px;
+}
+
+#damageBox #PFLI3 {
+    left: 160px;
+    top: 261px;
+}
+
+#damageBox #PFLI4 {
+    left: 141px;
+    top: 261px;
+}
+
+#damageBox #PFLI5 {
+    left: 122px;
+    top: 261px;
+}
+
 #featBox {
     float: right;
     font-size: 106%;

@@ -308,7 +308,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox small" style="padding: 0 0 5px 5px">
                         <p class="csBoxHead">FEAT POINTS</p>
                         <div class="csStatBox" style="margin-top: 24px; width: 75px; float: left; position: static">
-                            <p class="csStatBoxVal" style="height: 65px">&#160;</p>
+                            <p class="csStatBoxVal"><input type="number" style="width: 100%; border: none; font-size: 3.7em; height: 1em" min="0" max="5" value="0"></p>
                             <p class="csStatBoxStat">CURRENT<br>FEAT<br>POINTS</p>
                         </div>
                         <div id="featBox">
@@ -407,14 +407,34 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
                 <div class="span4">
-                    <div class="csBox" style="padding-top: 0">
+                    <div id="damageBox" class="csBox" style="padding-top: 0">
                         <p class="csBoxHead">DAMAGE CAPACITY</p>
-                        <img src="img/no-spiral.png" alt="Damage Counter">
+                        <ul class="damBoxList">
+                            <li ng-repeat="DamBox in PHYDamBoxes" id="PHYLI{{$index}}">
+                                <input type="checkbox" name="PHYCheck" id="PHYCheck{{$index}}" ng-model="DamBox.Checked" ng-disabled="DamBox.Disabled">
+                            </li>
+                        </ul>
+                        <ul class="damBoxList">
+                            <li ng-repeat="DamBox in AGLDamBoxes" id="AGLLI{{$index}}">
+                                <input type="checkbox" name="AGLCheck" id="AGLCheck{{$index}}" ng-model="DamBox.Checked" ng-disabled="DamBox.Disabled">
+                            </li>
+                        </ul>
+                        <ul class="damBoxList">
+                            <li ng-repeat="DamBox in INTDamBoxes" id="INTLI{{$index}}">
+                                <input type="checkbox" name="INTCheck" id="INTCheck{{$index}}" ng-model="DamBox.Checked" ng-disabled="DamBox.Disabled">
+                            </li>
+                        </ul>
+                        <ul class="pfBoxList">
+                            <li ng-repeat="PFBox in PFBoxes" id="PFLI{{$index}}">
+                                <input type="checkbox" name="PFCheck" id="PFCheck{{$index}}" ng-model="PFBox.Checked" ng-disabled="PFBox.Disabled">
+                            </li>
+                        </ul>
                     </div>
                 </div>
                 <div class="span4">
                     <div class="csBox" style="height: 268px">
                         <p class="csBoxHead">NOTES</p>
+                        <textarea maxlength="450" style="width: 282px; height: 94%; resize: none"></textarea>
                     </div>
                 </div>
             </div>
