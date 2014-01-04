@@ -26,12 +26,19 @@ function CSCtrl($scope, $http) {
     $scope.RangedWeapon1 = '';
     $scope.RangedWeapon2 = '';
     $scope.HasSpells = false;
+    $scope.SomethingChanged = false;
     $scope.EditName = false;
+    $scope.OldName = null;
     $scope.EditSex = false;
+    $scope.OldSex = null; // Gross.
     $scope.EditDefiningChars = false;
+    $scope.OldDefChars = null;
     $scope.EditHeight = false;
+    $scope.OldHeight = null;
     $scope.EditWeight = false;
+    $scope.OldWeight = null;
     $scope.EditFaith = false;
+    $scope.OldFaith = null;
     $scope.PHYDamBoxes = 
     [
         { Disabled: false, Checked: false },
@@ -186,12 +193,6 @@ function CSCtrl($scope, $http) {
     }
    
     $scope.loadCharacterDefaults = function() {
-        $scope.NewName = $scope.Character.Name;
-        $scope.NewSex = $scope.Character.Sex;
-        $scope.NewDefiningCharacteristics = $scope.Character.DefiningCharacteristics;
-        $scope.NewHeight = $scope.Height;
-        $scope.NewWeight = $scope.Weight;
-        $scope.NewFaith = $scope.Faith;
         $scope.Level = $scope.xpLevel($scope.Character.XP);
 
         for (var i = 0; i < $scope.Races.length; i++) {
@@ -561,40 +562,43 @@ function CSCtrl($scope, $http) {
 
     // Functions to change basic character information.
     $scope.clickEditName = function() {
-        $scope.EditName = !$scope.EditName;
+        clickEditField('EditName', 'Name', 'OldName');
     }
 
     $scope.clickEditSex = function() {
-        $scope.EditSex = !$scope.EditSex;
+        clickEditField('EditSex', 'Sex', 'OldSex');
     }
 
     $scope.clickEditDefiningChars = function() {
-        $scope.EditDefiningChars = !$scope.EditDefiningChars;
+        clickEditField('EditDefiningChars', 'DefiningCharacteristics', 'OldDefChars');
     }
 
     $scope.clickEditHeight = function() {
-        $scope.EditHeight = !$scope.EditHeight;
+        clickEditField('EditHeight', 'Height', 'OldHeight');
     }
 
-    function submitChange() {
-        var noProblems = true;
+    $scope.clickEditWeight = function() {
+        clickEditField('EditWeight', 'Weight', 'OldWeight');
+    }
 
+    $scope.clickEditFaith = function() {
+        clickEditField('EditFaith', 'Character.Faith', 'OldFaith');
+    }
+
+    $scope.SaveCharChanges = function() {
         $http.post($scope.CharUrl, { ReqType: 'UpdateChar', CharacterID: $scope.CharacterID, Character: $scope.Character }).success(function(data, status) {
             if (status != 200 || data != 'OK') {
                 $scope.Error = data;
-                noProblems = false;
+            } else {
+                $scope.SomethingChanged = false;
             }
         }).error(function(data, status) {
             if (data !== null) {
                 $scope.Error = data;
-                noProblems = false;
             } else {
                 $scope.Error = 'Request failed. Status: ' + status;
-                noProblems = false;
             }
         });
-
-        return noProblems;
     }
 
     function fieldHighlight(fieldId) {
@@ -644,6 +648,18 @@ function CSCtrl($scope, $http) {
     /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
+    function clickEditField(fieldFlag, charField, oldField) {
+        if ($scope[fieldFlag]) {
+            if ($scope.Character[charField] != $scope[oldField]) {
+                $scope.SomethingChanged = true;
+            }
+        } else {
+            $scope[oldField] = $scope.Character[charField];
+        }
+
+        $scope[fieldFlag] = !$scope[fieldFlag];
+    }
+
     function byName(objA, objB) {
         if (objA.Name > objB.Name) {
             return 1;
@@ -651,4 +667,10 @@ function CSCtrl($scope, $http) {
             return -1;
         }
     }
+
+    $(window).bind('beforeunload', function() {
+        if ($scope.SomethingChanged) {
+            return 'Leaving this page without saving will lose all changes.';
+        }
+    });
 }

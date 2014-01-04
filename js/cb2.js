@@ -1944,4 +1944,8 @@ function CB2Ctrl($scope, $http) {
             return -1;
         }
     }
+
+    $(window).bind('beforeunload', function() {
+        return 'Leaving this page without saving will lose all progress.';
+    });
 }

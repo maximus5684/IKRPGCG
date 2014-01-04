@@ -39,58 +39,30 @@ function CBCtrl($scope, $http) {
         // Set the height and weight min/max values according to the race.
         if ($scope.Race !== null) {
             if ($scope.Character.Height !== '') {
-                if ($scope.Character.Sex == "M") {
-                    if (parseInt($scope.Character.Height) < $scope.Race.HeightMale[0]) {
-                        $scope.Character.Height = $scope.Race.HeightMale[0];
-                    } else if (parseInt($scope.Character.Height) > $scope.Race.HeightMale[1]) {
-                        $scope.Character.Height = $scope.Race.HeightMale[1];
-                    }
-                } else if ($scope.Character.Sex == "F") {
-                    if (parseInt($scope.Character.Height) < $scope.Race.HeightFemale[0]) {
-                        $scope.Character.Height = $scope.Race.HeightFemale[0];
-                    } else if (parseInt($scope.Character.Height) > $scope.Race.HeightFemale[1]) {
-                        $scope.Character.Height = $scope.Race.HeightFemale[1];
-                    }
+                if (parseInt($scope.Character.Height) < $scope.Race.Height[$scope.Character.Sex].Min) {
+                    $scope.Character.Height = $scope.Race.Height[$scope.Character.Sex].Min;
+                } else if (parseInt($scope.Character.Height) > $scope.Race.Height[$scope.Character.Sex].Max) {
+                    $scope.Character.Height = $scope.Race.Height[$scope.Character.Sex].Max;
                 }
             }
 
             if ($scope.Character.Weight !== '') {
-                if ($scope.Character.Sex == "M") {
-                    if (parseInt($scope.Character.Weight) < $scope.Race.WeightMale[0]) {
-                        $scope.Character.Weight = $scope.Race.WeightMale[0];
-                    } else if (parseInt($scope.Character.Weight) > $scope.Race.WeightMale[1]) {
-                        $scope.Character.Weight = $scope.Race.WeightMale[1];
-                    }
-                } else if ($scope.Character.Sex == "F") {
-                    if (parseInt($scope.Character.Weight) < $scope.Race.WeightFemale[0]) {
-                        $scope.Character.Weight = $scope.Race.WeightFemale[0];
-                    } else if (parseInt($scope.Character.Weight) > $scope.Race.WeightFemale[1]) {
-                        $scope.Character.Weight = $scope.Race.WeightFemale[1];
-                    }
-                }                
+                if (parseInt($scope.Character.Weight) < $scope.Race.Weight[$scope.Character.Sex].Min) {
+                    $scope.Character.Weight = $scope.Race.Weight[$scope.Character.Sex].Min;
+                } else if (parseInt($scope.Character.Weight) > $scope.Race.Weight[$scope.Character.Sex].Max) {
+                    $scope.Character.Weight = $scope.Race.Weight[$scope.Character.Sex].Max;
+                }
             }
             
-            if ($scope.Character.Sex == "M") {
-                $("#Height").attr({
-                    min: $scope.Race.HeightMale[0],
-                    max: $scope.Race.HeightMale[1]
-                });
-                
-                $("#Weight").attr({
-                    min: $scope.Race.WeightMale[0],
-                    max: $scope.Race.WeightMale[1]
-                });
-            } else if ($("#Sex").val() == "F") {
-                $("#Height").attr({
-                    min: $scope.Race.HeightFemale[0],
-                    max: $scope.Race.HeightFemale[1]
-                });
-                
-                $("#Weight").attr({
-                    min: $scope.Race.WeightFemale[0],
-                    max: $scope.Race.WeightFemale[1]
-                });
-            }
+            $("#Height").attr({
+                min: $scope.Race.Height[$scope.Character.Sex].Min,
+                max: $scope.Race.Height[$scope.Character.Sex].Max
+            });
+            
+            $("#Weight").attr({
+                min: $scope.Race.Weight[$scope.Character.Sex].Min,
+                max: $scope.Race.Weight[$scope.Character.Sex].Max
+            });
         }
     };
     
@@ -144,35 +116,19 @@ function CBCtrl($scope, $http) {
             popArchetypes();
             
             // Set initial height and weight values.
-            if ($scope.Character.Sex == "M") {
-                $("#Height").attr({
-                    min: $scope.Race.HeightMale[0],
-                    max: $scope.Race.HeightMale[1]
-                });
-                
-                $scope.Character.Height = $scope.Race.HeightMale[0];
-                
-                $("#Weight").attr({
-                    min: $scope.Race.WeightMale[0],
-                    max: $scope.Race.WeightMale[1]
-                });
-                
-                $scope.Character.Weight = $scope.Race.WeightMale[0];
-            } else if ($scope.Character.Sex == "F") {
-                $("#Height").attr({
-                    min: $scope.Race.HeightFemale[0],
-                    max: $scope.Race.HeightFemale[1]
-                });
-                
-                $scope.Character.Height = $scope.Race.HeightFemale[0];
-                
-                $("#Weight").attr({
-                    min: $scope.Race.WeightFemale[0],
-                    max: $scope.Race.WeightFemale[1]
-                });
-                
-                $scope.Character.Weight = $scope.Race.WeightFemale[0];
-            }
+            $("#Height").attr({
+                min: $scope.Race.Height[$scope.Character.Sex].Min,
+                max: $scope.Race.Height[$scope.Character.Sex].Max
+            });
+
+            $scope.Character.Height = $scope.Race.Height[$scope.Character.Sex].Min;
+
+            $("#Weight").attr({
+                min: $scope.Race.Weight[$scope.Character.Sex].Min,
+                max: $scope.Race.Weight[$scope.Character.Sex].Max
+            });
+
+            $scope.Character.Weight = $scope.Race.Weight[$scope.Character.Sex].Min;
 
             $scope.Character.Race = $scope.Race.Name;
         } else {
@@ -483,4 +439,10 @@ function CBCtrl($scope, $http) {
 
         return false;
     }
+
+    $(window).bind('beforeunload', function() {
+        if ($scope.Race !== null) {
+            return 'Leaving this page without saving will lose all progress.';
+        }
+    });
 }

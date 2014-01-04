@@ -19,10 +19,8 @@ raceArr =
         AbilityChoices: 0,
         StatIncreaseChoices: 1,
         StatIncreaseChoiceOptions: ['PHY','AGL','INT'],
-        HeightMale: [61,75],
-        HeightFemale: [55,69],
-        WeightMale: [110,200],
-        WeightFemale: [90,170],
+        Height: { M: { Min: 61, Max: 75 }, F: { Min: 55, Max: 69 } },
+        Weight: { M: { Min: 110, Max: 200 }, F: { Min: 90, Max: 170 } },
         AdditionalChars: ['Exceptional Potential - Humans are extremely adaptable and talented individuals. Your character begins the game with your choice of +1 PHY, +1 AGL, or +1 INT. Note this bonus does not increase the character\'s racial maximum, just the starting value.'],
         ResCareers: ['Fell Caller','Mage Hunter']
     },
@@ -46,10 +44,8 @@ raceArr =
         AbilityChoices: 0,
         Connections: [{ Name: 'clan', Type: 'Generic' }],
         StatIncreaseChoices: 0,
-        HeightMale: [52,60],
-        HeightFemale: [47,55],
-        WeightMale: [150,190],
-        WeightFemale: [105,145],
+        Height: { M: { Min: 52, Max: 60 }, F: { Min: 47, Max: 55 } },
+        Weight: { M: { Min: 150, Max: 190 }, F: { Min: 105, Max: 145 } },
         AdditionalChars:
         [
             'Load Bearing - Dwarf Characters start the game with the Load Bearing ability. This ability is in addition to any others the character gains from his starting careers.',
@@ -89,10 +85,8 @@ raceArr =
         Benefits: [{ Name: 'Deft' }],
         DefMod: 1,
         StatIncreaseChoices: 0,
-        HeightMale: [34,42],
-        HeightFemale: [32,40],
-        WeightMale: [42,60],
-        WeightFemale: [38,55],
+        Height: { M: { Min: 34, Max: 42 }, F: { Min: 32, Max: 40 } },
+        Weight: { M: { Min: 42, Max: 60 }, F: { Min: 38, Max: 55 } },
         AdditionalChars:
         [
             'Deft - Whether or not they have the Skilled archetype, gobber characters start the game with the Deft archetype benefit. This benefit is in addition to any other archetype benefits the character starts with.',
@@ -130,10 +124,8 @@ raceArr =
         StartLangs: ['Shyr'],
         AbilityChoices: 1,
         StatIncreaseChoices: 0,
-        HeightMale: [65,75],
-        HeightFemale: [60,70],
-        WeightMale: [125,180],
-        WeightFemale: [85,140],
+        Height: { M: { Min: 65, Max: 75 }, F: { Min: 60, Max: 70 } },
+        Weight: { M: { Min: 125, Max: 180 }, F: { Min: 85, Max: 140 } },
         AdditionalChars: ['Iosan characters begin the game with an additional ability selected from one of their careers.'],
         ResCareers:
         [
@@ -167,10 +159,8 @@ raceArr =
         InitMod: 1,
         StatIncreases: [['PER',1]],
         StatIncreaseChoices: 0,
-        HeightMale: [67,77],
-        HeightFemale: [62,72],
-        WeightMale: [140,195],
-        WeightFemale: [95,130],
+        Height: { M: { Min: 67, Max: 77 }, F: { Min: 62, Max: 72 } },
+        Weight: { M: { Min: 140, Max: 195 }, F: { Min: 95, Max: 130 } },
         AdditionalChars:
         [
             'Nyss with the Gifted archetype cannot have the Arcane Mechanik, Arcanist, Gun Mage, or Warcaster careers.',
@@ -215,10 +205,8 @@ raceArr =
         StartLangs: ['Molgur-Og','Rhulic'],
         AbilityChoices: 0,
         StatIncreaseChoices: 0,
-        HeightMale: [90,105],
-        HeightFemale: [82,97],
-        WeightMale: [450,500],
-        WeightFemale: [330,380],
+        Height: { M: { Min: 90, Max: 105 }, F: { Min: 82, Max: 97 } },
+        Weight: { M: { Min: 450, Max: 500 }, F: { Min: 330, Max: 380 } },
         AdditionalChars: ['Huge Stature - An ogrun can wield a weapon in one hand that usually requires two hands to wield but he suffers -2 on attack rolls with that weapon.'],
         ResCareers:
         [
@@ -252,10 +240,8 @@ raceArr =
         AbilityChoices: 0,
         Benefits: [{ Name: 'Tough' }, { Name: 'Feat: Revitalize' }],
         StatIncreaseChoices: 0,
-        HeightMale: [71,84],
-        HeightFemale: [63,76],
-        WeightMale: [250,330],
-        WeightFemale: [150,230],
+        Height: { M: { Min: 71, Max: 84 }, F: { Min: 63, Max: 76 } },
+        Weight: { M: { Min: 250, Max: 330 }, F: { Min: 150, Max: 230 } },
         AdditionalChars:
         [
             'Trollkin with the gifted archetype cannot have the Arcane Mechanik, Arcanist, or Warcaster careers.',

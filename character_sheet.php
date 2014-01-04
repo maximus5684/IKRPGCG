@@ -42,12 +42,12 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             <strong class="small"><a ng-click="clickEditHeight()">HEIGHT</a></strong>
                         </p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="text-align: center; width: 50px">{{Character.Weight}} lbs</span><br>
-                            <strong class="small">WEIGHT</strong>
+                            <span class="textSpace" style="text-align: center; width: 50px" ng-hide="EditWeight">{{Character.Weight}} lbs</span><input type="number" class="textSpace" ng-model="Character.Weight" style="width: 50px" ng-show="EditWeight"><br>
+                            <strong class="small"><a ng-click="clickEditWeight()">WEIGHT</a></strong>
                         </p>
                         <p class="csInputBox">
-                            <span class="textSpace" style="width: 110px">{{Character.Faith}}</span><br>
-                            <strong class="small">FAITH</strong>
+                            <span class="textSpace" style="width: 110px" ng-hide="EditFaith">{{Character.Faith}}</span><input type="text" class="textSpace" ng-model="Character.Faith" style="width: 110px" ng-show="EditFaith"><br>
+                            <strong class="small"><a ng-click="clickEditFaith()">FAITH</a></strong>
                         </p>
                         <div class="clear">&#160;</div>
                         <p class="csInputBox">
@@ -648,60 +648,16 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
             </div>
-            <div class="modal hide fade" id="editName">
-                <form ng-submit="editName()" onsubmit="javascript:$('#editName').modal('hide')">
-                    <div class="modal-body">
-                        <div class="csBox">
-                            <p class="csBoxHead">EDIT NAME</p>
-                            <p class="csInputBox control-group" style="width: 100%">
-                                <input type="text" name="ChangeName" id="ChangeName" maxlength="30" style="width: 100%" ng-model="NewName" required><br>
-                                <label class="control-label" for="ChangeName"><strong class="small">CHARACTER NAME</strong></label>
-                            </p>
-                            <div class="clear">&#160;</div>
+            <div id="bottomSpacer">&#160;</div>
+            <div id="changedBox" class="row" ng-show="SomethingChanged">
+                <div class="span12">
+                    <form ng-submit="SaveCharChanges()">
+                        <h4 style="float: left">Your character has unsaved changes. Would you like to save them now?</h4>
+                        <div style="float: right; margin: 5px 10px">
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Change</button>
-                    </div>
-                </form>
-            </div>
-            <div class="modal hide fade" id="editXP">
-                <form ng-submit="editXP()" onsubmit="javascript:$('#editXP').modal('hide')">
-                    <div class="modal-body">
-                        <div class="csBox">
-                            <div class="csBoxHead">EDIT XP</div>
-                            <p class="csInputBox control-group">
-                                <input type="text" name="SkillName" id="SkillName" style="width: 260px" ng-model="NewSkillName" required><br>
-                                <label class="control-label" for="SkillName"><strong class="small">SKILL NAME</strong></label>
-                            </p>
-                            <p class="csInputBox control-group">
-                                <select name="BaseStat" id="BaseStat" style="width: 90px" ng-model="NewSkillBaseStat" required>
-                                    <option value="PHY">PHY</option>
-                                    <option value="SPD">SPD</option>
-                                    <option value="STR">STR</option>
-                                    <option value="AGL">AGL</option>
-                                    <option value="PRW">PRW</option>
-                                    <option value="POI">POI</option>
-                                    <option value="INT">INT</option>
-                                    <option value="ARC">ARC</option>
-                                    <option value="PER">PER</option>
-                                    <option value="Social">Social</option>
-                                </select><br>
-                                <label class="control-label" for="BaseStat"><strong class="small">BASE STAT</strong></label>
-                            </p>
-                            <p class="csInputBox control-group">
-                                <input type="text" name="Level" id="Level" style="text-align: center; width: 30px" maxlength="2" ng-model="NewSkillLevel" required><br>
-                                <label class="control-label" for="Level"><strong class="small">LEVEL</strong></label>
-                            </p>
-                            <div class="clear">&#160;</div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/footer.php'); ?>
