@@ -308,7 +308,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox small" style="padding: 0 0 5px 5px">
                         <p class="csBoxHead">FEAT POINTS</p>
                         <div class="csStatBox" style="margin-top: 24px; width: 75px; float: left; position: static">
-                            <p class="csStatBoxVal"><input type="number" style="width: 100%; border: none; font-size: 3.7em; height: 1em" min="0" max="5" value="0"></p>
+                            <p class="csStatBoxVal"><input type="number" style="width: 100%; border: none; font-size: 3.7em; height: 1em" min="0" max="3" value="0"></p>
                             <p class="csStatBoxStat">CURRENT<br>FEAT<br>POINTS</p>
                         </div>
                         <div id="featBox">
