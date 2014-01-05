@@ -17,6 +17,7 @@ function CB3Ctrl($scope, $http) {
     $scope.RacialAbilityChoice = null;
     $scope.RacialAbilityProperty = null;
     $scope.RacialAbilityPropertyList = [];
+    $scope.LeavePressed = false;
 
     $scope.Races = raceArr;
     $scope.Careers = careerArr;
@@ -423,6 +424,8 @@ function CB3Ctrl($scope, $http) {
     }
 
     $scope.returnToHome = function() {
+        $scope.LeavePressed = true;
+
         window.location.href = '/index.php';
     }
 
@@ -473,6 +476,8 @@ function CB3Ctrl($scope, $http) {
         // or Abilities with properties since the items in those lists are references to the actual
         // items in the character's lists. The only thing to do is strip off the PropertyType and
         // PropertiesList from Benefits and Abilities, if they have them.
+
+        $scope.LeavePressed = true;
 
         if ($scope.HasBenefitsWithProperties) {
             for (var i = 0; i < $scope.BenefitsWithProperties.length; i++) {
@@ -534,6 +539,8 @@ function CB3Ctrl($scope, $http) {
     }
 
     $(window).bind('beforeunload', function() {
-        return 'Leaving this page without saving will lose all progress.';
+        if (!$scope.LeavePressed) {
+            return 'Leaving this page without saving will lose all progress.';
+        }
     });
 }

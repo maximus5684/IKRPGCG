@@ -20,14 +20,10 @@ function CBCtrl($scope, $http) {
     $scope.Career2 = null;
     $scope.Career1List = [];
     $scope.Career2List = [];
+    $scope.LeavePressed = false;
     
     $scope.Races = raceArr;
-    $scope.Archetypes = [];    
-    
-    for (i3 = 0; i3 < archArr.length; i3++) {
-        $scope.Archetypes.push(archArr[i3]);
-    }
-    
+    $scope.Archetypes = archArr;    
     $scope.Careers = careerArr;
     
     // Ajax Variables
@@ -393,6 +389,8 @@ function CBCtrl($scope, $http) {
     }
 
     $scope.returnToHome = function() {
+        $scope.LeavePressed = true;
+
         window.location = '/index.php';
     }
     
@@ -413,6 +411,8 @@ function CBCtrl($scope, $http) {
     }
 
     $scope.AddChar = function() {
+        $scope.LeavePressed = true;
+
         if ($scope.Archetype.Name == 'Gifted') {
             if ($scope.Career1.Name == 'Warcaster' || $scope.Career2.Name == 'Warcaster') {
                 $scope.Character.ArcaneTradition = 'Focuser';
@@ -441,7 +441,7 @@ function CBCtrl($scope, $http) {
     }
 
     $(window).bind('beforeunload', function() {
-        if ($scope.Race !== null) {
+        if ($scope.Race !== null && !$scope.LeavePressed) {
             return 'Leaving this page without saving will lose all progress.';
         }
     });

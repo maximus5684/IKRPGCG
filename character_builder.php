@@ -3,11 +3,11 @@
 $pageTitle = 'Character Builder - Iron Kingdoms Character Generator';
 include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
 
-        <link href="css/character_builder.css" rel="stylesheet">
+        <link href="css/char_builder.css" rel="stylesheet">
         <script src="js/races.js"></script>
         <script src="js/archetypes.js"></script>
         <script src="js/careers.js"></script>
-        <script src="js/cb.js"></script>
+        <script src="js/char_builder.js"></script>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
 
         <div class="container" id="mainContain" ng-controller="CBCtrl">

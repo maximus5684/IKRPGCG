@@ -86,6 +86,7 @@ function CB2Ctrl($scope, $http) {
     $scope.HRCareer1SpellReplacedWith = null;
     $scope.HRCareer2SpellToReplace = null;
     $scope.HRCareer2SpellReplacedWith = null;
+    $scope.LeavePressed = false;
 
     $scope.Races = raceArr;
     $scope.Archetypes = archArr; 
@@ -1245,6 +1246,8 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.returnToHome = function() {
+        $scope.LeavePressed = true;
+
         window.location.href = '/index.php';
     }
 
@@ -1339,6 +1342,8 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.UpdateChar = function() {
+        $scope.LeavePressed = true;
+
         for (var stat in $scope.APFields) {
             if ($scope.APFields.hasOwnProperty(stat)) {
                 if ($scope.APFields[stat].Points == 1) {
@@ -1946,6 +1951,8 @@ function CB2Ctrl($scope, $http) {
     }
 
     $(window).bind('beforeunload', function() {
-        return 'Leaving this page without saving will lose all progress.';
+        if (!$scope.LeavePressed) {
+            return 'Leaving this page without saving will lose all progress.';
+        }
     });
 }

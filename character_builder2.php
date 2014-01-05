@@ -3,7 +3,7 @@
 $pageTitle = 'Character Builder - Iron Kingdoms Character Generator'; 
 include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?> 
   
-        <link href="css/character_builder2.css" rel="stylesheet"> 
+        <link href="css/char_builder2.css" rel="stylesheet"> 
         <script src="js/races.js"></script> 
         <script src="js/archetypes.js"></script> 
         <script src="js/careers.js"></script> 
@@ -11,7 +11,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
         <script src="js/abilities.js"></script>
         <script src="js/skills.js"></script>
         <script src="js/spells.js"></script>
-        <script src="js/cb2.js"></script> 
+        <script src="js/char_builder2.js"></script> 
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
 
         <div class="container" id="mainContain" ng-controller="CB2Ctrl" data-ng-init="GetChar(<?php echo $_GET["CharacterID"]; ?>)">

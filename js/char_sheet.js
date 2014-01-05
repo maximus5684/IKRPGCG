@@ -582,7 +582,7 @@ function CSCtrl($scope, $http) {
     }
 
     $scope.clickEditFaith = function() {
-        clickEditField('EditFaith', 'Character.Faith', 'OldFaith');
+        clickEditField('EditFaith', 'Faith', 'OldFaith');
     }
 
     $scope.SaveCharChanges = function() {

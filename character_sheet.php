@@ -3,14 +3,14 @@
 $pageTitle = 'Character Sheet - Iron Kingdoms Character Generator';
 include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
 
-        <link href="css/character_sheet.css" rel="stylesheet">
+        <link href="css/char_sheet.css" rel="stylesheet">
         <script src="js/races.js"></script>
         <script src="js/careers.js"></script>
         <script src="js/skills.js"></script>
         <script src="js/archetypes.js"></script>
         <script src="js/abilities.js"></script>
         <script src="js/spells.js"></script>
-        <script src="js/cs.js"></script>
+        <script src="js/char_sheet.js"></script>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
 
         <div class="container" id="mainContain" ng-controller="CSCtrl" data-ng-init="GetChar(<?php echo $_GET["CharacterID"]; ?>)">
@@ -82,8 +82,8 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <div class="csStatBox small" style="right: 10px; top: 5px; width: 100px">
                             <p class="csStatBoxVal">{{Level}}</p>
                             <p class="csStatBoxStat" style="border-top: 1px solid #000000">LEVEL</p>
-                            <p class="csStatBoxVal"><a style="cursor: pointer" data-toggle="modal" data-target="#editXP">{{Character.XP}}</a></p>
-                            <p class="csStatBoxStat small" style="border-top: 1px solid #000000">TOTAL XP EARNED</p>
+                            <p class="csStatBoxVal" style="font-size: 225%"><a href="/character_xp.php?CharacterID={{CharacterID}}">{{Character.XP}}</a></p>
+                            <p class="csStatBoxStat small" style="border-top: 1px solid #000">TOTAL XP EARNED</p>
                         </div>
                     </div>
                 </div>
@@ -311,7 +311,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox small" style="padding: 0 0 5px 5px">
                         <p class="csBoxHead">FEAT POINTS</p>
                         <div class="csStatBox" style="margin-top: 24px; width: 75px; float: left; position: static">
-                            <p class="csStatBoxVal"><input type="number" style="width: 100%; border: none; font-size: 3.7em; height: 1em" min="0" max="3" value="0"></p>
+                            <p class="csStatBoxVal"><input type="number" style="width: 100%; border: none; font-size: 3.7em; height: 1.14em" min="0" max="3" value="0"></p>
                             <p class="csStatBoxStat">CURRENT<br>FEAT<br>POINTS</p>
                         </div>
                         <div id="featBox">
