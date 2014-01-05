@@ -37,6 +37,7 @@ careerArr = [
     {
         Name: "Arcane Mechanik",
         StartingCareerOnly: false,
+        ReqArchetype: 'Gifted',
         StartingAbilities: [{ Name: 'Inscribe Formulae' }],
         StartingOccupationalSkills: 
         [
@@ -109,6 +110,7 @@ careerArr = [
     {
         Name: "Arcanist",
         StartingCareerOnly: false,
+        ReqArchetype: 'Gifted',
         StartingAbilities: [{ Name: 'Great Power' }],
         StartingOccupationalSkills: [{ Name: 'Lore', Type: 'Specific', Property: 'Arcane', Level: 1 },{ Name: 'Research', Level: 1 }],
         StartingMSkillChoices: 0,
@@ -495,6 +497,7 @@ careerArr = [
     {
         Name: "Gun Mage",
         StartingCareerOnly: false,
+        ReqArchetype: 'Gifted',
         StartingAbilities: [{ Name: 'Craft Rune Shot' }, { Name: 'Fast Reload' }],
         StartingOccupationalSkills: [{ Name: 'Detection', Level: 1}, { Name: 'Intimidation', Level: 1 }],
         StartingMSkillChoices: 1,
@@ -963,6 +966,7 @@ careerArr = [
     {
         Name: "Priest of Menoth",
         StartingCareerOnly: false,
+        ReqArchetype: 'Gifted',
         StartingAbilities: [{ Name: 'Dispel' }],
         StartingConnections: [{ Name: 'Menite temple', Type: 'Generic' }],
         StartingOccupationalSkills: [{ Name: 'Lore', Type: 'Specific', Property: 'Menite faith', Level: 1 }, { Name: 'Oratory', Level: 1 }],
@@ -1024,6 +1028,7 @@ careerArr = [
     {
         Name: "Priest of Morrow",
         StartingCareerOnly: false,
+        ReqArchetype: 'Gifted',
         StartingAbilities: [{ Name: 'Empower' }],
         StartingConnections: [{ Name: 'Morrowan church', Type: 'Generic' }],
         StartingOccupationalSkills: [{ Name: 'Lore', Type: 'Specific', Property: 'Morrowan faith', Level: 1 }, { Name: 'Medicine', Level: 1 }],
@@ -1232,6 +1237,7 @@ careerArr = [
     {
         Name: "Sorcerer (Fire)",
         StartingCareerOnly: true,
+        ReqArchetype: 'Gifted',
         StartingAbilities: [{ Name: 'Immunity: Fire' }],
         StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 1,
@@ -1286,6 +1292,7 @@ careerArr = [
     {
         Name: "Sorcerer (Ice)",
         StartingCareerOnly: true,
+        ReqArchetype: 'Gifted',
         StartingAbilities: [{ Name: 'Immunity: Cold' }],
         StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 1,
@@ -1340,6 +1347,7 @@ careerArr = [
     {
         Name: "Sorcerer (Stone)",
         StartingCareerOnly: true,
+        ReqArchetype: 'Gifted',
         StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 1,
         StartingMSkillChoicesOptions: [{ Name: 'Archery', Level: 1 }, { Name: 'Crossbow', Level: 1 }, { Name: 'Hand Weapon', Level: 1 }],
@@ -1395,6 +1403,7 @@ careerArr = [
     {
         Name: "Sorcerer (Storm)",
         StartingCareerOnly: true,
+        ReqArchetype: 'Gifted',
         StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Survival', Level: 1 }],
         StartingMSkillChoices: 1,
         StartingMSkillChoicesOptions: [{ Name: 'Archery', Level: 1 }, { Name: 'Crossbow', Level: 1 }, { Name: 'Hand Weapon', Level: 1 }],
@@ -1655,6 +1664,8 @@ careerArr = [
     {
         Name: "Warcaster",
         StartingCareerOnly: true,
+        ReqArchetype: 'Gifted',
+        MakesFocuser: true,
         StartingAbilities: [{ Name: 'Bond', Type: 'Generic', Property: 'bond slot' }],
         StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Pistol', Level: 1 }],
         StartingOccupationalSkills: [{ Name: 'Command', Level: 1 }, { Name: 'Detection', Level: 1 }],

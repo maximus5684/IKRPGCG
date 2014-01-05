@@ -261,24 +261,24 @@ function CBCtrl($scope, $http) {
         // restricted by race.
         archList = [];
         
-        for (i2 = 0; i2 < archArr.length; i2++) {
-            archList.push(archArr[i2]);
+        for (var i = 0; i < archArr.length; i++) {
+            archList.push(archArr[i]);
         }
         
         if ('ResArchetypes' in $scope.Race) {
             archsToRemove = [];
 
-            for (i = 0; i < $scope.Race.ResArchetypes.length; i++) {
-                for (m = 0; m < archList.length; m++) {
-                    if ($scope.Race.ResArchetypes[i] == archList[m].Name) {
-                        archsToRemove.push(archList[m]);
+            for (var i = 0; i < $scope.Race.ResArchetypes.length; i++) {
+                for (var i1 = 0; i1 < archList.length; i1++) {
+                    if ($scope.Race.ResArchetypes[i] == archList[i1].Name) {
+                        archsToRemove.push(archList[i1]);
                     }
                 }
             }
             
-            for (n = 0; n < archsToRemove.length; n++) {
-                if (archList.indexOf(archsToRemove[n]) > -1) {
-                    archList.splice(archList.indexOf(archsToRemove[n]), 1);
+            for (var i = 0; i < archsToRemove.length; i++) {
+                if (archList.indexOf(archsToRemove[i]) > -1) {
+                    archList.splice(archList.indexOf(archsToRemove[i]), 1);
                 }
             }
         }
@@ -289,51 +289,39 @@ function CBCtrl($scope, $http) {
     function popCareer1() {
         // Populates the first career drop-down list. Removes careers
         // restricted by archetype.
-        for (g = 0; g < $scope.Careers.length; g++) {
-            $scope.Career1List.push($scope.Careers[g]);
+        for (var i = 0; i < $scope.Careers.length; i++) {
+            $scope.Career1List.push($scope.Careers[i]);
         }
         
         if ('ResCareers' in $scope.Race) {
             careersToRemove = [];
             
-            for (j = 0; j < $scope.Careers.length; j++) {
-                if ($scope.Race.ResCareers.indexOf($scope.Careers[j].Name) > -1) {
-                    careersToRemove.push($scope.Careers[j]);
+            for (var i = 0; i < $scope.Careers.length; i++) {
+                if ($scope.Race.ResCareers.indexOf($scope.Careers[i].Name) > -1) {
+                    careersToRemove.push($scope.Careers[i]);
                 }
             }
             
-            for (l = 0; l < careersToRemove.length; l++) {
-                if ($scope.Career1List.indexOf(careersToRemove[l]) > -1) {
-                    $scope.Career1List.splice($scope.Career1List.indexOf(careersToRemove[l]), 1);
+            for (var i = 0; i < careersToRemove.length; i++) {
+                if ($scope.Career1List.indexOf(careersToRemove[i]) > -1) {
+                    $scope.Career1List.splice($scope.Career1List.indexOf(careersToRemove[i]), 1);
                 }
             }
         }
 
-        if ($scope.Archetype.Name !== 'Gifted') {
-            giftedCareers = [
-                'Arcane Mechanik',
-                'Arcanist',
-                'Gun Mage',
-                'Priest of Morrow',
-                'Priest of Menoth',
-                'Sorcerer (Fire)',
-                'Sorcerer (Ice)',
-                'Sorcerer (Stone)',
-                'Sorcerer (Storm)',
-                'Warcaster'
-            ];
-            careersToRemove = [];
-            
-            for (k = 0; k < $scope.Careers.length; k++) {
-                if (giftedCareers.indexOf($scope.Careers[k].Name) > -1) {
-                    careersToRemove.push($scope.Careers[k]);
+        careersToRemove = [];
+
+        for (var i = 0; i < $scope.Careers.length; i++) {
+            if ('ReqArchetype' in $scope.Careers[i]) {
+                if ($scope.Archetype.Name != $scope.Careers[i].ReqArchetype) {
+                    careersToRemove.push($scope.Careers[i]);
                 }
             }
-            
-            for (m1 = 0; m1 < careersToRemove.length; m1++) {
-                if ($scope.Career1List.indexOf(careersToRemove[m1]) > -1) {
-                    $scope.Career1List.splice($scope.Career1List.indexOf(careersToRemove[m1]), 1);
-                }
+        }
+
+        for (var i = 0; i < careersToRemove.length; i++) {
+            if ($scope.Career1List.indexOf(careersToRemove[i]) != -1) {
+                $scope.Career1List.splice($scope.Career1List.indexOf(careersToRemove[i]), 1);
             }
         }
     }
@@ -342,9 +330,9 @@ function CBCtrl($scope, $http) {
         // Populates the second career drop-down list by copying the first (minus the
         // career selected in the first drop-down) and removing any careers
         // restricted by the "2nd career" restrictions.
-        for (g1 = 0; g1 < $scope.Career1List.length; g1++) {
-            if ($scope.Career1List[g1].Name != $scope.Career1.Name) {
-                $scope.Career2List.push($scope.Career1List[g1]);
+        for (var i = 0; i < $scope.Career1List.length; i++) {
+            if ($scope.Career1List[i].Name != $scope.Career1.Name) {
+                $scope.Career2List.push($scope.Career1List[i]);
             }
         }
 
@@ -355,26 +343,26 @@ function CBCtrl($scope, $http) {
         // career lists and remove those from the 2nd list if the 1st career is not
         // in their restricted list.
         if ('ResSecondCareers' in $scope.Career1) {
-            for (bb2 = 0; bb2 < $scope.Career2List.length; bb2++) {
-                if ($scope.Career1.ResSecondCareers.indexOf($scope.Career2List[bb2].Name) == -1) {
-                    careersToRemove.push($scope.Career2List[bb2]);
+            for (var i = 0; i < $scope.Career2List.length; i++) {
+                if ($scope.Career1.ResSecondCareers.indexOf($scope.Career2List[i].Name) == -1) {
+                    careersToRemove.push($scope.Career2List[i]);
                 }
             }
 
-            for (bb3 = 0; bb3 < careersToRemove.length; bb3++) {
-                $scope.Career2List.splice($scope.Career2List.indexOf(careersToRemove[bb3]), 1);
+            for (var i = 0; i < careersToRemove.length; i++) {
+                $scope.Career2List.splice($scope.Career2List.indexOf(careersToRemove[i]), 1);
             }
         } else {
-            for (bb4 = 0; bb4 < $scope.Career2List.length; bb4++) {
-                if ('ResSecondCareers' in $scope.Career2List[bb4]) {
-                    if ($scope.Career2List[bb4].ResSecondCareers.indexOf($scope.Career1.Name) == -1) {
-                        careersToRemove.push($scope.Career2List[bb4]);
+            for (var i = 0; i < $scope.Career2List.length; i++) {
+                if ('ResSecondCareers' in $scope.Career2List[i]) {
+                    if ($scope.Career2List[i].ResSecondCareers.indexOf($scope.Career1.Name) == -1) {
+                        careersToRemove.push($scope.Career2List[i]);
                     }
                 }
             }
 
-            for (bb5 = 0; bb5 < careersToRemove.length; bb5++) {
-                $scope.Career2List.splice($scope.Career2List.indexOf(careersToRemove[bb5]), 1);
+            for (var i = 0; i < careersToRemove.length; i++) {
+                $scope.Career2List.splice($scope.Career2List.indexOf(careersToRemove[i]), 1);
             }
         }
     }
@@ -414,7 +402,7 @@ function CBCtrl($scope, $http) {
         $scope.LeavePressed = true;
 
         if ($scope.Archetype.Name == 'Gifted') {
-            if ($scope.Career1.Name == 'Warcaster' || $scope.Career2.Name == 'Warcaster') {
+            if ('MakesFocuser' in $scope.Career1 || 'MakesFocuser' in $scope.Career2) {
                 $scope.Character.ArcaneTradition = 'Focuser';
             } else {
                 $scope.Character.ArcaneTradition = 'Will Weaver';
