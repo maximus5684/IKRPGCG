@@ -1,1 +1,38 @@
-/* blank space */
+#bottomSpacer {
+    height: 40px;
+}
+
+#changedBox {
+    bottom: 0;
+    position: fixed;
+}
+
+#changedBox .span12 {
+    background-color: #bbb;
+    border: 1px solid black;
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    padding-left: 10px;
+}
+
+#xpTable th {
+    background-color: #000;
+    color: #fff;
+}
+
+#xpTable th#bigHead {
+    background-color: #fff;
+    color: #000;
+}
+
+#xpTable td:first-child {
+    background-color: #000;
+    color: #fff;
+    font-weight: bold;
+}
+
+#xpTable th, #xpTable td {
+    text-align: center;
+    vertical-align: middle;
+}

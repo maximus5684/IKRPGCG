@@ -30,6 +30,7 @@ function XPManCtrl($scope, $http) {
         ARC: { Current: 0, Max: 0 },
         PER: { Current: 0, Max: 0 }
     };
+    $scope.SomethingChanged = false;
 
     /////////////////////////////////////////////////////////////////////
     /////                                                           /////
@@ -42,6 +43,7 @@ function XPManCtrl($scope, $http) {
     $scope.Careers = careerArr; // In careers.js
     $scope.Abilities = abilArr; // In abilities.js
     $scope.Spells = spellsArr; // In spells.js
+    $scope.XPAdvances = xpAdvArr;
 
     $scope.MilitarySkills = milSkillsArr; // from skills.js
     $scope.OccupationalSkills = occSkillsArr; // from skills.js
@@ -195,6 +197,68 @@ function XPManCtrl($scope, $http) {
             return 'Veteran';
         } else if (xp > 99) {
             return 'Epic';
+        }
+    }
+
+    $scope.displayAdvanceChoices = function(advance) {
+        var advText = '';
+
+        for (var i = 0; i < advance.Options.length; i++) {
+            if (advText != '') {
+                advText += ' or ';
+            }
+
+            for (var i1 = 0; i1 < advance.Options[i].length; i1++) {
+                if (i1 > 0) {
+                    advText += ' and ';
+                }
+
+                switch (advance.Options[i][i1][0]) {
+                    case 'Careers':
+                        advText += '+' + String(advance.Options[i][i1][1]) + ' Career';
+                        break;
+                    case 'OccupationalSkills':
+                        advText += '+' + String(advance.Options[i][i1][1]) + ' Occupational Skill';
+                        break;
+                    case 'SACMs':
+                        advText += '+' + String(advance.Options[i][i1][1]) + ' Spell, Ability, Connection, or Military Skill';
+                        break;
+                    case 'Stats':
+                        advText += '+' + String(advance.Options[i][i1][1]) + ' Stat';
+                        break;
+                    case 'ArchetypeBenefits':
+                        advText += '+' + String(advance.Options[i][i1][1]) + ' Archetype Benefit';
+                }
+
+                if (advance.Options[i][i1][1] > 1) {
+                    advText += 's';
+                }
+            }
+        }
+
+        return advText;
+    }
+
+    $('input#XP').keyup(function() {
+        if ($(this).val() == '') {
+            $(this).val(0);
+            $scope.Character.XP = 0;
+        } else if (parseInt($(this).val()) > 150) {
+            $(this).val(150);
+            $scope.Character.XP = 150;
+        } else if (parseInt($(this).val()) < 0) {
+            $(this).val(0);
+            $scope.Character.XP = 0;
+        }
+
+        $scope.$digest();
+    });
+
+    $scope.checkCharXP = function(xp) {
+        if ($scope.Character === null || $scope.Character.XP < xp) {
+            return false;
+        } else {
+            return true;
         }
     }
 
