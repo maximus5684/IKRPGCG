@@ -10,6 +10,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
         <script src="js/archetypes.js"></script>
         <script src="js/abilities.js"></script>
         <script src="js/spells.js"></script>
+        <script src="js/languages.js"></script>
         <script src="js/xp_advances.js"></script>
         <script src="js/char_xp.js"></script>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
@@ -64,7 +65,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                                     <div class="control-group">
                                         <label class="control-label" for="XPOptionChoice">{{XPChoice.Label}}:</label>
                                         <div class="controls">
-                                            <select id="XPOptionChoice" ng-options="CListItem.Name for CListItem in XPChoice.ChoicesList" ng-model="XPChoice.Selected">
+                                            <select id="XPOptionChoice" ng-options="CListItem.Name for CListItem in XPChoice.ChoicesList" ng-model="XPChoice.Selected" ng-change="selectXPChoice($parent.$index, $index)">
                                                 <option value="">...</option>
                                             </select>
                                             <span ng-hide="XPChoice.Selected !== null" class="label label-warning">Required</span>
@@ -74,6 +75,15 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                                         <label class="control-label" for="XPOptionChoiceProperty">{{XPChoice.Label}} Property:</label>
                                         <div class="controls">
                                             <input type="text" id="XPOptionChoiceProperty" ng-model="XPChoice.Property">
+                                            <span ng-hide="XPChoice.Property !== null && XPChoice.Property != ''" class="label label-warning">Required</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group" ng-show="checkChoiceForDDLProperty(XPChoice.Selected)">
+                                        <label class="control-label" for="XPOptionChoiceProperty">{{XPChoice.Label}} Property:</label>
+                                        <div class="controls">
+                                            <select id="XPOptionChoiceProperty" ng-options="PLItem for PLItem in XPChoice.Selected.PropertyList" ng-model="XPChoice.Property">
+                                                <option value="">...</option>
+                                            </select>
                                             <span ng-hide="XPChoice.Property !== null && XPChoice.Property != ''" class="label label-warning">Required</span>
                                         </div>
                                     </div>

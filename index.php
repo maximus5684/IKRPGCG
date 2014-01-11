@@ -14,6 +14,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <tr>
                         <th>Character Name</th>
                         <th>Race</th>
+                        <th>Archetype</th>
                         <th>Career 1</th>
                         <th>Career 2</th>
                         <th class="center" style="width: 25px">XP</th>
@@ -26,6 +27,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <tr ng-repeat="Character in Characters">
                         <td>{{Character.CharacterJSON.Name}}</td>
                         <td>{{Character.CharacterJSON.Race}}</td>
+                        <td>{{Character.CharacterJSON.Archetype}}</td>
                         <td>{{Character.CharacterJSON.Career1}}</td>
                         <td>{{Character.CharacterJSON.Career2}}</td>
                         <td class="center">{{Character.CharacterJSON.XP}}</td>
