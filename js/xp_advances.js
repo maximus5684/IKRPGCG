@@ -11,7 +11,10 @@ xpAdvArr =
         XP: 4,
         Options:
         [
-            [['SACMs', 1]]
+            [['Spells', 1]],
+            [['Abilities', 1]],
+            [['Connections', 1]],
+            [['MilitarySkills', 1]]
         ]
     },
     {
@@ -32,7 +35,10 @@ xpAdvArr =
         XP: 10,
         Options:
         [
-            [['SACMs', 1]]
+            [['Spells', 1]],
+            [['Abilities', 1]],
+            [['Connections', 1]],
+            [['MilitarySkills', 1]]
         ]
     },
     {
@@ -60,7 +66,10 @@ xpAdvArr =
         XP: 21,
         Options:
         [
-            [['SACMs', 1]],
+            [['Spells', 1]],
+            [['Abilities', 1]],
+            [['Connections', 1]],
+            [['MilitarySkills', 1]]
         ]
     },
     {
@@ -89,7 +98,10 @@ xpAdvArr =
         XP: 33,
         Options:
         [
-            [['SACMs', 1]]
+            [['Spells', 1]],
+            [['Abilities', 1]],
+            [['Connections', 1]],
+            [['MilitarySkills', 1]]
         ]
     },
     {
@@ -110,7 +122,10 @@ xpAdvArr =
         XP: 42,
         Options:
         [
-            [['SACMs', 1]]
+            [['Spells', 1]],
+            [['Abilities', 1]],
+            [['Connections', 1]],
+            [['MilitarySkills', 1]]
         ]
     },
     {
@@ -138,7 +153,10 @@ xpAdvArr =
         XP: 60,
         Options:
         [
-            [['SACMs', 1]]
+            [['Spells', 1]],
+            [['Abilities', 1]],
+            [['Connections', 1]],
+            [['MilitarySkills', 1]]
         ]
     },
     {
@@ -159,7 +177,10 @@ xpAdvArr =
         XP: 75,
         Options:
         [
-            [['SACMs', 1]]
+            [['Spells', 1]],
+            [['Abilities', 1]],
+            [['Connections', 1]],
+            [['MilitarySkills', 1]]
         ]
     },
     {
@@ -188,7 +209,10 @@ xpAdvArr =
         XP: 95,
         Options:
         [
-            [['SACMs', 1]]
+            [['Spells', 1]],
+            [['Abilities', 1]],
+            [['Connections', 1]],
+            [['MilitarySkills', 1]]
         ]
     },
     {
@@ -217,7 +241,10 @@ xpAdvArr =
         XP: 115,
         Options:
         [
-            [['SACMs', 1]]
+            [['Spells', 1]],
+            [['Abilities', 1]],
+            [['Connections', 1]],
+            [['MilitarySkills', 1]]
         ]
     },
     {
@@ -238,7 +265,10 @@ xpAdvArr =
         XP: 130,
         Options:
         [
-            [['SACMs', 1]]
+            [['Spells', 1]],
+            [['Abilities', 1]],
+            [['Connections', 1]],
+            [['MilitarySkills', 1]]
         ]
     },
     {
@@ -266,7 +296,10 @@ xpAdvArr =
         XP: 150,
         Options:
         [
-            [['SACMs', 1]]
+            [['Spells', 1]],
+            [['Abilities', 1]],
+            [['Connections', 1]],
+            [['MilitarySkills', 1]]
         ]
     }
 ]

@@ -20,6 +20,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <label class="control-label" for="CharXP">Character XP:</label>
                     <div class="controls">
                         <input type="number" id="XP" ng-model="Character.XP" min="0" max="150" style="width: 40px">
+                        <button class="btn" style="float: right" ng-click="cancelConfirm()">Cancel</button>
                     </div>
                 </div>
             </form>
@@ -38,10 +39,54 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <tr ng-repeat="XPAdv in XPAdvances" ng-show="checkCharXP(XPAdv.XP)">
                         <td>{{XPAdv.XP}}</td>
                         <td>{{displayAdvanceChoices(XPAdv)}}</td>
-                        <td>&#160;</td>
+                        <td><a ng-click="clickEditAdvance(XPAdv.XP)" ng-hide="checkXPAdvance(XPAdv.XP)">Add</a><a ng-click="clickEditAdvance(XPAdv.XP)" ng-show="checkXPAdvance(XPAdv.XP)">Edit</a></td>
                     </tr>
                 </tbody>
             </table>
+            <div class="modal hide fade" id="advEdit">
+                <form ng-submit="submitAdvChange()" onsubmit="javascript:$('#advEdit').modal('hide')">
+                    <div class="modal-header">
+                        <h3>Edit XP Advancement</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-horizontal">
+                            <div class="control-group" ng-show="HasXPOptions">
+                                <label class="control-label" for="AdvOption">Advancement Options:</label>
+                                <div class="controls">
+                                    <select id="AdvChoice" ng-options="AdvOpt for AdvOpt in XPOptionsList" ng-model="XPOptionSelected" ng-change="selectXPOption()">
+                                        <option value="">...</option>
+                                    </select>
+                                    <span ng-hide="XPOptionSelected !== null" class="label label-warning">Required</span>
+                                </div>
+                            </div>
+                            <div ng-repeat="XPOption in XPOptions" ng-show="XPOption.Selected">
+                                <div ng-repeat="XPChoice in XPOption.Choices">
+                                    <div class="control-group">
+                                        <label class="control-label" for="XPOptionChoice">{{XPChoice.Label}}:</label>
+                                        <div class="controls">
+                                            <select id="XPOptionChoice" ng-options="CListItem.Name for CListItem in XPChoice.ChoicesList" ng-model="XPChoice.Selected">
+                                                <option value="">...</option>
+                                            </select>
+                                            <span ng-hide="XPChoice.Selected !== null" class="label label-warning">Required</span>
+                                        </div>
+                                    </div>
+                                    <div class="control-group" ng-show="checkChoiceForTextProperty(XPChoice.Selected)">
+                                        <label class="control-label" for="XPOptionChoiceProperty">{{XPChoice.Label}} Property:</label>
+                                        <div class="controls">
+                                            <input type="text" id="XPOptionChoiceProperty" ng-model="XPChoice.Property">
+                                            <span ng-hide="XPChoice.Property !== null && XPChoice.Property != ''" class="label label-warning">Required</span>
+                                        </div>
+                                    </div>
+                                </div><!-- XPOption.Choices -->
+                            </div><!-- XPOptions -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </div>
+                </form>
+            </div>
             <div id="bottomSpacer">&#160;</div>
             <div id="changedBox" class="row" ng-show="SomethingChanged">
                 <div class="span12">
@@ -52,5 +97,19 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="modal hide fade" id="cancelConfirm">
+                <form ng-submit="returnToHome()">
+                    <div class="modal-header">
+                        <h3>Cancel XP Changes</h3>
+                    </div>
+                    <div class="modal-body">
+                        All progress will be lost. Are you sure you wish to cancel editing this character's XP advancement?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">Don't Quit</button>
+                        <button type="submit" class="btn btn-primary">Go Back to Character Sheet</button>
+                    </div>
+                </form>
             </div>
         </div>
