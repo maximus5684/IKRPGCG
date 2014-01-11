@@ -293,7 +293,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                             <tbody>
                                 <tr ng-repeat="Skill in CharOSkills">
                                     <td><small>
-                                        {{Skill.Name}} (<span ng-hide="Skill.BaseStat == 'Social'">{{Skill.BaseStat}}</span><select ng-show="Skill.BaseStat == 'Social'" ng-model="Skill.SocialStat" ng-options="Stat for Stat in Skill.StatsList">
+                                            {{Skill.Name}}{{displaySkillProperty(Skill)}} (<span ng-hide="Skill.BaseStat == 'Social'">{{Skill.BaseStat}}</span><select ng-show="Skill.BaseStat == 'Social'" ng-model="Skill.SocialStat" ng-options="Stat for Stat in Skill.StatsList">
                                             <option value="">Social</option>
                                         </select>)</small></td>
                                     <td><strong>{{displaySkillBase(Skill)}}</strong></td>

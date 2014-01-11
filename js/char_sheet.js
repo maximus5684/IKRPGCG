@@ -439,6 +439,16 @@ function CSCtrl($scope, $http) {
         }
     }
     
+    $scope.displaySkillProperty = function(skill) {
+        var sp = '';
+
+        if ('Property' in skill) {
+            sp = ' (' + skill.Property + ')';
+        }
+
+        return sp;
+    }
+
     $scope.displaySkillBase = function(skill) {
         if (skill.BaseStat == 'Social') {
             if (skill.SocialStat == null) {
@@ -464,7 +474,7 @@ function CSCtrl($scope, $http) {
     }
 
     $scope.displayBenefitProperty = function(benefit) {
-        bp = '';
+        var bp = '';
         
         if ('HasProperty' in benefit) {
             bp = ' (' + benefit.Property + ')';
