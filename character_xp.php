@@ -98,7 +98,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn" data-dismiss="modal" ng-click="clearXPEdit()">Cancel</button>
                         <button type="submit" class="btn btn-primary">Edit</button>
                     </div>
                 </form>

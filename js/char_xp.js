@@ -20,16 +20,17 @@ function XPManCtrl($scope, $http) {
     $scope.Level = 'Hero';
     $scope.Stats =
     {
-        PHY: { Current: 0, Max: 0 },
-        SPD: { Current: 0, Max: 0 },
-        STR: { Current: 0, Max: 0 },
-        AGL: { Current: 0, Max: 0 },
-        PRW: { Current: 0, Max: 0 },
-        POI: { Current: 0, Max: 0 },
-        INT: { Current: 0, Max: 0 },
-        ARC: { Current: 0, Max: 0 },
-        PER: { Current: 0, Max: 0 }
+        PHY: { Current: 0 },
+        SPD: { Current: 0 },
+        STR: { Current: 0 },
+        AGL: { Current: 0 },
+        PRW: { Current: 0 },
+        POI: { Current: 0 },
+        INT: { Current: 0 },
+        ARC: { Current: 0 },
+        PER: { Current: 0 }
     };
+    $scope.CurrentXPEdit = null;
     $scope.HasXPOptions = false;
     $scope.XPOptionsList = [];
     $scope.XPOptionSelected = null;
@@ -81,7 +82,10 @@ function XPManCtrl($scope, $http) {
     }
 
     $scope.loadCharacterDefaults = function() {
-        $scope.Character.XPAdvances = []; 
+        if (!('XPAdvances' in $scope.Character)) {
+            $scope.Character.XPAdvances = []; 
+        }
+
         $scope.Level = $scope.xpLevel($scope.Character.XP);
 
         for (var i = 0; i < $scope.Races.length; i++) {
@@ -106,35 +110,14 @@ function XPManCtrl($scope, $http) {
             }
         }
 
-        statSelect = '';
-
-        switch($scope.Level) {
-            case 'Hero':
-                statSelect = 'MaxHero';
-                break;
-            case 'Veteran':
-                statSelect = 'MaxVet';
-                break;
-            case 'Epic':
-                statSelect = 'MaxEpic';
-                break;
-        }
-
         // Load basic stats for current level.
         $scope.Stats.PHY.Current = $scope.Race.Stats.PHY.Starting;
-        $scope.Stats.PHY.Max = $scope.Race.Stats.PHY[statSelect];
         $scope.Stats.SPD.Current = $scope.Race.Stats.SPD.Starting;
-        $scope.Stats.SPD.Max = $scope.Race.Stats.SPD[statSelect];
         $scope.Stats.STR.Current = $scope.Race.Stats.STR.Starting;
-        $scope.Stats.STR.Max = $scope.Race.Stats.STR[statSelect];
         $scope.Stats.AGL.Current = $scope.Race.Stats.AGL.Starting;
-        $scope.Stats.AGL.Max = $scope.Race.Stats.AGL[statSelect];
         $scope.Stats.PRW.Current = $scope.Race.Stats.PRW.Starting;
-        $scope.Stats.PRW.Max = $scope.Race.Stats.PRW[statSelect];
         $scope.Stats.POI.Current = $scope.Race.Stats.POI.Starting;
-        $scope.Stats.POI.Max = $scope.Race.Stats.POI[statSelect];
         $scope.Stats.INT.Current = $scope.Race.Stats.INT.Starting;
-        $scope.Stats.INT.Max = $scope.Race.Stats.INT[statSelect];
 
         if ($scope.Archetype.Name == 'Gifted') {
             if ($scope.Character.ArcaneTradition == 'Focuser') {
@@ -142,15 +125,11 @@ function XPManCtrl($scope, $http) {
             } else if ($scope.Character.ArcaneTradition == 'Will Weaver') {
                 $scope.Stats.ARC.Current = 3;
             }
-
-            $scope.Stats.ARC.Max = $scope.Race.Stats.ARC[statSelect];
         } else {
             $scope.Stats.ARC.Current = '-';
-            $scope.Stats.ARC.Max = '-';
         }
 
         $scope.Stats.PER.Current = $scope.Race.Stats.PER.Starting;
-        $scope.Stats.PER.Max = $scope.Race.Stats.PER[statSelect];
 
         // If race grants stat increases, add them.
         if ('StatIncreases' in $scope.Race) {
@@ -174,19 +153,6 @@ function XPManCtrl($scope, $http) {
         if ('StatIncreases' in $scope.Career2) {
             for (var i = 0; i < $scope.Career2.StatIncreases.length; i++) {
                 $scope.Stats[$scope.Career2.StatIncreases[i][0]].Current += $scope.Career2.StatIncreases[i][1];
-            }
-        }
-
-        // If careers add to stat maximums add them.
-        if ('StatMaxIncreases' in $scope.Career1) {
-            for (var i = 0; i < $scope.Career1.StatMaxIncreases[$scope.Level].length; i++) {
-                $scope.Stats[$scope.Career1.StatMaxIncreases[$scope.Level][i][0]].Max += $scope.Career1.StatMaxIncreases[$scope.Level][i][1];
-            }
-        }
-
-        if ('StatMaxIncreases' in $scope.Career2) {
-            for (var i = 0; i < $scope.Career2.StatMaxIncreases[$scope.Level].length; i++) {
-                $scope.Stats[$scope.Career2.StatMaxIncreases[$scope.Level][i][0]].Max += $scope.Career2.StatMaxIncreases[$scope.Level][i][1];
             }
         }
 
@@ -334,6 +300,7 @@ function XPManCtrl($scope, $http) {
     }
 
     $scope.clickAddAdvance = function(xp) {
+        $scope.CurrentXPEdit = xp;
         $scope.HasXPOptions = false;
         $scope.XPOptionsList = [];
         $scope.XPOptionSelected = null;
@@ -416,7 +383,16 @@ function XPManCtrl($scope, $http) {
             for (var i1 = 0; i1 < advance.Options[i].length; i1++) {
                 // Loop for the number of multiples of each choice.
                 for (var i2 = 0; i2 < advance.Options[i][i1][1]; i2++) {
-                    var tempChoice = { Label: '', ChoicesList: [], Selected: null, Property: '' };
+                    var tempChoice = { Type: advance.Options[i][i1][0], Label: '', ChoicesList: [], Selected: null, Property: '' };
+                    var maxSkillLevel = 0;
+
+                    if (xp <= 49) {
+                        maxSkillLevel = 2;
+                    } else if (xp <= 99) {
+                        maxSkillLevel = 3;
+                    } else if (xp > 99) {
+                        maxSkillLevel = 4;
+                    }
 
                     switch (advance.Options[i][i1][0]) {
                         case 'Careers':
@@ -450,51 +426,105 @@ function XPManCtrl($scope, $http) {
                             tempChoice.Label = 'Occupational Skill';
 
                             for (var i3 = 0; i3 < $scope.Career1.OccupationalSkills.length; i3++) {
-                                tempChoice.ChoicesList.push($scope.Career1.OccupationalSkills[i3]);
+                                if ($scope.Career1.OccupationalSkills[i3].Name == 'General Skills') {
+                                    for (var i4 = 0; i4 < $scope.GeneralSkills.length; i4++) {
+                                        tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
+                                    }
+                                } else {
+                                    tempChoice.ChoicesList.push($scope.Career1.OccupationalSkills[i3]);
+                                }
                             }
 
                             for (var i3 = 0; i3 < $scope.Career2.OccupationalSkills.length; i3++) {
-                                var found = false;
-                                
-                                for (var i4 = 0; i4 < tempChoice.ChoicesList.length; i4++) {
-                                    if ($scope.Career2.OccupationalSkills[i3].Name == tempChoice.ChoicesList[i4].Name) {
-                                        found = true;
+                                if ($scope.Career2.OccupationalSkills[i3].Name == 'General Skills') {
+                                    for (var i4 = 0; i4 < $scope.GeneralSkills.length; i4++) {
+                                        var found = false;
+
+                                        for (var i5 = 0; i5 < tempChoice.ChoicesList.length; i5++) {
+                                            if ($scope.GeneralSkills[i4].Name == tempChoice.ChoicesList[i5].Name) {
+                                                found = true;
+                                            }
+                                        }
+
+                                        if (!found) {
+                                            tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
+                                        }
                                     }
-                                }
-
-                                if (!found) {
-                                    tempChoice.ChoicesList.push($scope.Career2.OccupationalSkills[i3]);
-                                }
-                            }
-
-                            if ($scope.Career3 !== null) {
-                                for (var i3 = 0; i3 < $scope.Career3.OccupationalSkills.length; i3++) {
+                                } else {
                                     var found = false;
                                     
                                     for (var i4 = 0; i4 < tempChoice.ChoicesList.length; i4++) {
-                                        if ($scope.Career3.OccupationalSkills[i3].Name == tempChoice.ChoicesList[i4].Name) {
+                                        if ($scope.Career2.OccupationalSkills[i3].Name == tempChoice.ChoicesList[i4].Name) {
                                             found = true;
                                         }
                                     }
 
                                     if (!found) {
-                                        tempChoice.ChoicesList.push($scope.Career3.OccupationalSkills[i3]);
+                                        tempChoice.ChoicesList.push($scope.Career2.OccupationalSkills[i3]);
+                                    }
+                                }
+                            }
+
+                            if ($scope.Career3 !== null) {
+                                if ($scope.Career3.OccupationalSkills[i3].Name == 'General Skills') {
+                                    for (var i4 = 0; i4 < $scope.GeneralSkills.length; i4++) {
+                                        var found = false;
+
+                                        for (var i5 = 0; i5 < tempChoice.ChoicesList.length; i5++) {
+                                            if ($scope.GeneralSkills[i4].Name == tempChoice.ChoicesList[i5].Name) {
+                                                found = true;
+                                            }
+                                        }
+
+                                        if (!found) {
+                                            tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
+                                        }
+                                    }
+                                } else {
+                                    for (var i3 = 0; i3 < $scope.Career3.OccupationalSkills.length; i3++) {
+                                        var found = false;
+                                        
+                                        for (var i4 = 0; i4 < tempChoice.ChoicesList.length; i4++) {
+                                            if ($scope.Career3.OccupationalSkills[i3].Name == tempChoice.ChoicesList[i4].Name) {
+                                                found = true;
+                                            }
+                                        }
+
+                                        if (!found) {
+                                            tempChoice.ChoicesList.push($scope.Career3.OccupationalSkills[i3]);
+                                        }
                                     }
                                 }
                             }
 
                             if ($scope.Career4 !== null) {
-                                for (var i3 = 0; i3 < $scope.Career4.OccupationalSkills.length; i3++) {
-                                    var found = false;
-                                    
-                                    for (var i4 = 0; i4 < tempChoice.ChoicesList.length; i4++) {
-                                        if ($scope.Career4.OccupationalSkills[i3].Name == tempChoice.ChoicesList[i4].Name) {
-                                            found = true;
+                                if ($scope.Career4.OccupationalSkills[i3].Name == 'General Skills') {
+                                    for (var i4 = 0; i4 < $scope.GeneralSkills.length; i4++) {
+                                        var found = false;
+
+                                        for (var i5 = 0; i5 < tempChoice.ChoicesList.length; i5++) {
+                                            if ($scope.GeneralSkills[i4].Name == tempChoice.ChoicesList[i5].Name) {
+                                                found = true;
+                                            }
+                                        }
+
+                                        if (!found) {
+                                            tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
                                         }
                                     }
+                                } else {
+                                    for (var i3 = 0; i3 < $scope.Career4.OccupationalSkills.length; i3++) {
+                                        var found = false;
+                                        
+                                        for (var i4 = 0; i4 < tempChoice.ChoicesList.length; i4++) {
+                                            if ($scope.Career4.OccupationalSkills[i3].Name == tempChoice.ChoicesList[i4].Name) {
+                                                found = true;
+                                            }
+                                        }
 
-                                    if (!found) {
-                                        tempChoice.ChoicesList.push($scope.Career4.OccupationalSkills[i3]);
+                                        if (!found) {
+                                            tempChoice.ChoicesList.push($scope.Career4.OccupationalSkills[i3]);
+                                        }
                                     }
                                 }
                             }
@@ -658,7 +688,11 @@ function XPManCtrl($scope, $http) {
                             tempChoice.Label = 'Military Skill';
 
                             for (var i3 = 0; i3 < $scope.Career1.MilitarySkills.length; i3++) {
-                                tempChoice.ChoicesList.push($scope.Career1.MilitarySkills[i3]);
+                                var curLevel = getMilitarySkillLevel($scope.Career1.MilitarySkills[i3].Name);
+
+                                if ((curLevel + 1) <= $scope.Career1.MilitarySkills[i3].Level && (curLevel + 1) <= maxSkillLevel) {
+                                    tempChoice.ChoicesList.push($scope.Career1.MilitarySkills[i3]);
+                                }
                             }
 
                             for (var i3 = 0; i3 < $scope.Career2.MilitarySkills.length; i3++) {
@@ -671,7 +705,11 @@ function XPManCtrl($scope, $http) {
                                 }
 
                                 if (!found) {
-                                    tempChoice.ChoicesList.push($scope.Career2.MilitarySkills[i3]);
+                                    var curLevel = getMilitarySkillLevel($scope.Career2.MilitarySkills[i3].Name);
+
+                                    if ((curLevel +1) <= $scope.Career2.MilitarySkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                        tempChoice.ChoicesList.push($scope.Career2.MilitarySkills[i3]);
+                                    }
                                 }
                             }
 
@@ -686,7 +724,11 @@ function XPManCtrl($scope, $http) {
                                     }
 
                                     if (!found) {
-                                        tempChoice.ChoicesList.push($scope.Career3.MilitarySkills[i3]);
+                                        var curLevel = getMilitarySkillLevel($scope.Career3.MilitarySkills[i3].Name);
+
+                                        if ((curLevel +1) <= $scope.Career3.MilitarySkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                            tempChoice.ChoicesList.push($scope.Career3.MilitarySkills[i3]);
+                                        }
                                     }
                                 }
                             }
@@ -702,7 +744,11 @@ function XPManCtrl($scope, $http) {
                                     }
 
                                     if (!found) {
-                                        tempChoice.ChoicesList.push($scope.Career4.MilitarySkills[i3]);
+                                        var curLevel = getMilitarySkillLevel($scope.Career4.MilitarySkills[i3].Name);
+
+                                        if ((curLevel +1) <= $scope.Career4.MilitarySkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                            tempChoice.ChoicesList.push($scope.Career4.MilitarySkills[i3]);
+                                        }
                                     }
                                 }
                             }
@@ -741,22 +787,45 @@ function XPManCtrl($scope, $http) {
                             break;
                         case 'Stats':
                             tempChoice.Label = 'Stat';
-                            tempChoice.ChoicesList =
-                            [
-                                { Name: 'PHY' },
-                                { Name: 'SPD' },
-                                { Name: 'STR' },
-                                { Name: 'AGL' },
-                                { Name: 'PRW' },
-                                { Name: 'POI' },
-                                { Name: 'INT' }
-                            ];
 
-                            if ($scope.Character.Archetype == 'Gifted') {
-                                tempChoice.ChoicesList.push({ Name: 'ARC' });
+                            if ($scope.Stats.PHY.Current + 1 <= getStatMax('PHY', xp)) {
+                                tempChoice.ChoicesList.push({ Name: 'PHY' });
                             }
 
-                            tempChoice.ChoicesList.push({ Name: 'PER' });
+                            if ($scope.Stats.SPD.Current + 1 <= getStatMax('SPD', xp)) {
+                                tempChoice.ChoicesList.push({ Name: 'SPD' });
+                            }
+
+                            if ($scope.Stats.STR.Current + 1 <= getStatMax('STR', xp)) {
+                                tempChoice.ChoicesList.push({ Name: 'STR' });
+                            }
+
+                            if ($scope.Stats.AGL.Current + 1 <= getStatMax('AGL', xp)) {
+                                tempChoice.ChoicesList.push({ Name: 'AGL' });
+                            }
+
+                            if ($scope.Stats.PRW.Current + 1 <= getStatMax('PRW', xp)) {
+                                tempChoice.ChoicesList.push({ Name: 'PRW' });
+                            }
+
+                            if ($scope.Stats.POI.Current + 1 <= getStatMax('POI', xp)) {
+                                tempChoice.ChoicesList.push({ Name: 'POI' });
+                            }
+
+                            if ($scope.Stats.INT.Current + 1 <= getStatMax('INT', xp)) {
+                                tempChoice.ChoicesList.push({ Name: 'INT' });
+                            }
+
+                            if ($scope.Character.Archetype == 'Gifted') {
+                                if ($scope.Stats.ARC.Current + 1 <= getStatMax('ARC', xp)) {
+                                    tempChoice.ChoicesList.push({ Name: 'ARC' });
+                                }
+                            }
+
+                            if ($scope.Stats.PER.Current + 1 <= getStatMax('PER', xp)) {
+                                tempChoice.ChoicesList.push({ Name: 'PER' });
+                            }
+
                             break;
                     }
 
@@ -817,7 +886,6 @@ function XPManCtrl($scope, $http) {
             }
         }
     }
-            
 
     $scope.checkChoiceForTextProperty = function(choice) {
         if (choice === null) {
@@ -855,6 +923,18 @@ function XPManCtrl($scope, $http) {
                 return false;
             }
         }
+    }
+
+    $scope.clearXPEdit = function() {
+        $scope.CurrentXPEdit = null;
+    }
+
+    $scope.submitAdvChange = function() {
+        if ($scope.CurrentXPEdit = getLastAdvanceXP()) {
+            $scope.Character.XPAdvances.pop();
+        }
+
+        $scope.CurrentXPEdit = null;
     }
 
     $scope.cancelConfirm = function() {
@@ -905,6 +985,24 @@ function XPManCtrl($scope, $http) {
         }
 
         return nextAdvanceXP;
+    }
+
+    function getMilitarySkillLevel(mSkill) {
+        var mSkillTotal = 0;
+
+        for (var i = 0; i < $scope.Character.MilitarySkills.length; i++) {
+            if (mSkill = $scope.Character.MilitarySkills[i].Name) {
+                mSkillTotal += $scope.Character.MilitarySkills[i].Level;
+            }
+        }
+
+        for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+            for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'MilitarySkill' && $scope.Character.XPAdvances[i].AdvanceParts[i1].Name == mSkill) {
+                    mSkillTotal += 1;
+                }
+            }
+        }
     }
 
     function getAbilities() {
@@ -1144,6 +1242,64 @@ function XPManCtrl($scope, $http) {
 
         tempList.sort();
         return tempList;
+    }
+
+    function getStatMax(stat, xp) {
+        var funcLevel = $scope.xpLevel(xp);
+        var statSelect = '';
+
+        switch(funcLevel) {
+            case 'Hero':
+                statSelect = 'MaxHero';
+                break;
+            case 'Veteran':
+                statSelect = 'MaxVet';
+                break;
+            case 'Epic':
+                statSelect = 'MaxEpic';
+                break;
+        }
+
+        statMax = $scope.Race.Stats[stat][statSelect];
+
+        // If careers add to stat maximums add them.
+        if ('StatMaxIncreases' in $scope.Career1) {
+            for (var i = 0; i < $scope.Career1.StatMaxIncreases[funcLevel].length; i++) {
+                if ($scope.Career1.StatMaxIncreases[funcLevel][i][0] == stat) {
+                    statMax += $scope.Career1.StatMaxIncreases[funcLevel][i][1];
+                }
+            }
+        }
+
+        if ('StatMaxIncreases' in $scope.Career2) {
+            for (var i = 0; i < $scope.Career2.StatMaxIncreases[$scope.Level].length; i++) {
+                if ($scope.Career2.StatMaxIncreases[funcLevel][i][0] == stat) {
+                    statMax += $scope.Career2.StatMaxIncreases[funcLevel][i][1];
+                }
+            }
+        }
+
+        if ($scope.Career3 !== null) {
+            if ('StatMaxIncreases' in $scope.Career3) {
+                for (var i = 0; i < $scope.Career3.StatMaxIncreases[$scope.Level].length; i++) {
+                    if ($scope.Career3.StatMaxIncreases[funcLevel][i][0] == stat) {
+                        statMax += $scope.Career3.StatMaxIncreases[funcLevel][i][1];
+                    }
+                }
+            }
+        }
+
+        if ($scope.Career4 !== null) {
+            if ('StatMaxIncreases' in $scope.Career4) {
+                for (var i = 0; i < $scope.Career4.StatMaxIncreases[$scope.Level].length; i++) {
+                    if ($scope.Career4.StatMaxIncreases[funcLevel][i][0] == stat) {
+                        statMax += $scope.Career4.StatMaxIncreases[funcLevel][i][1];
+                    }
+                }
+            }
+        }
+
+        return statMax;
     }
 
     function byName(objA, objB) {
