@@ -262,6 +262,61 @@ function XPManCtrl($scope, $http) {
         return advText;
     }
 
+    $scope.changeXP = function() {
+        $scope.SomethingChanged = true;
+    }
+
+    $('input#XP').keyup(function() {
+        if ($(this).val() == '') {
+            $(this).val(0);
+            $scope.Character.XP = 0;
+        } else if (parseInt($(this).val()) > 150) {
+            $(this).val(150);
+            $scope.Character.XP = 150;
+        } else if (parseInt($(this).val()) < 0) {
+            $(this).val(0);
+            $scope.Character.XP = 0;
+        }
+    });
+    
+    $scope.checkXPRow = function(xp) {
+        if ($scope.Character === null || $scope.Character.XP < xp) {
+            return false;
+        } else {
+            var nextAdvanceXP = getNextAdvanceXP();
+
+            if ((xp - nextAdvanceXP) < 10) {
+                if (xp <= nextAdvanceXP) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
+    $scope.checkXPAdvCurOrNext = function(xp) {
+        if ($scope.Character === null) {
+            return false;
+        } else {
+            var lastAdvanceXP = getLastAdvanceXP();
+
+            if ((xp - lastAdvanceXP) < 10) {
+                var nextAdvanceXP = getNextAdvanceXP();
+
+                if (xp == lastAdvanceXP || xp == nextAdvanceXP) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
     $scope.checkXPAdvance = function(xp) {
         if ($scope.Character !== null) {
             var found = false;
@@ -278,30 +333,7 @@ function XPManCtrl($scope, $http) {
         }
     }
 
-    $('input#XP').keyup(function() {
-        if ($(this).val() == '') {
-            $(this).val(0);
-            $scope.Character.XP = 0;
-        } else if (parseInt($(this).val()) > 150) {
-            $(this).val(150);
-            $scope.Character.XP = 150;
-        } else if (parseInt($(this).val()) < 0) {
-            $(this).val(0);
-            $scope.Character.XP = 0;
-        }
-
-        $scope.$digest();
-    });
-
-    $scope.checkCharXP = function(xp) {
-        if ($scope.Character === null || $scope.Character.XP < xp) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    $scope.clickEditAdvance = function(xp) {
+    $scope.clickAddAdvance = function(xp) {
         $scope.HasXPOptions = false;
         $scope.XPOptionsList = [];
         $scope.XPOptionSelected = null;
@@ -834,6 +866,7 @@ function XPManCtrl($scope, $http) {
     }
 
     $scope.returnToSheet = function() {
+        $scope.SomethingChanged = false;
         window.location = '/character_sheet.php?CharacterID=' + $scope.CharacterID;
     }
 
@@ -842,6 +875,37 @@ function XPManCtrl($scope, $http) {
     /////       Private Functions                                   /////
     /////                                                           /////
     /////////////////////////////////////////////////////////////////////
+
+    function getLastAdvanceXP() {
+        var lastAdvXP = 0;
+
+        if ($scope.Character.XPAdvances.length > 0) {
+            lastAdvXP = $scope.Character.XPAdvances[$scope.Character.XPAdvances.length - 1].XP;
+        }
+
+        return lastAdvXP;
+    }
+
+    function getNextAdvanceXP() {
+        var lastAdvanceXP = getLastAdvanceXP();
+        var nextAdvanceXP = 0;
+        var curAdvIndex = -1;
+
+        for (var i = 0; i < $scope.XPAdvances.length; i++) {
+            if ($scope.XPAdvances[i].XP == lastAdvanceXP) {
+                curAdvIndex = i;
+                break;
+            }
+        }
+
+        if ((curAdvIndex + 1) < $scope.XPAdvances.length) {
+            nextAdvanceXP = $scope.XPAdvances[curAdvIndex + 1].XP;
+        } else {
+            nextAdvanceXP = $scope.XPAdvances[curAdvIndex].XP;
+        }
+
+        return nextAdvanceXP;
+    }
 
     function getAbilities() {
         var AbilitiesList = [];

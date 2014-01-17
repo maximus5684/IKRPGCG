@@ -20,7 +20,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group">
                     <label class="control-label" for="CharXP">Character XP:</label>
                     <div class="controls">
-                        <input type="number" id="XP" ng-model="Character.XP" min="0" max="150" style="width: 40px">
+                        <input type="number" id="XP" ng-change="changeXP()" ng-model="Character.XP" min="0" max="150" style="width: 40px">
                         <button class="btn" style="float: right" ng-click="cancelConfirm()">Cancel</button>
                     </div>
                 </div>
@@ -31,16 +31,22 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <th colspan="4" id="bigHead"><h2>CHARACTER ADVANCEMENT TABLE</h2></th>
                     </tr>
                     <tr>
-                        <th>XP TOTAL</th>
+                        <th style="width: 80px">XP TOTAL</th>
                         <th>CHARACTER ADVANCEMENT</th>
-                        <th>CHOOSE/<br>EDIT</th>
+                        <th style="width: 160px">ADD / EDIT / DELETE</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="XPAdv in XPAdvances" ng-show="checkCharXP(XPAdv.XP)">
+                    <tr ng-repeat="XPAdv in XPAdvances" ng-show="checkXPRow(XPAdv.XP)">
                         <td>{{XPAdv.XP}}</td>
                         <td>{{displayAdvanceChoices(XPAdv)}}</td>
-                        <td><a ng-click="clickEditAdvance(XPAdv.XP)" ng-hide="checkXPAdvance(XPAdv.XP)">Add</a><a ng-click="clickEditAdvance(XPAdv.XP)" ng-show="checkXPAdvance(XPAdv.XP)">Edit</a></td>
+                        <td>
+                            <span ng-show="checkXPAdvCurOrNext(XPAdv.XP)">
+                                <a ng-click="clickAddAdvance(XPAdv.XP)" ng-hide="checkXPAdvance(XPAdv.XP)">Add</a>
+                                <span ng-show="checkXPAdvance(XPAdv.XP)"><a ng-click="clickEditAdvance(XPAdv.XP)">Edit</a> /
+                                <a ng-click="clickDeleteAdvance(XPAdv.XP)">Delete</a></span>
+                            </span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -109,7 +115,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 </div>
             </div>
             <div class="modal hide fade" id="cancelConfirm">
-                <form ng-submit="returnToHome()">
+                <form ng-submit="returnToSheet()">
                     <div class="modal-header">
                         <h3>Cancel XP Changes</h3>
                     </div>
