@@ -447,10 +447,18 @@ function XPManCtrl($scope, $http) {
                             for (var i3 = 0; i3 < $scope.Career1.OccupationalSkills.length; i3++) {
                                 if ($scope.Career1.OccupationalSkills[i3].Name == 'General Skills') {
                                     for (var i4 = 0; i4 < $scope.GeneralSkills.length; i4++) {
-                                        tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
+                                        var curLevel = getOccupationalSkillLevel($scope.GeneralSkills[i4].Name);
+
+                                        if ((curLevel + 1) <= $scope.Career1.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                            tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
+                                        }
                                     }
                                 } else {
-                                    tempChoice.ChoicesList.push($scope.Career1.OccupationalSkills[i3]);
+                                    var curLevel = getOccupationalSkillLevel($scope.Career1.OccupationalSkills[i3].Name);
+
+                                    if ((curLevel + 1) <= $scope.Career1.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                        tempChoice.ChoicesList.push($scope.Career1.OccupationalSkills[i3]);
+                                    }
                                 }
                             }
 
@@ -466,7 +474,11 @@ function XPManCtrl($scope, $http) {
                                         }
 
                                         if (!found) {
-                                            tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
+                                            var curLevel = getOccupationalSkillLevel($scope.GeneralSkills[i4].Name);
+
+                                            if ((curLevel + 1) <= $scope.Career2.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                                tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
+                                            }
                                         }
                                     }
                                 } else {
@@ -479,7 +491,11 @@ function XPManCtrl($scope, $http) {
                                     }
 
                                     if (!found) {
-                                        tempChoice.ChoicesList.push($scope.Career2.OccupationalSkills[i3]);
+                                        var curLevel = getOccupationalSkillLevel($scope.Career2.OccupationalSkills[i3].Name);
+
+                                        if ((curLevel + 1) <= $scope.Career2.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                            tempChoice.ChoicesList.push($scope.Career2.OccupationalSkills[i3]);
+                                        }
                                     }
                                 }
                             }
@@ -496,7 +512,11 @@ function XPManCtrl($scope, $http) {
                                         }
 
                                         if (!found) {
-                                            tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
+                                            var curLevel = getOccupationalSkillLevel($scope.GeneralSkills[i4].Name);
+
+                                            if ((curLevel + 1) <= $scope.Career3.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                                tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
+                                            }
                                         }
                                     }
                                 } else {
@@ -510,7 +530,11 @@ function XPManCtrl($scope, $http) {
                                         }
 
                                         if (!found) {
-                                            tempChoice.ChoicesList.push($scope.Career3.OccupationalSkills[i3]);
+                                            var curLevel = getOccupationalSkillLevel($scope.Career3.OccupationalSkills[i3].Name);
+
+                                            if ((curLevel + 1) <= $scope.Career3.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                                tempChoice.ChoicesList.push($scope.Career3.OccupationalSkills[i3]);
+                                            }
                                         }
                                     }
                                 }
@@ -528,7 +552,11 @@ function XPManCtrl($scope, $http) {
                                         }
 
                                         if (!found) {
-                                            tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
+                                            var curLevel = getOccupationalSkillLevel($scope.GeneralSkills[i4].Name);
+
+                                            if ((curLevel + 1) <= $scope.Career4.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                                tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
+                                            }
                                         }
                                     }
                                 } else {
@@ -542,19 +570,24 @@ function XPManCtrl($scope, $http) {
                                         }
 
                                         if (!found) {
-                                            tempChoice.ChoicesList.push($scope.Career4.OccupationalSkills[i3]);
+                                            var curLevel = getOccupationalSkillLevel($scope.Career4.OccupationalSkills[i3].Name);
+
+                                            if ((curLevel + 1) <= $scope.Career4.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                                tempChoice.ChoicesList.push($scope.Career4.OccupationalSkills[i3]);
+                                            }
                                         }
                                     }
                                 }
                             }
 
-                            for (var i3 = 0; i3 < tempChoice.ChoicesList.length; i3++) {
-                                if ('Type' in tempChoice.ChoicesList[i3]) {
-                                    if (tempChoice.ChoicesList[i3].Type == 'Specific') {
-                                        tempChoice.ChoicesList[i3].Name += ' (' + tempChoice.ChoicesList[i3].Property + ')';
-                                    }
-                                }
-                            }
+                            // TODO: Find a way to do this in the DDL rather than here.
+                            //for (var i3 = 0; i3 < tempChoice.ChoicesList.length; i3++) {
+                            //    if ('Type' in tempChoice.ChoicesList[i3]) {
+                            //        if (tempChoice.ChoicesList[i3].Type == 'Specific') {
+                            //            tempChoice.ChoicesList[i3].Name += ' (' + tempChoice.ChoicesList[i3].Property + ')';
+                            //        }
+                            //    }
+                            //}
 
                             tempChoice.ChoicesList.sort(byName);
                             
