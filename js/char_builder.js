@@ -288,32 +288,33 @@ function CBCtrl($scope, $http) {
     
     function popCareer1() {
         // Populates the first career drop-down list. Removes careers
-        // restricted by archetype.
+        // restricted by race and archetype.
         for (var i = 0; i < $scope.Careers.length; i++) {
             $scope.Career1List.push($scope.Careers[i]);
         }
         
-        if ('ResCareers' in $scope.Race) {
-            careersToRemove = [];
-            
-            for (var i = 0; i < $scope.Careers.length; i++) {
-                if ($scope.Race.ResCareers.indexOf($scope.Careers[i].Name) > -1) {
-                    careersToRemove.push($scope.Careers[i]);
-                }
-            }
-            
-            for (var i = 0; i < careersToRemove.length; i++) {
-                if ($scope.Career1List.indexOf(careersToRemove[i]) > -1) {
-                    $scope.Career1List.splice($scope.Career1List.indexOf(careersToRemove[i]), 1);
-                }
-            }
-        }
-
-        careersToRemove = [];
+        var careersToRemove = [];
 
         for (var i = 0; i < $scope.Careers.length; i++) {
+            var added = false;
+
             if ('ReqArchetype' in $scope.Careers[i]) {
                 if ($scope.Archetype.Name != $scope.Careers[i].ReqArchetype) {
+                    careersToRemove.push($scope.Careers[i]);
+                    added = true;
+                }
+            }
+
+            if ('ReqRaces' in $scope.Careers[i]) {
+                var found = false;
+
+                for (var i1 = 0; i1 < $scope.Careers[i].ReqRaces.length; i1++) {
+                    if ($scope.Race.Name == $scope.Careers[i].ReqRaces[i1]) {
+                        found = true;
+                    }
+                }
+
+                if (!found && !added) {
                     careersToRemove.push($scope.Careers[i]);
                 }
             }

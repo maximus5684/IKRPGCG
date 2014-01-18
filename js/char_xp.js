@@ -400,6 +400,7 @@ function XPManCtrl($scope, $http) {
                             
                             for (var i3 = 0; i3 < $scope.Careers.length; i3++) {
                                 var found = false;
+                                var prereqsMet = true;
 
                                 if ($scope.Career1.Name == $scope.Careers[i3].Name) {
                                     found = true;
@@ -413,11 +414,29 @@ function XPManCtrl($scope, $http) {
                                     found = true;
                                 }
 
-                                if ($scope.Career4 !== null && $scope.Career4.Name == $scope.Careers[i3].Name) {
-                                    found = true;
+                                if ($scope.Careers[i3].StartingCareerOnly) {
+                                    prereqsMet = false;
                                 }
 
-                                if (!found) {
+                                if ('ReqArchetype' in $scope.Careers[i3] && $scope.Careers[i3].ReqArchetype != $scope.Character.Archetype) {
+                                    prereqsMet = false;
+                                }
+
+                                if ('ReqRaces' in $scope.Careers[i3]) {
+                                    var raceFound = false;
+
+                                    for (var i4 = 0; i4 < $scope.Careers[i3].ReqRaces.length; i4++) {
+                                        if ($scope.Race.Name == $scope.Careers[i3].ReqRaces[i4]) {
+                                            raceFound = true;
+                                        }
+                                    }
+
+                                    if (!raceFound) {
+                                        prereqsMet = false;
+                                    }
+                                }
+
+                                if (!found && prereqsMet) {
                                     tempChoice.ChoicesList.push({ Name: $scope.Careers[i3].Name });
                                 }
                             }
@@ -932,6 +951,32 @@ function XPManCtrl($scope, $http) {
     $scope.submitAdvChange = function() {
         if ($scope.CurrentXPEdit = getLastAdvanceXP()) {
             $scope.Character.XPAdvances.pop();
+        }
+        
+        // TODO: Finish building advance and add to Character.XPAdvances.
+        var tempAdvance = { XP: $scope.CurrentXPEdit, AdvanceParts: [] };
+
+        for (var i = 0; i < $scope.XPOptions.length; i++) {
+            if ($scope.XPOptions[i].Selected) {
+                switch ($scope.XPOptions[i].Type) {
+                    case 'Careers:
+                        break;
+                    case 'OccupationalSkills':
+                        break;
+                    case 'Spells':
+                        break;
+                    case 'Abilities':
+                        break;
+                    case 'Connections':
+                        break;
+                    case 'MilitarySkills':
+                        break;
+                    case 'Stats':
+                        break;
+                    case 'ArchetypeBenefits':
+                        break;
+                }
+            }
         }
 
         $scope.CurrentXPEdit = null;

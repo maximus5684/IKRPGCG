@@ -175,6 +175,7 @@ careerArr = [
     {
         Name: "Aristocrat",
         StartingCareerOnly: true,
+        ReqRaces: ['Human'],
         StartingAbilities: [{ Name: 'Good Breeding' }, { Name: 'Language', Type: 'Generic', Property: 'any' }, { Name: 'Privilege' }],
         StartingConnections: [{ Name: 'nobility', Type: 'Generic' }],
         StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }],
@@ -408,6 +409,7 @@ careerArr = [
     {
         Name: "Fell Caller",
         StartingCareerOnly: false,
+        ReqRaces: ['Trollkin'],
         StartingAbilities: [{ Name: 'Fell Call: Signal Call' }, { Name: 'Fell Call: Sonic Blast' }],
         StartingOccupationalSkills: 
         [
@@ -659,6 +661,7 @@ careerArr = [
     {
         Name: "Iron Fang",
         StartingCareerOnly: true,
+        ReqRaces: ['Human'],
         StartingAbilities: [{ Name: 'Fast Rearm', Type: 'Specific', Property: 'Blasting Pike' }, { Name: 'Specialization', Type: 'Specific', Property: 'Blasting Pike' }],
         StartingConnections: [{ Name: 'Khadoran military', Type: 'Specific' }],
         StartingMilitarySkills: [{ Name: 'Great Weapon', Level: 1 }, { Name: 'Sheild', Level: 1 }],
@@ -689,6 +692,7 @@ careerArr = [
     {
         Name: "Knight",
         StartingCareerOnly: false,
+        ReqRaces: ['Human', 'Iosan'],
         StartingAbilities: [{ Name: 'Cleave' }, { Name: 'Defender' }],
         StartingConnections: [{ Name: 'knightly order', Type: 'Generic' }],
         StartingMilitarySkills: [{ Name: 'Great Weapon', Level: 1 }, { Name: 'Hand Weapon', Level: 1 }, { Name: 'Sheild', Level: 1 }],
@@ -739,6 +743,7 @@ careerArr = [
     {
         Name: "Mage Hunter",
         StartingCareerOnly: false,
+        ReqRaces: ['Iosan'],
         StartingAbilities: [{ Name: 'Arcane Assassin' }, { Name: 'Iron Will' }],
         StartingConnections: [{ Name: 'Retribution of Scyrah', Type: 'Specific' }],
         StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }],
@@ -966,6 +971,7 @@ careerArr = [
     {
         Name: "Priest of Menoth",
         StartingCareerOnly: false,
+        ReqRaces: ['Human'],
         ReqArchetype: 'Gifted',
         StartingAbilities: [{ Name: 'Dispel' }],
         StartingConnections: [{ Name: 'Menite temple', Type: 'Generic' }],
@@ -1028,6 +1034,7 @@ careerArr = [
     {
         Name: "Priest of Morrow",
         StartingCareerOnly: false,
+        ReqRaces: ['Human'],
         ReqArchetype: 'Gifted',
         StartingAbilities: [{ Name: 'Empower' }],
         StartingConnections: [{ Name: 'Morrowan church', Type: 'Generic' }],
@@ -1523,6 +1530,7 @@ careerArr = [
     {
         Name: "Stormblade",
         StartingCareerOnly: true,
+        ReqRaces: ['Human'],
         StartingAbilities: [{ Name: 'Blaster' }, { Name: 'Specialization', Type: 'Specific', Property: 'Storm Glaive' }],
         StartingConnections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
         StartingMilitarySkills: [{ Name: 'Great Weapon', Level: 1 }],
@@ -1616,6 +1624,7 @@ careerArr = [
     {
         Name: "Trencher",
         StartingCareerOnly: true,
+        ReqRaces: ['Human', 'Ogrun', 'Trollkin'],
         StartingAbilities: [{ Name: 'Bayonet Charge' }, { Name: 'Dig In' }],
         StartingConnections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
         StartingMilitarySkills: [{ Name: 'Great Weapon', Level: 1 }, { Name: 'Rifle', Level: 1 }, { Name: 'Thrown Weapon', Level: 1 }],

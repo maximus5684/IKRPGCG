@@ -21,8 +21,7 @@ raceArr =
         StatIncreaseChoiceOptions: ['PHY','AGL','INT'],
         Height: { M: { Min: 61, Max: 75 }, F: { Min: 55, Max: 69 } },
         Weight: { M: { Min: 110, Max: 200 }, F: { Min: 90, Max: 170 } },
-        AdditionalChars: ['Exceptional Potential - Humans are extremely adaptable and talented individuals. Your character begins the game with your choice of +1 PHY, +1 AGL, or +1 INT. Note this bonus does not increase the character\'s racial maximum, just the starting value.'],
-        ResCareers: ['Fell Caller','Mage Hunter']
+        AdditionalChars: ['Exceptional Potential - Humans are extremely adaptable and talented individuals. Your character begins the game with your choice of +1 PHY, +1 AGL, or +1 INT. Note this bonus does not increase the character\'s racial maximum, just the starting value.']
     },
     { 
         Name:'Dwarf',
@@ -50,18 +49,6 @@ raceArr =
         [
             'Load Bearing - Dwarf Characters start the game with the Load Bearing ability. This ability is in addition to any others the character gains from his starting careers.',
             'Connections (clan) - Dwarf characters begin with Connection (dwarven clan). This is in addition to any other connections the character starts with.'
-        ],
-        ResCareers:
-        [
-            'Aristocrat',
-            'Fell Caller',
-            'Iron Fang',
-            'Knight',
-            'Mage Hunter',
-            'Priest of Morrow',
-            'Priest of Menoth',
-            'Stormblade',
-            'Trencher'
         ]
     },
     {
@@ -92,18 +79,6 @@ raceArr =
             'Deft - Whether or not they have the Skilled archetype, gobber characters start the game with the Deft archetype benefit. This benefit is in addition to any other archetype benefits the character starts with.',
             'Gobbers have a racial modifier of +1 DEF.',
             'Gobbers cannot use great weapons or rifles.'
-        ],
-        ResCareers:
-        [
-            'Aristocrat',
-            'Fell Caller',
-            'Iron Fang',
-            'Knight',
-            'Mage Hunter',
-            'Priest of Morrow',
-            'Priest of Menoth',
-            'Stormblade',
-            'Trencher'
         ]
     },
     {
@@ -126,17 +101,7 @@ raceArr =
         StatIncreaseChoices: 0,
         Height: { M: { Min: 65, Max: 75 }, F: { Min: 60, Max: 70 } },
         Weight: { M: { Min: 125, Max: 180 }, F: { Min: 85, Max: 140 } },
-        AdditionalChars: ['Iosan characters begin the game with an additional ability selected from one of their careers.'],
-        ResCareers:
-        [
-            'Aristocrat',
-            'Fell Caller',
-            'Iron Fang',
-            'Priest of Morrow',
-            'Priest of Menoth',
-            'Stormblade',
-            'Trencher'
-        ]
+        AdditionalChars: ['Iosan characters begin the game with an additional ability selected from one of their careers.']
     },
     {
         Name:'Nyss',
@@ -168,22 +133,6 @@ raceArr =
             'Nyss gain +1 on Initiative and PER rolls.',
             'Nyss gain +3 ARM against cold damage.',
             'Nyss suffer -3 ARM against fire damage.'
-        ],
-        ResCareers:
-        [
-            'Aristocrat',
-            'Fell Caller',
-            'Iron Fang',
-            'Knight',
-            'Mage Hunter',
-            'Priest of Morrow',
-            'Priest of Menoth',
-            'Stormblade',
-            'Trencher',
-            'Arcane Mechanik',
-            'Arcanist',
-            'Gun Mage',
-            'Warcaster'
         ]
     },
     {
@@ -207,18 +156,7 @@ raceArr =
         StatIncreaseChoices: 0,
         Height: { M: { Min: 90, Max: 105 }, F: { Min: 82, Max: 97 } },
         Weight: { M: { Min: 450, Max: 500 }, F: { Min: 330, Max: 380 } },
-        AdditionalChars: ['Huge Stature - An ogrun can wield a weapon in one hand that usually requires two hands to wield but he suffers -2 on attack rolls with that weapon.'],
-        ResCareers:
-        [
-            'Aristocrat',
-            'Fell Caller',
-            'Iron Fang',
-            'Knight',
-            'Mage Hunter',
-            'Priest of Morrow',
-            'Priest of Menoth',
-            'Stormblade'
-        ]
+        AdditionalChars: ['Huge Stature - An ogrun can wield a weapon in one hand that usually requires two hands to wield but he suffers -2 on attack rolls with that weapon.']
     },
     {
         Name:'Trollkin',
@@ -247,19 +185,6 @@ raceArr =
             'Trollkin with the gifted archetype cannot have the Arcane Mechanik, Arcanist, or Warcaster careers.',
             'Tough - Whether or not they have the Mighty archetype, trollkin characters start the game with the Tough archetype benefit. This is in addition to any other archetype benefits selected for the character.',
             'Feat: Revitalize - Whether or not they have the Mighty archetype, trollkin characters start the game with the Feat: Revitalize archetype benefit. This is in addition to any other archetype benefits selected for the character.'
-        ],
-        ResCareers:
-        [
-            'Aristocrat',
-            'Iron Fang',
-            'Knight',
-            'Mage Hunter',
-            'Priest of Morrow',
-            'Priest of Menoth',
-            'Stormblade',
-            'Arcane Mechanik',
-            'Arcanist',
-            'Warcaster'
         ]
     }
 ];
