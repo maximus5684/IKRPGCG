@@ -71,7 +71,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                                     <div class="control-group">
                                         <label class="control-label" for="XPOptionChoice">{{XPChoice.Label}}:</label>
                                         <div class="controls">
-                                            <select id="XPOptionChoice" ng-options="CListItem.Name for CListItem in XPChoice.ChoicesList" ng-model="XPChoice.Selected" ng-change="selectXPChoice($parent.$index, $index)">
+                                            <select id="XPOptionChoice" ng-options="CListItem as getXPChoiceName(CListItem) for CListItem in XPChoice.ChoicesList" ng-model="XPChoice.Selected" ng-change="selectXPChoice($parent.$index, $index)">
                                                 <option value="">...</option>
                                             </select>
                                             <span ng-hide="XPChoice.Selected !== null" class="label label-warning">Required</span>

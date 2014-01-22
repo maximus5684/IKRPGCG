@@ -447,16 +447,16 @@ function XPManCtrl($scope, $http) {
                             for (var i3 = 0; i3 < $scope.Career1.OccupationalSkills.length; i3++) {
                                 if ($scope.Career1.OccupationalSkills[i3].Name == 'General Skills') {
                                     for (var i4 = 0; i4 < $scope.GeneralSkills.length; i4++) {
-                                        var curLevel = getOccupationalSkillLevel($scope.GeneralSkills[i4].Name);
+                                        var curLevel = getOccupationalSkillLevel($scope.GeneralSkills[i4]);
 
-                                        if ((curLevel + 1) <= $scope.Career1.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                        if ((curLevel + 1) <= $scope.Career1.OccupationalSkills[i3].Level && (curLevel + 1) <= maxSkillLevel) {
                                             tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
                                         }
                                     }
                                 } else {
-                                    var curLevel = getOccupationalSkillLevel($scope.Career1.OccupationalSkills[i3].Name);
+                                    var curLevel = getOccupationalSkillLevel($scope.Career1.OccupationalSkills[i3]);
 
-                                    if ((curLevel + 1) <= $scope.Career1.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
+                                    if ((curLevel + 1) <= $scope.Career1.OccupationalSkills[i3].Level && (curLevel + 1) <= maxSkillLevel) {
                                         tempChoice.ChoicesList.push($scope.Career1.OccupationalSkills[i3]);
                                     }
                                 }
@@ -474,7 +474,7 @@ function XPManCtrl($scope, $http) {
                                         }
 
                                         if (!found) {
-                                            var curLevel = getOccupationalSkillLevel($scope.GeneralSkills[i4].Name);
+                                            var curLevel = getOccupationalSkillLevel($scope.GeneralSkills[i4]);
 
                                             if ((curLevel + 1) <= $scope.Career2.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
                                                 tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
@@ -491,7 +491,7 @@ function XPManCtrl($scope, $http) {
                                     }
 
                                     if (!found) {
-                                        var curLevel = getOccupationalSkillLevel($scope.Career2.OccupationalSkills[i3].Name);
+                                        var curLevel = getOccupationalSkillLevel($scope.Career2.OccupationalSkills[i3]);
 
                                         if ((curLevel + 1) <= $scope.Career2.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
                                             tempChoice.ChoicesList.push($scope.Career2.OccupationalSkills[i3]);
@@ -512,7 +512,7 @@ function XPManCtrl($scope, $http) {
                                         }
 
                                         if (!found) {
-                                            var curLevel = getOccupationalSkillLevel($scope.GeneralSkills[i4].Name);
+                                            var curLevel = getOccupationalSkillLevel($scope.GeneralSkills[i4]);
 
                                             if ((curLevel + 1) <= $scope.Career3.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
                                                 tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
@@ -530,7 +530,7 @@ function XPManCtrl($scope, $http) {
                                         }
 
                                         if (!found) {
-                                            var curLevel = getOccupationalSkillLevel($scope.Career3.OccupationalSkills[i3].Name);
+                                            var curLevel = getOccupationalSkillLevel($scope.Career3.OccupationalSkills[i3]);
 
                                             if ((curLevel + 1) <= $scope.Career3.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
                                                 tempChoice.ChoicesList.push($scope.Career3.OccupationalSkills[i3]);
@@ -552,7 +552,7 @@ function XPManCtrl($scope, $http) {
                                         }
 
                                         if (!found) {
-                                            var curLevel = getOccupationalSkillLevel($scope.GeneralSkills[i4].Name);
+                                            var curLevel = getOccupationalSkillLevel($scope.GeneralSkills[i4]);
 
                                             if ((curLevel + 1) <= $scope.Career4.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
                                                 tempChoice.ChoicesList.push($scope.GeneralSkills[i4]);
@@ -570,7 +570,7 @@ function XPManCtrl($scope, $http) {
                                         }
 
                                         if (!found) {
-                                            var curLevel = getOccupationalSkillLevel($scope.Career4.OccupationalSkills[i3].Name);
+                                            var curLevel = getOccupationalSkillLevel($scope.Career4.OccupationalSkills[i3]);
 
                                             if ((curLevel + 1) <= $scope.Career4.OccupationalSkills[i3].Level && (curLevel +1) <= maxSkillLevel) {
                                                 tempChoice.ChoicesList.push($scope.Career4.OccupationalSkills[i3]);
@@ -579,15 +579,6 @@ function XPManCtrl($scope, $http) {
                                     }
                                 }
                             }
-
-                            // TODO: Find a way to do this in the DDL rather than here.
-                            //for (var i3 = 0; i3 < tempChoice.ChoicesList.length; i3++) {
-                            //    if ('Type' in tempChoice.ChoicesList[i3]) {
-                            //        if (tempChoice.ChoicesList[i3].Type == 'Specific') {
-                            //            tempChoice.ChoicesList[i3].Name += ' (' + tempChoice.ChoicesList[i3].Property + ')';
-                            //        }
-                            //    }
-                            //}
 
                             tempChoice.ChoicesList.sort(byName);
                             
@@ -897,7 +888,7 @@ function XPManCtrl($scope, $http) {
         }
 
         // Activate the modal dialog.
-        $('#advEdit').modal();
+        $('#advEdit').modal({ backdrop: 'static' });
     }
 
     $scope.selectXPOption = function() {
@@ -908,12 +899,20 @@ function XPManCtrl($scope, $http) {
                 $scope.XPOptions[i].Choices[i1].Selected = null;
 
                 if ('Property' in $scope.XPOptions[i].Choices[i1]) {
-                    $scope.XPOptions[i].Choices[i1].Property = null;
+                    if ('Type' in $scope.XPOptions[i].Choices[i1] && $scope.XPOptions[i].Choices[i1].Type != 'Generic') {
+                        // Do nothing. This is bad code, I know. Don't judge me.
+                    } else {
+                        $scope.XPOptions[i].Choices[i1].Property = null;
+                    }
                 }
 
                 for (var i2 = 0; i2 < $scope.XPOptions[i].Choices[i1].ChoicesList.length; i2++) {
                     if ('Property' in $scope.XPOptions[i].Choices[i1].ChoicesList[i2]) {
-                        $scope.XPOptions[i].Choices[i1].ChoicesList[i2].Property = null;
+                        if ('Type' in $scope.XPOptions[i].Choices[i1].ChoicesList[i2] && $scope.XPOptionx[i].Choices[i1].ChoicesList[i2].Type != 'Generic') {
+                            // Do nothing. See above.
+                        } else {
+                            $scope.XPOptions[i].Choices[i1].ChociesList[i2].Property = null;
+                        }
                     }
                 }
             }
@@ -925,16 +924,32 @@ function XPManCtrl($scope, $http) {
         }
     }
 
+    $scope.getXPChoiceName = function(choice) {
+        if ('Type' in choice && choice.Type != 'Generic') {
+            return choice.Name + " (" + choice.Property + ")";
+        } else {
+            return choice.Name;
+        }
+    }
+
     $scope.selectXPChoice = function(iOption, iChoice) {
         var choice = $scope.XPOptions[iOption].Choices[iChoice];
 
         if ('Property' in choice) {
-            choice.Property = null;
+            if ('Type' in choice && choice.Type != 'Generic') {
+                // Do nothing. I know, I know. See above.
+            } else {
+                choice.Property = null;
+            }
         }
 
         for (var i = 0; i < choice.ChoicesList.length; i++) {
             if ('Property' in choice.ChoicesList[i]) {
-                choice.ChoicesList[i].Property = null;
+                if ('Type' in choice.ChoicesList[i] && choice.ChoicesList[i].Type != 'Generic') {
+                    // Do nothing. Again, see above.
+                } else {
+                    choice.ChoicesList[i].Property = null;
+                }
             }
         }
     }
@@ -992,7 +1007,7 @@ function XPManCtrl($scope, $http) {
         for (var i = 0; i < $scope.XPOptions.length; i++) {
             if ($scope.XPOptions[i].Selected) {
                 switch ($scope.XPOptions[i].Type) {
-                    case 'Careers:
+                    case 'Careers':
                         break;
                     case 'OccupationalSkills':
                         break;
@@ -1065,22 +1080,56 @@ function XPManCtrl($scope, $http) {
         return nextAdvanceXP;
     }
 
-    function getMilitarySkillLevel(mSkill) {
+    function getMilitarySkillLevel(mSkillName) {
         var mSkillTotal = 0;
 
         for (var i = 0; i < $scope.Character.MilitarySkills.length; i++) {
-            if (mSkill = $scope.Character.MilitarySkills[i].Name) {
+            if (mSkillName == $scope.Character.MilitarySkills[i].Name) {
                 mSkillTotal += $scope.Character.MilitarySkills[i].Level;
             }
         }
 
         for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
             for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
-                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'MilitarySkill' && $scope.Character.XPAdvances[i].AdvanceParts[i1].Name == mSkill) {
+                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'MilitarySkill' && $scope.Character.XPAdvances[i].AdvanceParts[i1].Name == mSkillName) {
                     mSkillTotal += 1;
                 }
             }
         }
+
+        return mSkillTotal;
+    }
+
+    function getOccupationalSkillLevel(oSkill) {
+        var oSkillTotal = 0;
+
+        for (var i = 0; i < $scope.Character.OccupationalSkills.length; i++) {
+            if (oSkill.Name == $scope.Character.OccupationalSkills[i].Name) {
+                if ('Type' in oSkill) {
+                    if (oSkill.Type != 'Generic' && oSkill.Property == $scope.Character.OccupationalSkills[i].Property) {
+                        oSkillTotal += $scope.Character.OccupationalSkills[i].Level;
+                    }
+                } else {
+                    oSkillTotal += $scope.Character.OccupationalSkills[i].Level;
+                }
+            }
+        }
+
+        for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+            for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'OccupationalSkill' && $scope.Character.XPAdvances[i].AdvanceParts[i1].Name == oSkill.Name) {
+                    if ('Type' in oSkill) {
+                        if (oSkill.Type != 'Generic' && oSkill.Property == $scope.Character.XPAdvances[i].AdvanceParts[i1].Property) {
+                            oSkillTotal += 1;
+                        }
+                    } else {
+                        oSkillTotal += 1;
+                    }
+                }
+            }
+        }
+
+        return oSkillTotal;
     }
 
     function getAbilities() {
