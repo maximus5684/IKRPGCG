@@ -54,6 +54,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <form ng-submit="submitAdvChange()" onsubmit="javascript:$('#advEdit').modal('hide')">
                     <div class="modal-header">
                         <h3>Edit XP Advancement</h3>
+                        {{CurrentXPEdit}}
                     </div>
                     <div class="modal-body">
                         <div class="form-horizontal">
@@ -99,7 +100,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn" data-dismiss="modal" ng-click="clearXPEdit()">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <button type="submit" ng-disabled="submitAdvChangeCheck()" class="btn btn-primary">Edit</button>
                     </div>
                 </form>
             </div>

@@ -996,8 +996,32 @@ function XPManCtrl($scope, $http) {
         $scope.CurrentXPEdit = null;
     }
 
+    $scope.submitAdvChangeCheck = function() {
+        var disableSubmit = false;
+
+        for (var i = 0; i < $scope.XPOptions.length; i++) {
+            if ($scope.XPOptions[i].Selected) {
+                for (var i1 = 0; i1 < $scope.XPOptions[i].Choices.length; i1++) {
+                    if ($scope.XPOptions[i].Choices[i1].Selected === null) {
+                        disableSubmit = true;
+                    } else {
+                        if ('Property' in $scope.XPOptions[i].Choices[i1].Selected) {
+                            if ('Type' in $scope.XPOptions[i].Choices[i1].Selected && $scope.XPOptions[i].Choices[i1].Selected.Type != 'Specific' && ($scope.XPOptions[i].Choices[i1].Property === null || $scope.XPOptions[i].Choices[i1].Property == '')) {
+                                disableSubmit = true;
+                            } else if ('PropertyType' in $scope.XPOptions[i].Choices[i1].Selected && $scope.XPOptions[i].Choices[i1].Property === null) {
+                                disableSubmit = true;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return disableSubmit;
+    }
+
     $scope.submitAdvChange = function() {
-        if ($scope.CurrentXPEdit = getLastAdvanceXP()) {
+        if ($scope.CurrentXPEdit == getLastAdvanceXP()) {
             $scope.Character.XPAdvances.pop();
         }
         
@@ -1006,27 +1030,23 @@ function XPManCtrl($scope, $http) {
 
         for (var i = 0; i < $scope.XPOptions.length; i++) {
             if ($scope.XPOptions[i].Selected) {
-                switch ($scope.XPOptions[i].Type) {
-                    case 'Careers':
-                        break;
-                    case 'OccupationalSkills':
-                        break;
-                    case 'Spells':
-                        break;
-                    case 'Abilities':
-                        break;
-                    case 'Connections':
-                        break;
-                    case 'MilitarySkills':
-                        break;
-                    case 'Stats':
-                        break;
-                    case 'ArchetypeBenefits':
-                        break;
+                for (var i1 = 0; i1 < $scope.XPOptions[i].Choices.length; i1++) {
+                    var tempAdvanceChoice = { Type: $scope.XPOptions[i].Choices[i1].Type, Selected: $scope.XPOptions[i].Choices[i1].Selected.Name };
+
+                    if ($scope.XPOptions[i].Choices[i1].Property !== null && $scope.XPOptions[i].Choices[i1].Property != '') {
+                        tempAdvanceChoice.Property = $scope.XPOptions[i].Choices[i1].Property;
+
+                        if ('PropertyType' in $scope.XPOptions[i].Choices[i1].Selected) {
+                            tempAdvanceChoice.PropertyType = $scope.XPOptions[i].Choices[i1].Selected.PropertyType;
+                        }
+                    }
+
+                    tempAdvance.AdvanceParts.push(tempAdvanceChoice);
                 }
             }
         }
 
+        $scope.Character.XPAdvances.push(tempAdvance);
         $scope.CurrentXPEdit = null;
     }
 
