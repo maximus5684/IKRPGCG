@@ -34,7 +34,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <td class="center">{{Character.Status}}</td>
                         <td class="center"><a ng-href="{{editUrl($index)}}"><i class="icon-pencil"></i></a></td>
                         <td class="center">
-                            <a class="icon-remove-sign" ng-click="DeleteCharAsk($index)" data-toggle="modal" data-target="#deleteChar"></a>
+                            <a class="icon-remove-sign" ng-click="DeleteCharAsk($index)"></a>
                         </td>
                     </tr>
                 </tbody>

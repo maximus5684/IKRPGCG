@@ -26,6 +26,7 @@ function HomeCtrl($scope, $http) {
 
     $scope.DeleteCharAsk = function(charIndex) {
         $scope.CharToDelete = $scope.Characters[charIndex];
+        $('#deleteChar').modal();
     };
     
     $scope.DeleteChar = function() {
