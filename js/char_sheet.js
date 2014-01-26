@@ -123,15 +123,10 @@ function CSCtrl($scope, $http) {
     $scope.CharSpells = [];
 
     // Example: { Name: "Test Armor", Description: "Blah", SPD: 0, DEF: 0, ARM: 0 }
+    // TODO: Figure out gear.
     $scope.Armor = [];
-
-    // Example: {} TODO: Design data structure.
     $scope.MeleeWeapons = [];
-
-    // Example: {} TODO: Design data structure.
     $scope.RangedWeapons = [];
-
-    // Example: { Name: "Test Gear", Benifit: "Test Benifit" }
     $scope.MiscGear = [];
 
     /////////////////////////////////////////////////////////////////////
@@ -214,6 +209,24 @@ function CSCtrl($scope, $http) {
 
             if ($scope.Character.Career2 == $scope.Careers[i].Name) {
                 $scope.Career2 = $scope.Careers[i];
+            }
+        }
+
+        if ('XPAdvances' in $scope.Character) {
+            for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+                for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                    if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'Careers') {
+                        for (var i2 = 0; i2 < $scope.Careers.length; i2++) {
+                            if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == $scope.Careers[i2].Name) {
+                                if ($scope.Career3 === null) {
+                                    $scope.Career3 = $scope.Careers[i2];
+                                } else {
+                                    $scope.Career4 = $scope.Careers[i2];
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -306,6 +319,17 @@ function CSCtrl($scope, $http) {
         $scope.Stats[$scope.Character.AP2Stat].Current += 1;
         $scope.Stats[$scope.Character.AP3Stat].Current += 1;
 
+        // Add stat increases from XP advances.
+        if ('XPAdvances' in $scope.Character) {
+            for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+                for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                    if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'Stats') {
+                        $scope.Stats[$scope.Character.XPAdvances[i].AdvanceParts[i1].Selected].Current += 1;
+                    }
+                }
+            }
+        }
+
         // Disable damage boxes.
         var numToDisable = 12 - $scope.Stats.PHY.Current;
 
@@ -334,6 +358,36 @@ function CSCtrl($scope, $http) {
                 }
             }
         }
+
+        if ('XPAdvances' in $scope.Character) {
+            for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+                for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                    if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'MilitarySkills') {
+                        var foundIndex = -1;
+
+                        for (var i2 = 0; i2 < $scope.CharMSkills.length; i2++) {
+                            if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == $scope.CharMSkills[i2].Name) {
+                                foundIndex = i2;
+                            }
+                        }
+
+                        if (foundIndex != -1) {
+                            $scope.CharMSkills[foundIndex].Level += 1;
+                        } else {
+                            for (var i2 = 0; i2 < $scope.MilitarySkills.length; i2++) {
+                                if ($scope.MilitarySkills[i2].Name == $scope.Character.XPAdvances[i].AdvanceParts[i1].Selected) {
+                                    var tempMSkill = jQuery.extend(true, {}, $scope.MilitarySkills[i2]);
+                                    tempMSkill.Level = 1;
+                                    $scope.CharMSkills.push(tempMSkill);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        $scope.CharMSkills.sort(byName);
         
         // Populate occupational skills list.
         for (var i = 0; i < $scope.Character.OccupationalSkills.length; i++) {
@@ -390,6 +444,102 @@ function CSCtrl($scope, $http) {
             }
         }
 
+        if ('XPAdvances' in $scope.Character) {
+            for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+                for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                    if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'OccupationalSkills') {
+                        var foundIndex = -1;
+
+                        for (var i2 = 0; i2 < $scope.CharOSkills.length; i2++) {
+                            if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == $scope.CharOSkills[i2].Name) {
+                                if ('Property' in $scope.CharOSkills[i2] && 'Property' in $scope.Character.XPAdvances[i].AdvanceParts[i1]) {
+                                    if ($scope.CharOSkills[i2].Property == $scope.Character.XPAdvances[i].AdvanceParts[i1].Property) {
+                                        foundIndex = i2;
+                                    }
+                                } else {
+                                    foundIndex = i2;
+                                }
+                            }
+                        }
+
+                        if (foundIndex != -1) {
+                            $scope.CharOSkills[foundIndex].Level += 1;
+                        } else {
+                            var found = false;
+
+                            for (var i2 = 0; i2 < $scope.OccupationalSkills.length; i2++) {
+                                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == $scope.OccupationalSkills[i2].Name) {
+                                    found = true;
+
+                                    var tempOSkill = jQuery.extend(true, {}, $scope.OccupationalSkills[i2]);
+
+                                    tempOSkill.Level = 1;
+
+                                    if ('Property' in $scope.Character.XPAdvances[i].AdvanceParts[i1]) {
+                                        tempOSkill.Property = $scope.Character.XPAdvances[i].AdvanceParts[i1].Property;
+                                    }
+
+                                    if (tempOSkill.BaseStat == 'Social') {
+                                        tempOSkill.StatsList = [];
+                                        tempOSkill.StatsList.push('PHY');
+                                        tempOSkill.StatsList.push('SPD');
+                                        tempOSkill.StatsList.push('STR');
+                                        tempOSkill.StatsList.push('AGL');
+                                        tempOSkill.StatsList.push('PRW');
+                                        tempOSkill.StatsList.push('POI');
+                                        tempOSkill.StatsList.push('INT');
+
+                                        if ($scope.Character.Archetype == 'Gifted') {
+                                            tempOSkill.StatsList.push('ARC');
+                                        }
+
+                                        tempOSkill.SocialStat = null;
+                                        tempOSkill.StatsList.push('PER');
+                                    }
+
+                                    $scope.CharOSkills.push(tempOSkill);
+                                }
+                            }
+
+                            if (!found) {
+                                for (var i2 = 0; i2 < $scope.GeneralSkills.length; i2++) {
+                                    if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == $scope.GeneralSkills[i2].Name) {
+                                        var tempGSkill = jQuery.extend(true, {}, $scope.GeneralSkills[i2]);
+
+                                        tempGSkill.Level = 1;
+
+                                        if ('Property' in $scope.Character.XPAdvances[i].AdvanceParts[i1]) {
+                                            tempGSkill.Property = $scope.Character.XPAdvances[i].AdvanceParts[i1].Property;
+                                        }
+
+                                        if (tempGSkill.BaseStat == 'Social') {
+                                            tempGSkill.StatsList = [];
+                                            tempGSkill.StatsList.push('PHY');
+                                            tempGSkill.StatsList.push('SPD');
+                                            tempGSkill.StatsList.push('STR');
+                                            tempGSkill.StatsList.push('AGL');
+                                            tempGSkill.StatsList.push('PRW');
+                                            tempGSkill.StatsList.push('POI');
+                                            tempGSkill.StatsList.push('INT');
+
+                                            if ($scope.Character.Archetype == 'Gifted') {
+                                                tempGSkill.StatsList.push('ARC');
+                                            }
+
+                                            tempGSkill.SocialStat = null;
+                                            tempGSkill.StatsList.push('PER');
+                                        }
+
+                                        $scope.CharOSkills.push(tempGSkill);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
         $scope.CharOSkills.sort(byName);
 
         // Populate benefits list.
@@ -399,6 +549,28 @@ function CSCtrl($scope, $http) {
                     if ($scope.Character.Benefits[i].Name == $scope.Archetypes[i1].Benefits[i2].Name) {
                         var tempBen = jQuery.extend(true, {}, $scope.Character.Benefits[i], $scope.Archetypes[i1].Benefits[i2]);
                         $scope.CharBenefits.push(tempBen);
+                    }
+                }
+            }
+        }
+
+        if ('XPAdvances' in $scope.Character) {
+            for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+                for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                    if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'ArchetypeBenefits') {
+                        for (var i2 = 0; i2 < $scope.Character.Archetypes.length; i2++) {
+                            for (var i3 = 0; i3 < $scope.Character.Archetypes[i2].Benefits.length; i3++) {
+                                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == $scope.Character.Archetypes[i2].Benefits[i3].Name) {
+                                    var tempBen = jQuery.extend(true, {}, $scope.Archetypes[i2].Benefits[i3]);
+                                    
+                                    if ('Property' in $scope.Character.XPAdvances[i].AdvanceParts[i1]) {
+                                        tempBen.Property = $scope.Character.XPAdvances[i].AdvanceParts[i1].Property;
+                                    }
+
+                                    $scope.CharBenefits.push(tempBen);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -416,6 +588,28 @@ function CSCtrl($scope, $http) {
             }
         }
 
+        if ('XPAdvances' in $scope.Character) {
+            for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+                for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                    if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'Abilities') {
+                        for (var i2 = 0; i2 < $scope.Abilities.length; i2++) {
+                            if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == $scope.Abilities[i2].Name) {
+                                var tempAbil = jQuery.extend(true, {}, $scope.Abilities[i2]);
+
+                                if ('Property' in $scope.Character.XPAdvances[i].AdvanceParts[i1]) {
+                                    tempAbil.Property = $scope.Character.XPAdvances[i].AdvanceParts[i1].Property;
+                                }
+
+                                $scope.CharAbilities.push(tempAbil);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        $scope.CharAbilities.sort(byName);
+
         // Populate spells list.
         if ('Spells' in $scope.Character) {
             $scope.HasSpells = true;
@@ -427,6 +621,34 @@ function CSCtrl($scope, $http) {
                 }
             }
         }
+
+        for (var i = 0; i < $scope.CharBenefits.length; i++) {
+            if ('PropertyType' in $scope.CharBenefits[i]) {
+                if ($scope.CharBenefits[i].PropertyType == 'Spell') {
+                    for (var i1 = 0; i1 < $scope.Spells.length; i1++) {
+                        if ($scope.CharBenefits[i].Property == $scope.Spells[i1].Name) {
+                            $scope.CharSpells.push($scope.Spells[i1]);
+                        }
+                    }
+                }
+            }
+        }
+
+        if ('XPAdvances' in $scope.Character) {
+            for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+                for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                    if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'Spells') {
+                        for (var i2 = 0; i2 < $scope.Spells.length; i2++) {
+                            if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == $scope.Spells[i2].Name) {
+                                $scope.CharSpells.push($scope.Spells[i2]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        $scope.CharSpells.sort(byName);
     }
 
     $scope.xpLevel = function(xp) {
