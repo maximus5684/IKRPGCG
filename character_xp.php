@@ -20,7 +20,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group">
                     <label class="control-label" for="CharXP">Character XP:</label>
                     <div class="controls">
-                        <input type="number" id="XP" ng-change="changeXP()" ng-model="Character.XP" min="0" max="150" style="width: 40px">
+                        <input type="number" id="XP" ng-keyup="changeXP()" ng-model="Character.XP" min="{{XPMin}}" max="{{XPMax}}" style="width: 40px">
                         <button class="btn" style="float: right" ng-click="cancelConfirm()">Cancel</button>
                     </div>
                 </div>
@@ -54,7 +54,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <form ng-submit="submitAdvChange()" onsubmit="javascript:$('#advEdit').modal('hide')">
                     <div class="modal-header">
                         <h3>Edit XP Advancement</h3>
-                        {{CurrentXPEdit}}
                     </div>
                     <div class="modal-body">
                         <div class="form-horizontal">

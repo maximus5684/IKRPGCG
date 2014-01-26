@@ -10,6 +10,8 @@ function XPManCtrl($scope, $http) {
     $scope.CharUrl = 'ajax/characters.php';
     $scope.Error = null;
     $scope.CharacterID = null;
+    $scope.XPMin = '0';
+    $scope.XPMax = '150';
     $scope.Character = null;
     $scope.Archetype = null;
     $scope.Race = null;
@@ -18,18 +20,6 @@ function XPManCtrl($scope, $http) {
     $scope.Career3 = null;
     $scope.Career4 = null;
     $scope.Level = 'Hero';
-    $scope.Stats =
-    {
-        PHY: { Current: 0 },
-        SPD: { Current: 0 },
-        STR: { Current: 0 },
-        AGL: { Current: 0 },
-        PRW: { Current: 0 },
-        POI: { Current: 0 },
-        INT: { Current: 0 },
-        ARC: { Current: 0 },
-        PER: { Current: 0 }
-    };
     $scope.CurrentXPEdit = null;
     $scope.HasXPOptions = false;
     $scope.XPOptionsList = [];
@@ -109,57 +99,6 @@ function XPManCtrl($scope, $http) {
                 $scope.Career2 = $scope.Careers[i];
             }
         }
-
-        // Load basic stats for current level.
-        $scope.Stats.PHY.Current = $scope.Race.Stats.PHY.Starting;
-        $scope.Stats.SPD.Current = $scope.Race.Stats.SPD.Starting;
-        $scope.Stats.STR.Current = $scope.Race.Stats.STR.Starting;
-        $scope.Stats.AGL.Current = $scope.Race.Stats.AGL.Starting;
-        $scope.Stats.PRW.Current = $scope.Race.Stats.PRW.Starting;
-        $scope.Stats.POI.Current = $scope.Race.Stats.POI.Starting;
-        $scope.Stats.INT.Current = $scope.Race.Stats.INT.Starting;
-
-        if ($scope.Archetype.Name == 'Gifted') {
-            if ($scope.Character.ArcaneTradition == 'Focuser') {
-                $scope.Stats.ARC.Current = 2;
-            } else if ($scope.Character.ArcaneTradition == 'Will Weaver') {
-                $scope.Stats.ARC.Current = 3;
-            }
-        } else {
-            $scope.Stats.ARC.Current = '-';
-        }
-
-        $scope.Stats.PER.Current = $scope.Race.Stats.PER.Starting;
-
-        // If race grants stat increases, add them.
-        if ('StatIncreases' in $scope.Race) {
-            for (var i = 0; i < $scope.Race.StatIncreases.length; i++) {
-                $scope.Stats[$scope.Race.StatIncreases[i][0]].Current += $scope.Race.StatIncreases[i][1];
-            }
-        }
-
-        // If race grants choseable stat increases add them.
-        if ('RacialStatIncreaseChosen' in $scope.Character) {
-            $scope.Stats[$scope.Character.RacialStatIncreaseChosen].Current += 1;
-        }
-
-        // If careers grant stat increases add them.
-        if ('StatIncreases' in $scope.Career1) {
-            for (var i = 0; i < $scope.Career1.StatIncreases.length; i++) {
-                $scope.Stats[$scope.Career1.StatIncreases[i][0]].Current += $scope.Career1.StatIncreases[i][1];
-            }
-        }
-
-        if ('StatIncreases' in $scope.Career2) {
-            for (var i = 0; i < $scope.Career2.StatIncreases.length; i++) {
-                $scope.Stats[$scope.Career2.StatIncreases[i][0]].Current += $scope.Career2.StatIncreases[i][1];
-            }
-        }
-
-        // Add advancement points.
-        $scope.Stats[$scope.Character.AP1Stat].Current += 1;
-        $scope.Stats[$scope.Character.AP2Stat].Current += 1;
-        $scope.Stats[$scope.Character.AP3Stat].Current += 1;
     }
 
     $scope.xpLevel = function(xp) {
@@ -229,22 +168,19 @@ function XPManCtrl($scope, $http) {
     }
 
     $scope.changeXP = function() {
+        if ($scope.Character.XP == '' || $scope.Character.XP === null) {
+            $scope.Character.XP = parseInt($scope.XPMin);
+        } else if (isNaN($scope.Character.XP)) {
+           $scope.Character.XP = parseInt($scope.XPMin);
+        } else if ($scope.Character.XP > parseInt($scope.XPMax)) {
+           $scope.Character.XP = parseInt($scope.XPMax);
+        } else if ($scope.Character.XP < parseInt($scope.XPMin)) {
+           $scope.Character.XP = parseInt($scope.XPMin);
+        }
+
         $scope.SomethingChanged = true;
     }
 
-    $('input#XP').keyup(function() {
-        if ($(this).val() == '') {
-            $(this).val(0);
-            $scope.Character.XP = 0;
-        } else if (parseInt($(this).val()) > 150) {
-            $(this).val(150);
-            $scope.Character.XP = 150;
-        } else if (parseInt($(this).val()) < 0) {
-            $(this).val(0);
-            $scope.Character.XP = 0;
-        }
-    });
-    
     $scope.checkXPRow = function(xp) {
         if ($scope.Character === null || $scope.Character.XP < xp) {
             return false;
@@ -831,41 +767,41 @@ function XPManCtrl($scope, $http) {
                         case 'Stats':
                             tempChoice.Label = 'Stat';
 
-                            if ($scope.Stats.PHY.Current + 1 <= getStatMax('PHY', xp)) {
+                            if (getStatCurrent('PHY') + 1 <= getStatMax('PHY', xp)) {
                                 tempChoice.ChoicesList.push({ Name: 'PHY' });
                             }
 
-                            if ($scope.Stats.SPD.Current + 1 <= getStatMax('SPD', xp)) {
+                            if (getStatCurrent('SPD') + 1 <= getStatMax('SPD', xp)) {
                                 tempChoice.ChoicesList.push({ Name: 'SPD' });
                             }
 
-                            if ($scope.Stats.STR.Current + 1 <= getStatMax('STR', xp)) {
+                            if (getStatCurrent('STR') + 1 <= getStatMax('STR', xp)) {
                                 tempChoice.ChoicesList.push({ Name: 'STR' });
                             }
 
-                            if ($scope.Stats.AGL.Current + 1 <= getStatMax('AGL', xp)) {
+                            if (getStatCurrent('AGL') + 1 <= getStatMax('AGL', xp)) {
                                 tempChoice.ChoicesList.push({ Name: 'AGL' });
                             }
 
-                            if ($scope.Stats.PRW.Current + 1 <= getStatMax('PRW', xp)) {
+                            if (getStatCurrent('PRW') + 1 <= getStatMax('PRW', xp)) {
                                 tempChoice.ChoicesList.push({ Name: 'PRW' });
                             }
 
-                            if ($scope.Stats.POI.Current + 1 <= getStatMax('POI', xp)) {
+                            if (getStatCurrent('POI') + 1 <= getStatMax('POI', xp)) {
                                 tempChoice.ChoicesList.push({ Name: 'POI' });
                             }
 
-                            if ($scope.Stats.INT.Current + 1 <= getStatMax('INT', xp)) {
+                            if (getStatCurrent('INT') + 1 <= getStatMax('INT', xp)) {
                                 tempChoice.ChoicesList.push({ Name: 'INT' });
                             }
 
                             if ($scope.Character.Archetype == 'Gifted') {
-                                if ($scope.Stats.ARC.Current + 1 <= getStatMax('ARC', xp)) {
+                                if (getStatCurrent('ARC') + 1 <= getStatMax('ARC', xp)) {
                                     tempChoice.ChoicesList.push({ Name: 'ARC' });
                                 }
                             }
 
-                            if ($scope.Stats.PER.Current + 1 <= getStatMax('PER', xp)) {
+                            if (getStatCurrent('PER') + 1 <= getStatMax('PER', xp)) {
                                 tempChoice.ChoicesList.push({ Name: 'PER' });
                             }
 
@@ -908,10 +844,10 @@ function XPManCtrl($scope, $http) {
 
                 for (var i2 = 0; i2 < $scope.XPOptions[i].Choices[i1].ChoicesList.length; i2++) {
                     if ('Property' in $scope.XPOptions[i].Choices[i1].ChoicesList[i2]) {
-                        if ('Type' in $scope.XPOptions[i].Choices[i1].ChoicesList[i2] && $scope.XPOptionx[i].Choices[i1].ChoicesList[i2].Type != 'Generic') {
+                        if ('Type' in $scope.XPOptions[i].Choices[i1].ChoicesList[i2] && $scope.XPOptions[i].Choices[i1].ChoicesList[i2].Type != 'Generic') {
                             // Do nothing. See above.
                         } else {
-                            $scope.XPOptions[i].Choices[i1].ChociesList[i2].Property = null;
+                            $scope.XPOptions[i].Choices[i1].ChoicesList[i2].Property = null;
                         }
                     }
                 }
@@ -982,7 +918,11 @@ function XPManCtrl($scope, $http) {
         } else {
             if ('HasProperty' in choice) {
                 if ('PropertyType' in choice) {
-                    return true;
+                    if (!('Type' in choice) || choice.Type != 'Specific') {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 } else {
                     return false;
                 }
@@ -998,6 +938,10 @@ function XPManCtrl($scope, $http) {
 
     $scope.submitAdvChangeCheck = function() {
         var disableSubmit = false;
+
+        if ($scope.HasXPOptions && $scope.XPOptionSelected === null) {
+            disableSubmit = true;
+        }
 
         for (var i = 0; i < $scope.XPOptions.length; i++) {
             if ($scope.XPOptions[i].Selected) {
@@ -1025,7 +969,6 @@ function XPManCtrl($scope, $http) {
             $scope.Character.XPAdvances.pop();
         }
         
-        // TODO: Finish building advance and add to Character.XPAdvances.
         var tempAdvance = { XP: $scope.CurrentXPEdit, AdvanceParts: [] };
 
         for (var i = 0; i < $scope.XPOptions.length; i++) {
@@ -1033,12 +976,14 @@ function XPManCtrl($scope, $http) {
                 for (var i1 = 0; i1 < $scope.XPOptions[i].Choices.length; i1++) {
                     var tempAdvanceChoice = { Type: $scope.XPOptions[i].Choices[i1].Type, Selected: $scope.XPOptions[i].Choices[i1].Selected.Name };
 
-                    if ($scope.XPOptions[i].Choices[i1].Property !== null && $scope.XPOptions[i].Choices[i1].Property != '') {
+                    if ('Type' in $scope.XPOptions[i].Choices[i1].Selected && $scope.XPOptions[i].Choices[i1].Selected.Type != 'Generic') {
+                        tempAdvanceChoice.Property = $scope.XPOptions[i].Choices[i1].Selected.Property;
+                    } else if ($scope.XPOptions[i].Choices[i1].Property !== null && $scope.XPOptions[i].Choices[i1].Property != '') {
                         tempAdvanceChoice.Property = $scope.XPOptions[i].Choices[i1].Property;
+                    }
 
-                        if ('PropertyType' in $scope.XPOptions[i].Choices[i1].Selected) {
-                            tempAdvanceChoice.PropertyType = $scope.XPOptions[i].Choices[i1].Selected.PropertyType;
-                        }
+                    if ('PropertyType' in $scope.XPOptions[i].Choices[i1].Selected) {
+                        tempAdvanceChoice.PropertyType = $scope.XPOptions[i].Choices[i1].Selected.PropertyType;
                     }
 
                     tempAdvance.AdvanceParts.push(tempAdvanceChoice);
@@ -1047,6 +992,7 @@ function XPManCtrl($scope, $http) {
         }
 
         $scope.Character.XPAdvances.push(tempAdvance);
+        $scope.XPMin = String($scope.CurrentXPEdit);
         $scope.CurrentXPEdit = null;
     }
 
@@ -1111,7 +1057,7 @@ function XPManCtrl($scope, $http) {
 
         for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
             for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
-                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'MilitarySkill' && $scope.Character.XPAdvances[i].AdvanceParts[i1].Name == mSkillName) {
+                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'MilitarySkills' && $scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == mSkillName) {
                     mSkillTotal += 1;
                 }
             }
@@ -1137,7 +1083,7 @@ function XPManCtrl($scope, $http) {
 
         for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
             for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
-                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'OccupationalSkill' && $scope.Character.XPAdvances[i].AdvanceParts[i1].Name == oSkill.Name) {
+                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'OccupationalSkills' && $scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == oSkill.Name) {
                     if ('Type' in oSkill) {
                         if (oSkill.Type != 'Generic' && oSkill.Property == $scope.Character.XPAdvances[i].AdvanceParts[i1].Property) {
                             oSkillTotal += 1;
@@ -1209,11 +1155,22 @@ function XPManCtrl($scope, $http) {
             var prereqsMet = true;
 
             // Check to see if they already have the ability and it can't be taken multiple times.
-            if (!('HasProperty' in AbilitiesList[i])) {
-                for (var i1 = 0; i1 < $scope.Character.Abilities.length; i1++) {
-                    if (AbilitiesList[i].Name == $scope.Character.Abilities[i1].Name) {
+            for (var i1 = 0; i1 < $scope.Character.Abilities.length; i1++) {
+                if (AbilitiesList[i].Name == $scope.Character.Abilities[i1].Name) {
+                    if (!('Type' in AbilitiesList[i]) || AbilitiesList[i].Type != 'Generic') {
                         prereqsMet = false;
                         break;
+                    }
+                }
+            }
+
+            for (var i1 = 0; i1 < $scope.Character.XPAdvances.length; i1++) {
+                for (var i2 = 0; i2 < $scope.Character.XPAdvances[i1].AdvanceParts.length; i2++) {
+                    if (AbilitiesList[i].Name == $scope.Character.XPAdvances[i1].AdvanceParts[i2].Selected) {
+                        if (!('Type' in AbilitiesList[i]) || AbilitiesList[i].Type != 'Generic') {
+                            prereqsMet = false;
+                            break;
+                        }
                     }
                 }
             }
@@ -1228,7 +1185,7 @@ function XPManCtrl($scope, $http) {
             // Check for Stat prerequisites.
             if ('PrereqStats' in AbilitiesList[i] && prereqsMet) {
                 for (var i1 = 0; i1 < AbilitiesList[i].PrereqStats.length; i1++) {
-                    if (AbilitiesList[i].PrereqStats[i1].Level > $scope.Stats[AbilitiesList[i].PrereqStats[i1].Name]) {
+                    if (AbilitiesList[i].PrereqStats[i1].Level > getStatCurrent(AbilitiesList[i].PrereqStats[i1].Name)) {
                         prereqsMet = false;
                         break;
                     }
@@ -1303,7 +1260,9 @@ function XPManCtrl($scope, $http) {
 
             if (prereqsMet) {
                 if ('HasProperty' in AbilitiesList[i]) {
-                    AbilitiesList[i].Property = null;
+                    if (!('Type' in AbilitiesList[i]) || AbilitiesList[i].Type != 'Specific') {
+                        AbilitiesList[i].Property = null;
+                    }
 
                     if ('PropertyType' in AbilitiesList[i]) {
                         AbilitiesList[i].PropertyList = getPropertyList(AbilitiesList[i].PropertyType);
@@ -1389,6 +1348,66 @@ function XPManCtrl($scope, $http) {
 
         tempList.sort();
         return tempList;
+    }
+
+    function getStatCurrent(stat) {
+        var curStat = $scope.Race.Stats[stat].Starting;
+
+        if ('StatIncreases' in $scope.Race) {
+            for (var i = 0; i < $scope.Race.StatIncreases.length; i++) {
+                if ($scope.Race.StatIncreases[i][0] == stat) {
+                    curStat += $scope.Race.StatIncreases[i][1];
+                }
+            }
+        }
+        
+        // If race grants choseable stat increases add them.
+        if ('RacialStatIncreaseChosen' in $scope.Character) {
+            if ($scope.Character.RacialStatIncreaseChosen == stat) {
+                curStat += 1;
+            }
+        }
+
+        // If starting careers grant stat increases add them.
+        if ('StatIncreases' in $scope.Career1) {
+            for (var i = 0; i < $scope.Career1.StatIncreases.length; i++) {
+                if ($scope.Career1.StatIncreases[i][0] == stat) {
+                    curStat += $scope.Career1.StatIncreases[i][1];
+                }
+            }
+        }
+
+        if ('StatIncreases' in $scope.Career2) {
+            for (var i = 0; i < $scope.Career2.StatIncreases.length; i++) {
+                if ($scope.Career2.StatIncreases[i][0] == stat) {
+                    curStat += $scope.Career2.StatIncreases[i][1];
+                }
+            }
+        }
+
+        // Add advancement points.
+        if ($scope.Character.AP1Stat == stat) {
+            curStat += 1;
+        }
+
+        if ($scope.Character.AP2Stat == stat) {
+            curStat += 1;
+        }
+
+        if ($scope.Character.AP3Stat == stat) {
+            curStat += 1;
+        }
+
+        // Add XP advance stat increases.
+        for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+            for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'Stats' && $scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == stat) {
+                    curStat += 1;
+                }
+            }
+        }
+
+        return curStat;
     }
 
     function getStatMax(stat, xp) {
