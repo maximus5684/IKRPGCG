@@ -474,17 +474,13 @@ function CB3Ctrl($scope, $http) {
     $scope.UpdateChar = function() {
         // No need to update the Occupational Skills with properties, Benefits with properties,
         // or Abilities with properties since the items in those lists are references to the actual
-        // items in the character's lists. The only thing to do is strip off the PropertyType and
-        // PropertiesList from Benefits and Abilities, if they have them.
+        // items in the character's lists. The only thing to do is strip off the PropertiesList from
+        // Benefits and Abilities, if they have it.
 
         $scope.LeavePressed = true;
 
         if ($scope.HasBenefitsWithProperties) {
             for (var i = 0; i < $scope.BenefitsWithProperties.length; i++) {
-                if ('PropertyType' in $scope.BenefitsWithProperties[i]) {
-                    delete $scope.BenefitsWithProperties[i].PropertyType;
-                }
-
                 if ('PropertiesList' in $scope.BenefitsWithProperties[i]) {
                     delete $scope.BenefitsWithProperties[i].PropertiesList;
                 }
@@ -493,10 +489,6 @@ function CB3Ctrl($scope, $http) {
 
         if ($scope.HasAbilitiesWithProperties) {
             for (var i = 0; i < $scope.AbilitiesWithProperties.length; i++) {
-                if ('PropertyType' in $scope.AbilitiesWithProperties[i]) {
-                    delete $scope.AbilitiesWithProperties[i].PropertyType;
-                }
-
                 if ('PropertiesList' in $scope.AbilitiesWithProperties[i]) {
                     delete $scope.AbilitiesWithProperties[i].PropertiesList;
                 }
