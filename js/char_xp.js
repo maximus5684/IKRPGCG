@@ -100,6 +100,8 @@ function XPManCtrl($scope, $http) {
                 $scope.Career2 = $scope.Careers[i];
             }
         }
+
+        $scope.XPMin = getLastAdvanceXP();
     }
 
     $scope.xpLevel = function(xp) {
@@ -906,6 +908,7 @@ function XPManCtrl($scope, $http) {
         }
 
         $scope.AdvanceToDelete = null;
+        $scope.XPMin = getLastAdvanceXP();
         $scope.SomethingChanged = true;
     }
 
