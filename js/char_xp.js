@@ -25,6 +25,7 @@ function XPManCtrl($scope, $http) {
     $scope.XPOptionsList = [];
     $scope.XPOptionSelected = null;
     $scope.XPOptions = [];
+    $scope.AdvanceToDelete = null;
     $scope.SomethingChanged = false;
 
     /////////////////////////////////////////////////////////////////////
@@ -885,6 +886,33 @@ function XPManCtrl($scope, $http) {
         }
     }
 
+    $scope.clickDeleteAdvance = function(xp) {
+        $scope.AdvanceToDelete = xp;
+        $("#deleteConfirm").modal({ backdrop: 'static' });
+    }
+
+    $scope.deleteAdvance = function() {
+        var indexToDelete = -1;
+
+        for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+            if ($scope.Character.XPAdvances[i].XP == $scope.AdvanceToDelete) {
+                indexToDelete = i;
+                break;
+            }
+        }
+
+        if (indexToDelete != -1) {
+            $scope.Character.XPAdvances.splice(indexToDelete, 1);
+        }
+
+        $scope.AdvanceToDelete = null;
+        $scope.SomethingChanged = true;
+    }
+
+    $scope.cancelDeleteAdvance = function() {
+        $scope.AdvanceToDelete = null;
+    }
+
     $scope.clearXPEdit = function() {
         $scope.CurrentXPEdit = null;
     }
@@ -948,6 +976,22 @@ function XPManCtrl($scope, $http) {
         $scope.XPMin = String($scope.CurrentXPEdit);
         $scope.CurrentXPEdit = null;
         $scope.SomethingChanged = true;
+    }
+
+    $scope.SaveCharChanges = function() {
+        $http.post($scope.CharUrl, { ReqType: 'UpdateChar', CharacterID: $scope.CharacterID, Character: $scope.Character }).success(function(data, status) {
+            if (status != 200 || data != 'OK') {
+                $scope.Error = data;
+            } else {
+                $scope.SomethingChanged = false;
+            }
+        }).error(function(data, status) {
+            if (data !== null) {
+                $scope.Error = data;
+            } else {
+                $scope.Error = 'Request failed. Status: ' + status;
+            }
+        });
     }
 
     $scope.cancelConfirm = function() {

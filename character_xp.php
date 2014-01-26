@@ -21,7 +21,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <label class="control-label" for="CharXP">Character XP:</label>
                     <div class="controls">
                         <input type="number" id="XP" ng-change="changeXP()" ng-model="Character.XP" min="{{XPMin}}" max="{{XPMax}}" style="width: 40px">
-                        <button class="btn" style="float: right" ng-click="cancelConfirm()">Cancel</button>
+                        <button class="btn" style="float: right" ng-click="cancelConfirm()">Go Back</button>
                     </div>
                 </div>
             </form>
@@ -113,6 +113,20 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="modal hide fade" id="deleteConfirm">
+                <form ng-submit="deleteAdvance()" onsubmit="javascript:$('#deleteConfirm').modal('hide');">
+                    <div class="modal-header">
+                        <h3>Confirm Delete Advance</h3>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you wish to delete this XP advance? 
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Delete</button>
+                    </div>
+                </form>
             </div>
             <div class="modal hide fade" id="cancelConfirm">
                 <form ng-submit="returnToSheet()">
