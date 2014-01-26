@@ -132,7 +132,7 @@ function XPManCtrl($scope, $http) {
                         advText += '+' + String(advance.Options[i][i1][1]) + ' Occupational Skill';
                         break;
                     case 'Spells':
-                        if ($scope.Character !== null && $scope.Character.Archetype == 'Gifted' && spellCount() < (getStatCurrent('INT') * 2)) {
+                        if ($scope.Character !== null && $scope.Character.Archetype == 'Gifted' && getSpellCount() < (getStatCurrent('INT') * 2)) {
                             advText += '+' + String(advance.Options[i][i1][1]) + ' Spell';
                         }
 
@@ -268,7 +268,7 @@ function XPManCtrl($scope, $http) {
                             advText += '+' + String(advance.Options[i][i1][1]) + ' Occupational Skill';
                             break;
                         case 'Spells':
-                            if ($scope.Character.Archetype == 'Gifted' && spellCount() < (getStatCurrent('INT') * 2)) {
+                            if ($scope.Character.Archetype == 'Gifted' && getSpellCount() < (getStatCurrent('INT') * 2)) {
                                 advText += '+' + String(advance.Options[i][i1][1]) + ' Spell';
                             }
 
@@ -520,164 +520,14 @@ function XPManCtrl($scope, $http) {
                             
                             break;
                         case 'Spells':
-                            if ($scope.Character.Archetype == 'Gifted' && spellCount() < (getStatCurrent('INT') * 2)) {
+                            if ($scope.Character.Archetype == 'Gifted' && getSpellCount() < (getStatCurrent('INT') * 2)) {
                                 tempChoice.Label = 'Spell';
 
-                                if ('SpellList' in $scope.Career1) {
-                                    for (var i3 = 0; i3 < $scope.Career1.SpellList.length; i3++) {
-                                        var found = false;
+                                var tempSpellList = getSpellList();
 
-                                        if ('Spells' in $scope.Character) {
-                                            for (var i4 = 0; i4 < $scope.Character.Spells.length; i4++) {
-                                                if ($scope.Career1.SpellList[i3] == $scope.Character.Spells[i4]) {
-                                                    found = true;
-                                                }
-                                            }
-                                        }
-
-                                        for (var i4 = 0; i4 < $scope.Character.Benefits.length; i4++) {
-                                            if ('PropertyType' in $scope.Character.Benefits[i4] && $scope.Character.Benefits[i4].PropertyType == 'Spell' && $scope.Character.Benefits[i4].Property == $scope.Career1.SpellList[i3]) {
-                                                found = true;
-                                            }
-                                        }
-
-                                        for (var i4 = 0; i4 < $scope.Character.XPAdvances.length; i4++) {
-                                            for (var i5 = 0; i5 < $scope.Character.XPAdvances[i4].AdvanceParts.length; i5++) {
-                                                if ($scope.Character.XPAdvances[i4].AdvanceParts[i5].Type == 'Spells' && $scope.Character.XPAdvances[i4].AdvanceParts[i5].Selected == $scope.Career1.SpellList[i3]) {
-                                                    found = true;
-                                                } else if ('PropertyType' in $scope.Character.XPAdvances[i4].AdvanceParts[i5] && $scope.Character.XPAdvances[i4].AdvanceParts[i5].PropertyType == 'Spell' && $scope.Character.XPAdvances[i4].AdvanceParts[i5].Property == $scope.Career1.SpellList[i3]) {
-                                                    found = true;
-                                                }
-                                            }
-                                        }
-
-                                        if (!found) {
-                                            tempChoice.ChoicesList.push({ Name: $scope.Career1.SpellList[i3] });
-                                        }
-                                    }
+                                for (var i3 = 0; i3 < tempSpellList.length; i3++) {
+                                    tempChoice.ChoicesList.push({ Name: tempSpellList[i3] });
                                 }
-
-                                if ('SpellList' in $scope.Career2) {
-                                    for (var i3 = 0; i3 < $scope.Career2.SpellList.length; i3++) {
-                                        var found = false;
-
-                                        for (i4 = 0; i4 < tempChoice.ChoicesList.length; i4++) {
-                                            if ($scope.Career2.SpellList[i3] == tempChoice.ChoicesList[i4]) {
-                                                found = true;
-                                            }
-                                        }
-
-                                        if ('Spells' in $scope.Character) {
-                                            for (var i4 = 0; i4 < $scope.Character.Spells.length; i4++) {
-                                                if ($scope.Career2.SpellList[i3] == $scope.Character.Spells[i4]) {
-                                                    found = true;
-                                                }
-                                            }
-                                        }
-
-                                        for (var i4 = 0; i4 < $scope.Character.Benefits.length; i4++) {
-                                            if ('PropertyType' in $scope.Character.Benefits[i4] && $scope.Character.Benefits[i4].PropertyType == 'Spell' && $scope.Character.Benefits[i4].Property == $scope.Career2.SpellList[i3]) {
-                                                found = true;
-                                            }
-                                        }
-
-                                        for (var i4 = 0; i4 < $scope.Character.XPAdvances.length; i4++) {
-                                            for (var i5 = 0; i5 < $scope.Character.XPAdvances[i4].AdvanceParts.length; i5++) {
-                                                if ($scope.Character.XPAdvances[i4].AdvanceParts[i5].Type == 'Spells' && $scope.Character.XPAdvances[i4].AdvanceParts[i5].Selected == $scope.Career2.SpellList[i3]) {
-                                                    found = true;
-                                                } else if ('PropertyType' in $scope.Character.XPAdvances[i4].AdvanceParts[i5] && $scope.Character.XPAdvances[i4].AdvanceParts[i5].PropertyType == 'Spell' && $scope.Character.XPAdvances[i4].AdvanceParts[i5].Property == $scope.Career2.SpellList[i3]) {
-                                                    found = true;
-                                                }
-                                            }
-                                        }
-
-                                        if (!found) {
-                                            tempChoice.ChoicesList.push({ Name: $scope.Career2.SpellList[i3] });
-                                        }
-                                    }
-                                }
-
-                                if ($scope.Career3 !== null && 'SpellList' in $scope.Career3) {
-                                    for (var i3 = 0; i3 < $scope.Career3.SpellList.length; i3++) {
-                                        var found = false;
-
-                                        for (i4 = 0; i4 < tempChoice.ChoicesList.length; i4++) {
-                                            if ($scope.Career3.SpellList[i3] == tempChoice.ChoiceList[i4]) {
-                                                found = true;
-                                            }
-                                        }
-
-                                        if ('Spells' in $scope.Character) {
-                                            for (var i4 = 0; i4 < $scope.Character.Spells.length; i4++) {
-                                                if ($scope.Career3.SpellList[i3] == $scope.Character.Spells[i4]) {
-                                                    found = true;
-                                                }
-                                            }
-                                        }
-
-                                        for (var i4 = 0; i4 < $scope.Character.Benefits.length; i4++) {
-                                            if ('PropertyType' in $scope.Character.Benefits[i4] && $scope.Character.Benefits[i4].PropertyType == 'Spell' && $scope.Character.Benefits[i4].Property == $scope.Career3.SpellList[i3]) {
-                                                found = true;
-                                            }
-                                        }
-
-                                        for (var i4 = 0; i4 < $scope.Character.XPAdvances.length; i4++) {
-                                            for (var i5 = 0; i5 < $scope.Character.XPAdvances[i4].AdvanceParts.length; i5++) {
-                                                if ($scope.Character.XPAdvances[i4].AdvanceParts[i5].Type == 'Spells' && $scope.Character.XPAdvances[i4].AdvanceParts[i5].Selected == $scope.Career3.SpellList[i3]) {
-                                                    found = true;
-                                                } else if ('PropertyType' in $scope.Character.XPAdvances[i4].AdvanceParts[i5] && $scope.Character.XPAdvances[i4].AdvanceParts[i5].PropertyType == 'Spell' && $scope.Character.XPAdvances[i4].AdvanceParts[i5].Property == $scope.Career3.SpellList[i3]) {
-                                                    found = true;
-                                                }
-                                            }
-                                        }
-
-                                        if (!found) {
-                                            tempChoice.ChoicesList.push({ Name: $scope.Career3.SpellList[i3] });
-                                        }
-                                    }
-                                }
-
-                                if ($scope.Career4 !== null && 'SpellList' in $scope.Career4) {
-                                    for (var i3 = 0; i3 < $scope.Career4.SpellList.length; i3++) {
-                                        var found = false;
-
-                                        for (i4 = 0; i4 < tempChoice.ChoicesList.length; i4++) {
-                                            if ($scope.Career4.SpellList[i3] == tempChoice.ChoiceList[i4]) {
-                                                found = true;
-                                            }
-                                        }
-
-                                        if ('Spells' in $scope.Character) {
-                                            for (var i4 = 0; i4 < $scope.Character.Spells.length; i4++) {
-                                                if ($scope.Career4.SpellList[i3] == $scope.Character.Spells[i4]) {
-                                                    found = true;
-                                                }
-                                            }
-                                        }
-
-                                        for (var i4 = 0; i4 < $scope.Character.Benefits.length; i4++) {
-                                            if ('PropertyType' in $scope.Character.Benefits[i4] && $scope.Character.Benefits[i4].PropertyType == 'Spell' && $scope.Character.Benefits[i4].Property == $scope.Career4.SpellList[i3]) {
-                                                found = true;
-                                            }
-                                        }
-
-                                        for (var i4 = 0; i4 < $scope.Character.XPAdvances.length; i4++) {
-                                            for (var i5 = 0; i5 < $scope.Character.XPAdvances[i4].AdvanceParts.length; i5++) {
-                                                if ($scope.Character.XPAdvances[i4].AdvanceParts[i5].Type == 'Spells' && $scope.Character.XPAdvances[i4].AdvanceParts[i5].Selected == $scope.Career4.SpellList[i3]) {
-                                                    found = true;
-                                                } else if ('PropertyType' in $scope.Character.XPAdvances[i4].AdvanceParts[i5] && $scope.Character.XPAdvances[i4].AdvanceParts[i5].PropertyType == 'Spell' && $scope.Character.XPAdvances[i4].AdvanceParts[i5].Property == $scope.Career4.SpellList[i3]) {
-                                                    found = true;
-                                                }
-                                            }
-                                        }
-
-                                        if (!found) {
-                                            tempChoice.ChoicesList.push({ Name: $scope.Career4.SpellList[i3] });
-                                        }
-                                    }
-                                }
-
-                                tempChoice.ChoicesList.sort(byName);
                             }
 
                             break;
@@ -911,8 +761,8 @@ function XPManCtrl($scope, $http) {
                             break;
                     }
 
-                    if (tempChoice.Label == 'Spell') {
-                        if ($scope.Character.Archetype == 'Gifted') {
+                    if (tempChoice.Type == 'Spells') {
+                        if ($scope.Character.Archetype == 'Gifted' && getSpellCount() < (getStatCurrent('INT') * 2)) {
                             tempOption.Choices.push(tempChoice);
                         }
                     } else {
@@ -1150,6 +1000,32 @@ function XPManCtrl($scope, $http) {
         return nextAdvanceXP;
     }
 
+    function getSpellCount() {
+        var count = 0;
+
+        if ('Spells' in $scope.Character) {
+            count += $scope.Character.Spells.length;
+        }
+
+        for (var i = 0; i < $scope.Character.Benefits.length; i++) {
+            if ('PropertyType' in $scope.Character.Benefits[i] && $scope.Character.Benefits[i].PropertyType == 'Spell') {
+                count++;
+            }
+        }
+
+        for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+            for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'Spells') {
+                    count++;
+                } else if ('PropertyType' in $scope.Character.XPAdvances[i].AdvanceParts[i1] && $scope.Character.XPAdvances[i].AdvanceParts[i1].PropertyType == 'Spell') {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+
     function getMilitarySkillLevel(mSkillName) {
         var mSkillTotal = 0;
 
@@ -1385,45 +1261,30 @@ function XPManCtrl($scope, $http) {
 
         switch (propType) {
             case 'Spell':
-                if ('SpellList' in $scope.Career1) {
-                    for (var i = 0; i < $scope.Career1.SpellList.length; i++) {
-                        tempList.push($scope.Career1.SpellList[i]);
-                    }
-                }
-
-                if ('SpellList' in $scope.Career2) {
-                    for (var i = 0; i < $scope.Career2.SpellList.length; i++) {
-                        if (tempList.indexOf($scope.Career2.SpellList[i]) == -1) {
-                            tempList.push($scope.Career2.SpellList[i]);
-                        }
-                    }
-                }
-
-                if ($scope.Career4 !== null) {
-                    if ('SpellList' in $scope.Career3) {
-                        for (var i = 0; i < $scope.Career3.SpellList.length; i++) {
-                            if (tempList.indexOf($scope.Career3.SpellList[i]) == -1) {
-                                tempList.push($scope.Career3.SpellList[i]);
-                            }
-                        }
-                    }
-                }
-
-                if ($scope.Career4 !== null) {
-                    if ('SpellList' in $scope.Career4) {
-                        for (var i = 0; i < $scope.Career4.SpellList.length; i++) {
-                            if (tempList.indexOf($scope.Career4.SpellList[i]) == -1) {
-                                tempList.push($scope.Career4.SpellList[i]);
-                            }
-                        }
-                    }
-                }
-
+                tempList = getSpellList();
                 break;
             case 'Military Skill':
                 if ('MilitarySkills' in $scope.Character) {
                     for (var i = 0; i < $scope.Character.MilitarySkills; i++) {
                         tempList.push($scope.Character.MilitarySkills[i].Name);
+                    }
+                }
+
+                for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+                    for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i++) {
+                        if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'MilitarySkills') {
+                            var found = false;
+
+                            for (var i2 = 0; i2 < tempList.length; i2++) {
+                                if (tempList[i2].Name == $scope.Character.XPAdvances[i].AdvanceParts[i1].Selected) {
+                                    found = true;
+                                }
+                            }
+
+                            if (!found) {
+                                tempList.push($scope.Character.XPAdvances[i].AdvanceParts[i1].Selected);
+                            }
+                        }
                     }
                 }
 
@@ -1442,6 +1303,14 @@ function XPManCtrl($scope, $http) {
                         }
                     }
 
+                    for (var i1 = 0; i1 < $scope.Character.XPAdvances.length; i1++) {
+                        for (var i2 = 0; i2 < $scope.Character.XPAdvances[i1].AdvanceParts.length; i2++) {
+                            if ($scope.Character.XPAdvances[i1].AdvanceParts[i2].Type == 'Abilities' && 'PropertyType' in $scope.Character.XPAdvances[i1].AdvanceParts[i2] && $scope.Character.XPAdvances[i1].AdvanceParts[i2].Selected == 'Language' && $scope.Character.XPAdvances[i1].AdvanceParts[i2].Property == $scope.Languages[i]) {
+                                found = true;
+                            }
+                        }
+                    }
+
                     if (!found) {
                         tempList.push($scope.Languages[i]);
                     }
@@ -1452,6 +1321,168 @@ function XPManCtrl($scope, $http) {
 
         tempList.sort();
         return tempList;
+    }
+
+    function getSpellList() {
+        var tempSpellList = [];
+
+        if ('SpellList' in $scope.Career1) {
+            for (var i = 0; i < $scope.Career1.SpellList.length; i++) {
+                var found = false;
+
+                if ('Spells' in $scope.Character) {
+                    for (var i1 = 0; i1 < $scope.Character.Spells.length; i1++) {
+                        if ($scope.Career1.SpellList[i] == $scope.Character.Spells[i1]) {
+                            found = true;
+                        }
+                    }
+                }
+
+                for (var i1 = 0; i1 < $scope.Character.Benefits.length; i1++) {
+                    if ('PropertyType' in $scope.Character.Benefits[i1] && $scope.Character.Benefits[i1].PropertyType == 'Spell' && $scope.Character.Benefits[i1].Property == $scope.Career1.SpellList[i]) {
+                        found = true;
+                    }
+                }
+
+                for (var i1 = 0; i1 < $scope.Character.XPAdvances.length; i1++) {
+                    for (var i2 = 0; i2 < $scope.Character.XPAdvances[i1].AdvanceParts.length; i2++) {
+                        if ($scope.Character.XPAdvances[i1].AdvanceParts[i2].Type == 'Spells' && $scope.Character.XPAdvances[i1].AdvanceParts[i2].Selected == $scope.Career1.SpellList[i]) {
+                            found = true;
+                        } else if ('PropertyType' in $scope.Character.XPAdvances[i1].AdvanceParts[i2] && $scope.Character.XPAdvances[i1].AdvanceParts[i2].PropertyType == 'Spell' && $scope.Character.XPAdvances[i1].AdvanceParts[i2].Property == $scope.Career1.SpellList[i]) {
+                            found = true;
+                        }
+                    }
+                }
+
+                if (!found) {
+                    tempSpellList.push($scope.Career1.SpellList[i]);
+                }
+            }
+        }
+
+        if ('SpellList' in $scope.Career2) {
+            for (var i = 0; i < $scope.Career2.SpellList.length; i++) {
+                var found = false;
+
+                for (i1 = 0; i1 < tempSpellList.length; i1++) {
+                    if ($scope.Career2.SpellList[i] == tempSpellList[i1]) {
+                        found = true;
+                    }
+                }
+
+                if ('Spells' in $scope.Character) {
+                    for (var i1 = 0; i1 < $scope.Character.Spells.length; i1++) {
+                        if ($scope.Career2.SpellList[i] == $scope.Character.Spells[i1]) {
+                            found = true;
+                        }
+                    }
+                }
+
+                for (var i1 = 0; i1 < $scope.Character.Benefits.length; i1++) {
+                    if ('PropertyType' in $scope.Character.Benefits[i1] && $scope.Character.Benefits[i1].PropertyType == 'Spell' && $scope.Character.Benefits[i1].Property == $scope.Career2.SpellList[i]) {
+                        found = true;
+                    }
+                }
+
+                for (var i1 = 0; i1 < $scope.Character.XPAdvances.length; i1++) {
+                    for (var i2 = 0; i2 < $scope.Character.XPAdvances[i1].AdvanceParts.length; i2++) {
+                        if ($scope.Character.XPAdvances[i1].AdvanceParts[i2].Type == 'Spells' && $scope.Character.XPAdvances[i1].AdvanceParts[i2].Selected == $scope.Career2.SpellList[i]) {
+                            found = true;
+                        } else if ('PropertyType' in $scope.Character.XPAdvances[i1].AdvanceParts[i2] && $scope.Character.XPAdvances[i1].AdvanceParts[i2].PropertyType == 'Spell' && $scope.Character.XPAdvances[i1].AdvanceParts[i2].Property == $scope.Career2.SpellList[i]) {
+                            found = true;
+                        }
+                    }
+                }
+
+                if (!found) {
+                    tempSpellList.push($scope.Career2.SpellList[i]);
+                }
+            }
+        }
+
+        if ($scope.Career3 !== null && 'SpellList' in $scope.Career3) {
+            for (var i = 0; i < $scope.Career3.SpellList.length; i++) {
+                var found = false;
+
+                for (i1 = 0; i1 < tempSpellList.length; i1++) {
+                    if ($scope.Career3.SpellList[i] == tempChoice.ChoiceList[i1]) {
+                        found = true;
+                    }
+                }
+
+                if ('Spells' in $scope.Character) {
+                    for (var i1 = 0; i1 < $scope.Character.Spells.length; i1++) {
+                        if ($scope.Career3.SpellList[i] == $scope.Character.Spells[i1]) {
+                            found = true;
+                        }
+                    }
+                }
+
+                for (var i1 = 0; i1 < $scope.Character.Benefits.length; i1++) {
+                    if ('PropertyType' in $scope.Character.Benefits[i1] && $scope.Character.Benefits[i1].PropertyType == 'Spell' && $scope.Character.Benefits[i1].Property == $scope.Career3.SpellList[i]) {
+                        found = true;
+                    }
+                }
+
+                for (var i1 = 0; i1 < $scope.Character.XPAdvances.length; i1++) {
+                    for (var i2 = 0; i2 < $scope.Character.XPAdvances[i1].AdvanceParts.length; i2++) {
+                        if ($scope.Character.XPAdvances[i1].AdvanceParts[i2].Type == 'Spells' && $scope.Character.XPAdvances[i1].AdvanceParts[i2].Selected == $scope.Career3.SpellList[i]) {
+                            found = true;
+                        } else if ('PropertyType' in $scope.Character.XPAdvances[i1].AdvanceParts[i2] && $scope.Character.XPAdvances[i1].AdvanceParts[i2].PropertyType == 'Spell' && $scope.Character.XPAdvances[i1].AdvanceParts[i2].Property == $scope.Career3.SpellList[i]) {
+                            found = true;
+                        }
+                    }
+                }
+
+                if (!found) {
+                    tempSpellList.push($scope.Career3.SpellList[i]);
+                }
+            }
+        }
+
+        if ($scope.Career4 !== null && 'SpellList' in $scope.Career4) {
+            for (var i = 0; i < $scope.Career4.SpellList.length; i++) {
+                var found = false;
+
+                for (i1 = 0; i1 < tempSpellList.length; i1++) {
+                    if ($scope.Career4.SpellList[i] == tempChoice.ChoiceList[i1]) {
+                        found = true;
+                    }
+                }
+
+                if ('Spells' in $scope.Character) {
+                    for (var i1 = 0; i1 < $scope.Character.Spells.length; i1++) {
+                        if ($scope.Career4.SpellList[i] == $scope.Character.Spells[i1]) {
+                            found = true;
+                        }
+                    }
+                }
+
+                for (var i1 = 0; i1 < $scope.Character.Benefits.length; i1++) {
+                    if ('PropertyType' in $scope.Character.Benefits[i1] && $scope.Character.Benefits[i1].PropertyType == 'Spell' && $scope.Character.Benefits[i1].Property == $scope.Career4.SpellList[i]) {
+                        found = true;
+                    }
+                }
+
+                for (var i1 = 0; i1 < $scope.Character.XPAdvances.length; i1++) {
+                    for (var i2 = 0; i2 < $scope.Character.XPAdvances[i1].AdvanceParts.length; i2++) {
+                        if ($scope.Character.XPAdvances[i1].AdvanceParts[i2].Type == 'Spells' && $scope.Character.XPAdvances[i1].AdvanceParts[i2].Selected == $scope.Career4.SpellList[i]) {
+                            found = true;
+                        } else if ('PropertyType' in $scope.Character.XPAdvances[i1].AdvanceParts[i2] && $scope.Character.XPAdvances[i1].AdvanceParts[i2].PropertyType == 'Spell' && $scope.Character.XPAdvances[i1].AdvanceParts[i2].Property == $scope.Career4.SpellList[i]) {
+                            found = true;
+                        }
+                    }
+                }
+
+                if (!found) {
+                    tempSpellList.push($scope.Career4.SpellList[i]);
+                }
+            }
+        }
+
+        tempSpellList.sort();
+
+        return tempSpellList;
     }
 
     function getStatCurrent(stat) {
