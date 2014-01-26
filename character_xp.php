@@ -20,7 +20,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group">
                     <label class="control-label" for="CharXP">Character XP:</label>
                     <div class="controls">
-                        <input type="number" id="XP" ng-keyup="changeXP()" ng-model="Character.XP" min="{{XPMin}}" max="{{XPMax}}" style="width: 40px">
+                        <input type="number" id="XP" ng-change="changeXP()" ng-model="Character.XP" min="{{XPMin}}" max="{{XPMax}}" style="width: 40px">
                         <button class="btn" style="float: right" ng-click="cancelConfirm()">Cancel</button>
                     </div>
                 </div>
