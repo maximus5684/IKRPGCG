@@ -558,9 +558,9 @@ function CSCtrl($scope, $http) {
             for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
                 for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
                     if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'ArchetypeBenefits') {
-                        for (var i2 = 0; i2 < $scope.Character.Archetypes.length; i2++) {
-                            for (var i3 = 0; i3 < $scope.Character.Archetypes[i2].Benefits.length; i3++) {
-                                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == $scope.Character.Archetypes[i2].Benefits[i3].Name) {
+                        for (var i2 = 0; i2 < $scope.Archetypes.length; i2++) {
+                            for (var i3 = 0; i3 < $scope.Archetypes[i2].Benefits.length; i3++) {
+                                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Selected == $scope.Archetypes[i2].Benefits[i3].Name) {
                                     var tempBen = jQuery.extend(true, {}, $scope.Archetypes[i2].Benefits[i3]);
                                     
                                     if ('Property' in $scope.Character.XPAdvances[i].AdvanceParts[i1]) {
