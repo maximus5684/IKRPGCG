@@ -1311,26 +1311,56 @@ function XPManCtrl($scope, $http) {
                 tempList = getSpellList();
                 break;
             case 'Military Skill':
-                if ('MilitarySkills' in $scope.Character) {
-                    for (var i = 0; i < $scope.Character.MilitarySkills; i++) {
-                        tempList.push($scope.Character.MilitarySkills[i].Name);
+                if ('MilitarySkills' in $scope.Career1) {
+                    for (var i = 0; i < $scope.Career1.MilitarySkills.length; i++) {
+                        tempList.push($scope.Career1.MilitarySkills[i].Name);
                     }
                 }
 
-                for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
-                    for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i++) {
-                        if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'MilitarySkills') {
-                            var found = false;
+                if ('MilitarySkills' in $scope.Career2) {
+                    for (var i = 0; i < $scope.Career2.MilitarySkills.length; i++) {
+                        var found = false;
 
-                            for (var i2 = 0; i2 < tempList.length; i2++) {
-                                if (tempList[i2].Name == $scope.Character.XPAdvances[i].AdvanceParts[i1].Selected) {
-                                    found = true;
-                                }
+                        for (var i1 = 0; i1 < tempList.length; i1++) {
+                            if ($scope.Career2.MilitarySkills[i].Name == tempList[i1]) {
+                                found = true;
                             }
+                        }
 
-                            if (!found) {
-                                tempList.push($scope.Character.XPAdvances[i].AdvanceParts[i1].Selected);
+                        if (!found) {
+                            tempList.push($scope.Career2.MilitarySkills[i].Name);
+                        }
+                    }
+                }
+
+                if ($scope.Career3 !== null && 'MilitarySkills' in $scope.Career3) {
+                    for (var i = 0; i < $scope.Career3.MilitarySkills.length; i++) {
+                        var found = false;
+
+                        for (var i1 = 0; i1 < tempList.length; i1++) {
+                            if ($scope.Career3.MilitarySkills[i].Name == tempList[i1]) {
+                                found = true;
                             }
+                        }
+
+                        if (!found) {
+                            tempList.push($scope.Career3.MilitarySkills[i].Name);
+                        }
+                    }
+                }
+
+                if ($scope.Career4 !== null && 'MilitarySkills' in $scope.Career4) {
+                    for (var i = 0; i < $scope.Career4.MilitarySkills.length; i++) {
+                        var found = false;
+
+                        for (var i1 = 0; i1 < tempList.length; i1++) {
+                            if ($scope.Career4.MilitarySkills[i].Name == tempList[i1]) {
+                                found = true;
+                            }
+                        }
+
+                        if (!found) {
+                            tempList.push($scope.Career4.MilitarySkills[i].Name);
                         }
                     }
                 }

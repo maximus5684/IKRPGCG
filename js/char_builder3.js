@@ -349,9 +349,25 @@ function CB3Ctrl($scope, $http) {
                 }
             }
         } else if (propertyType == 'Military Skill') {
-            if ('MilitarySkills' in $scope.Character) {
-                for (var i = 0; i < $scope.Character.MilitarySkills; i++) {
-                    tempList.push($scope.Character.MilitarySkills[i]);
+            if ('MilitarySkills' in $scope.Career1) {
+                for (var i = 0; i < $scope.Career1.MilitarySkills.length; i++) {
+                    tempList.push($scope.Career1.MilitarySkills[i].Name);
+                }
+            }
+
+            if ('MilitarySkills' in $scope.Career2) {
+                for (var i = 0; i < $scope.Career2.MilitarySkills.length; i++) {
+                    var found = false;
+
+                    for (var i1 = 0; i1 < tempList.length; i1++) {
+                        if ($scope.Career2.MilitarySkills[i].Name == tempList[i1]) {
+                            found = true;
+                        }
+                    }
+
+                    if (!found) {
+                        tempList.push($scope.Career2.MilitarySkills[i].Name);
+                    }
                 }
             }
         }
