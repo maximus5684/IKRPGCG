@@ -19,7 +19,6 @@ function XPManCtrl($scope, $http) {
     $scope.Career2 = null;
     $scope.Career3 = null;
     $scope.Career4 = null;
-    $scope.Level = 'Hero';
     $scope.CurrentXPEdit = null;
     $scope.HasXPOptions = false;
     $scope.XPOptionsList = [];
@@ -77,8 +76,6 @@ function XPManCtrl($scope, $http) {
             $scope.Character.XPAdvances = []; 
         }
 
-        $scope.Level = $scope.xpLevel($scope.Character.XP);
-
         for (var i = 0; i < $scope.Races.length; i++) {
             if ($scope.Character.Race == $scope.Races[i].Name) {
                 $scope.Race = $scope.Races[i];
@@ -91,6 +88,21 @@ function XPManCtrl($scope, $http) {
             }
         }
 
+        var c3Name = '';
+        var c4Name = '';
+
+        for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+            for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                if ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type == 'Careers') {
+                    if (c3Name == '') {
+                        c3Name = $scope.Character.XPAdvances[i].AdvanceParts[i1].Selected;
+                    } else {
+                        c4Name = $scope.Character.XPAdvances[i].AdvanceParts[i1].Selected;
+                    }
+                }
+            }
+        }
+
         for (var i = 0; i < $scope.Careers.length; i++) {
             if ($scope.Character.Career1 == $scope.Careers[i].Name) {
                 $scope.Career1 = $scope.Careers[i];
@@ -98,6 +110,14 @@ function XPManCtrl($scope, $http) {
 
             if ($scope.Character.Career2 == $scope.Careers[i].Name) {
                 $scope.Career2 = $scope.Careers[i];
+            }
+
+            if (c3Name != '' && c3Name == $scope.Careers[i].Name) {
+                $scope.Career3 = $scope.Careers[i];
+            }
+
+            if (c4Name != '' && c4Name == $scope.Careers[i].Name) {
+                $scope.Career4 = $scope.Careers[i];
             }
         }
 
@@ -904,6 +924,16 @@ function XPManCtrl($scope, $http) {
         }
 
         if (indexToDelete != -1) {
+            for (var i = 0; i < $scope.Character.XPAdvances[indexToDelete].AdvanceParts.length; i++) {
+                if ($scope.Character.XPAdvances[indexToDelete].AdvanceParts[i].Type == 'Careers') {
+                    if ($scope.Character.XPAdvances[indexToDelete].AdvanceParts[i].Selected == $scope.Career3.Name) {
+                        $scope.Career3 = null;
+                    } else if ($scope.Character.XPAdvances[indexToDelete].AdvanceParts[i].Selected == $scope.Career4.Name) {
+                        $scope.Career4 = null;
+                    }
+                }
+            }
+
             $scope.Character.XPAdvances.splice(indexToDelete, 1);
         }
 
@@ -953,6 +983,7 @@ function XPManCtrl($scope, $http) {
             $scope.Character.XPAdvances.pop();
         }
         
+        // Create the advance and add it to the character's advances.
         var tempAdvance = { XP: $scope.CurrentXPEdit, AdvanceParts: [] };
 
         for (var i = 0; i < $scope.XPOptions.length; i++) {
@@ -971,6 +1002,19 @@ function XPManCtrl($scope, $http) {
                     }
 
                     tempAdvance.AdvanceParts.push(tempAdvanceChoice);
+
+                    // While we're here, we should check for career advances and set Career3/Career4 accordingly.
+                    if ($scope.XPOptions[i].Choices[i1].Type == 'Careers') {
+                        for (var i2 = 0; i2 < $scope.Careers.length; i2++) {
+                            if ($scope.XPOptions[i].Choices[i1].Selected.Name == $scope.Careers[i2].Name) {
+                                if ($scope.Career3 === null) {
+                                    $scope.Career3 = $scope.Careers[i2];
+                                } else {
+                                    $scope.Career4 = $scope.Careers[i2];
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -1650,7 +1694,7 @@ function XPManCtrl($scope, $http) {
         }
 
         if ('StatMaxIncreases' in $scope.Career2) {
-            for (var i = 0; i < $scope.Career2.StatMaxIncreases[$scope.Level].length; i++) {
+            for (var i = 0; i < $scope.Career2.StatMaxIncreases[funcLevel].length; i++) {
                 if ($scope.Career2.StatMaxIncreases[funcLevel][i][0] == stat) {
                     statMax += $scope.Career2.StatMaxIncreases[funcLevel][i][1];
                 }
@@ -1659,7 +1703,7 @@ function XPManCtrl($scope, $http) {
 
         if ($scope.Career3 !== null) {
             if ('StatMaxIncreases' in $scope.Career3) {
-                for (var i = 0; i < $scope.Career3.StatMaxIncreases[$scope.Level].length; i++) {
+                for (var i = 0; i < $scope.Career3.StatMaxIncreases[funcLevel].length; i++) {
                     if ($scope.Career3.StatMaxIncreases[funcLevel][i][0] == stat) {
                         statMax += $scope.Career3.StatMaxIncreases[funcLevel][i][1];
                     }
@@ -1669,7 +1713,7 @@ function XPManCtrl($scope, $http) {
 
         if ($scope.Career4 !== null) {
             if ('StatMaxIncreases' in $scope.Career4) {
-                for (var i = 0; i < $scope.Career4.StatMaxIncreases[$scope.Level].length; i++) {
+                for (var i = 0; i < $scope.Career4.StatMaxIncreases[funcLevel].length; i++) {
                     if ($scope.Career4.StatMaxIncreases[funcLevel][i][0] == stat) {
                         statMax += $scope.Career4.StatMaxIncreases[funcLevel][i][1];
                     }
