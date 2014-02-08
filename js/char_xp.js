@@ -1437,6 +1437,28 @@ function XPManCtrl($scope, $http) {
                 }
 
                 break;
+            case 'Career':
+                for (var i = 0; i < $scope.Careers.length; i++) {
+                    var found = false;
+
+                    if ($scope.Careers[i].Name == $scope.Career1.Name || $scope.Careers[i].Name == $scope.Career2.Name) {
+                        found = true;
+                    }
+
+                    if ($scope.Career3 !== null && $scope.Career3.Name == $scope.Careers[i].Name) {
+                        found = true;
+                    }
+
+                    if ($scope.Career4 !== null && $scope.Career4.Name == $scope.Careers[i].Name) {
+                        found = true;
+                    }
+
+                    if (!found) {
+                        tempList.push($scope.Careers[i].Name);
+                    }
+                }
+                
+                break;
         }
 
         tempList.sort();
