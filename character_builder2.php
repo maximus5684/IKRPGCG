@@ -41,7 +41,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <label class="control-label" for="AdvancementPoints">
                         Distribute Advancement Points:<br>
                         ({{AdvancementPoints}} remaining)
-                        <span ng-hide="AdvancementPoints == 0" class="label label-warning"><br>Required</span>
+                        <p ng-hide="AdvancementPoints == 0"><span class="label label-warning">Required</span></p>
                     </label>
                     <div class="controls">
                         <table id="APTable">
@@ -132,7 +132,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="Career1MSkillsRequired">
                     <label class="control-label" for="Career1MSkill">
                         Choose your starting Military skill(s) for {{Career1.Name}} (pick {{Career1.StartingMSkillChoices}}):
-                        <span ng-hide="checkCareer1MSkills()" class="label label-warning"><br>Required</span>
+                        <p ng-hide="checkCareer1MSkills()"><span class="label label-warning">Required</span></p>
                     </label>
                     <div class="controls">
                         <ul>
@@ -143,7 +143,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="Career1OSkillsRequired">
                     <label class="control-label" for="Career1OSkill">
                         Choose your starting Occupational skill(s) for {{Career1.Name}} (pick {{Career1.StartingOSkillChoices}}):
-                        <span ng-hide="checkCareer1OSkills()" class="label label-warning"><br>Required</span>
+                        <p ng-hide="checkCareer1OSkills()"><span class="label label-warning">Required</span></p>
                     </label>
                     <div class="controls">
                         <ul>
@@ -154,7 +154,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="Career2MSkillsRequired">
                     <label class="control-label" for="Career2MSkill">
                         Choose your starting Military skill(s) for {{Career2.Name}} (pick {{Career2.StartingMSkillChoices}}):
-                        <span ng-hide="checkCareer2MSkills()" class="label label-warning"><br>Required</span>
+                        <p ng-hide="checkCareer2MSkills()"><span class="label label-warning">Required</span></p>
                     </label>
                     <div class="controls">
                         <ul>
@@ -165,7 +165,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="Career2OSkillsRequired">
                     <label class="control-label" for="Career2OSkill">
                         Choose your starting Occupational skill(s) for {{Career2.Name}} (pick {{Career2.StartingOSkillChoices}}):
-                        <span ng-hide="checkCareer2OSkills()" class="label label-warning"><br>Required</span>
+                        <p ng-hide="checkCareer2OSkills()"><span class="label label-warning">Required</span></p>
                     </label>
                     <div class="controls">
                         <ul>
@@ -184,7 +184,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="Career1AssetsRequired">
                     <label class="control-label" for="Career1AssetChoice">
                         Select your starting asset(s) for {{Career1.Name}} (pick {{Career1.StartingAssetChoices}}):
-                        <span ng-hide="checkCareer1Assets()" class="label label-warning"><br>Required</span>
+                        <p ng-hide="checkCareer1Assets()"><span class="label label-warning">Required</span></p>
                     </label>
                     <div class="controls">
                         <ul>
@@ -195,7 +195,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="Career2AssetsRequired">
                     <label class="control-label" for="Career2AssetChoice">
                         Select your starting asset(s) for {{Career2.Name}} (pick {{Career2.StartingAssetChoices}}):
-                        <span ng-hide="checkCareer2Assets()" class="label label-warning"><br>Required</span>
+                        <p ng-hide="checkCareer2Assets()"><span class="label label-warning">Required</span></p>
                     </label>
                     <div class="controls">
                         <ul>

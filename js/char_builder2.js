@@ -16,15 +16,15 @@ function CB2Ctrl($scope, $http) {
     // [0] = Starting, [1] = Max, [2] = AP Points, [3] = Field Min, [4] = Field Max
     $scope.APFields =
     {
-        PHY: { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
-        SPD: { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
-        STR: { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
-        AGL: { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
-        PRW: { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
-        POI: { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
-        INT: { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
-        ARC: { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false },
-        PER: { Starting: 0, Max: 0, Points: 0, FieldMin: 0, FieldMax: 3, Disabled: false }
+        PHY: { Starting: 0, Max: 0, Points: 0, FieldMin: "0", FieldMax: "3", Disabled: false },
+        SPD: { Starting: 0, Max: 0, Points: 0, FieldMin: "0", FieldMax: "3", Disabled: false },
+        STR: { Starting: 0, Max: 0, Points: 0, FieldMin: "0", FieldMax: "3", Disabled: false },
+        AGL: { Starting: 0, Max: 0, Points: 0, FieldMin: "0", FieldMax: "3", Disabled: false },
+        PRW: { Starting: 0, Max: 0, Points: 0, FieldMin: "0", FieldMax: "3", Disabled: false },
+        POI: { Starting: 0, Max: 0, Points: 0, FieldMin: "0", FieldMax: "3", Disabled: false },
+        INT: { Starting: 0, Max: 0, Points: 0, FieldMin: "0", FieldMax: "3", Disabled: false },
+        ARC: { Starting: 0, Max: 0, Points: 0, FieldMin: "0", FieldMax: "3", Disabled: false },
+        PER: { Starting: 0, Max: 0, Points: 0, FieldMin: "0", FieldMax: "3", Disabled: false }
     };
     $scope.Language1Required = false;
     $scope.Language1Choices = [];
@@ -485,6 +485,18 @@ function CB2Ctrl($scope, $http) {
     }
 
     $scope.changeAP = function() {
+        for (var stat in $scope.APFields) {
+            if ($scope.APFields[stat].Points == '' || $scope.APFields[stat].Points === null) {
+                $scope.APFields[stat].Points = parseInt($scope.APFields[stat].FieldMin);
+            } else if (isNaN($scope.APFields[stat].Points)) {
+                $scope.APFields[stat].Points = parseInt($scope.APFields[stat].FieldMin);
+            } else if ($scope.APFields[stat].Points > parseInt($scope.APFields[stat].FieldMax)) {
+                $scope.APFields[stat].Points = parseInt($scope.APFields[stat].FieldMax);
+            } else if ($scope.APFields[stat].Points < parseInt($scope.APFields[stat].FieldMin)) {
+                $scope.APFields[stat].Points = parseInt($scope.APFields[stat].FieldMin);
+            }
+        }
+
         recalcAPs();
     }
 
@@ -640,34 +652,34 @@ function CB2Ctrl($scope, $http) {
                     } else {
                         if ($scope.AdvancementPoints == 0) {
                             if ($scope.APFields[stat].Points == 0) {
-                                $scope.APFields[stat].FieldMax = 0;
+                                $scope.APFields[stat].FieldMax = "0";
                                 $scope.APFields[stat].Disabled = true;
                             } else {
-                                $scope.APFields[stat].FieldMax = $scope.APFields[stat].Points;
+                                $scope.APFields[stat].FieldMax = String($scope.APFields[stat].Points);
                                 $scope.APFields[stat].Disabled = false;
                             }
                         } else {
-                            $scope.APFields[stat].FieldMax = Math.min(($scope.APFields[stat].Max - $scope.APFields[stat].Starting), 3);
+                            $scope.APFields[stat].FieldMax = String(Math.min(($scope.APFields[stat].Max - $scope.APFields[stat].Starting), 3));
                             $scope.APFields[stat].Disabled = false;
                         }
                     }
                 } else {
                     if ($scope.APFields[stat].Points > ($scope.APFields[stat].Max - $scope.APFields[stat].Starting)) {
-                        $scope.APFields[stat].FieldMax = $scope.APFields[stat].Max - $scope.APFields[stat].Starting;
+                        $scope.APFields[stat].FieldMax = String($scope.APFields[stat].Max - $scope.APFields[stat].Starting);
                         $scope.APFields[stat].Points = $scope.APFields[stat].FieldMax;
                         fieldLowered = true;
                         break;
                     } else {
                         if ($scope.AdvancementPoints == 0) {
                             if ($scope.APFields[stat].Points == 0) {
-                                $scope.APFields[stat].FieldMax = 0;
+                                $scope.APFields[stat].FieldMax = "0";
                                 $scope.APFields[stat].Disabled = true;
                             } else {
-                                $scope.APFields[stat].FieldMax = $scope.APFields[stat].Points;
+                                $scope.APFields[stat].FieldMax = String($scope.APFields[stat].Points);
                                 $scope.APFields[stat].Disabled = false;
                             }
                         } else {
-                            $scope.APFields[stat].FieldMax = Math.min(($scope.APFields[stat].Max - $scope.APFields[stat].Starting), 3);
+                            $scope.APFields[stat].FieldMax = String(Math.min(($scope.APFields[stat].Max - $scope.APFields[stat].Starting), 3));
                             $scope.APFields[stat].Disabled = false;
                         }
                     }
