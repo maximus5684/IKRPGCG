@@ -6,6 +6,7 @@
         <script src="js/jquery-2.0.3.min.js"></script>
         <script src="js/jquery.color-2.1.2.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/general.js"></script>
         <link href="css/bootstrap.min.css" rel="stylesheet" media="all">
         <link href="css/main.css" rel="stylesheet" media="all">
         <link href="css/print.css" rel="stylesheet" media="print">

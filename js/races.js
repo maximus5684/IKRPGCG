@@ -1,5 +1,5 @@
 // Stats: [0] = Starting, [1] = Max @ Hero, [2] = Max @ Veteran, [3] = Max @ Epic
-raceArr =
+raceCoreArr =
 [
     {
         Name:'Human', 

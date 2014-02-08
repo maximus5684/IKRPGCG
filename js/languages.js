@@ -1,4 +1,4 @@
-langArr = [
+langCoreArr = [
     'Aeric',
     'Caspian',
     'Cygnaran',

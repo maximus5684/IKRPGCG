@@ -1,4 +1,4 @@
-archArr = [
+archCoreArr = [
     {
         Name: 'Gifted',
         Benefits:

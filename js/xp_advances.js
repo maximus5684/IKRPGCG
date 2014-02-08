@@ -1,4 +1,4 @@
-xpAdvArr =
+xpAdvCoreArr =
 [
     {
         XP: 2,

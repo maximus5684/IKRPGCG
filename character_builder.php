@@ -86,7 +86,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="control-group" ng-show="checkRace()">
                     <label class="control-label" for="Archetype">Archetype:</label>
                     <div class="controls">
-                        <select id="Archetype" style="margin-right: 10px" ng-model="Archetype" ng-options="Archetype.Name for Archetype in Archetypes" ng-disabled="checkArchetype()" ng-change="selectArchetype()">
+                        <select id="Archetype" style="margin-right: 10px" ng-model="Archetype" ng-options="Archetype.Name for Archetype in ArchetypesList" ng-disabled="checkArchetype()" ng-change="selectArchetype()">
                             <option value="">...</option>
                         </select>
                         <span ng-hide="checkArchetype()" class="label label-warning">Required</span>

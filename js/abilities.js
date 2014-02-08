@@ -1,4 +1,4 @@
-abilArr =
+abilCoreArr =
 [
     {
         Name: '\'Jack Marshal',

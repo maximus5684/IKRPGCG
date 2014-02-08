@@ -33,17 +33,16 @@ function XPManCtrl($scope, $http) {
     /////                                                           /////
     /////////////////////////////////////////////////////////////////////
 
-    $scope.Races = raceArr; // In races.js
-    $scope.Archetypes = archArr; // In archetypes.js
-    $scope.Careers = careerArr; // In careers.js
-    $scope.Abilities = abilArr; // In abilities.js
-    $scope.Spells = spellsArr; // In spells.js
-    $scope.Languages = langArr; // In languages.js
-    $scope.XPAdvances = xpAdvArr; // In xp_advances.js
-
-    $scope.MilitarySkills = milSkillsArr; // from skills.js
-    $scope.OccupationalSkills = occSkillsArr; // from skills.js
-    $scope.GeneralSkills = genSkillsArr; // from skills.js
+    $scope.Races = load_array('races', []);
+    $scope.Archetypes = load_array('archetypes', []);
+    $scope.Careers = load_array('careers', []);
+    $scope.Abilities = load_array('abilities', []);
+    $scope.MilitarySkills = load_array('military skills', []);
+    $scope.OccupationalSkills = load_array('occupational skills', []);
+    $scope.GeneralSkills = load_array('general skills', []);
+    $scope.Spells = load_array('spells', []);
+    $scope.Languages = load_array('languages', []);
+    $scope.XPAdvances = load_array('xp advances', []);
 
     /////////////////////////////////////////////////////////////////////
     /////                                                           /////
@@ -1722,14 +1721,6 @@ function XPManCtrl($scope, $http) {
         }
 
         return statMax;
-    }
-
-    function byName(objA, objB) {
-        if (objA.Name > objB.Name) {
-            return 1;
-        } else {
-            return -1;
-        }
     }
 
     $(window).bind('beforeunload', function() {

@@ -16,15 +16,16 @@ function CBCtrl($scope, $http) {
     };
     $scope.Race = null;
     $scope.Archetype = null;
+    $scope.ArchetypesList = null;
     $scope.Career1 = null;
     $scope.Career2 = null;
     $scope.Career1List = [];
     $scope.Career2List = [];
     $scope.LeavePressed = false;
     
-    $scope.Races = raceArr;
-    $scope.Archetypes = archArr;    
-    $scope.Careers = careerArr;
+    $scope.Races = load_array('races', []);
+    $scope.Archetypes = load_array('archetypes', []);
+    $scope.Careers = load_array('careers', []);
     
     // Ajax Variables
     $scope.Url = 'ajax/characters.php';
@@ -261,8 +262,8 @@ function CBCtrl($scope, $http) {
         // restricted by race.
         archList = [];
         
-        for (var i = 0; i < archArr.length; i++) {
-            archList.push(archArr[i]);
+        for (var i = 0; i < $scope.Archetypes.length; i++) {
+            archList.push($scope.Archetypes[i]);
         }
         
         if ('ResArchetypes' in $scope.Race) {
@@ -283,7 +284,7 @@ function CBCtrl($scope, $http) {
             }
         }
 
-        $scope.Archetypes = archList;
+        $scope.ArchetypesList = archList;
     }
     
     function popCareer1() {

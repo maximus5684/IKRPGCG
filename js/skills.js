@@ -1,4 +1,4 @@
-milSkillsArr =
+milSkillsCoreArr =
 [
         { Name: "Archery", BaseStat: "POI" },
 	{ Name: "Crossbow", BaseStat: "POI" },
@@ -13,7 +13,7 @@ milSkillsArr =
 	{ Name: "Unarmed Combat", BaseStat: "PRW" }
 ];
 
-occSkillsArr =
+occSkillsCoreArr =
 [
 	{ Name: "Alchemy", BaseStat: "INT" },
 	{ Name: "Bribery", BaseStat: "Social" },
@@ -46,7 +46,7 @@ occSkillsArr =
 	{ Name: "Tracking", BaseStat: "PER" }
 ];
 
-genSkillsArr = 
+genSkillsCoreArr = 
 [
 	{ Name: "Animal Handling", BaseStat: "Social" },
 	{ Name: "Climbing", BaseStat: "AGL" },

@@ -19,11 +19,11 @@ function CB3Ctrl($scope, $http) {
     $scope.RacialAbilityPropertyList = [];
     $scope.LeavePressed = false;
 
-    $scope.Races = raceArr;
-    $scope.Careers = careerArr;
-    $scope.Archetypes = archArr;
-    $scope.Abilities = abilArr;
-    $scope.Languages = langArr;
+    $scope.Races = load_array('races', []);
+    $scope.Careers = load_array('careers', []);
+    $scope.Archetypes = load_array('archetypes', []);
+    $scope.Abilities = load_array('abilities', []);
+    $scope.Languages = load_array('languages', []);
 
     // Initial function to load character.
     $scope.GetChar = function(CharID) {
@@ -555,14 +555,6 @@ function CB3Ctrl($scope, $http) {
         }
 
         return tempList;
-    }
-
-    function byName(objA, objB) {
-        if (objA.Name > objB.Name) {
-            return 1
-        } else if (objA.Name < objB.Name) {
-            return -1
-        }
     }
 
     $(window).bind('beforeunload', function() {

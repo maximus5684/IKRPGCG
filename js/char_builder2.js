@@ -88,12 +88,13 @@ function CB2Ctrl($scope, $http) {
     $scope.HRCareer2SpellReplacedWith = null;
     $scope.LeavePressed = false;
 
-    $scope.Races = raceArr;
-    $scope.Archetypes = archArr; 
-    $scope.Careers = careerArr;
-    $scope.Abilities = abilArr;
-    $scope.GeneralSkills = genSkillsArr;
-    $scope.Spells = spellsArr;
+    $scope.Races = load_array('races', []);
+    $scope.Archetypes = load_array('archetypes', []);
+    $scope.Careers = load_array('careers', []);
+    $scope.Abilities = load_array('abilities', []);
+    $scope.GeneralSkills = load_array('general skills', []);
+    $scope.Languages = load_array('languages', []);
+    $scope.Spells = load_array('spells', []);
 
     // Initial function to load character.
     $scope.GetChar = function(CharID) {
@@ -166,13 +167,13 @@ function CB2Ctrl($scope, $http) {
         if ($scope.Race.LangChoices > 0) {
             $scope.Language1Required = true;
             
-            for (var i = 0; i < langArr.length; i++) {
+            for (var i = 0; i < $scope.Languages.length; i++) {
                 if ('StartLangs' in $scope.Race) {
-                    if ($scope.Race.StartLangs.indexOf(langArr[i]) == -1) {
-                        $scope.Language1Choices.push(langArr[i]);
+                    if ($scope.Race.StartLangs.indexOf($scope.Languages[i]) == -1) {
+                        $scope.Language1Choices.push($scope.Languages[i]);
                     }
                 } else {
-                    $scope.Language1Choices.push(langArr[i]);
+                    $scope.Language1Choices.push($scope.Languages[i]);
                 }
             }
         }
@@ -1940,14 +1941,6 @@ function CB2Ctrl($scope, $http) {
         });
 
         return false;
-    }
-
-    function byName(objA, objB) {
-        if (objA.Name > objB.Name) {
-            return 1;
-        } else if (objA.Name < objB.Name) {
-            return -1;
-        }
     }
 
     $(window).bind('beforeunload', function() {

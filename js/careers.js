@@ -1,4 +1,4 @@
-careerArr = [
+careerCoreArr = [
     {
         Name: "Alchemist",
         StartingCareerOnly: false,

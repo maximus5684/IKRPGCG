@@ -1,4 +1,4 @@
-spellsArr =
+spellsCoreArr =
 [
     {
         Name: 'Arcane Bolt',
