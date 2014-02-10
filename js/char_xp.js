@@ -173,6 +173,7 @@ function XPManCtrl($scope, $http) {
                         break;
                     case 'ArchetypeBenefits':
                         advText += '+' + String(advance.Options[i][i1][1]) + ' Archetype Benefit';
+                        break;
                 }
 
                 if (advance.Options[i][i1][1] > 1) {
@@ -182,6 +183,65 @@ function XPManCtrl($scope, $http) {
                     }
 
                     advText += 's';
+                }
+            }
+        }
+
+        return advText;
+    }
+
+    $scope.displayAdvanceSelected = function(xp) {
+        var advText = '';
+
+        if ($scope.Character !== null) {
+            for (var i = 0; i < $scope.Character.XPAdvances.length; i++) {
+                if (xp == $scope.Character.XPAdvances[i].XP) {
+                    for (var i1 = 0; i1 < $scope.Character.XPAdvances[i].AdvanceParts.length; i1++) {
+                        if (advText.length != 0) {
+                            advText += ', ';
+                        }
+
+                        switch ($scope.Character.XPAdvances[i].AdvanceParts[i1].Type) {
+                            case 'Careers':
+                                advText += 'Career: ';
+
+                                break;
+                            case 'OccupationalSkills':
+                                advText += 'Occupational Skill: ';
+
+                                break;
+                            case 'Spells':
+                                advText += 'Spell: ';
+
+                                break;
+                            case 'Abilities':
+                                advText += 'Ability: ';
+
+                                break;
+                            case 'Connections':
+                                advText += 'Connection: ';
+
+                                break;
+                            case 'MilitarySkills':
+                                advText += 'Military Skill: ';
+
+                                break;
+                            case 'Stats':
+                                advText += 'Stat: ';
+
+                                break;
+                            case 'ArchetypeBenefits':
+                                advText += 'Archetype Benefit: ';
+
+                                break;
+                        }
+
+                        advText += $scope.Character.XPAdvances[i].AdvanceParts[i1].Selected;
+
+                        if ('Property' in $scope.Character.XPAdvances[i].AdvanceParts[i1]) {
+                            advText += ' (' + $scope.Character.XPAdvances[i].AdvanceParts[i1].Property + ')';
+                        }
+                    }
                 }
             }
         }

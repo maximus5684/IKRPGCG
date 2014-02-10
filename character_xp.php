@@ -33,6 +33,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <tr>
                         <th style="width: 80px">XP TOTAL</th>
                         <th>CHARACTER ADVANCEMENT</th>
+                        <th>SELECTED</th>
                         <th style="width: 160px">ADD / EDIT / DELETE</th>
                     </tr>
                 </thead>
@@ -40,6 +41,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <tr ng-repeat="XPAdv in XPAdvances" ng-show="checkXPRow(XPAdv.XP)">
                         <td>{{XPAdv.XP}}</td>
                         <td>{{displayAdvanceChoices(XPAdv)}}</td>
+                        <td class="bold" style="width: 250px">{{displayAdvanceSelected(XPAdv.XP)}}</td>
                         <td>
                             <span ng-show="checkXPAdvCurOrNext(XPAdv.XP)">
                                 <a ng-click="clickAddAdvance(XPAdv.XP)" ng-hide="checkXPAdvance(XPAdv.XP)">Add</a>
@@ -50,6 +52,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </tr>
                 </tbody>
             </table>
+            <div id="bottomSpacer">&#160;</div>
             <div class="modal hide fade" id="advEdit">
                 <form ng-submit="submitAdvChange()" onsubmit="javascript:$('#advEdit').modal('hide')">
                     <div class="modal-header">
@@ -103,7 +106,6 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </form>
             </div>
-            <div id="bottomSpacer">&#160;</div>
             <div id="changedBox" class="row" ng-show="SomethingChanged">
                 <div class="span12">
                     <form ng-submit="SaveCharChanges()">
