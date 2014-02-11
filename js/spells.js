@@ -1760,4 +1760,85 @@ spellsCoreArr =
         Book: 'Core Rules',
         Page: 245
     }
-]
+];
+
+spellsKNGArr =
+[
+    {
+        Name: 'Arcane Blast',
+        Cost: 3,
+        Range: 10,
+        AOE: '3',
+        POW: '13',
+        UP: 'NO',
+        OFF: 'YES',
+        Book: 'Kings, Nations, and Gods',
+        Page: 91
+    },
+    {
+        Name: 'Blur',
+        Cost: 2,
+        Range: 6,
+        AOE: '-',
+        POW: '-',
+        UP: 'YES',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 91
+    },
+    {
+        Name: 'Deadeye',
+        Cost: 2,
+        Range: 6,
+        AOE: '-',
+        POW: '-',
+        UP: 'NO',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 91
+    },
+    {
+        Name: 'Disruptor',
+        Cost: 2,
+        Range: 10,
+        AOE: '-',
+        POW: '-',
+        UP: 'NO',
+        OFF: 'YES',
+        Book: 'Kings, Nations, and Gods',
+        Page: 91
+    },
+    {
+        Name: 'Exorcism',
+        Cost: 2,
+        Range: 'SELF',
+        AOE: 'CTRL',
+        POW: '-',
+        UP: 'YES',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 91
+    },
+    {
+        Name: 'Lightning Shroud',
+        Cost: 2,
+        Range: 6,
+        AOE: '-',
+        POW: '-',
+        UP: 'YES',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 91
+    },
+    {
+        Name: 'Rune Shot: Disruption',
+        Cost: 2,
+        Range: 'SELF',
+        AOE: '-',
+        POW: '-',
+        UP: 'NO',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 91
+    }
+];

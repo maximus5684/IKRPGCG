@@ -454,10 +454,31 @@ function XPManCtrl($scope, $http) {
                                     }
                                 }
 
+                                if ('ResCareers' in $scope.Careers[i3]) {
+                                    for (var i4 = 0; i4 < $scope.Careers[i3].ResCareers.length; i4++) {
+                                        if ($scope.Careers[i3].ResCareers[i4] == $scope.Career1.Name) {
+                                            prereqsMet = false;
+                                        }
+
+                                        if ($scope.Careers[i3].ResCareers[i4] == $scope.Career2.Name) {
+                                            prereqsMet = false;
+                                        }
+
+                                        if ($scope.Career3 !== null && $scope.Careers[i3].ResCareers[i4] == $scope.Career3.Name) {
+                                            prereqsMet = false;
+                                        }
+
+                                        if ($scope.Career4 !== null && $scope.Careers[i3].ResCareers[i4] == $scope.Career4.Name) {
+                                            prereqsMet = false;
+                                        }
+                                    }
+                                }
+
                                 if (!found && prereqsMet) {
                                     tempChoice.ChoicesList.push({ Name: $scope.Careers[i3].Name });
                                 }
                             }
+
                             break;
                         case 'OccupationalSkills':
                             tempChoice.Label = 'Occupational Skill';
@@ -598,8 +619,6 @@ function XPManCtrl($scope, $http) {
                                 }
                             }
 
-                            tempChoice.ChoicesList.sort(byName);
-                            
                             break;
                         case 'Spells':
                             if ($scope.Character.Archetype == 'Gifted' && getSpellCount() < (getStatCurrent('INT') * 2)) {
@@ -695,8 +714,6 @@ function XPManCtrl($scope, $http) {
                                 }
                             }
 
-                            tempChoice.ChoicesList.sort(byName);
-
                             break;
                         case 'MilitarySkills':
                             tempChoice.Label = 'Military Skill';
@@ -767,7 +784,6 @@ function XPManCtrl($scope, $http) {
                                 }
                             }
 
-                            tempChoice.ChoicesList.sort(byName);
                             break;
                         case 'ArchetypeBenefits':
                             tempChoice.Label = 'Archetype Benefit';
@@ -842,6 +858,8 @@ function XPManCtrl($scope, $http) {
 
                             break;
                     }
+
+                    tempChoice.ChoicesList.sort(byName);
 
                     if (tempChoice.Type == 'Spells') {
                         if ($scope.Character.Archetype == 'Gifted' && getSpellCount() < (getStatCurrent('INT') * 2)) {

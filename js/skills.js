@@ -59,3 +59,8 @@ genSkillsCoreArr =
 	{ Name: "Riding", BaseStat: "AGL" },
 	{ Name: "Swimming", BaseStat: "STR" }
 ];
+
+occSkillsKNGArr =
+[
+    { Name: "Stormsmithing", BaseStat: "PER" }
+];

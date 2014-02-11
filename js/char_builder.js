@@ -249,14 +249,6 @@ function CBCtrl($scope, $http) {
         }
     };
     
-    function compareCareersByName(careerA, careerB) {
-        if (careerA.Name < careerB.Name) {
-            return 1;
-        } else {
-            return -1;
-        }
-    }
-    
     function popArchetypes() {
         // Populates the archetypes drop-down list. Removes archetypes
         // restricted by race.
@@ -326,6 +318,8 @@ function CBCtrl($scope, $http) {
                 $scope.Career1List.splice($scope.Career1List.indexOf(careersToRemove[i]), 1);
             }
         }
+
+        $scope.Career1List.sort(byName);
     }
 
     function popCareer2() {

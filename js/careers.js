@@ -1742,3 +1742,67 @@ careerCoreArr = [
         ]
     }
 ];
+
+careerKNGArr =
+[
+    {
+        Name: "Arcane Tempest Gun Mage",
+        StartingCareerOnly: false,
+        ReqArchetype: 'Gifted',
+        ResCareers: ['Gun Mage'],
+        StartingAbilities: [{ Name: 'Craft Rune Shot' }, { Name: 'Fast Reload' }],
+        StartingConnections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
+        StartingOccupationalSkills: [{ Name: 'Detection', Level: 1}, { Name: 'Intimidation', Level: 1 }],
+        StartingMSkillChoices: 1,
+        StartingMSkillChoicesOptions: [{ Name: 'Pistol', Level: 1 }, { Name: 'Rifle', Level: 1 }],
+        StartingOSkillChoices: 0,
+        StartingSpells: ['Rune Shot: Accuracy', 'Rune Shot: Brutal', 'Rune Shot: Thunderbolt'],
+        StartingAssets: ['ammo bandolier','rune shot casting kit','powder','10 rounds of ammunition','armored great coat'],
+        StartingAssetChoices: 1,
+        StartingAssetChoiceOptions: ['magelock pistol','magelock rifle'],
+        StartingGold: 25,
+        ResSecondCareers: ['Aristocrat','Horseman','Military Officer','Pistoleer','Ranger','Rifleman','Soldier','Spy','Warcaster'],
+        Abilities: 
+        [
+            { Name: 'Arcane Precision' },
+            { Name: 'Craft Rune Shot' },
+            { Name: 'Fast Draw' },
+            { Name: 'Fast Reload' },
+            { Name: 'Gunfighter' },
+            { Name: 'Keen Eyed' },
+            { Name: 'Runesmith' }
+        ],
+        Connections: [{ Name: 'gun mage order', Type: 'Generic' }],
+        MilitarySkills: [{ Name: 'Pistol', Level: 4 }, { Name: 'Rifle', Level: 4 }],
+        OccupationalSkills: [{ Name: 'General Skills', Level: 4 }, { Name: 'Seduction', Level: 2 }],
+        SpellList: 
+        [
+            'Fire Group',
+            'Guided Fire',
+            'Heightened Reflexes',
+            'Refuge',
+            'Return Fire',
+            'Rune Shot: Accuracy',
+            'Rune Shot: Black Penny',
+            'Rune Shot: Brutal',
+            'Rune Shot: Detonator',
+            'Rune Shot: Disruption',
+            'Rune Shot: Earth Shaker',
+            'Rune Shot: Fire Beacon',
+            'Rune Shot: Freeze Fire',
+            'Rune Shot: Heart Stopper',
+            'Rune Shot: Iron Rot',
+            'Rune Shot: Molten Shot',
+            'Rune Shot: Momentum',
+            'Rune Shot: Phantom Seeker',
+            'Rune Shot: Shadow Fire',
+            'Rune Shot: Silencer',
+            'Rune Shot: Spell Craker',
+            'Rune Shot: Spontaneous Combustion',
+            'Rune Shot: Thunderbolt',
+            'Rune Shot: Trick Shot',
+            'Snipe',
+            'True Sight'
+        ]
+    }
+];

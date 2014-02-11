@@ -845,3 +845,48 @@ abilCoreArr =
         Page: 168
     }
 ];
+
+abilKNGArr = 
+[
+    {
+        Name: 'Electromancer',
+        PrereqOSkills: [{ Name: 'Stormsmithing', Level: 3 }],
+        Book: 'Kings, Nations, and Gods',
+        Page: 90
+    },
+    {
+        Name: 'Eye of the Storm',
+        PrereqOSkills: [{ Name: 'Stormsmithing', Level: 3 }],
+        Book: 'Kings, Nations, and Gods',
+        Page: 90
+    },
+    {
+        Name: 'Maestro',
+        PrereqOSkills: [{ Name: 'Stormsmithing', Level: 1 }],
+        Book: 'Kings, Nations, and Gods',
+        Page: 90
+    },
+    {
+        Name: 'Runesmith',
+        PrereqAbils: '\'Jack Marshal',
+        Book: 'Kings, Nations, and Gods',
+        Page: 90
+    },
+    {
+        Name: 'Storm Booster',
+        PrereqOSkills: [{ Name: 'Stormsmithing', Level: 2 }],
+        Book: 'Kings, Nations, and Gods',
+        Page: 90
+    },
+    {
+        Name: 'Weatherman',
+        PrereqOSkills: [{ Name: 'Stormsmithing', Level: 1 }],
+        Book: 'Kings, Nations, and Gods',
+        Page: 90
+    },
+    {
+        Name: 'Weather Vane',
+        Book: 'Kings, Nations, and Gods',
+        Page: 90
+    }
+];
