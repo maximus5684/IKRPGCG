@@ -1749,6 +1749,7 @@ careerKNGArr =
         Name: "Arcane Tempest Gun Mage",
         StartingCareerOnly: false,
         ReqArchetype: 'Gifted',
+        ReqRaces: ['Human'],
         ResCareers: ['Gun Mage'],
         StartingAbilities: [{ Name: 'Craft Rune Shot' }, { Name: 'Fast Reload' }],
         StartingConnections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
@@ -1804,5 +1805,176 @@ careerKNGArr =
             'Snipe',
             'True Sight'
         ]
+    },
+    {
+        Name: "Cygnaran Warcaster",
+        StartingCareerOnly: true,
+        ReqArchetype: 'Gifted',
+        ReqRaces: ['Human'],
+        ResCareers: ['Warcaster'],
+        MakesFocuser: true,
+        StartingAbilities: [{ Name: 'Bond', Type: 'Generic', Property: 'bond slot' }],
+        StartingConnections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Pistol', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Command', Level: 1 }, { Name: 'Detection', Level: 1 }],
+        StartingMSkillChoices: 0,
+        StartingOSkillChoices: 0,
+        StartingSpells: ['Arcane Bolt','Blur'],
+        StartingSpecial: 'Change the character\'s arcane tradition to focuser if he has another arcane career. A warcaster can boost only with mechanikal weapons they are bonded to.',
+        StartingAssetChoices: 1,
+        StartingAssetChoiceOptions: [
+            'warcaster armor (light)',
+            'warcaster armor (medium)',
+            'mechanika hand weapon',
+            'mechanika hand cannon'
+        ],
+        ResSecondCareers:
+        [
+            'Arcane Mechanik',
+            'Arcanist',
+            'Aristocrat',
+            'Field Mechanik',
+            'Gun Mage',
+            'Horseman',
+            'Knight',
+            'Man-at-Arms',
+            'Military Officer',
+            'Pistoleer',
+            'Ranger',
+            'Rifleman',
+            'Soldier',
+            'Sorcerer',
+            'Stormblade',
+            'Trencher'
+        ],
+        Abilities:
+        [
+            { Name: 'Bond', Type: 'Generic', Property: 'bond slot' },
+            { Name: 'Field Marshal: Magical Attack' },
+            { Name: 'Field Marshal: Relentless Charge' },
+            { Name: 'Field Marshal: Shield Guard' },
+            { Name: 'Natural Leader' }
+        ],
+        Connections: [{ Name: 'kingdom or mercenary company', Type: 'Generic' }],
+        MilitarySkills:
+        [
+            { Name: 'Great Weapon', Level: 3 },
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Pistol', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 2 }
+        ],
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 4 },
+            { Name: 'General Skills', Level: 4 }
+        ],
+        SpellList:
+        [
+            'Arcane Blast',
+            'Arcane Bolt',
+            'Arcane Strike',
+            'Aura of Protection',
+            'Blur',
+            'Chain Lightning',
+            'Deceleration',
+            'Deadeye',
+            'Disruptor',
+            'Earthquake',
+            'Electrical Blast',
+            'Electrify',
+            'Fail Safe',
+            'Force Field',
+            'Force Hammer',
+            'Fortify',
+            'Foxhole',
+            'Guided Fire',
+            'Heightened Reflexes',
+            'Jump Start',
+            'Lightning Shroud',
+            'Positive Charge',
+            'Refuge',
+            'Return Fire',
+            'Snipe',
+            'Tide of Steel',
+            'Voltaic Lock'
+        ]
+    },
+    {
+        Name: "Illuminated Arcanist",
+        StartingCareerOnly: false,
+        ReqArchetype: 'Gifted',
+        ReqRaces: ['Human'],
+        ResCareers: ['Arcanist'],
+        StartingAbilities: [{ Name: 'Great Power' }],
+        StartingConnections: [{ Name: 'Order of Illumination', Type: 'Specific' }],
+        StartingOccupationalSkills: [{ Name: 'Lore', Type: 'Specific', Property: 'Arcane', Level: 1 },{ Name: 'Research', Level: 1 }],
+        StartingMSkillChoices: 0,
+        StartingOSkillChoices: 0,
+        StartingSpells: ['Eyes of Truth','Guided Blade','Occultation'],
+        StartingSpecial: 'A character who chooses Arcanist as one of his two starting careers gains the Rune Reader Gifted archetype benefit.',
+        StartingAssetChoices: 0,
+        StartingGold: 75,
+        FreeBenefits: [{ Name: 'Rune Reader' }],
+        Abilities: [{ Name: 'Arcane Defenses' },{ Name: 'Arcane Scholar' },{ Name: 'Great Power' },{ Name: 'University Education' }],
+        Connections: [{ Name: 'magical order', Type: 'Generic' }],
+        OccupationalSkills:
+        [
+            { Name: 'Craft', Type: 'Generic', Property: 'any', Level: 2 },
+            { Name: 'Etiquette', Level: 2 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Negotiation', Level: 2 },
+            { Name: 'Oratory', Level: 2 },
+            { Name: 'Research', Level: 4 }
+        ],
+        SpellList:
+        [
+            'Arcane Strike',
+            'Banishing Ward',
+            'Blade of Radiance',
+            'Blessings of War',
+            'Daylight',
+            'Eyes of Truth',
+            'Exorcism',
+            'Force Hammer',
+            'Force of Faith',
+            'Guided Blade',
+            'Hex Blast',
+            'Lamentation',
+            'Light in the Darkness',
+            'Occultation',
+            'Purification',
+            'Shield of Faith',
+            'Star Fire',
+            'Sunburst',
+            'True Sight'
+        ]
+    },
+    {
+        Name: 'Stormsmith',
+        StartingCareerOnly: false,
+        ReqRaces: ['Human'],
+        StartingAbilities: [{ Name: 'Specialization', Type: 'Specific', Property: 'Stormcaller and Lightning Rod' }, { Name: 'Weatherman' }, { Name: 'Weather Vane' }],
+        StartingConnections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
+        StartingMilitarySkills: [{ Name: 'Great Weapon', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Mechanikal Engineering', Level: 1 },{ Name: 'Stormsmithing', Level: 1 }],
+        StartingMSkillChoices: 0,
+        StartingOSkillChoices: 0,
+        StartingAssets: ['Stormsmith armor', 'stormcaller and lightning rod'],
+        StartingAssetChoices: 0,
+        StartingGold: 0,
+        Abilities:
+        [
+            { Name: 'Electromancer' },
+            { Name: 'Eye of the Storm' },
+            { Name: 'Hit the Deck!' },
+            { Name: 'Maestro' },
+            { Name: 'Specialization', Type: 'Specific', Property: 'Stormcaller and Lightning Rod' },
+            { Name: 'Storm Booster' },
+            { Name: 'Weatherman' },
+            { Name: 'Weather Vane' }
+        ],
+        Connections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
+        MilitarySkills: [{ Name: 'Great Weapon', Level: 2 }, { Name: 'Hand Weapon', Level: 2 }],
+        OccupationalSkills: [{ Name: 'General Skills', Level: 4 },{ Name: 'Mechanikal Engineering', Level: 3 },{ Name: 'Stormsmithing', Level: 4 }]
     }
 ];
