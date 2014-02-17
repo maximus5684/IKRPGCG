@@ -39,6 +39,8 @@ function CSCtrl($scope, $http) {
     $scope.OldWeight = null;
     $scope.EditFaith = false;
     $scope.OldFaith = null;
+    $scope.FeatPoints = 0;
+    $scope.Notes = '';
     $scope.PHYDamBoxes = 
     [
         { Disabled: false, Checked: false },
@@ -181,6 +183,18 @@ function CSCtrl($scope, $http) {
     }
    
     $scope.loadCharacterDefaults = function() {
+        if ('FeatPoints' in $scope.Character) {
+            $scope.FeatPoints = $scope.Character.FeatPoints;
+        } else {
+            $scope.Character.FeatPoints = 0;
+        }
+
+        if ('Notes' in $scope.Character) {
+            $scope.Notes = $scope.Character.Notes;
+        } else {
+            $scope.Character.Notes = '';
+        }
+
         $scope.Level = $scope.xpLevel($scope.Character.XP);
 
         for (var i = 0; i < $scope.Races.length; i++) {
@@ -786,6 +800,24 @@ function CSCtrl($scope, $http) {
     }
 
     // Functions to change basic character information.
+    $scope.changeFeatPoints = function() {
+        if ($scope.FeatPoints === null || $scope.FeatPoints == '') {
+            $scope.FeatPoints = 0;
+        } else if (isNaN($scope.FeatPoints)) {
+            $scope.FeatPoints = 3;
+        } else if ($scope.FeatPoints > 3) {
+            $scope.FeatPoints = 3;
+        } else if ($scope.FeatPoints < 0) {
+            $scope.FeatPoints = 0;
+        }
+
+        $scope.SomethingChanged = true;
+    }
+
+    $scope.changeNotes = function() {
+        $scope.SomethingChanged = true;
+    }
+
     $scope.clickEditName = function() {
         clickEditField('EditName', 'Name', 'OldName');
     }
@@ -811,6 +843,9 @@ function CSCtrl($scope, $http) {
     }
 
     $scope.SaveCharChanges = function() {
+        $scope.Character.FeatPoints = $scope.FeatPoints;
+        $scope.Character.Notes = $scope.Notes;
+
         $http.post($scope.CharUrl, { ReqType: 'UpdateChar', CharacterID: $scope.CharacterID, Character: $scope.Character }).success(function(data, status) {
             if (status != 200 || data != 'OK') {
                 $scope.Error = data;

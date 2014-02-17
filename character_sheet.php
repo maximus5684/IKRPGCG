@@ -24,59 +24,59 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                         <p class="csBoxHead">IRON KINGDOMS ROLEPLAYING GAME CHARACTER SHEET</p>
                         <p class="csInputBox">
                             <span id="Name" class="textSpace" style="width:240px" ng-hide="EditName">{{Character.Name}}</span><input type="text" id="Name" class="textSpace" maxlength="30" style="width: 240px" ng-show="EditName" ng-model="Character.Name"><br>
-                            <strong class="small"><a ng-click="clickEditName()">CHARACTER NAME</a></strong>
+                            <span class="inputLabel small"><a ng-click="clickEditName()">CHARACTER NAME</a></span>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace" style="text-align: center; width: 38px" ng-hide="EditSex">{{Character.Sex}}</span><select class="textSpace" style="margin-top: 7px; width: 41px" ng-show="EditSex" ng-model="Character.Sex">
                                 <option value="M">M</option>
                                 <option value="F">F</option>
                             </select><br>
-                            <strong class="small"><a ng-click="clickEditSex()">SEX</a></strong>
+                            <span class="inputLabel small"><a ng-click="clickEditSex()">SEX</a></span>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace" style="width: 270px" ng-hide="EditDefiningChars">{{Character.DefiningCharacteristics}}</span><input type="text" class="textSpace" maxlength="30" style="width: 270px" ng-show="EditDefiningChars" ng-model="Character.DefiningCharacteristics"><br>
-                            <strong class="small"><a ng-click="clickEditDefiningChars()">DEFINING CHARACTERISTIC(S)</a></strong>
+                            <span class="inputLabel small"><a ng-click="clickEditDefiningChars()">DEFINING CHARACTERISTIC(S)</a></span>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace" style="text-align: center; width: 50px" ng-hide="EditHeight">{{Character.Height}}"</span><input type="number" class="textSpace" ng-model="Character.Height" style="width: 50px" ng-show="EditHeight"><br>
-                            <strong class="small"><a ng-click="clickEditHeight()">HEIGHT</a></strong>
+                            <span class="inputLabel small"><a ng-click="clickEditHeight()">HEIGHT</a></span>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace" style="text-align: center; width: 50px" ng-hide="EditWeight">{{Character.Weight}} lbs</span><input type="number" class="textSpace" ng-model="Character.Weight" style="width: 50px" ng-show="EditWeight"><br>
-                            <strong class="small"><a ng-click="clickEditWeight()">WEIGHT</a></strong>
+                            <span class="inputLabel small"><a ng-click="clickEditWeight()">WEIGHT</a></span>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace" style="width: 110px" ng-hide="EditFaith">{{Character.Faith}}</span><input type="text" class="textSpace" ng-model="Character.Faith" style="width: 110px" ng-show="EditFaith"><br>
-                            <strong class="small"><a ng-click="clickEditFaith()">FAITH</a></strong>
+                            <span class="inputLabel small"><a ng-click="clickEditFaith()">FAITH</a></span>
                         </p>
                         <div class="clear">&#160;</div>
                         <p class="csInputBox">
                             <span class="textSpace" style="width: 152px">{{User.First}}</span><br>
-                            <strong class="small">PLAYER NAME</strong>
+                            <span class="inputLabel small">PLAYER NAME</span>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace" style="width: 75px">{{Character.Archetype}}</span><br>
-                            <strong class="small">ARCHETYPE</strong>
+                            <span class="inputLabel small">ARCHETYPE</span>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace" style="width: 75px">{{Character.Race}}</span><br>
-                            <strong class="small">RACE</strong>
+                            <span class="inputLabel small">RACE</span>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace career">{{Character.Career1}}</span><br>
-                            <strong class="small">CAREER 1</strong>
+                            <span class="inputLabel small">CAREER 1</span>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace career">{{Character.Career2}}</span><br>
-                            <strong class="small">CAREER 2</strong>
+                            <span class="inputLabel small">CAREER 2</span>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace career">{{Career3.Name}}</span><br>
-                            <strong class="small">CAREER 3</strong>
+                            <span class="inputLabel small">CAREER 3</span>
                         </p>
                         <p class="csInputBox">
                             <span class="textSpace career">{{Career4.Name}}</span><br>
-                            <strong class="small">CAREER 4</strong>
+                            <span class="inputLabel small">CAREER 4</span>
                         </p>
                         <div class="clear">&#160;</div>
                         <div class="csStatBox small" style="right: 10px; top: 5px; width: 100px">
@@ -311,7 +311,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     <div class="csBox small" style="padding: 0 0 0 5px">
                         <p class="csBoxHead">FEAT POINTS</p>
                         <div class="csStatBox" id="featPointsBox">
-                            <p class="csStatBoxVal"><input type="number" id="featPoints" min="0" max="3" value="0"></p>
+                            <p class="csStatBoxVal"><input type="number" id="featPoints" class="elan" min="0" max="3" ng-model="FeatPoints" ng-change="changeFeatPoints()"></p>
                             <p class="csStatBoxStat">CURRENT<br>FEAT<br>POINTS</p>
                         </div>
                         <div id="featBox">
@@ -472,7 +472,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="span4">
                     <div class="csBox" style="height: 268px">
                         <p class="csBoxHead">NOTES</p>
-                        <textarea maxlength="450" id="notesBox"></textarea>
+                        <textarea maxlength="450" id="notesBox" ng-model="Notes" ng-keyup="changeNotes()"></textarea>
                     </div>
                 </div>
             </div>
