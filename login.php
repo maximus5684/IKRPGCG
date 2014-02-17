@@ -17,7 +17,7 @@ $pageTitle = 'Home - Iron Kingdoms Character Generator';
     <body>
         <div class="container" id="mainContain" ng-controller="LoginCtrl" ng-init="SetRedir('<?php echo str_replace("Reason=Inactive", "", urldecode($_SERVER['QUERY_STRING'])); ?>')">
             <div class="hero-unit">
-                <h1 class="center">Iron Kingdoms<br>Character Builder</h1>
+                <h1 class="center" id="loginTitle">IRON KINGDOMS<br>Character Builder</h1>
                 <form class="form-horizontal">
                     <div class="control-group{{EmailStatus}}">
                         <label class="control-label" for="loginEmail">Email:</label>

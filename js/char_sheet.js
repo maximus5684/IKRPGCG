@@ -98,12 +98,6 @@ function CSCtrl($scope, $http) {
     $scope.ProfUrl = 'ajax/profile.php';
     $scope.User = null;
     
-    /////////////////////////////////////////////////////////////////////
-    /////                                                           /////
-    /////       User Arrays/Objects                                 /////
-    /////                                                           /////
-    /////////////////////////////////////////////////////////////////////
-
     $scope.Stats = {
         PHY: { Current: 0, Max: 0 },
         SPD: { Current: 0, Max: 0 },

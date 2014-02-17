@@ -8,7 +8,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
 
         <div class="container" id="mainContain" ng-controller="HomeCtrl" ng-init="GetCharacters()">
-            <h1 class="center">List of Characters</h1>
+            <h2 class="center elan">List of Characters</h2>
             <table class="table table-striped" id="characterTable" ng-show="CharactersShow()">
                 <thead>
                     <tr>

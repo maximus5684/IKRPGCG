@@ -13,7 +13,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
 
         <div class="container" id="mainContain" ng-controller="CB3Ctrl" data-ng-init="GetChar(<?php echo $_GET["CharacterID"]; ?>)">
-            <h2 class="center">Character Builder</h2>
+            <h2 class="center elan">Character Builder</h2>
             <form class="form-horizontal" id="charFinalDetailsForm" ng-submit="UpdateChar()">
                 <div ng-show="HasOSkillsWithProperties">
                     <h3>Occupational Skills</h3>

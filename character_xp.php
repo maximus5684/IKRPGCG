@@ -28,7 +28,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
             <table class="span12 table table-striped table-bordered" id="xpTable">
                 <thead>
                     <tr>
-                        <th colspan="4" id="bigHead"><h2>CHARACTER ADVANCEMENT TABLE</h2></th>
+                        <th colspan="4" id="bigHead"><h2 class="elan">CHARACTER ADVANCEMENT TABLE</h2></th>
                     </tr>
                     <tr>
                         <th style="width: 80px">XP TOTAL</th>

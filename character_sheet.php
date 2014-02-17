@@ -308,10 +308,10 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
                 <div class="span6">
-                    <div class="csBox small" style="padding: 0 0 5px 5px">
+                    <div class="csBox small" style="padding: 0 0 0 5px">
                         <p class="csBoxHead">FEAT POINTS</p>
-                        <div class="csStatBox" style="margin-top: 24px; width: 75px; float: left; position: static">
-                            <p class="csStatBoxVal"><input type="number" style="width: 100%; border: none; font-size: 3.7em; height: 1.14em" min="0" max="3" value="0"></p>
+                        <div class="csStatBox" id="featPointsBox">
+                            <p class="csStatBoxVal"><input type="number" id="featPoints" min="0" max="3" value="0"></p>
                             <p class="csStatBoxStat">CURRENT<br>FEAT<br>POINTS</p>
                         </div>
                         <div id="featBox">
@@ -403,6 +403,41 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                     </div>
                 </div>
             </div>
+            <div class="row" ng-show="HasSpells">
+                <div class="span12">
+                    <div class="csBox">
+                        <p class="csBoxHead">SPELLS</p>
+                        <table class="csTable table-striped" id="spellTable">
+                            <thead>
+                                <tr>
+                                    <th class="small" style="text-align: left">NAME</th>
+                                    <th class="small">COST</th>
+                                    <th class="small">RNG</th>
+                                    <th class="small">AOE</th>
+                                    <th class="small">POW</th>
+                                    <th class="small">UP</th>
+                                    <th class="small">OFF</th>
+                                    <th class="small">BOOK</th>
+                                    <th class="small">PAGE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="Spell in CharSpells">
+                                    <td>{{Spell.Name}}</td>
+                                    <td>{{Spell.Cost}}</td>
+                                    <td>{{Spell.Range}}</td>
+                                    <td>{{Spell.AOE}}</td>
+                                    <td>{{Spell.POW}}</td>
+                                    <td>{{Spell.UP}}</td>
+                                    <td>{{Spell.OFF}}</td>
+                                    <td>{{Spell.Book}}</td>
+                                    <td>{{Spell.Page}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="span4">
                     <div class="csBox" style="padding-top: 0; height: 292px">
@@ -437,42 +472,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
                 <div class="span4">
                     <div class="csBox" style="height: 268px">
                         <p class="csBoxHead">NOTES</p>
-                        <textarea maxlength="450" style="width: 282px; height: 94%; resize: none"></textarea>
-                    </div>
-                </div>
-            </div>
-            <div class="row" ng-show="HasSpells">
-                <div class="span12">
-                    <div class="csBox">
-                        <p class="csBoxHead">SPELLS</p>
-                        <table class="csTable table-striped" id="spellTable">
-                            <thead>
-                                <tr>
-                                    <th class="small" style="text-align: left">NAME</th>
-                                    <th class="small">COST</th>
-                                    <th class="small">RNG</th>
-                                    <th class="small">AOE</th>
-                                    <th class="small">POW</th>
-                                    <th class="small">UP</th>
-                                    <th class="small">OFF</th>
-                                    <th class="small">BOOK</th>
-                                    <th class="small">PAGE</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="Spell in CharSpells">
-                                    <td>{{Spell.Name}}</td>
-                                    <td>{{Spell.Cost}}</td>
-                                    <td>{{Spell.Range}}</td>
-                                    <td>{{Spell.AOE}}</td>
-                                    <td>{{Spell.POW}}</td>
-                                    <td>{{Spell.UP}}</td>
-                                    <td>{{Spell.OFF}}</td>
-                                    <td>{{Spell.Book}}</td>
-                                    <td>{{Spell.Page}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <textarea maxlength="450" id="notesBox"></textarea>
                     </div>
                 </div>
             </div>

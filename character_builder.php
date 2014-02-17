@@ -11,7 +11,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
 
         <div class="container" id="mainContain" ng-controller="CBCtrl">
-            <h2 class="center">Character Builder</h2>
+            <h2 class="center elan">Character Builder</h2>
             <div id="specialBox" ng-show="checkRace()">
                 <div id="raceSpecial" class="csBox">
                     <p class="csBoxHead">Race</p>
