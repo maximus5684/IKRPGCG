@@ -26,6 +26,7 @@ function CBCtrl($scope, $http) {
     $scope.Races = load_array('races', []);
     $scope.Archetypes = load_array('archetypes', []);
     $scope.Careers = load_array('careers', []);
+    $scope.CareerOptions = load_array('career options', []);
     
     // Ajax Variables
     $scope.Url = 'ajax/characters.php';

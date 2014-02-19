@@ -16,6 +16,10 @@ function load_array(type, exclusions) {
             arrName = "career";
 
             break;
+        case 'career options':
+            arrName = "opt";
+
+            break;
         case 'abilities':
             arrName = "abil";
 

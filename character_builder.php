@@ -7,6 +7,7 @@ include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header1.php'); ?>
         <script src="js/races.js"></script>
         <script src="js/archetypes.js"></script>
         <script src="js/careers.js"></script>
+        <script src="js/career_options.js"></script>
         <script src="js/char_builder.js"></script>
 <?php include($_SERVER['DOCUMENT_ROOT'] . '/phpincludes/header2.php'); ?>
 

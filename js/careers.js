@@ -1746,210 +1746,6 @@ careerCoreArr = [
 careerKNGArr =
 [
     {
-        Name: "Arcane Tempest Gun Mage",
-        StartingCareerOnly: false,
-        ReqArchetype: 'Gifted',
-        ReqRaces: ['Human'],
-        ResCareers: ['Gun Mage'],
-        StartingAbilities: [{ Name: 'Craft Rune Shot' }, { Name: 'Fast Reload' }],
-        StartingConnections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
-        StartingOccupationalSkills: [{ Name: 'Detection', Level: 1}, { Name: 'Intimidation', Level: 1 }],
-        StartingMSkillChoices: 1,
-        StartingMSkillChoicesOptions: [{ Name: 'Pistol', Level: 1 }, { Name: 'Rifle', Level: 1 }],
-        StartingOSkillChoices: 0,
-        StartingSpells: ['Rune Shot: Accuracy', 'Rune Shot: Brutal', 'Rune Shot: Thunderbolt'],
-        StartingAssets: ['ammo bandolier','rune shot casting kit','powder','10 rounds of ammunition','armored great coat'],
-        StartingAssetChoices: 1,
-        StartingAssetChoiceOptions: ['magelock pistol','magelock rifle'],
-        StartingGold: 25,
-        ResSecondCareers: ['Aristocrat','Horseman','Military Officer','Pistoleer','Ranger','Rifleman','Soldier','Spy','Warcaster'],
-        Abilities: 
-        [
-            { Name: 'Arcane Precision' },
-            { Name: 'Craft Rune Shot' },
-            { Name: 'Fast Draw' },
-            { Name: 'Fast Reload' },
-            { Name: 'Gunfighter' },
-            { Name: 'Keen Eyed' },
-            { Name: 'Runesmith' }
-        ],
-        Connections: [{ Name: 'gun mage order', Type: 'Generic' }],
-        MilitarySkills: [{ Name: 'Pistol', Level: 4 }, { Name: 'Rifle', Level: 4 }],
-        OccupationalSkills: [{ Name: 'General Skills', Level: 4 }, { Name: 'Seduction', Level: 2 }],
-        SpellList: 
-        [
-            'Fire Group',
-            'Guided Fire',
-            'Heightened Reflexes',
-            'Refuge',
-            'Return Fire',
-            'Rune Shot: Accuracy',
-            'Rune Shot: Black Penny',
-            'Rune Shot: Brutal',
-            'Rune Shot: Detonator',
-            'Rune Shot: Disruption',
-            'Rune Shot: Earth Shaker',
-            'Rune Shot: Fire Beacon',
-            'Rune Shot: Freeze Fire',
-            'Rune Shot: Heart Stopper',
-            'Rune Shot: Iron Rot',
-            'Rune Shot: Molten Shot',
-            'Rune Shot: Momentum',
-            'Rune Shot: Phantom Seeker',
-            'Rune Shot: Shadow Fire',
-            'Rune Shot: Silencer',
-            'Rune Shot: Spell Craker',
-            'Rune Shot: Spontaneous Combustion',
-            'Rune Shot: Thunderbolt',
-            'Rune Shot: Trick Shot',
-            'Snipe',
-            'True Sight'
-        ]
-    },
-    {
-        Name: "Cygnaran Warcaster",
-        StartingCareerOnly: true,
-        ReqArchetype: 'Gifted',
-        ReqRaces: ['Human'],
-        ResCareers: ['Warcaster'],
-        MakesFocuser: true,
-        StartingAbilities: [{ Name: 'Bond', Type: 'Generic', Property: 'bond slot' }],
-        StartingConnections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
-        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Pistol', Level: 1 }],
-        StartingOccupationalSkills: [{ Name: 'Command', Level: 1 }, { Name: 'Detection', Level: 1 }],
-        StartingMSkillChoices: 0,
-        StartingOSkillChoices: 0,
-        StartingSpells: ['Arcane Bolt','Blur'],
-        StartingSpecial: 'Change the character\'s arcane tradition to focuser if he has another arcane career. A warcaster can boost only with mechanikal weapons they are bonded to.',
-        StartingAssetChoices: 1,
-        StartingAssetChoiceOptions: [
-            'warcaster armor (light)',
-            'warcaster armor (medium)',
-            'mechanika hand weapon',
-            'mechanika hand cannon'
-        ],
-        ResSecondCareers:
-        [
-            'Arcane Mechanik',
-            'Arcanist',
-            'Aristocrat',
-            'Field Mechanik',
-            'Gun Mage',
-            'Horseman',
-            'Knight',
-            'Man-at-Arms',
-            'Military Officer',
-            'Pistoleer',
-            'Ranger',
-            'Rifleman',
-            'Soldier',
-            'Sorcerer',
-            'Stormblade',
-            'Trencher'
-        ],
-        Abilities:
-        [
-            { Name: 'Bond', Type: 'Generic', Property: 'bond slot' },
-            { Name: 'Field Marshal: Magical Attack' },
-            { Name: 'Field Marshal: Relentless Charge' },
-            { Name: 'Field Marshal: Shield Guard' },
-            { Name: 'Natural Leader' }
-        ],
-        Connections: [{ Name: 'kingdom or mercenary company', Type: 'Generic' }],
-        MilitarySkills:
-        [
-            { Name: 'Great Weapon', Level: 3 },
-            { Name: 'Hand Weapon', Level: 3 },
-            { Name: 'Pistol', Level: 3 },
-            { Name: 'Unarmed Combat', Level: 2 }
-        ],
-        OccupationalSkills:
-        [
-            { Name: 'Command', Level: 4 },
-            { Name: 'General Skills', Level: 4 }
-        ],
-        SpellList:
-        [
-            'Arcane Blast',
-            'Arcane Bolt',
-            'Arcane Strike',
-            'Aura of Protection',
-            'Blur',
-            'Chain Lightning',
-            'Deceleration',
-            'Deadeye',
-            'Disruptor',
-            'Earthquake',
-            'Electrical Blast',
-            'Electrify',
-            'Fail Safe',
-            'Force Field',
-            'Force Hammer',
-            'Fortify',
-            'Foxhole',
-            'Guided Fire',
-            'Heightened Reflexes',
-            'Jump Start',
-            'Lightning Shroud',
-            'Positive Charge',
-            'Refuge',
-            'Return Fire',
-            'Snipe',
-            'Tide of Steel',
-            'Voltaic Lock'
-        ]
-    },
-    {
-        Name: "Illuminated Arcanist",
-        StartingCareerOnly: false,
-        ReqArchetype: 'Gifted',
-        ReqRaces: ['Human'],
-        ResCareers: ['Arcanist'],
-        StartingAbilities: [{ Name: 'Great Power' }],
-        StartingConnections: [{ Name: 'Order of Illumination', Type: 'Specific' }],
-        StartingOccupationalSkills: [{ Name: 'Lore', Type: 'Specific', Property: 'Arcane', Level: 1 },{ Name: 'Research', Level: 1 }],
-        StartingMSkillChoices: 0,
-        StartingOSkillChoices: 0,
-        StartingSpells: ['Eyes of Truth','Guided Blade','Occultation'],
-        StartingSpecial: 'A character who chooses Arcanist as one of his two starting careers gains the Rune Reader Gifted archetype benefit.',
-        StartingAssetChoices: 0,
-        StartingGold: 75,
-        FreeBenefits: [{ Name: 'Rune Reader' }],
-        Abilities: [{ Name: 'Arcane Defenses' },{ Name: 'Arcane Scholar' },{ Name: 'Great Power' },{ Name: 'University Education' }],
-        Connections: [{ Name: 'magical order', Type: 'Generic' }],
-        OccupationalSkills:
-        [
-            { Name: 'Craft', Type: 'Generic', Property: 'any', Level: 2 },
-            { Name: 'Etiquette', Level: 2 },
-            { Name: 'General Skills', Level: 4 },
-            { Name: 'Negotiation', Level: 2 },
-            { Name: 'Oratory', Level: 2 },
-            { Name: 'Research', Level: 4 }
-        ],
-        SpellList:
-        [
-            'Arcane Strike',
-            'Banishing Ward',
-            'Blade of Radiance',
-            'Blessings of War',
-            'Daylight',
-            'Eyes of Truth',
-            'Exorcism',
-            'Force Hammer',
-            'Force of Faith',
-            'Guided Blade',
-            'Hex Blast',
-            'Lamentation',
-            'Light in the Darkness',
-            'Occultation',
-            'Purification',
-            'Shield of Faith',
-            'Star Fire',
-            'Sunburst',
-            'True Sight'
-        ]
-    },
-    {
         Name: 'Stormsmith',
         StartingCareerOnly: false,
         ReqRaces: ['Human'],
@@ -1976,5 +1772,57 @@ careerKNGArr =
         Connections: [{ Name: 'Cygnaran military', Type: 'Specific' }],
         MilitarySkills: [{ Name: 'Great Weapon', Level: 2 }, { Name: 'Hand Weapon', Level: 2 }],
         OccupationalSkills: [{ Name: 'General Skills', Level: 4 },{ Name: 'Mechanikal Engineering', Level: 3 },{ Name: 'Stormsmithing', Level: 4 }]
+    },
+    {
+        Name: "Assault Kommando",
+        StartingCareerOnly: false,
+        ReqRaces: ['Human'],
+        StartingAbilities: [{ Name: 'Defensive Line' }, { Name: 'Onslaught' }],
+        StartingConnections: [{ Name: 'Khadoran military', Type: 'Specific' }],
+        StartingMilitarySkills: [{ Name: 'Hand Weapon', Level: 1 }, { Name: 'Rifle', Level: 1 }, { Name: 'Shield', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Command', Level: 1 }, { Name: 'Detection', Level: 1 }],
+        StartingMSkillChoices: 0,
+        StartingOSkillChoices: 0,
+        StartingAssets: ['Assault kommando armor', 'Vislovski carbine with powder and 10 rounds of ammunition', 'assault shield', '3 strange gas grenade launcher rounds'],
+        StartingAssetChoices: 0,
+        ResSecondCareers:
+        [
+            'Khadoran Warcaster',
+            'Military Officer',
+            'Ranger',
+            'Rifleman',
+            'Soldier',
+            'Warcaster'
+        ],
+        Abilities:
+        [
+            { Name: 'Battle Plan: Reconnaissance' },
+            { Name: 'Defensive Line' },
+            { Name: 'Gunfighter' },
+            { Name: 'Load Bearing' },
+            { Name: 'Onslaught' },
+            { Name: 'Quick Work' },
+            { Name: 'Relentless Charge' },
+            { Name: 'Signal Language' },
+            { Name: 'Two-Weapon Fighting' }
+        ],
+        Connections: [{ Name: 'Khadoran military', Type: 'Specific' }],
+        MilitarySkills:
+        [
+            { Name: 'Hand Weapon', Level: 3 },
+            { Name: 'Light Artillery', Level: 3 },
+            { Name: 'Rifle', Level: 4 },
+            { Name: 'Shield', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 2 }
+        ],
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 3 },
+            { Name: 'Cryptography', Level: 2 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Interrogation', Level: 3 },
+            { Name: 'Medicine', Level: 3 },
+            { Name: 'Survival', Level: 3 }
+        ]
     }
 ];
