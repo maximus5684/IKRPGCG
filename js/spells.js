@@ -1906,5 +1906,49 @@ spellsKNGArr =
         OFF: 'NO',
         Book: 'Kings, Nations, and Gods',
         Page: 182
+    },
+    {
+        Name: 'Admonition',
+        Cost: 2,
+        Range: 6,
+        AOE: '-',
+        POW: '-',
+        UP: 'YES',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 240
+    },
+    {
+        Name: 'Quickened',
+        Cost: 4,
+        Range: 'SELF',
+        AOE: '-',
+        POW: '-',
+        UP: 'YES',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 240
+    },
+    {
+        Name: 'Rune Shot: Piercer',
+        Cost: 2,
+        Range: 'SELF',
+        AOE: '-',
+        POW: '-',
+        UP: 'NO',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 240
+    },
+    {
+        Name: 'Twister',
+        Cost: 2,
+        Range: 10,
+        AOE: 3,
+        POW: 10,
+        UP: 'NO',
+        OFF: 'YES',
+        Book: 'Kings, Nations, and Gods',
+        Page: 240
     }
 ];

@@ -957,5 +957,10 @@ abilKNGArr =
         PrereqOSkills: [{ Name: 'Ride', Level: 1 }],
         Book: 'Kings, Nations, and Gods',
         Page: 181
+    },
+    {
+        Name: 'Strangler',
+        Book: 'Kings, Nations, and Gods',
+        Page: 240
     }
 ];
