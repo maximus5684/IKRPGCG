@@ -1840,5 +1840,71 @@ spellsKNGArr =
         OFF: 'NO',
         Book: 'Kings, Nations, and Gods',
         Page: 91
+    },
+    {
+        Name: 'Battle Rage',
+        Cost: 3,
+        Range: 6,
+        AOE: '-',
+        POW: '-',
+        UP: 'NO',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 182
+    },
+    {
+        Name: 'Gallows',
+        Cost: 3,
+        Range: 10,
+        AOE: '-',
+        POW: 13,
+        UP: 'NO',
+        OFF: 'YES',
+        Book: 'Kings, Nations, and Gods',
+        Page: 182
+    },
+    {
+        Name: 'Infernal Machine',
+        Cost: 2,
+        Range: 6,
+        AOE: '-',
+        POW: '-',
+        UP: 'YES',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 182
+    },
+    {
+        Name: 'Iron Flesh',
+        Cost: 2,
+        Range: 6,
+        AOE: '-',
+        POW: '-',
+        UP: 'YES',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 182
+    },
+    {
+        Name: 'Ravager',
+        Cost: 2,
+        Range: 6,
+        AOE: '-',
+        POW: '-',
+        UP: 'NO',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 182
+    },
+    {
+        Name: 'Watcher',
+        Cost: 3,
+        Range: 'SELF',
+        AOE: '-',
+        POW: '-',
+        UP: 'YES',
+        OFF: 'NO',
+        Book: 'Kings, Nations, and Gods',
+        Page: 182
     }
 ];

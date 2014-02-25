@@ -888,5 +888,74 @@ abilKNGArr =
         Name: 'Weather Vane',
         Book: 'Kings, Nations, and Gods',
         Page: 90
+    },
+    {
+        Name: 'Abomination',
+        Book: 'Kings, Nations, and Gods',
+        Page: 181
+    },
+    {
+        Name: 'Berserk',
+        Book: 'Kings, Nations, and Gods',
+        Page: 181
+    },
+    {
+        Name: 'Bloodlust',
+        Book: 'Kings, Nations, and Gods',
+        Page: 181
+    },
+    {
+        Name: 'Fearless',
+        Book: 'Kings, Nations, and Gods',
+        Page: 181
+    },
+    {
+        Name: 'Fearsome Howl',
+        PrereqAbils: [{ Name: 'Abomination' }],
+        Book: 'Kings, Nations, and Gods',
+        Page: 181
+    },
+    {
+        Name: 'Ironhead',
+        Book: 'Kings, Nations, and Gods',
+        Page: 181
+    },
+    {
+        Name: 'Man of Iron',
+        PrereqAbils: [{ Name: 'Ironhead' }],
+        PrereqStats: [{ Name: 'PHY', Level: 8 }],
+        Book: 'Kings, Nations, and Gods',
+        Page: 181
+    },
+    {
+        Name: 'Mounted: Counter Charge',
+        PrereqAbils: [{ Name: 'Cavalry Charge' }],
+        PrereqOSkills: [{ Name: 'Ride', Level: 3 }],
+        Book: 'Kings, Nations, and Gods',
+        Page: 181
+    },
+    {
+        Name: 'Onslaught',
+        Book: 'Kings, Nations, and Gods',
+        Page: 181
+    },
+    {
+        Name: 'Silence',
+        PrereqAbils: [{ Name: 'Berserk' }],
+        PrereqMSkills: [{ Name: 'Great Weapon', Level: 3 }],
+        Book: 'Kings, Nations, and Gods',
+        Page: 181
+    },
+    {
+        Name: 'Steam Jockey',
+        PrereqAbils: [{ Name: 'Ironhead' }],
+        Book: 'Kings, Nations, and Gods',
+        Page: 181
+    },
+    {
+        Name: 'Trained Rider',
+        PrereqOSkills: [{ Name: 'Ride', Level: 1 }],
+        Book: 'Kings, Nations, and Gods',
+        Page: 181
     }
 ];

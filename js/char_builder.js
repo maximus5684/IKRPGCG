@@ -310,6 +310,21 @@ function CBCtrl($scope, $http) {
 
                 if (!found && !added) {
                     careersToRemove.push($scope.Careers[i]);
+                    added = true;
+                }
+            }
+
+            if ('ResRaces' in $scope.Careers[i]) {
+                var found = false;
+
+                for (var i1 = 0; i1 < $scope.Careers[i].ResRaces.length; i1++) {
+                    if ($scope.Race.Name == $scope.Careers[i].ResRaces[i1]) {
+                        found = true;
+                    }
+                }
+
+                if (found && !added) {
+                    careersToRemove.push($scope.Careers[i]);
                 }
             }
         }

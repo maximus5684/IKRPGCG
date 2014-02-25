@@ -1757,7 +1757,6 @@ careerKNGArr =
         StartingOSkillChoices: 0,
         StartingAssets: ['Stormsmith armor', 'stormcaller and lightning rod'],
         StartingAssetChoices: 0,
-        StartingGold: 0,
         Abilities:
         [
             { Name: 'Electromancer' },
@@ -1787,7 +1786,6 @@ careerKNGArr =
         StartingAssetChoices: 0,
         ResSecondCareers:
         [
-            'Khadoran Warcaster',
             'Military Officer',
             'Ranger',
             'Rifleman',
@@ -1823,6 +1821,134 @@ careerKNGArr =
             { Name: 'Interrogation', Level: 3 },
             { Name: 'Medicine', Level: 3 },
             { Name: 'Survival', Level: 3 }
+        ]
+    },
+    {
+        Name: "Doom Reaver",
+        StartingCareerOnly: true,
+        ReqRaces: ['Human'],
+        ReqArchetype: 'Mighty',
+        StartingAbilities: [{ Name: 'Abomination' }, { Name: 'Berserk' }, { Name: 'Bloodlust' }, { Name: 'Fearless' }],
+        StartingMilitarySkills: [{ Name: 'Great Weapon', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Detection', Level: 1 }, { Name: 'Intimidation', Level: 1 }],
+        StartingMSkillChoices: 0,
+        StartingOSkillChoices: 0,
+        StartingSpecial: 'A character starting with the Doom Reaver career must choose Cutthroat, Horseman, Pirate, Ranger, Soldier, or Thief for his other career.',
+        StartingAssets: ['Fellblade'],
+        StartingAssetChoices: 0,
+        ResSecondCareers:
+        [
+            'Cutthroat',
+            'Horseman',
+            'Pirate',
+            'Ranger',
+            'Soldier',
+            'Thief'
+        ],
+        Abilities:
+        [
+            { Name: 'Abomination' },
+            { Name: 'Berserk' },
+            { Name: 'Bloodlust' },
+            { Name: 'Fearless' },
+            { Name: 'Fearsome Howl' },
+            { Name: 'Iron Will' },
+            { Name: 'Language', Type: 'Specific', PropertyType: 'Language', Property: 'Orgoth' },
+            { Name: 'Precision Strike' },
+            { Name: 'Relentless Charge' },
+            { Name: 'Silence' }
+        ],
+        MilitarySkills:
+        [
+            { Name: 'Great Weapon', Level: 4 },
+            { Name: 'Unarmed Combat', Level: 3 }
+        ],
+        OccupationalSkills:
+        [
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Survival', Level: 3 },
+            { Name: 'Tracking', Level: 3 }
+        ]
+    },
+    {
+        Name: "Horseman",
+        StartingCareerOnly: false,
+        ResRaces: ['Trollkin'],
+        StartingAbilities: [{ Name: 'Cavalry Charge' }, { Name: 'Combat Rider' }],
+        StartingOccupationalSkills: [{ Name: 'Riding', Level: 1 }],
+        StartingMSkillChoices: 3,
+        StartingMSkillChoicesOptions: [{ Name: 'Great Weapon', Level: 1}, { Name: 'Hand Weapon', Level: 1 }, { Name: 'Lance', Level: 1 }, { Name: 'Pistol', Level: 1 }],
+        StartingOSkillChoices: 0,
+        StartingSpecial: 'A character starting with the Iron Fang career can choose Horseman for his other career. Since horses are uncomfortable in the presense of trollkin, trollkin characters cannot take this career.',
+        StartingAssets: ['warhorse with tack and heavy barding'],
+        StartingAssetChoices: 0,
+        StartingGold: 25,
+        Abilities:
+        [
+            { Name: 'Cavalry Charge' },
+            { Name: 'Combat Rider' },
+            { Name: 'Expert Rider' },
+            { Name: 'Mounted: Counter Charge' },
+            { Name: 'Ride-By Attack' },
+            { Name: 'Saddle Shot' },
+            { Name: 'Swift Rider' },
+            { Name: 'Trained Rider', Type: 'Generic', Property: 'any' }
+        ],
+        MilitarySkills:
+        [
+            { Name: 'Great Weapon', Level: 4 },
+            { Name: 'Hand Weapon', Level: 2 },
+            { Name: 'Lance', Level: 4 },
+            { Name: 'Pistol', Level: 2 },
+            { Name: 'Unarmed Combat', Level: 2 }
+        ],
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 3 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Navigation', Level: 3 }
+        ]
+    },
+    {
+        Name: "Man-O-War",
+        StartingCareerOnly: false,
+        ReqRaces: ['Human'],
+        StartingAbilities: [{ Name: 'Ironhead' }, { Name: 'Load Bearing' }],
+        StartingConnections: [{ Name: 'Khadoran military', Type: 'Specific' }],
+        StartingMilitarySkills: [{ Name: 'Great Weapon', Level: 1 }, { Name: 'Light Artillery', Level: 1 }, { Name: 'Shield', Level: 1 }],
+        StartingOccupationalSkills: [{ Name: 'Command', Level: 1 }, { Name: 'Mechanikal Engineering', Level: 1 }],
+        StartingMSkillChoices: 0,
+        StartingOSkillChoices: 0,
+        StartingSpecial: 'A character starting with the Man-O-War career must choose Aristocrat, Field Mechanik, Horseman, Man-at-Arms, Military Officer, or Soldier for his other career.',
+        StartingAssets: ['Man-O-War armor'],
+        StartingAssetChoices: 1,
+        StartingAssetChoiceOptions: ['Annihilator blade and Man-O-War shield cannon with powder and ammunition for 10 shots','bombardier grenade cannon, Man-O-War ammo bandolier, and four cannon grenades','ice maul'],
+        Abilities:
+        [
+            { Name: 'Cleave' },
+            { Name: 'Defensive Line' },
+            { Name: 'Girded' },
+            { Name: 'Head-Butt' },
+            { Name: 'Ironhead' },
+            { Name: 'Load Bearing' },
+            { Name: 'Man of Iron' },
+            { Name: 'Shield Slam' },
+            { Name: 'Steady' },
+            { Name: 'Steam Jockey' }
+        ],
+        Connections: [{ Name: 'Khadoran military', Type: 'Specific' }],
+        MilitarySkills:
+        [
+            { Name: 'Great Weapon', Level: 4 },
+            { Name: 'Light Artillery', Level: 4 },
+            { Name: 'Shield', Level: 3 },
+            { Name: 'Unarmed Combat', Level: 3 }
+        ],
+        OccupationalSkills:
+        [
+            { Name: 'Command', Level: 3 },
+            { Name: 'General Skills', Level: 4 },
+            { Name: 'Mechanikal Engineering', Level: 2 }
         ]
     }
 ];

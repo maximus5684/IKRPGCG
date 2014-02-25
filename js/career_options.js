@@ -251,5 +251,14 @@ optKNGArr =
         RemovedStartingAbilities: [{ Name: 'Fast Rearm', Type: 'Specific', Property: 'Blasting Pike' }],
         AdditionalStartingAssets: ['blasting lance','10 blasting heads','Pozdyov warhorse'],
         RemovedStartingAssets: ['blasting pike','warhorse with tack and heavy barding']
+    },
+    {
+        Name: 'Man-O-War Drakhun',
+        Career1: 'Horseman',
+        Career2: 'Man-O-War',
+        AdditionalStartingAbilities: [{ Name: 'Trained Rider', Type: 'Specific', Property: 'Karpathan Destrier' }],
+        RemovedStartingAbilities: [{ Name: 'Combat Rider' }],
+        AdditionalStartingAssets: ['Karpathan Destrier warhorse'],
+        RemovedStartingAssets: ['warhorse with tack and heavy barding']
     }
 ];
