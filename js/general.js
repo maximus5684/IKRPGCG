@@ -60,6 +60,38 @@ function load_array(type, exclusions) {
                 // If this failed, it means that the array didn't exist. That's OK, so we do nothing.
                 // Bad code, I know. Can't think of a better way around this.
             }
+
+            // Apply KNG-specific rules to core, which should be added to the array first.
+            if (arrName == 'career' && books[i] == 'KNG') {
+                for (var i1 = 0; i1 < retArr.length; i1++) {
+                    switch (retArr[i1].Name) {
+                        case 'Arcane Mechanik':
+                            retArr[i1].Abilities.push({ Name: 'Ironhead' });
+                            retArr[i1].Abilities.sort(byName);
+                            break;
+                        case 'Cutthroat':
+                            retArr[i1].Abilities.push({ Name: 'Strangler' });
+                            retArr[i1].Abilities.sort(byName);
+                            break;
+                        case 'Field Mechanik':
+                            retArr[i1].Abilities.push({ Name: 'Ironhead' });
+                            retArr[i1].Abilities.sort(byName);
+                            break;
+                        case 'Iron Fang':
+                            retArr[i1].ResSecondCareers.push('Horseman');
+                            retArr[i1].ResSecondCareers.sort();
+                            break;
+                        case 'Ranger':
+                            retArr[i1].Abilities.push({ Name: 'Strangler' });
+                            retArr[i1].Abilities.sort(byName);
+                            break;
+                        case 'Spy':
+                            retArr[i1].Abilities.push({ Name: 'Strangler' });
+                            retArr[i1].Abilities.sort(byName);
+                            break;
+                    }
+                }
+            }
         }
     }
 
