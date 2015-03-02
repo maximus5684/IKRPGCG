@@ -1,0 +1,32 @@
+<div class="container" id="mainContain" ng-controller="loginController" ng-init="SetRedir('<?php echo str_replace("Reason=Inactive", "", urldecode($_SERVER['QUERY_STRING'])); ?>')">
+    <div class="hero-unit">
+        <h1 class="center" id="loginTitle">IRON KINGDOMS<br>Character Builder</h1>
+        <form class="form-horizontal">
+            <div class="control-group{{EmailStatus}}">
+                <label class="control-label" for="loginEmail">Email:</label>
+                <div class="controls">
+                    <input type="text" id="loginEmail" placeholder="Email" ng-model="Email">
+                </div>
+            </div>
+            <div class="control-group{{PassStatus}}">
+                <label class="control-label" for="loginPass">Password:</label>
+                <div class="controls">
+                    <input type="password" id="loginPass" placeholder="Password" ng-model="Password">
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button type="submit" class="btn" ng-click="LoginCheck()">Sign in</button>
+                </div>
+            </div>
+        </form>
+        <p id="resultWrap" class="center" style="display: none; float: left; width: 820px">
+            <span class="label label-{{ResultClass}}">{{Result}}</span>
+        </p>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#loginEmail").focus();
+    });
+</script>
