@@ -1,4 +1,4 @@
-angular.module('ikrpgApp.login', ['ui.router'])
+angular.module('ikrpgApp.login', ['ui.router', 'ikrpgApp.user.service'])
 
 .config(['$stateProvider', '$urlRouteProvider',
     function ($stateProvider, $urlRouteProvider) {
@@ -21,12 +21,12 @@ angular.module('ikrpgApp.login', ['ui.router'])
             $scope.Result = 'Email address is required.';
             $scope.EmailClass = ' error';
             $scope.PassClass = '';
-            $scope.resultShowFade();
+            $rootScope.resultShowFade($('#resultWrap'));
         } else if ($scope.Password === '') {
             $scope.Result = 'Password is required.';
             $scope.EmailClass = '';
             $scope.PassClass = ' error';
-            $scope.resultShowFade();
+            $rootScope.resultShowFade($('#resultWrap'));
         } else {
             processLogin.tryLogin($scope.Email, $scope.Password)
                .success(function (data, status) {
@@ -36,21 +36,21 @@ angular.module('ikrpgApp.login', ['ui.router'])
                             $scope.EmailClass = ' error';
                             $scope.PassClass = '';
                             $scope.ResultClass = 'warning';
-                            $scope.resultShowFade();
+                            $rootScope.resultShowFade($('#resultWrap'));
                             break;
                         case 'BadPassword':
                             $scope.Result = 'The password you entered was incorrect.';
                             $scope.EmailClass = '';
                             $scope.PassClass = ' error';
                             $scope.ResultClass = 'warning';
-                            $scope.resultShowFade();
+                            $rootScope.resultShowFade($('#resultWrap'));
                             break;
                         case 'OKLogin':
                             $scope.Result = 'Login successful. Redirecting...';
                             $scope.EmailClass = '';
                             $scope.PassClass = '';
                             $scope.ResultClass = 'success';
-                            $scope.resultShowFade();
+                            $rootScope.resultShowFade($('#resultWrap'));
 
                             if (typeof $rootScope.redirState === 'undefined') {
                                 $state.go('auth.home');
@@ -80,10 +80,4 @@ angular.module('ikrpgApp.login', ['ui.router'])
                 });
         }
     };
-
-    $scope.resultShowFade = function () {
-        $('#resultWrap').show().delay(1500).fadeOut(1000, function() {
-            $(this).hide().css('opacity', '1.0');
-        });
-    }
 });

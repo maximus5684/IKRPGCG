@@ -28,11 +28,17 @@ angular.module('ikrpgApp', [
                 $state.go('login');
             }
         });
+
+        $rootScope.resultShowFade = function (jObject) {
+            jObject.show().delay(1500).fadeOut(1000, function() {
+                $(this).hide().css('opacity', '1.0');
+            });
+        }
     }]
 )
 
-.config(['$stateProvider', '$urlRouteProvider',
-    function ($stateProvider, $urlRouteProvider) {
+.config(['$stateProvider', '$urlRouteProvider', '$httpProvider',
+    function ($stateProvider, $urlRouteProvider, $httpProvider) {
         $urlRouteProvider
             .otherwise('/login');
 
@@ -43,5 +49,30 @@ angular.module('ikrpgApp', [
                     requireLogin: true;
                 }
             });
+
+        //Handles 401 responses. Redirects to login.
+        $httpProvider.interceptors.push(['$rootScope', '$q', '$injector',
+            function ($rootScope, $q, $injector) {
+                function success (response) {
+                    return response;
+                }
+
+                function error (response) {
+                    if (response.status === 401) {
+                        var $state = $injector.get('$state');
+                        $rootScope.redirState = $state.current;
+                        $rootScope.redirParams = $state.params;
+                        $state.go('login');
+                        return $q.reject(response);
+                    } else {
+                        return $q.reject(response);
+                    }
+                }
+
+                return function (promise) {
+                    return promise.then(success, error);
+                }
+            }]
+        );
     }]
 );
